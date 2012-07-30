@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+}
+table {
+    padding:2px;
+    margin:0;
+    width:auto;
+    border:0;
+}
+#classes td, #classes th {
+    border: 1px solid #000;
+}
+td {
+    vertical-align: top;
+}
+fieldset {
+    width:auto;
+}
+
+#submit-form-wrapper {
+    text-align: center;
+}
+
+#startAgain {
+    text-align: center;
+}
