@@ -11,6 +11,9 @@ table {
 #classes td, #classes th {
     border: 1px solid #000;
 }
+th {
+    white-space: nowrap;
+}
 td {
     vertical-align: top;
 }

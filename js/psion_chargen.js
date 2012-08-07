@@ -2,28 +2,30 @@ function PsionicRace() {
     if (rayce == 209) {
         return true;
     }
-    if (rayce == 99) {
+    else if (rayce == 99) {
         return true;
     }
-    if (rayce == 211) {
+    else if (rayce == 211) {
         return true;
     }
-    if (rayce == 100) {
+    else if (rayce == 100) {
         return true;
     }
-    if (rayce == 102) {
+    else if (rayce == 102) {
         return true;
     }
-    if (rayce == 103) {
+    else if (rayce == 103) {
         return true;
     }
-    if (rayce == 210) {
+    else if (rayce == 210) {
         return true;
     }
-    if (rayce == 104) {
+    else if (rayce == 104) {
         return true;
     }
-    return false;
+    else {
+        return false;
+    }
 }
 
 function DwarfArmorSpeed() {
@@ -897,19 +899,19 @@ function suggest_titles() {
         stringy=" the Hairy ";
         add_a_title();
     }
-    if ((rayce == 2)) {
+    if (rayce == 2) {
         stringy=" the Half-Elf ";
         add_a_title();
     }
-    if ((rayce == 102)) {
+    if (rayce == 102) {
         stringy=" the Half-Giant ";
         add_a_title();
     }
-    if ((rayce == 7)) {
+    if (rayce == 7) {
         stringy=" the Half-Orc ";
         add_a_title();
     }
-    if ((rayce == 6)) {
+    if (rayce == 6) {
         stringy=" the Halfling ";
         add_a_title();
     }
@@ -1635,7 +1637,7 @@ function suggest_titles() {
         stringy=" the Wrestler ";
         add_a_title();
     }
-    if ((rayce == 104)) {
+    if (rayce == 104) {
         stringy=" the Xeph ";
         add_a_title();
     }
@@ -1650,11 +1652,9 @@ function suggest_titles() {
 
 function pigmentation() {
     if (gender == 2) {
-        // document.form1.beard_type[0].checked=true;
         document.form1.beard_type[0].checked=false;
     }
     if (document.form1.hair_color[11].checked) {
-        // document.form1.hair_type[0].checked=true;
         document.form1.hair_type[0].checked=false;
     }
 }
@@ -1748,7 +1748,7 @@ function AnimalCompanion0() {
     if (((druid_levels == 0) || (no_druid_domain == false)) && (ranger_levels < 3)) {
         NegateAnimalCompanionStuff();
         document.form1.AnimalCompanionBox.value="You don't have an animal companion.";
-        return;
+        return false;
     }
     else {
         document.form1.AnimalCompanionBox.value="You may take an animal companion if you wish.";
@@ -1778,11 +1778,11 @@ function AnimalCompanion() {
         ac_attacks="bite (1d4) 2 claws (1d4)";
         ac_special="low-light vision, scent";
         if (animal_companion_level>=4) {
-            ac_large=true
+            ac_large=true;
             ac_strength+= 8;
             ac_dexterity-=2;
-            ac_constitution+= 4;
-            ac_natural_armor+= 2;
+            ac_constitution+=4;
+            ac_natural_armor+=2;
             ac_attacks="bite (1d6) 2 claws(1d6)";
         }
     }
@@ -1919,8 +1919,7 @@ function AnimalCompanion() {
             ac_attacks="bite (1d8), 2 claws (1d6); grab, pounce, rake (1d6)";
         }
     }
-    else if (document.form1.ac_species[7].checked)
-    {
+    else if (document.form1.ac_species[7].checked) {
         document.form1.AnimalCompanionBox.value="You chose a Small Cat (cheetah / leopard). ";
         ac_species_name="Small Cat (cheetah / leopard)";
         ac_strength=12;
@@ -3190,32 +3189,28 @@ function BardKnow() {
     return (Math.floor(bard_levels/2));
 }
 
+function halfLevelBonus(level) {
+    switch (level) {
+        case 0:
+            return 0;
+            break;
+        case 1:
+            return 1;
+            break;
+        default:
+            return (Math.floor(level/2));
+    }
+}
+
 function Spellcaster() {
-    if (cleric_levels > 0) {
+    if (cleric_levels > 0 || druid_levels > 0 || sorcerer_levels > 0 || wizard_levels > 0 || ranger_levels > 0|| rogue_levels > 0
+        || paladin_levels > 0 || bard_levels > 0 || alchemist_levels > 0 || inquisitor_levels > 0 || oracle_levels > 0 || summoner_levels > 0
+        || witch_levels > 0) {
         return true;
     }
-    if (druid_levels > 0) {
-        return true;
+    else {
+        return false;
     }
-    if (sorcerer_levels > 0) {
-        return true;
-    }
-    if (wizard_levels > 0) {
-        return true;
-    }
-    if (ranger_levels > 0) {
-        return true;
-    }
-    if (rogue_levels > 0) {
-        return true;
-    }
-    if (paladin_levels > 0) {
-        return true;
-    }
-    if (bard_levels > 0) {
-        return true;
-    }
-    return false;
 }
 
 function CasterLevel() {
@@ -3240,6 +3235,21 @@ function CasterLevel() {
     }
     if (bard_levels>z) {
         z=bard_levels;
+    }
+    if (alchemist_levels > z) {
+        z=alchemist_levels;
+    }
+    if (inquisitor_levels > z) {
+        z=inquisitor_levels;
+    }
+    if (oracle_levels > z) {
+        z=oracle_levels;
+    }
+    if (summoner_levels > z) {
+        z=summoner_levels;
+    }
+    if (witch_levels > z) {
+        z=witch_levels;
     }
     if (ManifesterLevel()>z) {
         z=ManifesterLevel();
@@ -3580,7 +3590,7 @@ function LightConstantFeatStars() {
     if (handleanimal > 0) {
         document.form1.animalaffinity_star.src="images/asterisk.gif";
     }
-    if (sorcerer_levels+bard_levels+wizard_levels > 0) {
+    if (sorcerer_levels + bard_levels + wizard_levels + witch_levels + summoner_levels > 0) {
         document.form1.arcanestrike_star.src="images/asterisk.gif";
     }
     document.form1.athletic_star.src="images/asterisk.gif";
@@ -3595,7 +3605,7 @@ function LightConstantFeatStars() {
     if ((disabledevice > 0) && (sleightofhand > 0)) {
         document.form1.defthands_star.src="images/asterisk.gif";
     }
-    if (bard_levels + cleric_levels + druid_levels + paladin_levels + ranger_levels + wizard_levels > 0) {
+    if (bard_levels + cleric_levels + druid_levels + paladin_levels + ranger_levels + wizard_levels + witch_levels + summoner_levels > 0) {
         document.form1.eschewmaterials_star.src="images/asterisk.gif";
     }
     document.form1.exoticweaponproficiency_star.src="images/asterisk.gif";
@@ -3687,7 +3697,7 @@ function LightConstantFeatStars() {
     if (base_attack_bonus > 0) {
         document.form1.weaponfocus_list_star.src="images/asterisk.gif";
     }
-    if (CasterLevel()>=3) {
+    if (CasterLevel()>=3 && (alchemist_levels == 0)) {
         document.form1.brewpotion_star.src="images/asterisk.gif";
     }
     if (CasterLevel()>=9) {
@@ -3823,7 +3833,7 @@ function LightConstantFeatStars() {
     if ((cleric_levels > 0) || (paladin_levels>3) || (wizard_specialty_name == "Necromancer")) {
         document.form1.improvedchannel_star.src="images/asterisk.gif";
     }
-    if (wizard_levels > 0) {
+    if (wizard_levels > 0 || witch_levels) {
         document.form1.improvedfamiliar_star.src="images/asterisk.gif";
     }
     if (strength>=12) {
@@ -3850,13 +3860,13 @@ function LightConstantFeatStars() {
 }
 
 function LightVariableFeatStars() {
-    if (((already_knows_light_armor) || (document.form1.armorproficiencylight.checked)) && ((wizard_levels>=3) || (sorcerer_levels>=3))) {
+    if (((already_knows_light_armor) || (document.form1.armorproficiencylight.checked)) && ((wizard_levels>=3) || (sorcerer_levels>=3) || (witch_levels>=3))) {
         document.form1.arcanearmortraining_star.src="images/asterisk.gif";
     }
     else {
         document.form1.arcanearmortraining_star.src="images/no_asterisk.gif";
     }
-    if (((already_knows_medium_armor) || (document.form1.armorproficiencymedium)) && ((bard_levels>=7) || (wizard_levels>=7) || (sorcerer_levels>=7))) {
+    if (((already_knows_medium_armor) || (document.form1.armorproficiencymedium)) && ((bard_levels>=7) || (wizard_levels>=7) || (sorcerer_levels>=7) || (witch_levels>=7))) {
         document.form1.arcanearmormastery_star.src="images/asterisk.gif";
     }
     else {
@@ -3916,14 +3926,14 @@ function LightVariableFeatStars() {
     else {
         document.form1.twoweapondefense_star.src="images/no_asterisk.gif";
     }
-    if (((rangercombattrack == 2) && (ranger_levels>=6)) || ((dexterity>=17) 
+    if (((rangercombattrack == 2) && (ranger_levels>=6)) || ((dexterity>=17)
         && (document.form1.twoweaponfighting.checked) && (base_attack_bonus>=6))) {
         document.form1.improvedtwoweaponfighting_star.src="images/asterisk.gif";
     }
     else {
         document.form1.improvedtwoweaponfighting_star.src="images/no_asterisk.gif";
     }
-    if (((rangercombattrack == 2) && (ranger_levels>=10)) || ((dexterity>=19) 
+    if (((rangercombattrack == 2) && (ranger_levels>=10)) || ((dexterity>=19)
         && (document.form1.improvedtwoweaponfighting.checked) && (base_attack_bonus>=11))) {
         document.form1.greatertwoweaponfighting_star.src="images/asterisk.gif";
     }
@@ -3942,7 +3952,7 @@ function LightVariableFeatStars() {
     else {
         document.form1.improvedshieldbash_star.src="images/no_asterisk.gif";
     }
-    if (((rangercombattrack == 2) && (ranger_levels>=10)) || ((base_attack_bonus>=11) 
+    if (((rangercombattrack == 2) && (ranger_levels>=10)) || ((base_attack_bonus>=11)
         && (document.form1.twoweaponrend.checked) && (document.form1.improvedtwoweaponfighting.checked))) {
         document.form1.twoweaponrend_star.src="images/asterisk.gif";
     }
@@ -4292,7 +4302,7 @@ function LightVariableFeatStars() {
     else {
         document.form1.shatterdefenses_star.src="images/no_asterisk.gif";
     }
-    if ((document.form1.greaterweaponfocus_list.selectedIndex > 0) && (document.form1.shatterdefenses.checked) 
+    if ((document.form1.greaterweaponfocus_list.selectedIndex > 0) && (document.form1.shatterdefenses.checked)
         && (base_attack_bonus>=11)) {
         document.form1.deadlystroke_star.src="images/asterisk.gif";
     }
@@ -4792,9 +4802,9 @@ function DoFavoredClassPoints() {
 
 function favored_class_points() {
     if (FighterFeatsEtcFrozen) {
-        document.form1.favored_for_hit_points.selectedIndex =favored_for_hp;
-        document.form1.favored_for_skill_points.selectedIndex =favored_for_skill;
-        document.form1.favored_for_psionic_points.selectedIndex =favored_for_psi;
+        document.form1.favored_for_hit_points.selectedIndex=favored_for_hp;
+        document.form1.favored_for_skill_points.selectedIndex=favored_for_skill;
+        document.form1.favored_for_psionic_points.selectedIndex=favored_for_psi;
         return true;
     }
     if ((document.form1.favored_for_hit_points.selectedIndex
@@ -4922,38 +4932,38 @@ function RecordRangerTerrains() {
 }
 
 function RememberRangerFoes() {
-    document.form1.rf_aberration_list.selectedIndex =rf_aberration;
-    document.form1.rf_animal_list.selectedIndex =rf_animal;
-    document.form1.rf_construct_list.selectedIndex =rf_construct;
-    document.form1.rf_dragon_list.selectedIndex =rf_dragon;
-    document.form1.rf_humanoidothersubtype_list.selectedIndex =rf_humanoidothersubtype;
-    document.form1.rf_fey_list.selectedIndex =rf_fey;
-    document.form1.rf_giant_list.selectedIndex =rf_giant;
-    document.form1.rf_aquatic_list.selectedIndex =rf_aquatic;
-    document.form1.rf_dwarf_list.selectedIndex =rf_dwarf;
-    document.form1.rf_elf_list.selectedIndex =rf_elf;
-    document.form1.rf_goblinoid_list.selectedIndex =rf_goblinoid;
-    document.form1.rf_gnoll_list.selectedIndex =rf_gnoll;
-    document.form1.rf_gnome_list.selectedIndex =rf_gnome;
-    document.form1.rf_halfling_list.selectedIndex =rf_halfling;
-    document.form1.rf_human_list.selectedIndex =rf_human;
-    document.form1.rf_orc_list.selectedIndex =rf_orc;
-    document.form1.rf_reptilian_list.selectedIndex =rf_reptilian;
-    document.form1.rf_magicalbeast_list.selectedIndex =rf_magicalbeast;
-    document.form1.rf_monstroushumanoid_list.selectedIndex =rf_monstroushumanoid;
-    document.form1.rf_ooze_list.selectedIndex =rf_ooze;
-    document.form1.rf_air_list.selectedIndex =rf_air;
-    document.form1.rf_chaotic_list.selectedIndex =rf_chaotic;
-    document.form1.rf_earth_list.selectedIndex =rf_earth;
-    document.form1.rf_evil_list.selectedIndex =rf_evil;
-    document.form1.rf_fire_list.selectedIndex =rf_fire;
-    document.form1.rf_good_list.selectedIndex =rf_good;
-    document.form1.rf_lawful_list.selectedIndex =rf_lawful;
-    document.form1.rf_native_list.selectedIndex =rf_native;
-    document.form1.rf_water_list.selectedIndex =rf_water;
-    document.form1.rf_plant_list.selectedIndex =rf_plant;
-    document.form1.rf_undead_list.selectedIndex =rf_undead;
-    document.form1.rf_vermin_list.selectedIndex =rf_vermin;
+    document.form1.rf_aberration_list.selectedIndex=rf_aberration;
+    document.form1.rf_animal_list.selectedIndex=rf_animal;
+    document.form1.rf_construct_list.selectedIndex=rf_construct;
+    document.form1.rf_dragon_list.selectedIndex=rf_dragon;
+    document.form1.rf_humanoidothersubtype_list.selectedIndex=rf_humanoidothersubtype;
+    document.form1.rf_fey_list.selectedIndex=rf_fey;
+    document.form1.rf_giant_list.selectedIndex=rf_giant;
+    document.form1.rf_aquatic_list.selectedIndex=rf_aquatic;
+    document.form1.rf_dwarf_list.selectedIndex=rf_dwarf;
+    document.form1.rf_elf_list.selectedIndex=rf_elf;
+    document.form1.rf_goblinoid_list.selectedIndex=rf_goblinoid;
+    document.form1.rf_gnoll_list.selectedIndex=rf_gnoll;
+    document.form1.rf_gnome_list.selectedIndex=rf_gnome;
+    document.form1.rf_halfling_list.selectedIndex=rf_halfling;
+    document.form1.rf_human_list.selectedIndex=rf_human;
+    document.form1.rf_orc_list.selectedIndex=rf_orc;
+    document.form1.rf_reptilian_list.selectedIndex=rf_reptilian;
+    document.form1.rf_magicalbeast_list.selectedIndex=rf_magicalbeast;
+    document.form1.rf_monstroushumanoid_list.selectedIndex=rf_monstroushumanoid;
+    document.form1.rf_ooze_list.selectedIndex=rf_ooze;
+    document.form1.rf_air_list.selectedIndex=rf_air;
+    document.form1.rf_chaotic_list.selectedIndex=rf_chaotic;
+    document.form1.rf_earth_list.selectedIndex=rf_earth;
+    document.form1.rf_evil_list.selectedIndex=rf_evil;
+    document.form1.rf_fire_list.selectedIndex=rf_fire;
+    document.form1.rf_good_list.selectedIndex=rf_good;
+    document.form1.rf_lawful_list.selectedIndex=rf_lawful;
+    document.form1.rf_native_list.selectedIndex=rf_native;
+    document.form1.rf_water_list.selectedIndex=rf_water;
+    document.form1.rf_plant_list.selectedIndex=rf_plant;
+    document.form1.rf_undead_list.selectedIndex=rf_undead;
+    document.form1.rf_vermin_list.selectedIndex=rf_vermin;
 }
 
 function RememberRangerTerrains() {
@@ -6381,7 +6391,7 @@ function ArrowShow() {
         document.form1.domainarrow.src="images/dragonblank.gif";
     }
 
-    if ((cleric_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true) 
+    if ((cleric_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)
         && (alignment>3) && (alignment<6)) {
         if ((document.form1.choose_energy[0].checked == false) && (document.form1.choose_energy[1].checked == false)) {
             document.form1.energyarrow.src="images/dragonarrowleft.gif";
@@ -6424,7 +6434,7 @@ function ArrowShow() {
     }
 
     if ((ranger_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
-        if ((document.form1.ranger_combat_track[0].checked == false) 
+        if ((document.form1.ranger_combat_track[0].checked == false)
             && (document.form1.ranger_combat_track[1].checked == false)) {
             document.form1.rangerarrow.src="images/dragonarrowleft.gif";
         }
@@ -6537,25 +6547,121 @@ function slottage(i) {
 }
 
 function ThisTakesAMoment() {
+    document.form1.second_comment_box.value="";
     if (CharacterTypeHasBeenEstablished == true) {
         return;
     }
     if (AbilitiesHaveBeenEstablished == false) {
+        document.form1.second_comment_box.value+="Please accept your ability assignments first.";
         return;
+    }
+    if (total_levels > 0) {
+        document.form1.second_comment_box.value += "Level: " + total_levels + " ";
+    }
+    if (alignment == 1) {
+        document.form1.second_comment_box.value += "Lawful Good ";
+    }
+    else if (alignment == 2) {
+        document.form1.second_comment_box.value += "Neutral Good ";
+    }
+    else if (alignment == 3) {
+        document.form1.second_comment_box.value += "Chaotic Good ";
+    }
+    else if (alignment == 4) {
+        document.form1.second_comment_box.value += "Lawful Neutral ";
+    }
+    else if (alignment == 5) {
+        document.form1.second_comment_box.value += "True Neutral ";
+    }
+    else if (alignment == 6) {
+        document.form1.second_comment_box.value += "Chaotic Neutral ";
+    }
+    else if (alignment == 7) {
+        document.form1.second_comment_box.value += "Lawful Evil ";
+    }
+    else if (alignment == 8) {
+        document.form1.second_comment_box.value += "Neutral Evil ";
+    }
+    else if (alignment == 9) {
+        document.form1.second_comment_box.value += "Chaotic Evil ";
+    }
+    if (gender == 1) {
+        document.form1.second_comment_box.value += "Male ";
+    }
+    else if (gender == 2) {
+        document.form1.second_comment_box.value += "Female ";
+    }
+    if (rayce == 1) {
+        document.form1.second_comment_box.value += "Human. ";
+    }
+    else if (rayce == 2) {
+        document.form1.second_comment_box.value += "Half-Elf. ";
+    }
+    else if (rayce == 3) {
+        document.form1.second_comment_box.value += "Elf. ";
+    }
+    else if (rayce == 4) {
+        document.form1.second_comment_box.value += "Dwarf. ";
+    }
+    else if (rayce == 5) {
+        document.form1.second_comment_box.value += "Gnome. ";
+    }
+    else if (rayce == 6) {
+        document.form1.second_comment_box.value += "Halfling. ";
+    }
+    else if (rayce == 7) {
+        document.form1.second_comment_box.value += "Half-Orc. ";
+    }
+    else if (rayce == 28) {
+        document.form1.second_comment_box.value += "Aasimar. ";
+    }
+    else if (rayce == 9) {
+        document.form1.second_comment_box.value += "Dhampir. ";
+    }
+    else if (rayce == 22) {
+        document.form1.second_comment_box.value += "Orc. ";
+    }
+    else if (rayce == 209) {
+        document.form1.second_comment_box.value += "Blue. ";
+    }
+    else if (rayce == 99) {
+        document.form1.second_comment_box.value += "Dromite. ";
+    }
+    else if (rayce == 211) {
+        document.form1.second_comment_box.value += "Duergar. ";
+    }
+    else if (rayce == 100) {
+        document.form1.second_comment_box.value += "Elan. ";
+    }
+    else if (rayce == 102) {
+        document.form1.second_comment_box.value += "Half-Giant. ";
+    }
+    else if (rayce == 103) {
+        document.form1.second_comment_box.value += "Maenad. ";
+    }
+    else if (rayce == 210) {
+        document.form1.second_comment_box.value += "Ophiduan. ";
+    }
+    else if (rayce == 104) {
+        document.form1.second_comment_box.value += "Xeph. ";
     }
     if (rayce == 0) {
-        return;
-    }
-    if (alignment == 0) {
+        document.form1.second_comment_box.value+="Please choose your race. \n"
         return;
     }
     if (gender == 0) {
+        document.form1.second_comment_box.value+="Please choose your gender. \n"
+        return;
+    }
+    if (alignment == 0) {
+        document.form1.second_comment_box.value+="Please choose your alignment. \n";
         return;
     }
     if (total_levels == 0) {
+        document.form1.second_comment_box.value+="Please choose your total levels. \n";
         return;
     }
-    document.form1.second_comment_box.value="Ready to accept. This takes just a moment.";
+    document.form1.second_comment_box.value+="\n\nReady to accept. This takes just a moment.";
 }
 
 function InitializeIntelligences() {
@@ -6955,244 +7061,244 @@ function AdjustIfTooLow3() {
 function IndexForWeight(lbs) {
     if (lbs<31) {
         return 1;
-    } 
+    }
     else if (lbs<32) {
         return 2;
-    } 
+    }
     else if (lbs<33) {
         return 3;
-    } 
+    }
     else if (lbs<34) {
         return 4;
-    } 
+    }
     else if (lbs<35) {
         return 5;
     }
     else if (lbs<36) {
         return 6;
-    } 
+    }
     else if (lbs<37) {
         return 7;
-    } 
+    }
     else if (lbs<38) {
         return 8;
-    } 
+    }
     else if (lbs<39) {
         return 9;
-    } 
+    }
     else if (lbs<40) {
         return 10;
-    } 
+    }
     else if (lbs<41) {
         return 11;
     }
     else if (lbs<42) {
         return 12;
-    } 
+    }
     else if (lbs<43) {
         return 13;
-    } 
+    }
     else if (lbs<44) {
         return 14;
-    } 
+    }
     else if (lbs<45) {
         return 15;
-    } 
+    }
     else if (lbs<46) {
         return 16;
-    } 
+    }
     else if (lbs<47) {
         return 17;
-    } 
+    }
     else if (lbs<48) {
         return 18;
-    } 
+    }
     else if (lbs<49) {
         return 19;
-    } 
+    }
     else if (lbs<50) {
         return 20;
-    } 
+    }
     else if (lbs<55) {
         return 21;
-    } 
+    }
     else if (lbs<60) {
         return 22;
-    } 
+    }
     else if (lbs<65) {
         return 23;
-    } 
+    }
     else if (lbs<70) {
         return 24;
-    } 
+    }
     else if (lbs<75) {
         return 25;
-    } 
+    }
     else if (lbs<80) {
         return 26;
-    } 
+    }
     else if (lbs<85) {
         return 27;
-    } 
+    }
     else if (lbs<90) {
         return 28;
-    } 
+    }
     else if (lbs<95) {
         return 29;
-    } 
+    }
     else if (lbs<100) {
         return 30;
-    } 
+    }
     else if (lbs<105) {
         return 31;
-    } 
+    }
     else if (lbs<110) {
         return 32;
-    } 
+    }
     else if (lbs<115) {
         return 33;
-    } 
+    }
     else if (lbs<120) {
         return 34;
-    } 
+    }
     else if (lbs<125) {
         return 35;
-    } 
+    }
     else if (lbs<130) {
         return 36;
-    } 
+    }
     else if (lbs<135) {
         return 37;
-    } 
+    }
     else if (lbs<140) {
         return 38;
-    } 
+    }
     else if (lbs<145) {
         return 39;
-    } 
+    }
     else if (lbs<150) {
         return 40;
-    } 
+    }
     else if (lbs<155) {
         return 41;
-    } 
+    }
     else if (lbs<160) {
         return 42;
-    } 
+    }
     else if (lbs<165) {
         return 43;
-    } 
+    }
     else if (lbs<170) {
         return 44;
-    } 
+    }
     else if (lbs<175) {
         return 45;
-    } 
+    }
     else if (lbs<180) {
         return 46;
-    } 
+    }
     else if (lbs<185) {
         return 47;
-    } 
+    }
     else if (lbs<190) {
         return 48;
-    } 
+    }
     else if (lbs<195) {
         return 49;
-    } 
+    }
     else if (lbs<200) {
         return 50;
-    } 
+    }
     else if (lbs<210) {
         return 51;
-    } 
+    }
     else if (lbs<220) {
         return 52;
-    } 
+    }
     else if (lbs<230) {
         return 53;
-    } 
+    }
     else if (lbs<240) {
         return 54;
-    } 
+    }
     else if (lbs<250) {
         return 55;
-    } 
+    }
     else if (lbs<260) {
         return 56;
-    } 
+    }
     else if (lbs<270) {
         return 57;
-    } 
+    }
     else if (lbs<280) {
         return 58;
-    } 
+    }
     else if (lbs<290) {
         return 59;
-    } 
+    }
     else if (lbs<300) {
         return 60;
-    } 
+    }
     else if (lbs<310) {
         return 61;
-    } 
+    }
     else if (lbs<320) {
         return 62;
-    } 
+    }
     else if (lbs<330) {
         return 63;
-    } 
+    }
     else if (lbs<340) {
         return 64;
-    } 
+    }
     else if (lbs<350) {
         return 65;
-    } 
+    }
     else if (lbs<360) {
         return 66;
-    } 
+    }
     else if (lbs<370) {
         return 67;
-    } 
+    }
     else if (lbs<380) {
         return 68;
-    } 
+    }
     else if (lbs<390) {
         return 69;
-    } 
+    }
     else if (lbs<400) {
         return 70;
-    } 
+    }
     else if (lbs<410) {
         return 71;
-    } 
+    }
     else if (lbs<420) {
         return 72;
-    } 
+    }
     else if (lbs<430) {
         return 73;
-    } 
+    }
     else if (lbs<440) {
         return 74;
-    } 
+    }
     else if (lbs<450) {
         return 75;
-    } 
+    }
     else if (lbs<460) {
         return 76;
-    } 
+    }
     else if (lbs<470) {
         return 77;
     }
     else if (lbs<480) {
         return 78;
-    } 
+    }
     else if (lbs<490) {
         return 79;
-    } 
+    }
     else if (lbs<500) {
         return 80;
-    } 
+    }
     else {
         return 81;
     }
@@ -7202,7 +7308,7 @@ function x_and_heft() {
     large=false;
     if ((rayce == 5) || (rayce == 6) || (rayce == 209) || (rayce == 99)) {
         small=true;
-    } 
+    }
     else if (rayce!=8) {
         small=false;
     }
@@ -7303,235 +7409,235 @@ function AdjustWeight() {
     if (((rayce == 1) || (rayce == 28) || (rayce == 29) || (rayce == 30) || (rayce == 31)
         || (rayce == 32) || (rayce == 33) || (rayce == 9)) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(120)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(120);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(120);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(280)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(280);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(280);
         }
     }
     if (((rayce == 1) || (rayce == 28) || (rayce == 29) || (rayce == 30) || (rayce == 31)
         || (rayce == 32) || (rayce == 33) || (rayce == 9)) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(85)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(85);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(85);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(185)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(185);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(185);
         }
     }
     if ((rayce == 2) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(110)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(110);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(110);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(190)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(190);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(190);
         }
     }
     if ((rayce == 2) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(90)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(90);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(90);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(170)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(170);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(170);
         }
     }
     if (((rayce == 3) || (rayce == 12)) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(100)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(100);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(100);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(150)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(150);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(150);
         }
     }
     if (((rayce == 3) || (rayce == 12)) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(90)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(90);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(90);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(130)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(130);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(130);
         }
     }
     if ((rayce == 4) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(150)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(150);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(150);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(220)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(220);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(220);
         }
     }
     if ((rayce == 4) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(120)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(120);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(120);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(190)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(190);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(190);
         }
     }
     if ((rayce == 5) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(36)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(36);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(36);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(48)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(48);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(48);
         }
     }
     if ((rayce == 5) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(34)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(34);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(34);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(44)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(44);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(44);
         }
     }
     if ((rayce == 6) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(30)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(30);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(30);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(38)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(38);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(38);
         }
     }
     if ((rayce == 6) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(25)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(25);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(25);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(33)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(33);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(33);
         }
     }
     if (((rayce == 7) || (rayce == 22)) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(150)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(150);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(150);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(500)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(500);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(500);
         }
     }
     if (((rayce == 7) || (rayce == 22)) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(110)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(110);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(110);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(400)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(400);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(400);
         }
     }
     if ((rayce == 209) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(42)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(42);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(42);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(48)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(48);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(48);
         }
     }
     if ((rayce == 209) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(37)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(37);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(37);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(43)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(43);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(43);
         }
     }
     if (rayce == 99) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(32)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(32);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(32);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(38)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(38);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(38);
         }
     }
     if ((rayce == 211) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(114)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(114);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(114);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(176)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(176);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(176);
         }
     }
     if ((rayce == 211) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(84)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(84);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(84);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(146)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(146);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(146);
         }
     }
     if ((rayce == 100) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(124)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(124);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(124);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(280)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(280);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(280);
         }
     }
     if ((rayce == 100) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(89)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(89);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(89);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(245)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(245);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(245);
         }
     }
     if ((rayce == 102) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(224)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(224);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(224);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(500)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(500);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(500);
         }
     }
     if ((rayce == 102) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(184)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(184);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(184);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(500)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(500);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(500);
         }
     }
     if ((rayce == 103) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(154)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(154);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(154);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(310)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(310);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(310);
         }
     }
     if ((rayce == 103) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(124)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(124);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(124);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(280)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(280);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(280);
         }
     }
     if ((rayce == 210) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(124)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(124);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(124);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(280)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(280);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(280);
         }
     }
     if ((rayce == 210) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(89)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(89);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(89);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(245)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(245);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(245);
         }
     }
     if ((rayce == 104) && (gender == 1)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(104)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(104);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(104);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(260)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(260);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(260);
         }
     }
     if ((rayce == 104) && (gender == 2)) {
         if (document.form1.how_heavy.selectedIndex <IndexForWeight(75)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(75);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(75);
         }
         if (document.form1.how_heavy.selectedIndex >IndexForWeight(235)) {
-            document.form1.how_heavy.selectedIndex =IndexForWeight(235);
+            document.form1.how_heavy.selectedIndex=IndexForWeight(235);
         }
     }
 }
@@ -7563,18 +7669,18 @@ function AdjustHeight() {
     if (rayce == 2) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex <33) {
-                document.form1.how_tall.selectedIndex =33
+                document.form1.how_tall.selectedIndex=33
             }
             if (document.form1.how_tall.selectedIndex >47) {
-                document.form1.how_tall.selectedIndex =47
+                document.form1.how_tall.selectedIndex=47
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex <31) {
-                document.form1.how_tall.selectedIndex =31
+                document.form1.how_tall.selectedIndex=31
             }
             if (document.form1.how_tall.selectedIndex >45) {
-                document.form1.how_tall.selectedIndex =45
+                document.form1.how_tall.selectedIndex=45
             }
         }
     }
@@ -7582,18 +7688,18 @@ function AdjustHeight() {
     if ((rayce == 3) || (rayce == 12)) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex <35) {
-                document.form1.how_tall.selectedIndex =35
+                document.form1.how_tall.selectedIndex=35
             }
             if (document.form1.how_tall.selectedIndex >49) {
-                document.form1.how_tall.selectedIndex =49
+                document.form1.how_tall.selectedIndex=49
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex <35) {
-                document.form1.how_tall.selectedIndex =35
+                document.form1.how_tall.selectedIndex=35
             }
             if (document.form1.how_tall.selectedIndex >45) {
-                document.form1.how_tall.selectedIndex =45
+                document.form1.how_tall.selectedIndex=45
             }
         }
     }
@@ -7601,170 +7707,170 @@ function AdjustHeight() {
     if ((rayce == 4) || (rayce == 211)) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex <16) {
-                document.form1.how_tall.selectedIndex =16
+                document.form1.how_tall.selectedIndex=16
             }
             if (document.form1.how_tall.selectedIndex >22) {
-                document.form1.how_tall.selectedIndex =22
+                document.form1.how_tall.selectedIndex=22
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex <14) {
-                document.form1.how_tall.selectedIndex =14
+                document.form1.how_tall.selectedIndex=14
             }
             if (document.form1.how_tall.selectedIndex >20) {
-                document.form1.how_tall.selectedIndex =20
+                document.form1.how_tall.selectedIndex=20
             }
         }
     }
     if (rayce == 5) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 7) {
-                document.form1.how_tall.selectedIndex = 7
+                document.form1.how_tall.selectedIndex= 7
             }
             if (document.form1.how_tall.selectedIndex > 13) {
-                document.form1.how_tall.selectedIndex =13
+                document.form1.how_tall.selectedIndex=13
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 5) {
-                document.form1.how_tall.selectedIndex = 5
+                document.form1.how_tall.selectedIndex= 5
             }
             if (document.form1.how_tall.selectedIndex > 11) {
-                document.form1.how_tall.selectedIndex =11
+                document.form1.how_tall.selectedIndex=11
             }
         }
     }
     if (rayce == 6) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 3) {
-                document.form1.how_tall.selectedIndex = 3
+                document.form1.how_tall.selectedIndex= 3
             }
             if (document.form1.how_tall.selectedIndex > 9) {
-                document.form1.how_tall.selectedIndex = 9
+                document.form1.how_tall.selectedIndex= 9
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 1) {
-                document.form1.how_tall.selectedIndex = 1
+                document.form1.how_tall.selectedIndex= 1
             }
             if (document.form1.how_tall.selectedIndex > 7) {
-                document.form1.how_tall.selectedIndex = 7
+                document.form1.how_tall.selectedIndex= 7
             }
         }
     }
     if (rayce == 209) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 17) {
-                document.form1.how_tall.selectedIndex = 17
+                document.form1.how_tall.selectedIndex= 17
             }
             if (document.form1.how_tall.selectedIndex > 23) {
-                document.form1.how_tall.selectedIndex = 23
+                document.form1.how_tall.selectedIndex= 23
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 5) {
-                document.form1.how_tall.selectedIndex = 5
+                document.form1.how_tall.selectedIndex= 5
             }
             if (document.form1.how_tall.selectedIndex > 11) {
-                document.form1.how_tall.selectedIndex = 11
+                document.form1.how_tall.selectedIndex= 11
             }
         }
     }
     if (rayce == 99) {
         if (document.form1.how_tall.selectedIndex < 2) {
-            document.form1.how_tall.selectedIndex = 2
+            document.form1.how_tall.selectedIndex= 2
         }
         if (document.form1.how_tall.selectedIndex > 9) {
-            document.form1.how_tall.selectedIndex = 9
+            document.form1.how_tall.selectedIndex= 9
         }
     }
     if (rayce == 100) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 29) {
-                document.form1.how_tall.selectedIndex = 29
+                document.form1.how_tall.selectedIndex= 29
             }
             if (document.form1.how_tall.selectedIndex > 47) {
-                document.form1.how_tall.selectedIndex = 47
+                document.form1.how_tall.selectedIndex= 47
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 24) {
-                document.form1.how_tall.selectedIndex = 24
+                document.form1.how_tall.selectedIndex= 24
             }
             if (document.form1.how_tall.selectedIndex > 42) {
-                document.form1.how_tall.selectedIndex = 42
+                document.form1.how_tall.selectedIndex= 42
             }
         }
     }
     if (rayce == 102) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 47) {
-                document.form1.how_tall.selectedIndex = 47
+                document.form1.how_tall.selectedIndex= 47
             }
             if (document.form1.how_tall.selectedIndex > 69) {
-                document.form1.how_tall.selectedIndex = 69
+                document.form1.how_tall.selectedIndex= 69
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 44) {
-                document.form1.how_tall.selectedIndex = 44
+                document.form1.how_tall.selectedIndex= 44
             }
             if (document.form1.how_tall.selectedIndex > 66) {
-                document.form1.how_tall.selectedIndex = 66
+                document.form1.how_tall.selectedIndex= 66
             }
         }
     }
     if (rayce == 103) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 35) {
-                document.form1.how_tall.selectedIndex = 35
+                document.form1.how_tall.selectedIndex= 35
             }
             if (document.form1.how_tall.selectedIndex > 53) {
-                document.form1.how_tall.selectedIndex = 53
+                document.form1.how_tall.selectedIndex= 53
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 34) {
-                document.form1.how_tall.selectedIndex = 34
+                document.form1.how_tall.selectedIndex= 34
             }
             if (document.form1.how_tall.selectedIndex > 52) {
-                document.form1.how_tall.selectedIndex = 52
+                document.form1.how_tall.selectedIndex= 52
             }
         }
     }
     if (rayce == 210) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 32) {
-                document.form1.how_tall.selectedIndex = 32
+                document.form1.how_tall.selectedIndex= 32
             }
             if (document.form1.how_tall.selectedIndex > 50) {
-                document.form1.how_tall.selectedIndex = 50
+                document.form1.how_tall.selectedIndex= 50
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 26) {
-                document.form1.how_tall.selectedIndex = 26
+                document.form1.how_tall.selectedIndex= 26
             }
             if (document.form1.how_tall.selectedIndex > 44) {
-                document.form1.how_tall.selectedIndex = 44
+                document.form1.how_tall.selectedIndex= 44
             }
         }
     }
     if (rayce == 104) {
         if (gender == 1) {
             if (document.form1.how_tall.selectedIndex < 27) {
-                document.form1.how_tall.selectedIndex = 27
+                document.form1.how_tall.selectedIndex= 27
             }
             if (document.form1.how_tall.selectedIndex > 45) {
-                document.form1.how_tall.selectedIndex = 45
+                document.form1.how_tall.selectedIndex= 45
             }
         }
         if (gender == 2) {
             if (document.form1.how_tall.selectedIndex < 23) {
-                document.form1.how_tall.selectedIndex = 23
+                document.form1.how_tall.selectedIndex= 23
             }
             if (document.form1.how_tall.selectedIndex > 41) {
-                document.form1.how_tall.selectedIndex = 41
+                document.form1.how_tall.selectedIndex= 41
             }
         }
     }
@@ -7816,131 +7922,131 @@ function GetIdealWeight() {
     if (((rayce == 7) || (rayce == 22) || (rayce == 102) || (rayce == 210)) && (gender == 2)) {
         ideal_weight=2*(document.form1.how_tall.selectedIndex + 31) + 2.342*(heft-10);
     }
-    document.form1.how_heavy.selectedIndex =IndexForWeight(ideal_weight);
+    document.form1.how_heavy.selectedIndex=IndexForWeight(ideal_weight);
     AdjustWeight();
 }
 
 function RandomHeight() {
-    document.form1.how_tall.selectedIndex = 10;
+    document.form1.how_tall.selectedIndex= 10;
     if (rayce == 0) {
         document.form1.how_tall.selectedIndex=0;
     }
     if ((rayce == 1) || (rayce == 22) || (rayce == 28) || (rayce == 29) || (rayce == 30)
         || (rayce == 31) || (rayce == 32) || (rayce == 33)) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =29 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=29 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =24 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=24 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
     }
     if (rayce == 2)
     {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =26 + Math.floor ( 8*Math.random()) + Math.floor ( 8*Math.random());
+            document.form1.how_tall.selectedIndex=26 + Math.floor ( 8*Math.random()) + Math.floor ( 8*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =24 + Math.floor ( 8*Math.random()) + Math.floor ( 8*Math.random());
+            document.form1.how_tall.selectedIndex=24 + Math.floor ( 8*Math.random()) + Math.floor ( 8*Math.random());
         }
     }
     if ((rayce == 3) || (rayce == 12))
     {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =24 + Math.floor ( 6*Math.random()) + Math.floor ( 6*Math.random());
+            document.form1.how_tall.selectedIndex=24 + Math.floor ( 6*Math.random()) + Math.floor ( 6*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =24 + Math.floor ( 6*Math.random()) + Math.floor ( 6*Math.random());
+            document.form1.how_tall.selectedIndex=24 + Math.floor ( 6*Math.random()) + Math.floor ( 6*Math.random());
         }
     }
     if ((rayce == 4) || (rayce == 211)) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =16 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
+            document.form1.how_tall.selectedIndex=16 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =14 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
+            document.form1.how_tall.selectedIndex=14 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
         }
     }
     if (rayce == 5) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex = 7 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
+            document.form1.how_tall.selectedIndex= 7 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex = 5 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
+            document.form1.how_tall.selectedIndex= 5 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
         }
     }
     if (rayce == 6) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex = 3 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
+            document.form1.how_tall.selectedIndex= 3 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex = 1 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
+            document.form1.how_tall.selectedIndex= 1 + Math.floor ( 4*Math.random()) + Math.floor ( 4*Math.random());
         }
     }
     if (rayce == 7) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =29 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
+            document.form1.how_tall.selectedIndex=29 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =22 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
+            document.form1.how_tall.selectedIndex=22 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
         }
     }
 
     if (rayce == 209) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =15 + Math.floor (4*Math.random()) + Math.floor (4*Math.random());
+            document.form1.how_tall.selectedIndex=15 + Math.floor (4*Math.random()) + Math.floor (4*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =3 + Math.floor (4*Math.random()) + Math.floor (4*Math.random());
+            document.form1.how_tall.selectedIndex=3 + Math.floor (4*Math.random()) + Math.floor (4*Math.random());
         }
     }
     if (rayce == 99) {
-        document.form1.how_tall.selectedIndex =0 + Math.floor (4*Math.random()) + Math.floor (4*Math.random());
+        document.form1.how_tall.selectedIndex=0 + Math.floor (4*Math.random()) + Math.floor (4*Math.random());
     }
 
     if (rayce == 100) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =27 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=27 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =22 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=22 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
     }
     if (rayce == 102) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =45 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
+            document.form1.how_tall.selectedIndex=45 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =42 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
+            document.form1.how_tall.selectedIndex=42 + Math.floor (12*Math.random()) + Math.floor (12*Math.random());
         }
     }
 
 
     if (rayce == 103) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =33 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=33 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =32 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=32 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
     }
 
 
     if (rayce == 210) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =30 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=30 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =24 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=24 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
     }
 
 
     if (rayce == 104) {
         if (gender == 1) {
-            document.form1.how_tall.selectedIndex =25 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=25 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
         if (gender == 2) {
-            document.form1.how_tall.selectedIndex =21 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
+            document.form1.how_tall.selectedIndex=21 + Math.floor (10*Math.random()) + Math.floor (10*Math.random());
         }
     }
     AdjustHeight();
@@ -7948,8 +8054,8 @@ function RandomHeight() {
 }
 
 function ClassNeeds() {
-    if ((wizard_levels > 0) && (document.form1.spellbook.selectedIndex == 0)) {
-        document.form1.spellbook.selectedIndex =1
+    if ((wizard_levels > 0) && (document.form1.spellbook.selectedIndex== 0)) {
+        document.form1.spellbook.selectedIndex=1
     }
     if (druid_levels > 0) {
         document.form1.hollyandmistletoe.checked=true;
@@ -7985,7 +8091,7 @@ function RollSomeDice() {
     charisma=0;
     RollTheDice();
     // Point Buy
-    if (document.form1.methods_list.selectedIndex == 4) {
+    if (document.form1.methods_list.selectedIndex== 4) {
         stat1=10;
         stat2=10;
         stat3=10;
@@ -8000,7 +8106,7 @@ function RollSomeDice() {
         document.form1.stat6_list.selectedIndex=7;
         DiceHaveBeenRolled=true;
     }
-    if (document.form1.methods_list.selectedIndex == 7) {
+    if (document.form1.methods_list.selectedIndex== 7) {
         stat1=3;
         stat2=3;
         stat3=3;
@@ -8025,6 +8131,12 @@ function RollSomeDice() {
 }
 
 function NegateElevenClassLevels() {
+    alchemist_levels=0;
+    cavalier_levels=0;
+    inquisitor_levels=0;
+    oracle_levels=0;
+    summoner_levels=0;
+    witch_levels=0;
     barbarian_levels=0;
     bard_levels=0;
     cleric_levels=0;
@@ -8181,234 +8293,232 @@ function AdjustFeatMenus() {
 
 function AdjustSkillMenus() {
     document.form1.appraise_list.length=0;
-    z=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++) {
         document.form1.appraise_list.options[x]=new Option(x);
     }
     document.form1.appraise_list.options[0].selected=true;
     document.form1.autohypnosis_list.length=0;
-    z=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.autohypnosis_list.options[x]=new Option(x);
     }
     document.form1.autohypnosis_list.options[0].selected=true;
     document.form1.bluff_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.bluff_list.options[x]=new Option(x);
     }
     document.form1.bluff_list.options[0].selected=true;
     document.form1.climb_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.climb_list.options[x]=new Option(x);
     }
     document.form1.climb_list.options[0].selected=true;
     document.form1.acrobatics_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.acrobatics_list.options[x]=new Option(x);
     }
     document.form1.acrobatics_list.options[0].selected=true;
     document.form1.craft_1_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.craft_1_list.options[x]=new Option(x);
     }
     document.form1.craft_1_list.options[0].selected=true;
     document.form1.craft_2_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.craft_2_list.options[x]=new Option(x);
     }
     document.form1.craft_2_list.options[0].selected=true;
     document.form1.craft_3_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.craft_3_list.options[x]=new Option(x);
     }
     document.form1.craft_3_list.options[0].selected=true;
     document.form1.diplomacy_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.diplomacy_list.options[x]=new Option(x);
     }
     document.form1.diplomacy_list.options[0].selected=true;
     document.form1.disabledevice_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.disabledevice_list.options[x]=new Option(x);
     }
     document.form1.disabledevice_list.options[0].selected=true;
     document.form1.disguise_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.disguise_list.options[x]=new Option(x);
     }
     document.form1.disguise_list.options[0].selected=true;
     document.form1.escapeartist_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.escapeartist_list.options[x]=new Option(x);
     }
     document.form1.escapeartist_list.options[0].selected=true;
     document.form1.fly_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.fly_list.options[x]=new Option(x);
     }
     document.form1.fly_list.options[0].selected=true;
     document.form1.handleanimal_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.handleanimal_list.options[x]=new Option(x);
     }
     document.form1.handleanimal_list.options[0].selected=true;
     document.form1.heal_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.heal_list.options[x]=new Option(x);
     }
     document.form1.heal_list.options[0].selected=true;
     document.form1.stealth_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.stealth_list.options[x]=new Option(x);
     }
     document.form1.stealth_list.options[0].selected=true;
     document.form1.intimidate_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.intimidate_list.options[x]=new Option(x);
     }
     document.form1.intimidate_list.options[0].selected=true;
     document.form1.knowledgearcana_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgearcana_list.options[x]=new Option(x);
     }
     document.form1.knowledgearcana_list.options[0].selected=true;
     document.form1.knowledgeengineering_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgeengineering_list.options[x]=new Option(x);
     }
     document.form1.knowledgeengineering_list.options[0].selected=true;
     document.form1.knowledgedungeoneering_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgedungeoneering_list.options[x]=new Option(x);
     }
     document.form1.knowledgedungeoneering_list.options[0].selected=true;
     document.form1.knowledgegeography_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgegeography_list.options[x]=new Option(x);
     }
     document.form1.knowledgegeography_list.options[0].selected=true;
     document.form1.knowledgehistory_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgehistory_list.options[x]=new Option(x);
     }
     document.form1.knowledgehistory_list.options[0].selected=true;
     document.form1.knowledgelocal_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgelocal_list.options[x]=new Option(x);
     }
     document.form1.knowledgelocal_list.options[0].selected=true;
     document.form1.knowledgenature_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgenature_list.options[x]=new Option(x);
     }
     document.form1.knowledgenature_list.options[0].selected=true;
     document.form1.knowledgenobility_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgenobility_list.options[x]=new Option(x);
     }
     document.form1.knowledgenobility_list.options[0].selected=true;
     document.form1.knowledgereligion_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgereligion_list.options[x]=new Option(x);
     }
     document.form1.knowledgereligion_list.options[0].selected=true;
     document.form1.knowledgeplanes_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgeplanes_list.options[x]=new Option(x);
     }
     document.form1.knowledgeplanes_list.options[0].selected=true;
     document.form1.knowledgepsionics_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.knowledgepsionics_list.options[x]=new Option(x);
     }
     document.form1.knowledgepsionics_list.options[0].selected=true;
     document.form1.perception_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.perception_list.options[x]=new Option(x);
     }
     document.form1.perception_list.options[0].selected=true;
     document.form1.perform_1_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.perform_1_list.options[x]=new Option(x);
     }
     document.form1.perform_1_list.options[0].selected=true;
     document.form1.perform_2_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.perform_2_list.options[x]=new Option(x);
     }
     document.form1.perform_2_list.options[0].selected=true;
     document.form1.perform_3_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.perform_3_list.options[x]=new Option(x);
     }
     document.form1.perform_3_list.options[0].selected=true;
     document.form1.perform_4_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.perform_4_list.options[x]=new Option(x);
     }
     document.form1.perform_4_list.options[0].selected=true;
     document.form1.perform_5_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.perform_5_list.options[x]=new Option(x);
     }
     document.form1.perform_5_list.options[0].selected=true;
     document.form1.profession_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.profession_list.options[x]=new Option(x);
     }
     document.form1.profession_list.options[0].selected=true;
     document.form1.ride_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.ride_list.options[x]=new Option(x);
     }
     document.form1.ride_list.options[0].selected=true;
     document.form1.sensemotive_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.sensemotive_list.options[x]=new Option(x);
     }
     document.form1.sensemotive_list.options[0].selected=true;
     document.form1.sleightofhand_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.sleightofhand_list.options[x]=new Option(x);
     }
     document.form1.sleightofhand_list.options[0].selected=true;
     document.form1.linguistics_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.linguistics_list.options[x]=new Option(x);
     }
     document.form1.linguistics_list.options[0].selected=true;
     document.form1.spellcraft_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.spellcraft_list.options[x]=new Option(x);
     }
     document.form1.spellcraft_list.options[0].selected=true;
     document.form1.survival_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.survival_list.options[x]=new Option(x);
     }
     document.form1.survival_list.options[0].selected=true;
     document.form1.swim_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.swim_list.options[x]=new Option(x);
     }
     document.form1.swim_list.options[0].selected=true;
     document.form1.usemagicdevice_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.usemagicdevice_list.options[x]=new Option(x);
     }
     document.form1.usemagicdevice_list.options[0].selected=true;
     document.form1.otherskill1_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.otherskill1_list.options[x]=new Option(x);
     }
     document.form1.otherskill1_list.options[0].selected=true;
     document.form1.otherskill2_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.otherskill2_list.options[x]=new Option(x);
     }
     document.form1.otherskill2_list.options[0].selected=true;
     document.form1.otherskill3_list.length=0;
-    for (x=0; x<=total_levels + z; x++ ) {
+    for (x=0; x<=total_levels; x++ ) {
         document.form1.otherskill3_list.options[x]=new Option(x);
     }
     document.form1.otherskill3_list.options[0].selected=true;
@@ -8880,7 +8990,7 @@ function Languages() {
         if (terran_friendly == false) {
             skillbought_bonus_languages++;
         }
-        if ((total_bonus_languages>total_bonus_language_entitlement) || 
+        if ((total_bonus_languages>total_bonus_language_entitlement) ||
             (skillbought_bonus_languages>skillbought_bonus_language_entitlement)) {
             document.form1.speak_terran.checked=false;
             total_bonus_languages--;
@@ -9249,127 +9359,96 @@ function Languages() {
 
 function Arms() {
     if (document.form1.cult_weapons.checked == false) {
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.gauntlet.checked=false;
         }
 
-        if ((wizard_levels == 0) && (monk_levels == 0) && (druid_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((wizard_levels == 0) && (monk_levels == 0) && (druid_levels == 0) && (psion_levels == 0)
+            && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.dagger.checked=false;
             document.form1.throwingdaggers.selectedIndex=0;
         }
 
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.punchingdagger.checked=false;
         }
 
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.spikedgauntlet.checked=false;
         }
 
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.lightmace.checked=false;
         }
 
-        if ((druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.sickle.checked=false;
         }
 
-        if ((monk_levels == 0) && (druid_levels == 0) && (psion_levels == 0) && (wizard_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (druid_levels == 0) && (psion_levels == 0) && (wizard_levels == 0)
+            && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.club.checked=false;
         }
 
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.heavymace.checked=false;
         }
 
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.morningstar.checked=false;
         }
 
-        if ((druid_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((druid_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false)
+            && (has_simpleweaponproficiency == false)) {
             document.form1.shortspear.checked=false;
         }
 
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.longspear.checked=false;
         }
 
-        if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (druid_levels == 0)
+            && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.quarterstaff.checked=false;
         }
-
-        if ((druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.spear.checked=false;
         }
-
-        if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false)
+            && (has_simpleweaponproficiency == false)) {
             document.form1.heavycrossbow.checked=false;
         }
-
-        if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false)
+            && (has_simpleweaponproficiency == false)) {
             document.form1.lightcrossbow.checked=false;
         }
-
-        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.dart.checked=false;
         }
-
-        if ((monk_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.javelin.checked=false;
         }
-
-        if ((monk_levels == 0) && (druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.sling.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.throwingaxe.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.lighthammer.checked=false;
         }
-
-        if ((monk_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.handaxe.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.kukri.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.lightpick.checked=false;
         }
-
-        if ((bard_levels == 0) && (rogue_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((bard_levels == 0) && (rogue_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.sap.checked=false;
         }
-
         if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
         {
             document.form1.lightshield.checked=false;
@@ -9649,42 +9728,42 @@ function Arms() {
         document.form1.shield_radio[5].checked=false;
     }
 
-    if ((document.form1.arrows.selectedIndex == 0) && (
+    if ((document.form1.arrows.selectedIndex== 0) && (
         (document.form1.longbow.checked == true) ||
         (document.form1.compositelongbow.checked == true) ||
         (document.form1.shortbow.checked == true) ||
         (document.form1.compositeshortbow.checked == true)
         )) {
-        document.form1.arrows.selectedIndex = 1;
+        document.form1.arrows.selectedIndex= 1;
     }
 
-    if ((document.form1.bullets.selectedIndex == 0) && (
+    if ((document.form1.bullets.selectedIndex== 0) && (
         (document.form1.pistol.checked == true) ||
         (document.form1.musket.checked == true)
         )) {
-        document.form1.bullets.selectedIndex = 1;
+        document.form1.bullets.selectedIndex= 1;
     }
 
-    if ((document.form1.slingbullets.selectedIndex == 0) &&
+    if ((document.form1.slingbullets.selectedIndex== 0) &&
         (document.form1.sling.checked == true) ) {
-        document.form1.slingbullets.selectedIndex = 1;
+        document.form1.slingbullets.selectedIndex= 1;
     }
 
 
-    if ((document.form1.crossbowbolts.selectedIndex == 0) && (
+    if ((document.form1.crossbowbolts.selectedIndex== 0) && (
         (document.form1.heavycrossbow.checked == true) ||
         (document.form1.lightcrossbow.checked == true) ||
         (document.form1.repeatingheavycrossbow.checked == true) ||
         (document.form1.repeatinglightcrossbow.checked == true)
         )) {
-        document.form1.crossbowbolts.selectedIndex = 1;
+        document.form1.crossbowbolts.selectedIndex= 1;
     }
 }
 
 function lock_skills() {
     if (SkillPointsAreLocked == true) {
         document.form1.fifth_comment_box.value="Sorry... no going back.";
-    } 
+    }
     else if (total_skill_points == 0) {
         document.form1.fifth_comment_box.value="Not ready yet.";
     }
@@ -10029,6 +10108,30 @@ function AddUpTheClasses() {
     base_fortitude_bonus=0;
     base_will_bonus=0;
     base_reflex_bonus=0;
+    base_attack_bonus += averageattack(alchemist_levels);
+    base_fortitude_bonus += goodsave(alchemist_levels);
+    base_reflex_bonus += goodsave(alchemist_levels);
+    base_will_bonus += poorsave(alchemist_levels);
+    base_attack_bonus += goodattack(cavalier_levels);
+    base_fortitude_bonus += goodsave(cavalier_levels);
+    base_reflex_bonus += poorsave(cavalier_levels);
+    base_will_bonus += poorsave(cavalier_levels);
+    base_attack_bonus += averageattack(inquisitor_levels);
+    base_fortitude_bonus += goodsave(inquisitor_levels);
+    base_reflex_bonus += poorsave(inquisitor_levels);
+    base_will_bonus += goodsave(inquisitor_levels);
+    base_attack_bonus += averageattack(oracle_levels);
+    base_fortitude_bonus += poorsave(oracle_levels);
+    base_reflex_bonus += poorsave(oracle_levels);
+    base_will_bonus += goodsave(oracle_levels);
+    base_attack_bonus += averageattack(summoner_levels);
+    base_fortitude_bonus += poorsave(summoner_levels);
+    base_reflex_bonus += poorsave(summoner_levels);
+    base_will_bonus += goodsave(summoner_levels);
+    base_attack_bonus += poorattack(witch_levels);
+    base_fortitude_bonus += poorsave(witch_levels);
+    base_reflex_bonus += poorsave(witch_levels);
+    base_will_bonus += goodsave(witch_levels);
     base_attack_bonus += goodattack(barbarian_levels);
     base_fortitude_bonus += goodsave(barbarian_levels);
     base_reflex_bonus += poorsave(barbarian_levels);
@@ -10339,7 +10442,7 @@ function NegateAllUp20() {
 function RememberRangerCombatTrack() {
     if (ranger_levels == 0) {
         NegateRangerCombatTrack();
-    } 
+    }
     else {
         if (rangercombattrack == 1) {
             document.form1.ranger_combat_track[0].checked=true;
@@ -10351,9 +10454,9 @@ function RememberRangerCombatTrack() {
 }
 
 function RememberFamiliar() {
-    if (wizard_levels + sorcerer_levels == 0) {
+    if (wizard_levels + sorcerer_levels + witch_levels == 0) {
         NegateFamiliarChoices();
-    } 
+    }
     else {
         if (no_familiar == true) {
             document.form1.choose_familiar[0].checked=true;
@@ -10393,11 +10496,6 @@ function RememberFamiliar() {
         }
     }
 }
-
-
-
-
-
 
 function RememberWizardSpecialty() {
     document.form1.choose_specialty[0].checked=no_specialist;
@@ -10696,7 +10794,8 @@ function forbidden_school_count() {
 }
 
 function ChooseFamiliar() {
-    if ((wizard_levels == 0) && ((sorcerer_levels == 0) || (document.form1.choose_bloodline[2].checked == false)) || (ClassesHaveBeenEstablished == false)) {
+    if ((wizard_levels == 0) && (witch_levels == 0) && ((sorcerer_levels == 0) || (document.form1.choose_bloodline[2].checked == false))
+        || (ClassesHaveBeenEstablished == false)) {
         NegateFamiliarChoices();
     }
     else if (FighterFeatsEtcFrozen == true) {
@@ -11281,10 +11380,10 @@ function WipeDomains() {
 }
 
 function Domains() {
-    if (cleric_levels == 0) {
+    if ( (cleric_levels == 0) && (inquisitor_levels == 0) ) {
         WipeDomains();
         return true;
-    } 
+    }
     else if (FighterFeatsEtcFrozen == true) {
         RememberFighterFeatsEtc();
         return true;
@@ -11426,9 +11525,13 @@ function Domains() {
         if (alignment>6) {
             document.form1.choose_energy[1].checked=true;
         }
-        if (x == 2) {
-            return true
-        } else {
+        if ( (cleric_levels > 0) && (x == 2) ) {
+            return true;
+        } 
+        else if ((cleric_levels > 0) && (x == 1)) {
+            return true;
+        }
+        else {
             return false;
         }
     }
@@ -11858,7 +11961,6 @@ function lock_identity() {
         if (((strength + dexterity>=22) || (strength>=14) || (x == 1) || (dexterity>=14)) && ((constitution>=12) || (strength + dexterity>26)) && ((x == 1) || (x == 2) || (x == 3)) && (constitution>8)) {
             document.form1.second_comment_box.value += " Fighter ";
         }
-
         if ((alignment == 1) || (alignment == 4) || (alignment == 7)) {
             if ((wisdom+dexterity>=20) && (constitution>=10) && (strength>=10)) {
                 document.form1.second_comment_box.value+= " Monk ";
@@ -11880,6 +11982,24 @@ function lock_identity() {
         }
         if ((intelligence>=15) || (((top_ability_score == 4)) && (constitution>=10)) || (x == 4)) {
             document.form1.second_comment_box.value += " Wizard ";
+        }
+        if ((intelligence>=15) || (((top_ability_score == 4)) && (dexterity>=10))) {
+            document.form1.second_comment_box.value += " Alchemist ";
+        }
+        if ( (strength>=14) && (constitution>=12) && (charisma>=10) ) {
+            document.form1.second_comment_box.value += " Cavalier ";
+        }
+        if ( (wisdom>=14) && (charisma>=10) && (constitution+strength>=22) ) {
+            document.form1.second_comment_box.value += " Inquisitor ";
+        }
+        if ( ((charisma>=15) || (top_ability_score == 6) || (x == 6)) && (wisdom>=10) ) {
+            document.form1.second_comment_box.value += " Oracle ";
+        }
+        if ( ((charisma>=14) || (top_ability_score == 6) || (x == 6)) && ( (intelligence>=10) && (constitution>=10) ) ) {
+            document.form1.second_comment_box.value += " Summoner ";
+        }
+        if ((intelligence>=15) || (((top_ability_score == 4)) && (charisma>=10)) || (x == 4)) {
+            document.form1.second_comment_box.value += " Witch ";
         }
     }
     ArrowShow();
@@ -12077,7 +12197,7 @@ function HaveISixStats() {
         AbilitiesAreProperlyAssigned=true;
     }
     if (AbilitiesAreProperlyAssigned == false) {
-        if ((document.form1.methods_list.selectedIndex == 4) || (document.form1.methods_list.selectedIndex == 7)) {
+        if ((document.form1.methods_list.selectedIndex== 4) || (document.form1.methods_list.selectedIndex== 7)) {
             TellAboutPointBuy();
         }
         else {
@@ -12092,7 +12212,7 @@ function HaveISixStats() {
 }
 
 function PointBuyIsSevensOrBetter() {
-    if (document.form1.methods_list.selectedIndex == 4) {
+    if (document.form1.methods_list.selectedIndex== 4) {
         if (stat1<7) {
             stat1=7;
             document.form1.stat1_list.selectedIndex=4;
@@ -12121,7 +12241,7 @@ function PointBuyIsSevensOrBetter() {
         DisplayTrueStatistics();
         TellAboutPointBuy();
     }
-    if (document.form1.methods_list.selectedIndex == 7) {
+    if (document.form1.methods_list.selectedIndex== 7) {
         DiceHaveBeenRolled=true;
         DisplayTrueStatistics();
         TellAboutPointBuy();
@@ -12275,15 +12395,15 @@ function RememberFeats() {
     document.form1.diehard.checked=has_diehard;
     document.form1.eschewmaterials.checked=has_eschewmaterials;
     document.form1.exoticweaponproficiency.checked=has_exoticweaponproficiency;
-    document.form1.extrachannel_list.selectedIndex =has_extrachannel;
-    document.form1.extraki_list.selectedIndex =has_extraki;
-    document.form1.extralayonhands_list.selectedIndex =has_extralayonhands;
-    document.form1.extramercy_list.selectedIndex =has_extramercy;
-    document.form1.extraperformance_list.selectedIndex =has_extraperformance;
-    document.form1.extrarage_list.selectedIndex =has_extrarage;
+    document.form1.extrachannel_list.selectedIndex=has_extrachannel;
+    document.form1.extraki_list.selectedIndex=has_extraki;
+    document.form1.extralayonhands_list.selectedIndex=has_extralayonhands;
+    document.form1.extramercy_list.selectedIndex=has_extramercy;
+    document.form1.extraperformance_list.selectedIndex=has_extraperformance;
+    document.form1.extrarage_list.selectedIndex=has_extrarage;
     document.form1.greatfortitude.checked=has_greatfortitude;
     document.form1.improvedcounterspell.checked=has_improvedcounterspell;
-    document.form1.improvedcritical_list.selectedIndex =has_improvedcritical;
+    document.form1.improvedcritical_list.selectedIndex=has_improvedcritical;
     document.form1.improvedinitiative.checked=has_improvedinitiative;
     document.form1.improvedunarmedstrike.checked=has_improvedunarmedstrike;
     document.form1.improvedgrapple.checked=has_improvedgrapple;
@@ -12382,7 +12502,7 @@ function RememberFeats() {
     document.form1.greaterspellfocusillusion.checked=has_greaterspellfocusillusion;
     document.form1.greaterspellfocusnecromancy.checked=has_greaterspellfocusnecromancy;
     document.form1.greaterspellfocustransmutation.checked=has_greaterspellfocustransmutation;
-    document.form1.spellmastery_list.selectedIndex =has_spellmastery;
+    document.form1.spellmastery_list.selectedIndex=has_spellmastery;
     document.form1.spellpenetration.checked=has_spellpenetration;
     document.form1.greaterspellpenetration.checked=has_greaterspellpenetration;
     document.form1.stealthy.checked=has_stealthy;
@@ -12402,10 +12522,10 @@ function RememberFeats() {
     document.form1.otherfeat8.checked=has_otherfeat8;
     document.form1.otherfeat9.checked=has_otherfeat9;
     document.form1.otherfeat10.checked=has_otherfeat10;
-    document.form1.weaponfocus_list.selectedIndex =has_weaponfocus;
-    document.form1.weaponspecialization_list.selectedIndex =has_weaponspecialization;
-    document.form1.greaterweaponfocus_list.selectedIndex =has_greaterweaponfocus;
-    document.form1.greaterweaponspecialization_list.selectedIndex =has_greaterweaponspecialization;
+    document.form1.weaponfocus_list.selectedIndex=has_weaponfocus;
+    document.form1.weaponspecialization_list.selectedIndex=has_weaponspecialization;
+    document.form1.greaterweaponfocus_list.selectedIndex=has_greaterweaponfocus;
+    document.form1.greaterweaponspecialization_list.selectedIndex=has_greaterweaponspecialization;
     document.form1.brewpotion.checked=has_brewpotion;
     document.form1.craftmaa.checked=has_craftmaa;
     document.form1.craftrod.checked=has_craftrod;
@@ -12500,7 +12620,7 @@ function RememberFeats() {
     document.form1.empowerpower.checked=has_empowerpower;
     document.form1.endowedmind.checked=has_endowedmind;
     document.form1.enlargepower.checked=has_enlargepower;
-    document.form1.expandedknowledge_list.selectedIndex =has_expandedknowledge;
+    document.form1.expandedknowledge_list.selectedIndex=has_expandedknowledge;
     document.form1.extendpower.checked=has_extendpower;
     document.form1.extendedblast.checked=has_extendedblast;
     document.form1.focusedsunder.checked=has_focusedsunder;
@@ -12520,7 +12640,7 @@ function RememberFeats() {
     document.form1.powerspecialization.checked=has_powerspecialization;
     document.form1.greaterpowerspecialization.checked=has_greaterpowerspecialization;
     document.form1.psicrystalaffinity.checked=has_psicrystalaffinity;
-    document.form1.improvedpsicrystal_list.selectedIndex =has_improvedpsicrystal;
+    document.form1.improvedpsicrystal_list.selectedIndex=has_improvedpsicrystal;
     document.form1.psicrystalcontainment.checked=has_psicrystalcontainment;
     document.form1.psionicbody.checked=has_psionicbody;
     document.form1.psionicdodge.checked=has_psionicdodge;
@@ -12593,7 +12713,7 @@ function Feats() {
         if (document.form1.animalaffinity.checked == true) {
             x++;
         }
-        if (bard_levels+sorcerer_levels+wizard_levels == 0) {
+        if (bard_levels+sorcerer_levels+wizard_levels+witch_levels+summoner_levels == 0) {
             document.form1.arcanestrike.checked=false;
         }
         if (document.form1.arcanestrike.checked == true) {
@@ -12671,8 +12791,8 @@ function Feats() {
             }
         }
         if (document.form1.eschewmaterials.checked == true) {
-            if (bard_levels + cleric_levels + druid_levels + paladin_levels + 
-                ranger_levels + wizard_levels == 0) {
+            if (bard_levels + cleric_levels + druid_levels + paladin_levels + ranger_levels + wizard_levels + witch_levels 
+                + summoner_levels + inquisitor_levels + oracle_levels == 0) {
                 document.form1.eschewmaterials.checked=false;
             }
             else {
@@ -12680,11 +12800,11 @@ function Feats() {
             }
         }
         if ((cleric_levels == 0) && (paladin_levels<4) && (wizard_specialty_name!="Necromancer")) {
-            document.form1.extrachannel_list.selectedIndex =0;
+            document.form1.extrachannel_list.selectedIndex=0;
         }
         x=x + document.form1.extrachannel_list.selectedIndex;
         if (monk_levels<4) {
-            document.form1.extraki_list.selectedIndex =0;
+            document.form1.extraki_list.selectedIndex=0;
         }
         x=x + document.form1.extraki_list.selectedIndex;
         if (paladin_levels<2) {
@@ -12692,15 +12812,15 @@ function Feats() {
         }
         x=x + document.form1.extralayonhands_list.selectedIndex;
         if (paladin_levels<3) {
-            document.form1.extralayonhands_list.selectedIndex =0;
+            document.form1.extralayonhands_list.selectedIndex=0;
         }
         x=x + document.form1.extramercy_list.selectedIndex;
         if (bard_levels == 0) {
-            document.form1.extraperformance_list.selectedIndex =0;
+            document.form1.extraperformance_list.selectedIndex=0;
         }
         x=x + document.form1.extraperformance_list.selectedIndex;
         if (barbarian_levels == 0) {
-            document.form1.extrarage_list.selectedIndex =0;
+            document.form1.extrarage_list.selectedIndex=0;
         }
         x=x + document.form1.extrarage_list.selectedIndex;
         if (document.form1.greatfortitude.checked == true) {
@@ -13176,7 +13296,7 @@ function Feats() {
         }
         if (document.form1.spellmastery_list.selectedIndex > 0) {
             if (wizard_levels == 0) {
-                document.form1.spellmastery_list.selectedIndex =0;
+                document.form1.spellmastery_list.selectedIndex=0;
             }
             else {
                 total_wizard_feats += document.form1.spellmastery_list.selectedIndex;
@@ -13215,9 +13335,12 @@ function Feats() {
             x++;
         }
         if (document.form1.throwanything.checked == true) {
-            x++;
-            total_fighter_feats++;
-            total_monk_feats++;
+            if (alchemist_levels > 0) {
+                document.form1.throwanything.checked=false;
+            }
+            else {
+                x++;
+            }
         }
         if (has_warrior_surge) {
             document.form1.toughness.checked=true;
@@ -13226,7 +13349,7 @@ function Feats() {
             x++;
         }
         if (document.form1.brewpotion.checked == true) {
-            if (CasterLevel()<3) {
+            if (CasterLevel()<3 || alchemist_levels > 0) {
                 document.form1.brewpotion.checked=false;
             }
             else {
@@ -13351,7 +13474,7 @@ function Feats() {
             x++;
         }
         if (((!already_knows_light_armor) && (!document.form1.armorproficiencylight.checked))
-            || ((bard_levels<3) && (wizard_levels<3) && (sorcerer_levels<3))) {
+            || ((bard_levels<3) && (wizard_levels<3) && (sorcerer_levels<3) && (witch_levels<3))) {
             document.form1.arcanearmortraining.checked=false;
         }
         if (document.form1.arcanearmortraining.checked) {
@@ -13359,7 +13482,7 @@ function Feats() {
             total_fighter_feats++;
         }
         if (((!already_knows_medium_armor) && (!document.form1.armorproficiencymedium.checked))
-            || ((bard_levels<7) && (wizard_levels<7) && (sorcerer_levels<7))) {
+            || ((bard_levels<7) && (wizard_levels<7) && (sorcerer_levels<7) && (witch_levels<7))) {
             document.form1.arcanearmortraining.checked=false;
         }
         if (document.form1.arcanearmormastery.checked) {
@@ -13647,7 +13770,7 @@ function Feats() {
             x++;
             total_fighter_feats++;
         }
-        if (document.form1.weaponfocus_list.selectedIndex == 0) {
+        if (document.form1.weaponfocus_list.selectedIndex== 0) {
             document.form1.dazzlingdisplay.checked=false;
         }
         if (document.form1.dazzlingdisplay.checked) {
@@ -13661,14 +13784,14 @@ function Feats() {
             x++;
             total_fighter_feats++;
         }
-        if ((document.form1.greaterweaponfocus_list.selectedIndex == 0) || (!document.form1.shatterdefenses.checked) || (base_attack_bonus<11)) {
+        if ((document.form1.greaterweaponfocus_list.selectedIndex== 0) || (!document.form1.shatterdefenses.checked) || (base_attack_bonus<11)) {
             document.form1.deadlystroke.checked=false;
         }
         if (document.form1.deadlystroke.checked) {
             x++;
             total_fighter_feats++;
         }
-        if ((document.form1.weaponfocus_list.selectedIndex == 0) || (fighter_levels<12)) {
+        if ((document.form1.weaponfocus_list.selectedIndex== 0) || (fighter_levels<12)) {
             document.form1.penetratingstrike.checked=false;
         }
         if (document.form1.penetratingstrike.checked) {
@@ -14236,7 +14359,7 @@ function Feats() {
             x+= document.form1.weaponfocus_list.selectedIndex;
         }
         if (document.form1.weaponspecialization_list.selectedIndex > document.form1.weaponfocus_list.selectedIndex) {
-            document.form1.weaponspecialization_list.selectedIndex =document.form1.weaponfocus_list.selectedIndex;
+            document.form1.weaponspecialization_list.selectedIndex=document.form1.weaponfocus_list.selectedIndex;
         }
         if (fighter_levels<4) {
             document.form1.weaponspecialization_list.selectedIndex=0;
@@ -14244,7 +14367,7 @@ function Feats() {
         total_fighter_feats += document.form1.weaponspecialization_list.selectedIndex;
         x += document.form1.weaponspecialization_list.selectedIndex;
         if (document.form1.greaterweaponfocus_list.selectedIndex > document.form1.weaponfocus_list.selectedIndex) {
-            document.form1.greaterweaponfocus_list.selectedIndex = document.form1.weaponfocus_list.selectedIndex;
+            document.form1.greaterweaponfocus_list.selectedIndex= document.form1.weaponfocus_list.selectedIndex;
         }
         if (fighter_levels<8) {
             document.form1.greaterweaponfocus_list.selectedIndex=0;
@@ -14253,10 +14376,10 @@ function Feats() {
         x += document.form1.greaterweaponfocus_list.selectedIndex;
 
         if (document.form1.greaterweaponspecialization_list.selectedIndex >document.form1.greaterweaponfocus_list.selectedIndex) {
-            document.form1.greaterweaponspecialization_list.selectedIndex =document.form1.greaterweaponfocus_list.selectedIndex;
+            document.form1.greaterweaponspecialization_list.selectedIndex=document.form1.greaterweaponfocus_list.selectedIndex;
         }
         if (document.form1.greaterweaponspecialization_list.selectedIndex >document.form1.weaponspecialization_list.selectedIndex) {
-            document.form1.greaterweaponspecialization_list.selectedIndex =document.form1.weaponspecialization_list.selectedIndex;
+            document.form1.greaterweaponspecialization_list.selectedIndex=document.form1.weaponspecialization_list.selectedIndex;
         }
         if (fighter_levels<12) {
             document.form1.greaterweaponspecialization_list.selectedIndex=0;
@@ -14542,7 +14665,7 @@ function Feats() {
             }
         }
         if (document.form1.powerspecialization.checked == true) {
-            if ((!Manifester()) || (document.form1.weaponfocus_list.selectedIndex == 0)) {
+            if ((!Manifester()) || (document.form1.weaponfocus_list.selectedIndex== 0)) {
                 document.form1.powerspecialization.checked=false;
             }
             else {
@@ -14892,13 +15015,13 @@ function Feats() {
         }
         LightVariableFeatStars();
         RecordFeats();
-        z=fighterfeatentitlement + wilderfeatentitlement + wizardfeatentitlement + psionfeatentitlement + 
-            psychicwarriorfeatentitlement + genericfeatentitlement +r1featentitlement + r2featentitlement + 
-            sorcererfeatentitlement + monkfeatentitlement + halfelffeatentitlement + generalistfeatentitlement;
+        z=fighterfeatentitlement + wilderfeatentitlement + wizardfeatentitlement + psionfeatentitlement +
+        psychicwarriorfeatentitlement + genericfeatentitlement +r1featentitlement + r2featentitlement +
+        sorcererfeatentitlement + monkfeatentitlement + halfelffeatentitlement + generalistfeatentitlement;
 
         if (SkillPointsAreLocked == false) {
             document.form1.feat.value="Wait to choose your feats.";
-        } 
+        }
         else {
             document.form1.feat.value += "You must choose " + z + " feats. You have " + x + ".\r";
             if (wizardfeatentitlement > 0) {
@@ -15078,559 +15201,660 @@ function SkillPointsPerLevel(klasso) {
         return 4;
     }
     else if (klasso == 16) {
+        return 4;
+    }
+    else if (klasso == 17) {
+        return 4;
+    }
+    else if (klasso == 18) {
+        return 6;
+    }
+    else if (klasso == 19) {
+        return 4;
+    }
+    else if (klasso == 20) {
+        return 2;
+    }
+    else if (klasso == 21) {
+        return 2;
+    }
+    else if (klasso == 22) {
         return prestige_skill_points_per_level;
     }
     else return 0;
-}
+    }
 
-function FigureClassSkillsAndTotalSkillPoints() {
+    function FigureClassSkillsAndTotalSkillPoints() {
     total_skill_points=0;
     if (total_levels>=1) {
-        x=SkillPointsPerLevel(class01) + modifier_number(intelligence01);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class01) + modifier_number(intelligence01);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=2) {
-        x=SkillPointsPerLevel(class02) + modifier_number(intelligence01);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class02) + modifier_number(intelligence01);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=3) {
-        x=SkillPointsPerLevel(class03) + modifier_number(intelligence01);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class03) + modifier_number(intelligence01);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=4) {
-        x=SkillPointsPerLevel(class04) + modifier_number(intelligence04);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class04) + modifier_number(intelligence04);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=5) {
-        x=SkillPointsPerLevel(class05) + modifier_number(intelligence04);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class05) + modifier_number(intelligence04);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=6) {
-        x=SkillPointsPerLevel(class06) + modifier_number(intelligence04);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class06) + modifier_number(intelligence04);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=7) {
-        x=SkillPointsPerLevel(class07) + modifier_number(intelligence04);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class07) + modifier_number(intelligence04);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=8) {
-        x=SkillPointsPerLevel(class08) + modifier_number(intelligence08);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class08) + modifier_number(intelligence08);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=9) {
-        x=SkillPointsPerLevel(class09) + modifier_number(intelligence08);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class09) + modifier_number(intelligence08);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=10) {
-        x=SkillPointsPerLevel(class10) + modifier_number(intelligence08);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class10) + modifier_number(intelligence08);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=11) {
-        x=SkillPointsPerLevel(class11) + modifier_number(intelligence08);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class11) + modifier_number(intelligence08);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=12) {
-        x=SkillPointsPerLevel(class12) + modifier_number(intelligence12);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class12) + modifier_number(intelligence12);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=13) {
-        x=SkillPointsPerLevel(class13) + modifier_number(intelligence12);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class13) + modifier_number(intelligence12);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=14) {
-        x=SkillPointsPerLevel(class14) + modifier_number(intelligence12);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class14) + modifier_number(intelligence12);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=15) {
-        x=SkillPointsPerLevel(class15) + modifier_number(intelligence12);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class15) + modifier_number(intelligence12);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=16) {
-        x=SkillPointsPerLevel(class16) + modifier_number(intelligence16);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class16) + modifier_number(intelligence16);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=17) {
-        x=SkillPointsPerLevel(class17) + modifier_number(intelligence16);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class17) + modifier_number(intelligence16);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=18) {
-        x=SkillPointsPerLevel(class18) + modifier_number(intelligence16);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class18) + modifier_number(intelligence16);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=19) {
-        x=SkillPointsPerLevel(class19) + modifier_number(intelligence16);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class19) + modifier_number(intelligence16);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (total_levels>=20) {
-        x=SkillPointsPerLevel(class20) + modifier_number(intelligence20);
-        if (x<1) {
-            x=1;
-        }
-        total_skill_points += x;
+    x=SkillPointsPerLevel(class20) + modifier_number(intelligence20);
+    if (x<1) {
+    x=1;
+    }
+    total_skill_points += parseInt(x);
     }
     if (rayce == 1) {
-        total_skill_points += total_levels;
+    total_skill_points += parseInt(total_levels);
     }
-    total_skill_points+= document.form1.favored_for_skill_points.selectedIndex;
+    total_skill_points += parseInt(document.form1.favored_for_skill_points.selectedIndex);
 
     if (barbarian_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.handleanimal_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.survival_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if ((has_knowledge_domain) || (psion_levels > 0)) {
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.knowledgeengineering_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgelocal_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.knowledgeplanes_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
     }
     if (has_aberrant_bloodline) {
-        document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
     }
     if (has_abyssal_bloodline) {
-        document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
     }
     if (has_celestial_bloodline) {
-        document.form1.heal_ics.checked=true;
+    document.form1.heal_ics.checked=true;
     }
     if (has_destined_bloodline) {
-        document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
     }
     if (has_draconic_bloodline) {
-        document.form1.perception_ics.checked=true;
+    document.form1.perception_ics.checked=true;
     }
     if (has_elemental_bloodline) {
-        document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
     }
     if (has_fey_bloodline) {
-        document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
     }
     if (has_infernal_bloodline) {
-        document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
     }
     if (has_undead_bloodline) {
-        document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
     }
     if (has_trickery_domain) {
-        document.form1.bluff_ics.checked=true;
-        document.form1.disguise_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.disguise_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
     }
     if (bard_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.appraise_ics.checked=true;
-        document.form1.bluff_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.disguise_ics.checked=true;
-        document.form1.escapeartist_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.knowledgeengineering_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgelocal_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.knowledgeplanes_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
-        document.form1.linguistics_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.perform_1_ics.checked=true;
-        document.form1.perform_2_ics.checked=true;
-        document.form1.perform_3_ics.checked=true;
-        document.form1.perform_4_ics.checked=true;
-        document.form1.perform_5_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
-        document.form1.sleightofhand_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
-        document.form1.swim_ics.checked=true;
-        document.form1.usemagicdevice_ics.checked=true;
-        if (bard_levels>=16) {
-            document.form1.disabledevice_ics.checked=true;
-            document.form1.fly_ics.checked=true;
-            document.form1.handleanimal_ics.checked=true;
-            document.form1.heal_ics.checked=true;
-            document.form1.ride_ics.checked=true;
-            document.form1.survival_ics.checked=true;
-            document.form1.swim_ics.checked=true;
-            document.form1.appraise_ics.checked=true;
-        }
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.appraise_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.disguise_ics.checked=true;
+    document.form1.escapeartist_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.linguistics_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.perform_1_ics.checked=true;
+    document.form1.perform_2_ics.checked=true;
+    document.form1.perform_3_ics.checked=true;
+    document.form1.perform_4_ics.checked=true;
+    document.form1.perform_5_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.sleightofhand_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
+    document.form1.swim_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
+    if (bard_levels>=16) {
+    document.form1.disabledevice_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.swim_ics.checked=true;
+    document.form1.appraise_ics.checked=true;
+    }
     }
     if (cleric_levels > 0) {
-        document.form1.appraise_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.heal_ics.checked=true;
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.knowledgeplanes_ics.checked=true;
-        document.form1.linguistics_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
+    document.form1.appraise_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.linguistics_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
     }
     if (druid_levels > 0) {
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.fly_ics.checked=true;
-        document.form1.handleanimal_ics.checked=true;
-        document.form1.heal_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
-        document.form1.survival_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (fighter_levels > 0) {
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.handleanimal_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgeengineering_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.survival_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (monk_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.escapeartist_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.perform_1_ics.checked=true;
-        document.form1.perform_2_ics.checked=true;
-        document.form1.perform_3_ics.checked=true;
-        document.form1.perform_4_ics.checked=true;
-        document.form1.perform_5_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.escapeartist_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.perform_1_ics.checked=true;
+    document.form1.perform_2_ics.checked=true;
+    document.form1.perform_3_ics.checked=true;
+    document.form1.perform_4_ics.checked=true;
+    document.form1.perform_5_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (paladin_levels > 0) {
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.handleanimal_ics.checked=true;
-        document.form1.heal_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
     }
     if (ranger_levels > 0) {
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.handleanimal_ics.checked=true;
-        document.form1.heal_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
-        document.form1.survival_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (rogue_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.appraise_ics.checked=true;
-        document.form1.bluff_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.disabledevice_ics.checked=true;
-        document.form1.disguise_ics.checked=true;
-        document.form1.escapeartist_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgelocal_ics.checked=true;
-        document.form1.linguistics_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.perform_1_ics.checked=true;
-        document.form1.perform_2_ics.checked=true;
-        document.form1.perform_3_ics.checked=true;
-        document.form1.perform_4_ics.checked=true;
-        document.form1.perform_5_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
-        document.form1.sleightofhand_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
-        document.form1.swim_ics.checked=true;
-        document.form1.usemagicdevice_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.appraise_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.disabledevice_ics.checked=true;
+    document.form1.disguise_ics.checked=true;
+    document.form1.escapeartist_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.linguistics_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.perform_1_ics.checked=true;
+    document.form1.perform_2_ics.checked=true;
+    document.form1.perform_3_ics.checked=true;
+    document.form1.perform_4_ics.checked=true;
+    document.form1.perform_5_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.sleightofhand_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
+    document.form1.swim_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
     }
     if (sorcerer_levels > 0) {
-        document.form1.appraise_ics.checked=true;
-        document.form1.bluff_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.fly_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
-        document.form1.usemagicdevice_ics.checked=true;
+    document.form1.appraise_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
     }
     if (wizard_levels > 0) {
-        document.form1.appraise_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.fly_ics.checked=true;
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.knowledgeengineering_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgelocal_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.knowledgeplanes_ics.checked=true;
-        document.form1.linguistics_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
+    document.form1.appraise_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.linguistics_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    }
+    if (alchemist_levels > 0) {
+    document.form1.appraise_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.disabledevice_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.sleightofhand_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
+    }
+    if (cavalier_levels > 0) {
+    document.form1.bluff_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.swim_ics.checked=true;
+    }
+    if (oracle_levels > 0) {
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    }
+    if (summoner_levels > 0) {
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.handleanimal_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.linguistics_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
+    }
+    if (witch_levels > 0) {
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.heal_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
     }
     if (psion_levels > 0) {
-        document.form1.autohypnosis_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.knowledgeengineering_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgelocal_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.knowledgeplanes_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
+    document.form1.autohypnosis_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
     }
     if (egoist_psion) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.heal_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.heal_ics.checked=true;
     }
     if (kineticist_psion) {
-        document.form1.disabledevice_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
+    document.form1.disabledevice_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
     }
     if (nomad_psion) {
-        document.form1.climb_ics.checked=true;
-        document.form1.fly_ics.checked=true;
-        document.form1.survival_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.fly_ics.checked=true;
+    document.form1.survival_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (seer_psion) {
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.perception_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.perception_ics.checked=true;
     }
     if (shaper_psion) {
-        document.form1.bluff_ics.checked=true;
-        document.form1.disguise_ics.checked=true;
-        document.form1.usemagicdevice_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.disguise_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
     }
     if (telepath_psion) {
-        document.form1.bluff_ics.checked=true;
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
     }
     if (generalist_psion) {
-        document.form1.usemagicdevice_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
     }
     if (psychicwarrior_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.autohypnosis_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.ride_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.autohypnosis_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.ride_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (soulknife_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.autohypnosis_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
-        document.form1.swim_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.autohypnosis_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
+    document.form1.swim_ics.checked=true;
     }
     if (wilder_levels > 0) {
-        document.form1.acrobatics_ics.checked=true;
-        document.form1.autohypnosis_ics.checked=true;
-        document.form1.bluff_ics.checked=true;
-        document.form1.climb_ics.checked=true;
-        document.form1.craft_1_ics.checked=true;
-        document.form1.craft_2_ics.checked=true;
-        document.form1.craft_3_ics.checked=true;
-        document.form1.diplomacy_ics.checked=true;
-        document.form1.escapeartist_ics.checked=true;
-        document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
-        document.form1.perception_ics.checked=true;
-        document.form1.profession_ics.checked=true;
-        document.form1.sensemotive_ics.checked=true;
-        document.form1.spellcraft_ics.checked=true;
-        document.form1.swim_ics.checked=true;
-        document.form1.usemagicdevice_ics.checked=true;
+    document.form1.acrobatics_ics.checked=true;
+    document.form1.autohypnosis_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.climb_ics.checked=true;
+    document.form1.craft_1_ics.checked=true;
+    document.form1.craft_2_ics.checked=true;
+    document.form1.craft_3_ics.checked=true;
+    document.form1.diplomacy_ics.checked=true;
+    document.form1.escapeartist_ics.checked=true;
+    document.form1.intimidate_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.perception_ics.checked=true;
+    document.form1.profession_ics.checked=true;
+    document.form1.sensemotive_ics.checked=true;
+    document.form1.spellcraft_ics.checked=true;
+    document.form1.swim_ics.checked=true;
+    document.form1.usemagicdevice_ics.checked=true;
     }
     if (has_animal_domain == true) {
-        document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
     }
     if (has_plant_domain == true) {
-        document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
     }
     if (has_knowledge_domain == true) {
-        document.form1.knowledgearcana_ics.checked=true;
-        document.form1.knowledgeengineering_ics.checked=true;
-        document.form1.knowledgedungeoneering_ics.checked=true;
-        document.form1.knowledgegeography_ics.checked=true;
-        document.form1.knowledgehistory_ics.checked=true;
-        document.form1.knowledgelocal_ics.checked=true;
-        document.form1.knowledgenature_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
-        document.form1.knowledgereligion_ics.checked=true;
-        document.form1.knowledgeplanes_ics.checked=true;
-        document.form1.knowledgepsionics_ics.checked=true;
+    document.form1.knowledgearcana_ics.checked=true;
+    document.form1.knowledgeengineering_ics.checked=true;
+    document.form1.knowledgedungeoneering_ics.checked=true;
+    document.form1.knowledgegeography_ics.checked=true;
+    document.form1.knowledgehistory_ics.checked=true;
+    document.form1.knowledgelocal_ics.checked=true;
+    document.form1.knowledgenature_ics.checked=true;
+    document.form1.knowledgenobility_ics.checked=true;
+    document.form1.knowledgereligion_ics.checked=true;
+    document.form1.knowledgeplanes_ics.checked=true;
+    document.form1.knowledgepsionics_ics.checked=true;
     }
     if (has_travel_domain == true) {
-        document.form1.survival_ics.checked=true;
+    document.form1.survival_ics.checked=true;
     }
     if (has_trickery_domain == true) {
-        document.form1.bluff_ics.checked=true;
-        document.form1.disguise_ics.checked=true;
-        document.form1.stealth_ics.checked=true;
+    document.form1.bluff_ics.checked=true;
+    document.form1.disguise_ics.checked=true;
+    document.form1.stealth_ics.checked=true;
     }
-}
+    }
 
-function NumberToAbility(numb) {
+    function NumberToAbility(numb) {
     if (numb == 1) {
-        return "strength";
+    return "strength";
     } else
     if (numb == 2) {
         return "dexterity";
@@ -15893,9 +16117,28 @@ function upsky(klass) {
         wilder_levels++;
     }
     if (klass == 16) {
+        alchemist_levels++;
+    }
+    if (klass == 17) {
+        cavalier_levels++;
+    }
+    if (klass == 18) {
+        inquisitor_levels++;
+    }
+    if (klass == 19) {
+        oracle_levels++;
+    }
+    if (klass == 20) {
+        summoner_levels++;
+    }
+    if (klass == 21) {
+        witch_levels++;
+    }
+    if (klass == 22) {
         prestige_levels++;
     }
 }
+
 function figure_acrobatics() {
     if ((document.form1.acrobatics_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false)
         || (SkillPointsAreLocked == true)) {
@@ -15999,7 +16242,7 @@ function figure_disabledevice() {
 function figure_disguise() {
     if ((document.form1.disguise_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false)
         || (SkillPointsAreLocked == true)) {
-        document.form1.disguise_list.selectedIndex =disguise;
+        document.form1.disguise_list.selectedIndex=disguise;
     }
     else {
         disguise=document.form1.disguise_list.selectedIndex;
@@ -16009,7 +16252,7 @@ function figure_disguise() {
 function figure_escapeartist() {
     if ((document.form1.escapeartist_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false)
         || (SkillPointsAreLocked == true)) {
-        document.form1.escapeartist_list.selectedIndex =escapeartist;
+        document.form1.escapeartist_list.selectedIndex=escapeartist;
     }
     else {
         escapeartist=document.form1.escapeartist_list.selectedIndex;
@@ -16057,7 +16300,7 @@ function figure_stealth() {
     figure_skills();
 }
 function figure_intimidate() {
-    if ((document.form1.intimidate_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false) 
+    if ((document.form1.intimidate_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false)
         || (SkillPointsAreLocked == true)) {
         document.form1.intimidate_list.selectedIndex=intimidate;
     }
@@ -16097,7 +16340,7 @@ function figure_knowledgedungeoneering() {
     figure_skills();
 }
 function figure_knowledgegeography() {
-    if ((document.form1.knowledgegeography_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false) 
+    if ((document.form1.knowledgegeography_list.selectedIndex >3 + total_levels) || (FighterFeatsEtcFrozen == false)
         || (SkillPointsAreLocked == true)) {
         document.form1.knowledgegeography_list.selectedIndex=knowledgegeography;
     }
@@ -16359,9 +16602,72 @@ function figure_otherskill3() {
 
 function GenerateClassString() {
     class_string="";
+    if (alchemist_levels > 0) {
+        class_string += "Alchemist " + alchemist_levels;
+        if ((cavalier_levels > 0) || (inquisitor_levels > 0) || (oracle_levels > 0) || (summoner_levels > 0) || (witch_levels > 0)
+            || (barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0)
+            || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
+            || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
+            || (wilder_levels > 0) || (prestige_levels > 0)) {
+            class_string += " / ";
+        }
+    }
+
+    if (cavalier_levels > 0) {
+        class_string += "Cavalier " + cavalier_levels;
+        if ((inquisitor_levels > 0) || (oracle_levels > 0) || (summoner_levels > 0) || (witch_levels > 0) || (barbarian_levels > 0)
+            || (bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0)
+            || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
+            || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
+            || (wilder_levels > 0) || (prestige_levels > 0)) {
+            class_string += " / ";
+        }
+    }
+
+    if (inquisitor_levels > 0) {
+        class_string += "Inquisitor " + inquisitor_levels;
+        if ((oracle_levels > 0) || (summoner_levels > 0) || (witch_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0)
+            || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0)
+            || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
+            || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
+            || (wilder_levels > 0) || (prestige_levels > 0)) {
+            class_string += " / ";
+        }
+    }
+
+    if (oracle_levels > 0) {
+        class_string += "Oracle " + oracle_levels;
+        if ((summoner_levels > 0) || (witch_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0)
+            || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0)
+            || (rogue_levels > 0) || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0)
+            || (soulknife_levels > 0) || (wilder_levels > 0) || (prestige_levels > 0)) {
+            class_string += " / ";
+        }
+    }
+
+    if (summoner_levels > 0) {
+        class_string += "Summoner " + summoner_levels;
+        if ((witch_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0)
+            || (fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0)
+            || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
+            || (wilder_levels > 0) || (prestige_levels > 0)) {
+            class_string += " / ";
+        }
+    }
+
+    if (witch_levels > 0) {
+        class_string += "Witch " + witch_levels;
+        if ((barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0)
+            || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
+            || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
+            || (wilder_levels > 0) || (prestige_levels > 0)) {
+            class_string += " / ";
+        }
+    }
+
     if (barbarian_levels > 0) {
         class_string += "Barbarian " + barbarian_levels;
-        if ((bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0) 
+        if ((bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0)
             || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
             || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
             || (wilder_levels > 0) || (prestige_levels > 0)) {
@@ -16370,7 +16676,7 @@ function GenerateClassString() {
     }
     if (bard_levels > 0) {
         class_string += "Bard " + bard_levels;
-        if ((cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) 
+        if ((cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0)
             || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0)
             || (psychicwarrior_levels > 0) || (soulknife_levels > 0) || (wilder_levels > 0) || (prestige_levels > 0)) {
             class_string += " / ";
@@ -16378,16 +16684,16 @@ function GenerateClassString() {
     }
     if (cleric_levels > 0) {
         class_string += "Cleric " + cleric_levels;
-        if ((druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) 
-            || (rogue_levels > 0) || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0) || 
+        if ((druid_levels > 0) || (fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0)
+            || (rogue_levels > 0) || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0) ||
             (psychicwarrior_levels > 0) || (soulknife_levels > 0) || (wilder_levels > 0) || (prestige_levels > 0)) {
             class_string += " / ";
         }
     }
     if (druid_levels > 0) {
         class_string += "Druid " + druid_levels;
-        if ((fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) 
-            || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0) 
+        if ((fighter_levels > 0) || (monk_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0)
+            || (sorcerer_levels > 0) || (wizard_levels > 0) || (psion_levels > 0) || (psychicwarrior_levels > 0)
             || (soulknife_levels > 0) || (wilder_levels > 0) || (prestige_levels > 0)) {
             class_string += " / ";
         }
@@ -16620,6 +16926,24 @@ function ClassName(klasso) {
         return "Wilder";
     }
     else if (klasso == 16) {
+        return "Alchemist";
+    }
+    else if (klasso == 17) {
+        return "Cavalier";
+    }
+    else if (klasso == 18) {
+        return "Inquisitor";
+    }
+    else if (klasso == 19) {
+        return "Oracle";
+    }
+    else if (klasso == 20) {
+        return "Summoner";
+    }
+    else if (klasso == 21) {
+        return "Witch";
+    }
+    else if (klasso == 22) {
         return prestige_class_name;
     }
     else return "Adventurer";
@@ -16629,49 +16953,17 @@ function DoHPAndOtherClassStuff() {
     if (class01 == 1) {
         newHP01=12;
     }
-    if (class01 == 2) {
+    if ( (class01 == 2) || (class01 == 3) || (class01 == 4) || (class01 == 6) || (class01 == 9) || (class01 == 13)
+        || (class01 == 15) || (class01 == 16) || (class01 == 18) || (class01 == 19) || (class01 == 20) ) {
         newHP01=8;
     }
-    if (class01 == 3) {
-        newHP01=8;
-    }
-    if (class01 == 4) {
-        newHP01=8;
-    }
-    if (class01 == 5) {
+    if ( (class01 == 5) || (class01 == 7) || (class01 == 8) || (class01 == 14) || (class01 == 17) ) {
         newHP01=10;
     }
-    if (class01 == 6) {
-        newHP01=8;
-    }
-    if (class01 == 7) {
-        newHP01=10;
-    }
-    if (class01 == 8) {
-        newHP01=10;
-    }
-    if (class01 == 9) {
-        newHP01=8;
-    }
-    if (class01 == 10) {
+    if ( (class01 == 10) || (class01 == 11) || (class01 == 12) || (class01 == 21) ) {
         newHP01=6;
     }
-    if (class01 == 11) {
-        newHP01=6;
-    }
-    if (class01 == 12) {
-        newHP01=6;
-    }
-    if (class01 == 13) {
-        newHP01=8;
-    }
-    if (class01 == 14) {
-        newHP01=10;
-    }
-    if (class01 == 15) {
-        newHP01=8;
-    }
-    if (document.form1.methods_list.selectedIndex == 6) {
+    if (document.form1.methods_list.selectedIndex== 6) {
         newHP01 = rollHP(class01);
     }
     newHP02=rollHP(class02);
@@ -16932,36 +17224,36 @@ function lock_classes() {
         if (wizard_levels > 0) {
             document.form1.choose_specialty[0].checked=true;
         }
-        if ((wizard_levels > 0)) {
+        if ((wizard_levels > 0) || (witch_levels > 0)) {
             document.form1.choose_familiar[0].checked=true;
         }
         if (druid_levels > 0) {
             document.form1.druid_domain[0].checked=true;
         }
-        if ((barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0)
-            || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
+        if ((alchemist_levels > 0) || (cavalier_levels > 0) || (inquisitor_levels > 0) || (oracle_levels > 0) || (summoner_levels > 0)
+            || (witch_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (fighter_levels > 0)
+            || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
             || (psychicwarrior_levels > 0) || (soulknife_levels > 0) || (wilder_levels > 0)) {
             already_knows_simple_weapons=true;
         }
-        if ((barbarian_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0)
+        if ((cavalier_levels > 0) || (barbarian_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0)
             || (psychicwarrior_levels > 0)) {
             already_knows_martial_weapons=true;
         }
-        if ((barbarian_levels > 0) || (bard_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0)
-            || (ranger_levels > 0) || (rogue_levels > 0)
+        if ((summoner_levels > 0) || (oracle_levels > 0) || (inquisitor_levels > 0) || (alchemist_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0) || (druid_levels > 0) || (fighter_levels > 0)
+            || (cavalier_levels > 0) || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0)
             || (psychicwarrior_levels > 0) || (soulknife_levels > 0) || (wilder_levels > 0)) {
             already_knows_light_armor=true;
         }
 
-        if ((barbarian_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0)
+        if ((oracle_levels > 0) || (inquisitor_levels > 0) || (cavalier_levels > 0) || (barbarian_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0)
             || (psychicwarrior_levels > 0) || (soulknife_levels > 0)) {
             already_knows_medium_armor=true;
         }
-        if ((fighter_levels > 0) || (paladin_levels > 0) || (psychicwarrior_levels > 0))
-        {
+        if ((cavalier_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0) || (psychicwarrior_levels > 0)) {
             already_knows_heavy_armor=true;
         }
-        if ((barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0)
+        if ((oracle_levels > 0) || (inquisitor_levels > 0) || (cavalier_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0)
             || (paladin_levels > 0) || (ranger_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
             || (wilder_levels > 0)) {
             already_knows_shields=true;
@@ -17143,7 +17435,7 @@ function assignclass(whatlevel,whatclass) {
     else if ((class01 == 0) && (whatlevel>1)) {
         NegateAllClassChoicesHereAndBelow(1);
     }
-    else if (((alignment == 1) || (alignment == 4) || (alignment == 7)) && (rayce!=103) && ((whatclass == 1))) {
+    else if (((alignment == 1) || (alignment == 4) || (alignment == 7)) && (rayce!=103) && (whatclass == 1)) {
         alert("Cannot be lawful");
         ShowHowWeChoseClasses();
     }
@@ -17387,7 +17679,8 @@ function ShowHowWeChoseClasses() {
     } else
     if ((psychicwarrior_levels>=10) && (wisdom == 14)) {
         document.form1.third_comment_box.value += "Wisdom is low for these psychicwarrior levels.\r"
-    } else
+    }
+    else
     if ((psychicwarrior_levels>=13) && (wisdom == 15)) {
         document.form1.third_comment_box.value += "Wisdom is low for these psychicwarrior levels.\r"
     }
@@ -17410,7 +17703,7 @@ function ShowHowWeChoseClasses() {
         document.form1.third_comment_box.value += "Low scores may limit your bard.\r"
     }
     if ((fighter_levels > 0) && ( ((strength + dexterity<22) && (strength<14) && (dexterity<14))
-            || ((constitution<10) && (strength + dexterity<28)) ) ) {
+        || ((constitution<10) && (strength + dexterity<28)) ) ) {
         document.form1.third_comment_box.value += "Low scores will handicap a fighter.\r";
     }
     if ((paladin_levels > 0) && (charisma + wisdom + constitution + strength<=40)) {
@@ -17444,7 +17737,6 @@ function roll4d6() {
 }
 
 function roll5d6() {
-
     d1=Math.floor (6*Math.random() + 1);
     d2=Math.floor (6*Math.random() + 1);
     d3=Math.floor (6*Math.random() + 1);
@@ -17554,7 +17846,7 @@ function RollTheDice() {
     stat5=roll4d6();
     stat6=roll4d6();
     AdjustIfTooLow4();
-    if (document.form1.methods_list.selectedIndex == 1) {
+    if (document.form1.methods_list.selectedIndex== 1) {
         stat1=roll5d6();
         stat2=roll5d6();
         stat3=roll5d6();
@@ -17563,7 +17855,7 @@ function RollTheDice() {
         stat6=roll5d6();
         AdjustIfTooLow5();
     }
-    if (document.form1.methods_list.selectedIndex == 2) {
+    if (document.form1.methods_list.selectedIndex== 2) {
         stat1=roll2d6plus6();
         stat2=roll2d6plus6();
         stat3=roll2d6plus6();
@@ -17572,7 +17864,7 @@ function RollTheDice() {
         stat6=roll2d6plus6();
         AdjustIfTooLow3();
     }
-    if (document.form1.methods_list.selectedIndex == 6) {
+    if (document.form1.methods_list.selectedIndex== 6) {
         stat1=roll3d6();
         stat2=roll3d6();
         stat3=roll3d6();
@@ -17581,7 +17873,7 @@ function RollTheDice() {
         stat6=roll3d6();
         AdjustIfTooLow3();
     }
-    if (document.form1.methods_list.selectedIndex == 3) {
+    if (document.form1.methods_list.selectedIndex== 3) {
         stat1=15;
         stat2=14;
         stat3=13;
@@ -17589,7 +17881,7 @@ function RollTheDice() {
         stat5=10;
         stat6=8;
     }
-    if (document.form1.methods_list.selectedIndex == 5) {
+    if (document.form1.methods_list.selectedIndex== 5) {
         stat1=13;
         stat2=12;
         stat3=11;
@@ -17598,7 +17890,7 @@ function RollTheDice() {
         stat6=8;
     }
     // Point Buy
-    if (document.form1.methods_list.selectedIndex == 4) {
+    if (document.form1.methods_list.selectedIndex== 4) {
         stat1=10;
         stat2=10;
         stat3=10;
@@ -17615,7 +17907,7 @@ function RollTheDice() {
         DisplayTrueStatistics();
 
     }
-    if (document.form1.methods_list.selectedIndex == 7) {
+    if (document.form1.methods_list.selectedIndex== 7) {
         stat1=3;
         stat2=3;
         stat3=3;
@@ -17631,7 +17923,7 @@ function RollTheDice() {
         DiceHaveBeenRolled=true;
         DisplayTrueStatistics();
     }
-    if (document.form1.methods_list.selectedIndex == 7) {
+    if (document.form1.methods_list.selectedIndex== 7) {
         stat1=3;
         stat2=3;
         stat3=3;
@@ -17646,25 +17938,20 @@ function RollTheDice() {
         document.form1.stat6_list.selectedIndex=0;
         DiceHaveBeenRolled=true;
         DisplayTrueStatistics();
-    }
-}
-
-function ClearTotalLevels() {
-    z=0;
-    while (z < 20) {
-        document.form1.totallevels[z].checked=false;
-        // document.form1.totallevels[1].checked=false;
-        z++;
     }
 }
 
 function assignlevel(i) {
     if (CharacterTypeHasBeenEstablished == true) {
-        ClearTotalLevels();
-        document.form1.totallevels[total_levels-1].checked=true;
+        document.form1.totallevels.selectedIndex=total_levels-1;
     }
     else if (AbilitiesHaveBeenEstablished == false) {
-        ClearTotalLevels();
+        document.form1.totallevels.selectedIndex=0;
+    }
+    else if (i=="choose level") {
+        total_levels=0;
+        document.form1.second_comment_box.value="Please choose your total levels.";
+        ThisTakesAMoment();
     }
     else {
         total_levels=i;
@@ -19343,7 +19630,7 @@ function WriteTextForCharacterSheet() {
         SWD += " [includes psionic body] ";
     }
     SWD += "<br />\r";
-    
+
     if (psion_levels > 0) {
         if (generalist_psion) {
             SWD += "Psionic Discipline: Generalist<br />";
@@ -19982,7 +20269,7 @@ function WriteTextForCharacterSheet() {
         SWD += " (? " + (total_bonus_language_entitlement-total_bonus_languages) + " more)";
     }
     SWD += "</td></tr></table><br />";
-    
+
     // Figure damage modifier
     if (modifier_string(strength)!="+0") {
         damage_bonus = modifier_string(strength);
@@ -20008,7 +20295,7 @@ function WriteTextForCharacterSheet() {
     }
 
     SWD +="Unarmed strike: ["+unarmed_attack_string_1+", ";
-       
+
     if (monk_levels > 0) {
         SWD += "Unarmed Damage: ";
         if (monk_levels > 1 && monk_levels < 4) {
@@ -20069,7 +20356,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD +="crit x2, light, bludgeoning]\r<br />";
-    
+
     if (soulknife_levels > 0) {
         if (small == false) {
             SWD += "Light Mind Blade ["+(handheld_attack_string_1 + 1) + ", 1d6"+damage_bonus+", crit 19-20/x2 range 20 ft, choose damage type<br />";
@@ -21361,7 +21648,11 @@ function WriteTextForCharacterSheet() {
         SWD += "<tr><td valign=\"top\">Scribe Scroll</td><td></td></tr>\r";
     }
     if (wizard_levels > 0) {
-        SWD += "<tr><td valign=\"top\">Scribe Scroll</td><td>[free to wizard]</td></tr>\r";
+        SWD += "<tr><td valign=\"top\">Scribe Scroll</td><td>[free to wizards]</td></tr>\r";
+    }
+    if (alchemist_levels > 0) {
+        SWD += "<tr><td valign=\"top\">Brew Potion</td><td>[free to alchemists]</td></tr>\r";
+        SWD += "<tr><td valign=\"top\">Throw Anything</td><td>[free to alchemists]</td></tr>\r";
     }
     if (has_empowerspell == true) {
         SWD += "<tr><td valign=\"top\">Empower Spell</td><td></td></tr>\r";
@@ -22256,7 +22547,7 @@ function WriteTextForCharacterSheet() {
         SWD += "+"+SixOrThree(escapeartist)+" [skill focus] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Fly
     x=modifier_number(dexterity) + fly + armor_check_penalty + shield_check_penalty;
     if ((document.form1.fly_ics.checked) && (fly > 0)) {
@@ -22362,6 +22653,7 @@ function WriteTextForCharacterSheet() {
         SWD += "+"+SixOrThree(heal)+" [skill focus] ";
     }
     SWD += "</td></tr>\r";
+    
     // Stealth
     x=modifier_number(dexterity) + stealth + armor_check_penalty + shield_check_penalty;
     if (document.form1.sneaky_crystal.checked) {
@@ -22421,8 +22713,9 @@ function WriteTextForCharacterSheet() {
         SWD += " +2 [tiefling] ";
     }
     SWD += "</td></tr>\r";
+    
     // Intimidate
-    x=modifier_number(charisma) + intimidate;
+    x=modifier_number(charisma) + intimidate + halfLevelBonus(inquisitor_levels);
     if (has_intimidatingprowess) {
         x+= modifier_number(strength);
     }
@@ -22473,7 +22766,11 @@ function WriteTextForCharacterSheet() {
     if (document.form1.bully_crystal.checked) {
         SWD += " +3 [bully psicrystal] ";
     }
+    if (inquisitor_levels > 0) {
+        SWD += " +"+halfLevelBonus(inquisitor_levels)+" [inquisitor] ";
+    }
     SWD += "</td></tr>\r";
+    
     // Knowledge (Arcana)
     if ((knowledgearcana > 0) || (bard_levels > 0)) {
         x=modifier_number(intelligence) + knowledgearcana + BardKnow();
@@ -23202,8 +23499,9 @@ function WriteTextForCharacterSheet() {
         SWD += shield_check_penalty+" [shield] ";
     }
     SWD += "</td></tr>\r";
+    
     // Sense Motive
-    x=modifier_number(wisdom) + sensemotive;
+    x=modifier_number(wisdom) + sensemotive + halfLevelBonus(inquisitor_levels);
     if ((document.form1.sensemotive_ics.checked) && (sensemotive > 0)) {
         x+= 3;
     }
@@ -23236,7 +23534,11 @@ function WriteTextForCharacterSheet() {
     if (has_alertness) {
         SWD += " +2 [alertness] ";
     }
+    if (inquisitor_levels > 0) {
+        SWD += " +"+halfLevelBonus(inquisitor_levels)+" [inquisitor] ";
+    }
     SWD += "</td></tr>\r";
+    
     // Sleight of Hand
     if ((sleightofhand > 0) || (bard_levels>=10)) {
         x=modifier_number(dexterity) + sleightofhand;
@@ -23418,32 +23720,32 @@ function WriteTextForCharacterSheet() {
     }
 
     if (otherskill1 > 0) {
-        if (document.form1.otherskill1_ability_list.selectedIndex == 0) {
+        if (document.form1.otherskill1_ability_list.selectedIndex== 0) {
             y=modifier_number(strength);
             x=y + otherskill1;
             stringy="Str";
         }
-        if (document.form1.otherskill1_ability_list.selectedIndex == 1) {
+        if (document.form1.otherskill1_ability_list.selectedIndex== 1) {
             y=modifier_number(dexterity);
             x=y + otherskill1;
             stringy="Dex";
         }
-        if (document.form1.otherskill1_ability_list.selectedIndex == 2) {
+        if (document.form1.otherskill1_ability_list.selectedIndex== 2) {
             y=modifier_number(constitution);
             x=y + otherskill1;
             stringy="Con";
         }
-        if (document.form1.otherskill1_ability_list.selectedIndex == 3) {
+        if (document.form1.otherskill1_ability_list.selectedIndex== 3) {
             y=modifier_number(intelligence);
             x=y + otherskill1;
             stringy="Int";
         }
-        if (document.form1.otherskill1_ability_list.selectedIndex == 4) {
+        if (document.form1.otherskill1_ability_list.selectedIndex== 4) {
             y=modifier_number(wisdom);
             x=y + otherskill1;
             stringy="Wis";
         }
-        if (document.form1.otherskill1_ability_list.selectedIndex == 5) {
+        if (document.form1.otherskill1_ability_list.selectedIndex== 5) {
             y=modifier_number(charisma);
             x=y + otherskill1;
             stringy="Chr";
@@ -23454,32 +23756,32 @@ function WriteTextForCharacterSheet() {
     }
 
     if (otherskill2 > 0) {
-        if (document.form1.otherskill2_ability_list.selectedIndex == 0) {
+        if (document.form1.otherskill2_ability_list.selectedIndex== 0) {
             y=modifier_number(strength);
             x=y + otherskill2;
             stringy="Str";
         }
-        if (document.form1.otherskill2_ability_list.selectedIndex == 1) {
+        if (document.form1.otherskill2_ability_list.selectedIndex== 1) {
             y=modifier_number(dexterity);
             x=y + otherskill2;
             stringy="Dex";
         }
-        if (document.form1.otherskill2_ability_list.selectedIndex == 2) {
+        if (document.form1.otherskill2_ability_list.selectedIndex== 2) {
             y=modifier_number(constitution);
             x=y + otherskill2;
             stringy="Con";
         }
-        if (document.form1.otherskill2_ability_list.selectedIndex == 3) {
+        if (document.form1.otherskill2_ability_list.selectedIndex== 3) {
             y=modifier_number(intelligence);
             x=y + otherskill2;
             stringy="Int";
         }
-        if (document.form1.otherskill2_ability_list.selectedIndex == 4) {
+        if (document.form1.otherskill2_ability_list.selectedIndex== 4) {
             y=modifier_number(wisdom);
             x=y + otherskill2;
             stringy="Wis";
         }
-        if (document.form1.otherskill2_ability_list.selectedIndex == 5) {
+        if (document.form1.otherskill2_ability_list.selectedIndex== 5) {
             y=modifier_number(charisma);
             x=y + otherskill2;
             stringy="Chr";
@@ -23491,32 +23793,32 @@ function WriteTextForCharacterSheet() {
     }
 
     if (otherskill3 > 0) {
-        if (document.form1.otherskill3_ability_list.selectedIndex == 0) {
+        if (document.form1.otherskill3_ability_list.selectedIndex== 0) {
             y=modifier_number(strength);
             x=y + otherskill3;
             stringy="Str";
         }
-        if (document.form1.otherskill3_ability_list.selectedIndex == 1) {
+        if (document.form1.otherskill3_ability_list.selectedIndex== 1) {
             y=modifier_number(dexterity);
             x=y + otherskill3;
             stringy="Dex";
         }
-        if (document.form1.otherskill3_ability_list.selectedIndex == 2) {
+        if (document.form1.otherskill3_ability_list.selectedIndex== 2) {
             y=modifier_number(constitution);
             x=y + otherskill3;
             stringy="Con";
         }
-        if (document.form1.otherskill3_ability_list.selectedIndex == 3) {
+        if (document.form1.otherskill3_ability_list.selectedIndex== 3) {
             y=modifier_number(intelligence);
             x=y + otherskill3;
             stringy="Int";
         }
-        if (document.form1.otherskill3_ability_list.selectedIndex == 4) {
+        if (document.form1.otherskill3_ability_list.selectedIndex== 4) {
             y=modifier_number(wisdom);
             x=y + otherskill3;
             stringy="Wis";
         }
-        if (document.form1.otherskill3_ability_list.selectedIndex == 5) {
+        if (document.form1.otherskill3_ability_list.selectedIndex== 5) {
             y=modifier_number(charisma);
             x=y + otherskill3;
             stringy="Chr";
@@ -23597,7 +23899,7 @@ function WriteTextForCharacterSheet() {
     if (ClericSpells9!="") {
         SWD += ClericSpells9 + "<br /><br />\r";
     }
-    
+
     if (DruidSpells0!="") {
         SWD += DruidSpells0 + "<br /><br />\r";
     }
@@ -24314,19 +24616,19 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Smite Evil (";
         if (paladin_levels>=19) {
             SWD += "7x/day";
-        } 
+        }
         else if (paladin_levels>=16) {
             SWD += "6x/day";
-        } 
+        }
         else if (paladin_levels>=13) {
             SWD += "5x/day";
-        } 
+        }
         else if (paladin_levels>=10) {
             SWD += "4x/day";
-        } 
+        }
         else if (paladin_levels>=7) {
             SWD += "3x/day";
-        } 
+        }
         else if (paladin_levels>=4) {
             SWD += "2x/day";
         } else {
@@ -24673,6 +24975,115 @@ function WriteTextForCharacterSheet() {
         SWD += "</ul>";
     }
 
+    if (alchemist_levels > 0)  {
+        SWD += "<h5>Alchemist</h5><ul>";
+        SWD += "<li>Extracts</li>";
+        SWD += "<li>Bombs:</li><ul>";
+        SWD += "<li>Bombs per day: " + (alchemist_levels + modifier_number(intelligence)) + "</li>";
+        SWD += "<li>Bomb damage: " + Math.ceil(alchemist_levels/2) + "d+" + modifier_number(intelligence) + "</li>";
+        SWD += "<li>Bomb Reflex save DC: " + (halfLevelBonus(alchemist_levels)+modifier_number(intelligence)+10 ) + "</li>";
+        SWD += "<li>Mutagens</li>";
+        SWD += "<li>When using Craft (alchemy) to create an alchemical item, this alchemist gains a +"+alchemist_levels+" competence bonus</li>";
+        SWD += "<li>Bonus Feat: Brew Potion (already included)</li>";
+        SWD += "<li>Bonus Feat: Throw Anything</li>";
+        SWD += "<li>Discoveries - At 2nd level, and then again every 2 levels thereafter (up to 18th level), an alchemist makes an incredible alchemical discovery</li>";
+        SWD += "<li>Poison Resistance (level 2)</li>";
+        SWD += "<li>Poison Use - At 2nd level an alchemist cannot accidentally poison himself when applying poison to a weapon.</li>";
+        SWD += "<li>Swift Alchemy - At 3rd level, it takes an alchemist half the normal amount of time to create alchemical items, and he can apply poison to a weapon as a move action.</li>";
+        SWD += "<li>Swift Poisoning - At 6th level, an alchemist can apply a dose of poison to a weapon as a swift action.</li>";
+        SWD += "<li>Persistent Mutagen - At 14th level, the effects of a mutagen last for 1 hour per level.</li>";
+        SWD += "<li>Instant Alchemy (level 18)</li>";
+        SWD += "<li>Grand Discovery (level 20)</li>";
+        SWD += "</ul>";
+    }
+    
+    if (cavalier_levels > 0)  {
+        SWD += "<h5>Cavalier</h5><ul>";
+        SWD += "<li>Challenge</li>";
+        SWD += "<li>Mount</li>";
+        SWD += "<li>Order</li>";
+        SWD += "<li>Tactician</li>";
+        SWD += "<li>Cavalier's Charge (level 3)</li>";
+        SWD += "<li>Expert Trainer (level 4)</li>";
+        SWD += "<li>Banner (level 5)</li>";
+        SWD += "<li>Bonus Feat - Cavaliers earn a bonus combat feat at level 6, and at every six levels thereafter.</li>";
+        SWD += "<li>Greater Tactician (level 9)</li>";
+        SWD += "<li>Mighty Charge (level 11)</li>";
+        SWD += "<li>Demanding Challenge (level 12)</li>";
+        SWD += "<li>Greater Banner (level 14)</li>";
+        SWD += "<li>Master Tactician (level 17)</li>";
+        SWD += "<li>Supreme Charge (level 20)</li>";
+        SWD += "</ul>";
+    }
+    
+    if (inquisitor_levels > 0)  {
+        SWD += "<h5>Inquisitor</h5><ul>";
+        SWD += "<li>Divine spells: The DC for saves against an inquisitor's spell is 10 + the spell level + the inquisitor's Wisdom modifier.</li>";
+        SWD += "<li>Can know only limited numbers of spells</li>";
+        SWD += "<li>Concentration check: d20 + inquisitor level + wisdom modifier vs. DC</li>";
+        SWD += "<li>Domains</li>";
+        SWD += "<li>Judgment</li>";
+        SWD += "<li>Monster Lore</li>";
+        SWD += "<li>Stern Gaze: An inquisitor receives a morale bonus on all Intimidate and Sense Motive checks equal to 1/2 her inquisitor level (minimum +1).</li>";
+        SWD += "<li>Cunning Initiative: At 2nd level, an inquisitor adds her Wisdom modifier on initiative checks, in addition to her Dexterity modifier.</li>";
+        SWD += "<li>Detect Alignment</li>";
+        SWD += "<li>Track: At 2nd level, an inquisitor adds half her level on Survival skill checks made to follow or identify tracks</li>";
+        SWD += "<li>Solo Tactics (level 3)</li>";
+        SWD += "<li>Teamwork Feat (level 3)</li>";
+        SWD += "<li>Bane (level 5)</li>";
+        SWD += "<li>Discern Lies (level 5)</li>";
+        SWD += "<li>Second Judgment (level 8)</li>";
+        SWD += "<li>Stalwart (level 11)</li>";
+        SWD += "<li>Greater Bane (level 12)</li>";
+        SWD += "<li>Exploit Weakness (level 14)</li>";
+        SWD += "<li>Third Judgment (level 16)</li>";
+        SWD += "<li>Slayer (level 17)</li>";
+        SWD += "<li>True Judgment (level 20)</li>";
+        SWD += "</ul>";
+    }
+
+    if (oracle_levels > 0)  {
+        SWD += "<h5>Oracle</h5><ul>";
+        SWD += "<li>Divine spells: The DC for saves against an oracle's spell is 10 + the spell level + the oracle's Wisdom modifier.</li>";
+        SWD += "<li>Can know only limited numbers of spells</li>";
+        SWD += "<li>Concentration check: d20 + oracle level + wisdom modifier vs. DC</li>";
+        SWD += "<li>Mystery -  An oracle must pick one mystery upon taking her first level of oracle. Once made, this choice cannot be changed.</li>";
+        SWD += "<li>Oracle's Curse</li>";
+        SWD += "<li>Revelation - At 1st level, 3rd level, and every four levels thereafter (7th, 11th, and so on), an oracle uncovers a new secret about her mystery.</li>";
+        SWD += "</ul>";
+    }
+    
+    if (summoner_levels > 0)  {
+        SWD += "<h5>Summoner</h5><ul>";
+        SWD += "<li>Divine spells: The DC for saves against an summoner's spell is 10 + the spell level + the summoner's Charisma modifier.</li>";
+        SWD += "<li>Know only limited numbers of spells</li>";
+        SWD += "<li>Concentration check: d20 + oracle level + Charisma modifier vs. DC</li>";
+        SWD += "<li>Eidolon</li>";
+        SWD += "<li>Life Link</li>";
+        SWD += "<li>Summon Monster as spell-like ability</li>";
+        SWD += "<li>Bond Senses (level 2)</li>";
+        SWD += "<li>Shield Ally (level 4)</li>";
+        SWD += "<li>Maker's Call (level 6)</li>";
+        SWD += "<li>Transposition (level 8)</li>";
+        SWD += "<li>Aspect (level 10)</li>";
+        SWD += "<li>Greater Shield Ally (level 12)</li>";
+        SWD += "<li>Life Bond (level 14)</li>";
+        SWD += "<li>Merge Forms (level 16)</li>";
+        SWD += "<li>Greater Aspect (level 18)</li>";
+        SWD += "<li>Twin Eidolon (level 20)</li>";
+        SWD += "</ul>";
+    }
+
+    if (witch_levels > 0)  {
+        SWD += "<h5>Witch</h5><ul>";
+        SWD += "<li>Divine spells: The DC for saves against an witch's spell is 10 + the spell level + the witch's Intelligence modifier.</li>";
+        SWD += "<li>Concentration check: d20 + oracle level + Intelligence modifier vs. DC</li>";
+        SWD += "<li>Hex</li>";
+        SWD += "<li>Oracle's Curse</li>";
+        SWD += "<li>Revelation - At 1st level, 3rd level, and every four levels thereafter (7th, 11th, and so on), an oracle uncovers a new secret about her mystery.</li>";
+        SWD += "</ul>";
+    }
+    
     if (psion_levels > 0) {
         SWD += "<h5>Psion</h5><ul>";
         SWD += "<li>At level 1, all psions can detect psionics.</li>";
@@ -25117,7 +25528,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<tr><td>Level 20:</td><td>" + ClassName(class20) + "</td> <td align=\"center\">" + newHP20 + "</td><td> + 1 to " + NumberToAbility(upitat20) + "</td></tr></tbody>\r";
     }
     SWD += "</table>\r<br />";
-   
+
     if (document.form1.moniker.value == "") {
         SWD += "Equipment:<br /><br />";
     }
@@ -25840,13 +26251,20 @@ function WriteTextForCharacterSheet() {
         }
         SWD += " -- add size, dexterity and armor modifiers as applicable)<br />";
 
+        // Calculate Initiative
         x=modifier_number(ac_dexterity);
+        if (inquisitor_levels > 1) {
+            x += modifier_number(ac_wisdom);
+        }
         if (document.form1.ac_improvedinitiative_box.checked) {
             x+= 4;
         }
         SWD += "Initiative modifier: "+x+" = "+modifier_number(ac_dexterity)+" [dexterity]";
         if (document.form1.ac_improvedinitiative_box.checked) {
             SWD += " +4 [improved initiative]";
+        }
+        if (inquisitor_levels > 1) {
+            SWD += " "+modifier_number(ac_wisdom)+" [inquisitor]";
         }
         SWD += "<br />";
 
@@ -25896,7 +26314,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.ac_acrobatic_box.checked) {
             x+= 2;
         }
-        SWD += "Skill: Acrobatics "+x+" ["+modifier_number(ac_dexterity)+" dexterity + " 
+        SWD += "Skill: Acrobatics "+x+" ["+modifier_number(ac_dexterity)+" dexterity + "
         + document.form1.ac_acrobatics_list.selectedIndex+" ranks";
         if (document.form1.ac_acrobatics_list.selectedIndex > 0) {
             SWD += " +3 class skill ";
@@ -25995,7 +26413,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.ac_perception_list.selectedIndex > 0) {
             x+= 3;
         }
-        SWD += "Skill: Perception "+x+" ["+modifier_number(ac_wisdom)+" wisdom + " 
+        SWD += "Skill: Perception "+x+" ["+modifier_number(ac_wisdom)+" wisdom + "
         + document.form1.ac_perception_list.selectedIndex+" ranks";
         if (document.form1.ac_perception_list.selectedIndex > 0) {
             SWD += " +3 class skill ";
@@ -26015,7 +26433,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.ac_stealthy_box.checked) {
             x+= 2;
         }
-        SWD += "Skill: Stealth "+x+" ["+modifier_number(ac_dexterity)+" dexterity + " 
+        SWD += "Skill: Stealth "+x+" ["+modifier_number(ac_dexterity)+" dexterity + "
         + document.form1.ac_stealth_list.selectedIndex+" ranks";
         if (document.form1.ac_stealth_list.selectedIndex > 0) {
             SWD += " +3 class skill ";
@@ -26035,7 +26453,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.ac_skillfocussurvival_box.checked) {
             x+= 3;
         }
-        SWD += "Skill: Survival "+x+" ["+modifier_number(ac_wisdom)+" wisdom + " 
+        SWD += "Skill: Survival "+x+" ["+modifier_number(ac_wisdom)+" wisdom + "
         + document.form1.ac_survival_list.selectedIndex+" ranks";
         if (document.form1.ac_survival_list.selectedIndex > 0) {
             SWD += " +3 class skill ";
@@ -26055,7 +26473,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.ac_athletic_box.checked) {
             x+= 2;
         }
-        SWD += "Skill: Swim "+x+" ["+modifier_number(ac_strength)+" strength + " 
+        SWD += "Skill: Swim "+x+" ["+modifier_number(ac_strength)+" strength + "
         + document.form1.ac_swim_list.selectedIndex+" ranks";
         if (document.form1.ac_swim_list.selectedIndex > 0) {
             SWD += " +3 class skill ";
@@ -27702,7 +28120,7 @@ function CalculateArmorClass() {
             armor_string += " 5 lbs.";
             wt += 5;
         }
-        if ((sorcerer_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 5%";
         }
@@ -27731,7 +28149,7 @@ function CalculateArmorClass() {
             armor_string += " 7.5 lbs.";
             wt += 7.5;
         }
-        if ((sorcerer_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 10%";
         }
         armor_string += "] ";
@@ -27761,7 +28179,7 @@ function CalculateArmorClass() {
             armor_string += " 10 lbs.";
             wt += 10;
         }
-        if ((sorcerer_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 15%";
         }
         armor_string += "] ";
@@ -27792,7 +28210,7 @@ function CalculateArmorClass() {
             armor_string += " 12.5 lbs.";
             wt += 12.5;
         }
-        if ((sorcerer_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 20%";
         }
@@ -27824,7 +28242,7 @@ function CalculateArmorClass() {
             armor_string += " 12.5 lbs.";
             wt += 12.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 20%";
         }
@@ -27856,7 +28274,7 @@ function CalculateArmorClass() {
             armor_string += " 15 lbs.";
             wt += 15;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 25%";
         }
@@ -27888,7 +28306,7 @@ function CalculateArmorClass() {
             armor_string += " 20 lbs.";
             wt += 20;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 30%";
         }
@@ -27920,7 +28338,7 @@ function CalculateArmorClass() {
             armor_string += " 15 lbs.";
             wt += 15;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 25%";
         }
@@ -27952,7 +28370,7 @@ function CalculateArmorClass() {
             armor_string += " 22.5 lbs.";
             wt += 22.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 40%";
         }
@@ -27984,7 +28402,7 @@ function CalculateArmorClass() {
             armor_string += " 17.5 lbs.";
             wt += 17.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 35%";
         }
@@ -28016,7 +28434,7 @@ function CalculateArmorClass() {
             armor_string += " 25 lbs.";
             wt += 25;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 40%";
         }
@@ -28048,7 +28466,7 @@ function CalculateArmorClass() {
             armor_string += " 25 lbs.";
             wt += 25;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0))
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
         {
             armor_string += "; arcane spell failure 35%";
         }
@@ -28072,7 +28490,7 @@ function CalculateArmorClass() {
             shield_string += " 2.5 lbs.";
             wt += 2.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 5%";
         }
         shield_string += "] ";
@@ -28095,7 +28513,7 @@ function CalculateArmorClass() {
             shield_string += " 2.5 lbs.";
             wt += 2.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 5%";
         }
         shield_string += "] ";
@@ -28118,7 +28536,7 @@ function CalculateArmorClass() {
             shield_string += " 3 lbs.";
             wt += 3;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 5%";
         }
         shield_string += "] ";
@@ -28141,7 +28559,7 @@ function CalculateArmorClass() {
             shield_string += " 5 lbs.";
             wt += 5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 15%";
         }
         shield_string += "] ";
@@ -28164,7 +28582,7 @@ function CalculateArmorClass() {
             shield_string += " 7.5 lbs.";
             wt += 7.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 15%";
         }
         shield_string += "] ";
@@ -28190,7 +28608,7 @@ function CalculateArmorClass() {
             shield_string += " 22.5 lbs.";
             wt += 22.5;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0)) {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 50%";
         }
         shield_string += "] ";
@@ -28672,7 +29090,7 @@ function CalculateArmorClass() {
     if (unarmed_attack>=0) {
         unarmed_attack_string_1=" +"+unarmed_attack_string_1;
     }
-    
+
     // Flurry of blows attack bonus
     x=monk_levels-2+modifier_number(strength);
     flurry_of_blows_string="";
@@ -28863,7 +29281,7 @@ function CalculateArmorClass() {
     }
     if (armor_attack_penalty > 0) {
         missile_attack_string_2 += " "+armor_attack_penalty+" [armor] ";
-    }    
+    }
     if (missile_attack>=0) {
         missile_attack_string_1=" +" + missile_attack_string_1;
     }
@@ -28898,7 +29316,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 2) {
         if (spell_level == 0) {
             return 5;
@@ -28921,7 +29339,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 3) {
         if (spell_level == 0) {
             return 5;
@@ -28944,7 +29362,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 4) {
         if (spell_level == 0) {
             return 5;
@@ -28967,7 +29385,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 5) {
         if (spell_level == 0) {
             return 5;
@@ -28990,7 +29408,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 6) {
         if (spell_level == 0) {
             return 5;
@@ -29013,7 +29431,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 7) {
         if (spell_level == 0) {
             return 5;
@@ -29036,7 +29454,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 8) {
         if (spell_level == 0) {
             return 5;
@@ -29059,7 +29477,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 9) {
         if (spell_level == 0) {
             return 5;
@@ -29082,7 +29500,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 10) {
         if (spell_level == 0) {
             return 5;
@@ -29105,7 +29523,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 11) {
         if (spell_level == 0) {
             return 5;
@@ -29128,7 +29546,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 12) {
         if (spell_level == 0) {
             return 5;
@@ -29151,7 +29569,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 13) {
         if (spell_level == 0) {
             return 5;
@@ -29174,7 +29592,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 14) {
         if (spell_level == 0) {
             return 5;
@@ -29197,7 +29615,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 15) {
         if (spell_level == 0) {
             return 5;
@@ -29220,7 +29638,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return -10;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 16) {
         if (spell_level == 0) {
             return 5;
@@ -29243,7 +29661,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return 1;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 17) {
         if (spell_level == 0) {
             return 5;
@@ -29266,7 +29684,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return 2;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 18) {
         if (spell_level == 0) {
             return 5;
@@ -29289,7 +29707,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return 3;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 19) {
         if (spell_level == 0) {
             return 5;
@@ -29312,7 +29730,7 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return 4;
         }
-    } 
+    }
     else if (bard_levels + prestige_bard_spell_levels == 20) {
         if (spell_level == 0) {
             return 5;
@@ -29335,7 +29753,8 @@ function bspd(spell_level) {
         if (spell_level == 6) {
             return 5;
         }
-    } else {
+    }
+    else {
         return 0;
     }
 }
@@ -29838,7 +30257,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
+    }
+    else
     if (character_level == 16)
     {
         if (spell_level == 0) {
@@ -29937,7 +30357,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return 2;
         }
-    } else
+    }
+    else
     if (character_level == 19)
     {
         if (spell_level == 0) {
@@ -29970,7 +30391,7 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return 3;
         }
-    } 
+    }
     else if (character_level == 20) {
         if (spell_level == 0) {
             return 4;
@@ -30245,7 +30666,7 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 2;
         }
-    } 
+    }
     else if (character_level == 20) {
         if (spell_level == 1) {
             return 4;
@@ -30299,7 +30720,7 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (sorcerer_levels + prestige_sorcerer_spell_levels == 2) {
         if (spell_level == 0) {
             return 6;
@@ -30331,7 +30752,7 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (sorcerer_levels + prestige_sorcerer_spell_levels == 3) {
         if (spell_level == 0) {
             return 6;
@@ -30396,7 +30817,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
+    }
+    else
     if (sorcerer_levels + prestige_sorcerer_spell_levels == 5)
     {
         if (spell_level == 0) {
@@ -30495,7 +30917,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
+    }
+    else
     if (sorcerer_levels + prestige_sorcerer_spell_levels == 8)
     {
         if (spell_level == 0) {
@@ -30891,7 +31314,7 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return 4;
         }
-    } 
+    }
     else if (sorcerer_levels + prestige_sorcerer_spell_levels == 20) {
         if (spell_level == 0) {
             return 6;
@@ -30963,7 +31386,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 2) {
         if (spell_level == 0) {
             return 4;
@@ -30995,7 +31418,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 3) {
         if (spell_level == 0) {
             return 4;
@@ -31027,7 +31450,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 4) {
         if (spell_level == 0) {
             return 4;
@@ -31059,7 +31482,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 5) {
         if (spell_level == 0) {
             return 4;
@@ -31091,7 +31514,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 6) {
         if (spell_level == 0) {
             return 4;
@@ -31123,7 +31546,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 7) {
         if (spell_level == 0) {
             return 4;
@@ -31155,7 +31578,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 8) {
         if (spell_level == 0) {
             return 4;
@@ -31187,7 +31610,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 9) {
         if (spell_level == 0) {
             return 4;
@@ -31219,7 +31642,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 10) {
         if (spell_level == 0) {
             return 4;
@@ -31251,7 +31674,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 11) {
         if (spell_level == 0) {
             return 4;
@@ -31283,7 +31706,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 12) {
         if (spell_level == 0) {
             return 4;
@@ -31315,7 +31738,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 13) {
         if (spell_level == 0) {
             return 4;
@@ -31347,7 +31770,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 14) {
         if (spell_level == 0) {
             return 4;
@@ -31379,7 +31802,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 15) {
         if (spell_level == 0) {
             return 4;
@@ -31411,7 +31834,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 16) {
         if (spell_level == 0) {
             return 4;
@@ -31443,7 +31866,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 17) {
         if (spell_level == 0) {
             return 4;
@@ -31475,7 +31898,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return 1;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 18) {
         if (spell_level == 0) {
             return 4;
@@ -31507,7 +31930,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return 2;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 19) {
         if (spell_level == 0) {
             return 4;
@@ -31539,7 +31962,7 @@ function wspd(spell_level) {
         if (spell_level == 9) {
             return 3;
         }
-    } 
+    }
     else if (wizard_levels + prestige_wizard_spell_levels == 20) {
         if (spell_level == 0) {
             return 4;
@@ -31583,7 +32006,8 @@ function bonus_spell(spell_level,ability_score) {
     } else
     if (spell_level == 0) {
         return 0;
-    } else
+    }
+    else
     if (ability_score<12) {
         return 0;
     } else
@@ -32676,11 +33100,11 @@ function TellAboutPointBuy() {
     else {
         document.form1.first_comment_box.value="Adjust and assign. \n";
     }
-    if (document.form1.methods_list.selectedIndex == 4) {
+    if (document.form1.methods_list.selectedIndex== 4) {
         x=pointbuy(stat1) + pointbuy(stat2) + pointbuy(stat3) + pointbuy(stat4) + pointbuy(stat5) + pointbuy(stat6);
         document.form1.first_comment_box.value += x + " points spent.\r - Low fantasy = 10\r - Standard fantasy = 15\r  -High fantasy = 20\r - Epic fantasy = 25";
     }
-    if (document.form1.methods_list.selectedIndex == 7) {
+    if (document.form1.methods_list.selectedIndex== 7) {
         x=stat1 + stat2 + stat3 + stat4 + stat5 + stat6;
         document.form1.first_comment_box.value += x + " points total.\rSome campaigns recommend 75 for adventurers.";
     }

@@ -2136,7 +2136,7 @@ function clearall() {
     ClearRace();
     ClearGender();
     ClearAlignment();
-    ClearTotalLevels();
+    document.form1.totallevels.selectedIndex=0;
     NegateSkills();
     NegateAllUp00();
     NegateAllUp04();

@@ -251,7 +251,8 @@
 
             <p><img name="totallevelsarrow" src="images/dragonblank.gif" />
                 <b>Total levels:</b>
-                <select id="total_tevels" name="totallevels" onchange="assignlevel(this.selectedIndex)">
+                <select id="total_tevels" name="totallevels" onchange="assignlevel(this.options[selectedIndex].text)">
+                    <option>choose level</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -273,36 +274,13 @@
                     <option>19</option>
                     <option>20</option>
                 </select>
-                    
-                <!--
-                <input onclick="assignlevel(1)" value="1" name="totallevels" type="radio" />1&nbsp;  
-                <input onclick="assignlevel(2)" value="1" name="totallevels" type="radio" />2&nbsp;  
-                <input onclick="assignlevel(3)" value="1" name="totallevels" type="radio" />3&nbsp;  
-                <input onclick="assignlevel(4)" value="1" name="totallevels" type="radio" />4&nbsp;  
-                <input onclick="assignlevel(5)" value="1" name="totallevels" type="radio" />5&nbsp;  
-                <input onclick="assignlevel(6)" value="1" name="totallevels" type="radio" />6&nbsp;  
-                <input onclick="assignlevel(7)" value="1" name="totallevels" type="radio" />7&nbsp;  
-                <input onclick="assignlevel(8)" value="1" name="totallevels" type="radio" />8&nbsp;  
-                <input onclick="assignlevel(9)" value="1" name="totallevels" type="radio" />9&nbsp;  
-                <input onclick="assignlevel(10)" value="1" name="totallevels" type="radio" />10&nbsp;  
-                <input onclick="assignlevel(11)" value="1" name="totallevels" type="radio" />11&nbsp;  
-                <input onclick="assignlevel(12)" value="1" name="totallevels" type="radio" />12&nbsp;  
-                <input onclick="assignlevel(13)" value="1" name="totallevels" type="radio" />13&nbsp;  
-                <input onclick="assignlevel(14)" value="1" name="totallevels" type="radio" />14&nbsp;  
-                <input onclick="assignlevel(15)" value="1" name="totallevels" type="radio" />15&nbsp;  
-                <input onclick="assignlevel(16)" value="1" name="totallevels" type="radio" />16&nbsp;  
-                <input onclick="assignlevel(17)" value="1" name="totallevels" type="radio" />17&nbsp;  
-                <input onclick="assignlevel(18)" value="1" name="totallevels" type="radio" />18&nbsp;  
-                <input onclick="assignlevel(19)" value="1" name="totallevels" type="radio" />19&nbsp;  
-                <input onclick="assignlevel(20)" value="1" name="totallevels" type="radio" />20&nbsp;
-                -->
             </p>
 
             <p>
                 <input onclick="lock_identity()" value="Accept This Person" name="acceptthisperson" type="button" />
                 <img name="acceptthispersonarrow" src="images/dragonblank.gif" />
                 <br />
-                <textarea name="second_comment_box" rows="8" cols="40"></textarea>
+                <textarea name="second_comment_box" rows="8" cols="60"></textarea>
             </p>
 
             <p>
@@ -312,7 +290,7 @@
                     <tbody>
                         <tr>
                             <th>Level 1: </th>
-                            <td>
+                            <td><strong>Core: </strong> 
                                 <input onclick="assignclass(1,1)" value="1" name="choose_class01" type="radio" />Barbarian 
                                 <input onclick="assignclass(1,2)" value="1" name="choose_class01" type="radio" />Bard 
                                 <input onclick="assignclass(1,3)" value="1" name="choose_class01" type="radio" />Cleric 
@@ -324,15 +302,23 @@
                                 <input onclick="assignclass(1,9)" value="1" name="choose_class01" type="radio" />Rogue 
                                 <input onclick="assignclass(1,10)" value="1" name="choose_class01" type="radio" />Sorcerer
                                 <input onclick="assignclass(1,11)" value="1" name="choose_class01" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong>
                                 <input onclick="assignclass(1,12)" value="1" name="choose_class01" type="radio" />Psion
                                 <input onclick="assignclass(1,13)" value="1" name="choose_class01" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(1,14)" value="1" name="choose_class01" type="radio" />Soulknife
-                                <input onclick="assignclass(1,15)" value="1" name="choose_class01" type="radio" />Wilder 
+                                <input onclick="assignclass(1,15)" value="1" name="choose_class01" type="radio" />Wilder
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(1,16)" value="1" name="choose_class01" type="radio" />Alchemist
+                                <input onclick="assignclass(1,17)" value="1" name="choose_class01" type="radio" />Cavalier
+                                <input onclick="assignclass(1,18)" value="1" name="choose_class01" type="radio" />Inquisitor
+                                <input onclick="assignclass(1,19)" value="1" name="choose_class01" type="radio" />Oracle
+                                <input onclick="assignclass(1,20)" value="1" name="choose_class01" type="radio" />Summoner
+                                <input onclick="assignclass(1,21)" value="1" name="choose_class01" type="radio" />Witch
                             </td>
                         </tr>
                         <tr>
                             <th>Level 2: </th>
-                            <td>
+                            <td><strong>Core: </strong> 
                                 <input onclick="assignclass(2,1)" value="1" name="choose_class02" type="radio" />Barbarian 
                                 <input onclick="assignclass(2,2)" value="1" name="choose_class02" type="radio" />Bard 
                                 <input onclick="assignclass(2,3)" value="1" name="choose_class02" type="radio" />Cleric 
@@ -344,15 +330,24 @@
                                 <input onclick="assignclass(2,9)" value="1" name="choose_class02" type="radio" />Rogue 
                                 <input onclick="assignclass(2,10)" value="1" name="choose_class02" type="radio" />Sorcerer
                                 <input onclick="assignclass(2,11)" value="1" name="choose_class02" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(2,12)" value="1" name="choose_class02" type="radio" />Psion
                                 <input onclick="assignclass(2,13)" value="1" name="choose_class02" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(2,14)" value="1" name="choose_class02" type="radio" />Soulknife
                                 <input onclick="assignclass(2,15)" value="1" name="choose_class02" type="radio" />Wilder
+                                <br /><strong>Base: </strong> 
+                                <input onclick="assignclass(2,16)" value="1" name="choose_class02" type="radio" />Alchemist
+                                <input onclick="assignclass(2,17)" value="1" name="choose_class02" type="radio" />Cavalier
+                                <input onclick="assignclass(2,18)" value="1" name="choose_class02" type="radio" />Inquisitor
+                                <input onclick="assignclass(2,19)" value="1" name="choose_class02" type="radio" />Oracle
+                                <input onclick="assignclass(2,20)" value="1" name="choose_class02" type="radio" />Summoner
+                                <input onclick="assignclass(2,21)" value="1" name="choose_class02" type="radio" />Witch
                             </td>
                         </tr>
                         <tr>
                             <th>Level 3: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(3,1)" value="1" name="choose_class03" type="radio" />Barbarian 
                                 <input onclick="assignclass(3,2)" value="1" name="choose_class03" type="radio" />Bard 
                                 <input onclick="assignclass(3,3)" value="1" name="choose_class03" type="radio" />Cleric 
@@ -364,15 +359,24 @@
                                 <input onclick="assignclass(3,9)" value="1" name="choose_class03" type="radio" />Rogue 
                                 <input onclick="assignclass(3,10)" value="1" name="choose_class03" type="radio" />Sorcerer
                                 <input onclick="assignclass(3,11)" value="1" name="choose_class03" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(3,12)" value="1" name="choose_class03" type="radio" />Psion
                                 <input onclick="assignclass(3,13)" value="1" name="choose_class03" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(3,14)" value="1" name="choose_class03" type="radio" />Soulknife
                                 <input onclick="assignclass(3,15)" value="1" name="choose_class03" type="radio" />Wilder
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(3,16)" value="1" name="choose_class03" type="radio" />Alchemist
+                                <input onclick="assignclass(3,17)" value="1" name="choose_class03" type="radio" />Cavalier
+                                <input onclick="assignclass(3,18)" value="1" name="choose_class03" type="radio" />Inquisitor
+                                <input onclick="assignclass(3,19)" value="1" name="choose_class03" type="radio" />Oracle
+                                <input onclick="assignclass(3,20)" value="1" name="choose_class03" type="radio" />Summoner
+                                <input onclick="assignclass(3,21)" value="1" name="choose_class03" type="radio" />Witch
                             </td>
                         </tr>
                         <tr>
                             <th>Level 4: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(4,1)" value="1" name="choose_class04" type="radio" />Barbarian 
                                 <input onclick="assignclass(4,2)" value="1" name="choose_class04" type="radio" />Bard 
                                 <input onclick="assignclass(4,3)" value="1" name="choose_class04" type="radio" />Cleric 
@@ -384,15 +388,24 @@
                                 <input onclick="assignclass(4,9)" value="1" name="choose_class04" type="radio" />Rogue 
                                 <input onclick="assignclass(4,10)" value="1" name="choose_class04" type="radio" />Sorcerer
                                 <input onclick="assignclass(4,11)" value="1" name="choose_class04" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(4,12)" value="1" name="choose_class04" type="radio" />Psion
                                 <input onclick="assignclass(4,13)" value="1" name="choose_class04" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(4,14)" value="1" name="choose_class04" type="radio" />Soulknife
                                 <input onclick="assignclass(4,15)" value="1" name="choose_class04" type="radio" />Wilder
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(4,16)" value="1" name="choose_class04" type="radio" />Alchemist
+                                <input onclick="assignclass(4,17)" value="1" name="choose_class04" type="radio" />Cavalier
+                                <input onclick="assignclass(4,18)" value="1" name="choose_class04" type="radio" />Inquisitor
+                                <input onclick="assignclass(4,19)" value="1" name="choose_class04" type="radio" />Oracle
+                                <input onclick="assignclass(4,20)" value="1" name="choose_class04" type="radio" />Summoner
+                                <input onclick="assignclass(4,21)" value="1" name="choose_class04" type="radio" />Witch
                             </td>
                         </tr>
                         <tr>
                             <th>Level 5: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(5,1)" value="1" name="choose_class05" type="radio" />Barbarian 
                                 <input onclick="assignclass(5,2)" value="1" name="choose_class05" type="radio" />Bard 
                                 <input onclick="assignclass(5,3)" value="1" name="choose_class05" type="radio" />Cleric 
@@ -404,15 +417,24 @@
                                 <input onclick="assignclass(5,9)" value="1" name="choose_class05" type="radio" />Rogue 
                                 <input onclick="assignclass(5,10)" value="1" name="choose_class05" type="radio" />Sorcerer
                                 <input onclick="assignclass(5,11)" value="1" name="choose_class05" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(5,12)" value="1" name="choose_class05" type="radio" />Psion
                                 <input onclick="assignclass(5,13)" value="1" name="choose_class05" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(5,14)" value="1" name="choose_class05" type="radio" />Soulknife
                                 <input onclick="assignclass(5,15)" value="1" name="choose_class05" type="radio" />Wilder
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(5,16)" value="1" name="choose_class05" type="radio" />Alchemist
+                                <input onclick="assignclass(5,17)" value="1" name="choose_class05" type="radio" />Cavalier
+                                <input onclick="assignclass(5,18)" value="1" name="choose_class05" type="radio" />Inquisitor
+                                <input onclick="assignclass(5,19)" value="1" name="choose_class05" type="radio" />Oracle
+                                <input onclick="assignclass(5,20)" value="1" name="choose_class05" type="radio" />Summoner
+                                <input onclick="assignclass(5,21)" value="1" name="choose_class05" type="radio" />Witch
                             </td>
                         </tr>
                         <tr>
                             <th>Level 6: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(6,1)" value="1" name="choose_class06" type="radio" />Barbarian 
                                 <input onclick="assignclass(6,2)" value="1" name="choose_class06" type="radio" />Bard 
                                 <input onclick="assignclass(6,3)" value="1" name="choose_class06" type="radio" />Cleric 
@@ -424,16 +446,26 @@
                                 <input onclick="assignclass(6,9)" value="1" name="choose_class06" type="radio" />Rogue 
                                 <input onclick="assignclass(6,10)" value="1" name="choose_class06" type="radio" />Sorcerer
                                 <input onclick="assignclass(6,11)" value="1" name="choose_class06" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(6,12)" value="1" name="choose_class06" type="radio" />Psion
                                 <input onclick="assignclass(6,13)" value="1" name="choose_class06" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(6,14)" value="1" name="choose_class06" type="radio" />Soulknife
                                 <input onclick="assignclass(6,15)" value="1" name="choose_class06" type="radio" />Wilder
-                                <input onclick="assignclass(6,16)" value="1" name="choose_class06" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(6,16)" value="1" name="choose_class06" type="radio" />Alchemist
+                                <input onclick="assignclass(6,17)" value="1" name="choose_class06" type="radio" />Cavalier
+                                <input onclick="assignclass(6,18)" value="1" name="choose_class06" type="radio" />Inquisitor
+                                <input onclick="assignclass(6,19)" value="1" name="choose_class06" type="radio" />Oracle
+                                <input onclick="assignclass(6,20)" value="1" name="choose_class06" type="radio" />Summoner
+                                <input onclick="assignclass(6,21)" value="1" name="choose_class06" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(6,22)" value="1" name="choose_class06" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 7: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(7,1)" value="1" name="choose_class07" type="radio" />Barbarian 
                                 <input onclick="assignclass(7,2)" value="1" name="choose_class07" type="radio" />Bard 
                                 <input onclick="assignclass(7,3)" value="1" name="choose_class07" type="radio" />Cleric 
@@ -445,16 +477,26 @@
                                 <input onclick="assignclass(7,9)" value="1" name="choose_class07" type="radio" />Rogue 
                                 <input onclick="assignclass(7,10)" value="1" name="choose_class07" type="radio" />Sorcerer
                                 <input onclick="assignclass(7,11)" value="1" name="choose_class07" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(7,12)" value="1" name="choose_class07" type="radio" />Psion
                                 <input onclick="assignclass(7,13)" value="1" name="choose_class07" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(7,14)" value="1" name="choose_class07" type="radio" />Soulknife
                                 <input onclick="assignclass(7,15)" value="1" name="choose_class07" type="radio" />Wilder
-                                <input onclick="assignclass(7,16)" value="1" name="choose_class07" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(7,16)" value="1" name="choose_class07" type="radio" />Alchemist
+                                <input onclick="assignclass(7,17)" value="1" name="choose_class07" type="radio" />Cavalier
+                                <input onclick="assignclass(7,18)" value="1" name="choose_class07" type="radio" />Inquisitor
+                                <input onclick="assignclass(7,19)" value="1" name="choose_class07" type="radio" />Oracle
+                                <input onclick="assignclass(7,20)" value="1" name="choose_class07" type="radio" />Summoner
+                                <input onclick="assignclass(7,21)" value="1" name="choose_class07" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(7,22)" value="1" name="choose_class07" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 8: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(8,1)" value="1" name="choose_class08" type="radio" />Barbarian 
                                 <input onclick="assignclass(8,2)" value="1" name="choose_class08" type="radio" />Bard 
                                 <input onclick="assignclass(8,3)" value="1" name="choose_class08" type="radio" />Cleric 
@@ -466,16 +508,26 @@
                                 <input onclick="assignclass(8,9)" value="1" name="choose_class08" type="radio" />Rogue 
                                 <input onclick="assignclass(8,10)" value="1" name="choose_class08" type="radio" />Sorcerer
                                 <input onclick="assignclass(8,11)" value="1" name="choose_class08" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(8,12)" value="1" name="choose_class08" type="radio" />Psion
                                 <input onclick="assignclass(8,13)" value="1" name="choose_class08" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(8,14)" value="1" name="choose_class08" type="radio" />Soulknife
                                 <input onclick="assignclass(8,15)" value="1" name="choose_class08" type="radio" />Wilder
-                                <input onclick="assignclass(8,16)" value="1" name="choose_class08" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(8,16)" value="1" name="choose_class08" type="radio" />Alchemist
+                                <input onclick="assignclass(8,17)" value="1" name="choose_class08" type="radio" />Cavalier
+                                <input onclick="assignclass(8,18)" value="1" name="choose_class08" type="radio" />Inquisitor
+                                <input onclick="assignclass(8,19)" value="1" name="choose_class08" type="radio" />Oracle
+                                <input onclick="assignclass(8,20)" value="1" name="choose_class08" type="radio" />Summoner
+                                <input onclick="assignclass(8,21)" value="1" name="choose_class08" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(8,22)" value="1" name="choose_class08" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 9: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(9,1)" value="1" name="choose_class09" type="radio" />Barbarian 
                                 <input onclick="assignclass(9,2)" value="1" name="choose_class09" type="radio" />Bard 
                                 <input onclick="assignclass(9,3)" value="1" name="choose_class09" type="radio" />Cleric 
@@ -487,16 +539,26 @@
                                 <input onclick="assignclass(9,9)" value="1" name="choose_class09" type="radio" />Rogue 
                                 <input onclick="assignclass(9,10)" value="1" name="choose_class09" type="radio" />Sorcerer
                                 <input onclick="assignclass(9,11)" value="1" name="choose_class09" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(9,12)" value="1" name="choose_class09" type="radio" />Psion
                                 <input onclick="assignclass(9,13)" value="1" name="choose_class09" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(9,14)" value="1" name="choose_class09" type="radio" />Soulknife
                                 <input onclick="assignclass(9,15)" value="1" name="choose_class09" type="radio" />Wilder
-                                <input onclick="assignclass(9,16)" value="1" name="choose_class09" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(9,16)" value="1" name="choose_class09" type="radio" />Alchemist
+                                <input onclick="assignclass(9,17)" value="1" name="choose_class09" type="radio" />Cavalier
+                                <input onclick="assignclass(9,18)" value="1" name="choose_class09" type="radio" />Inquisitor
+                                <input onclick="assignclass(9,19)" value="1" name="choose_class09" type="radio" />Oracle
+                                <input onclick="assignclass(9,20)" value="1" name="choose_class09" type="radio" />Summoner
+                                <input onclick="assignclass(9,21)" value="1" name="choose_class09" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(9,22)" value="1" name="choose_class09" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 10: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(10,1)" value="1" name="choose_class10" type="radio" />Barbarian 
                                 <input onclick="assignclass(10,2)" value="1" name="choose_class10" type="radio" />Bard 
                                 <input onclick="assignclass(10,3)" value="1" name="choose_class10" type="radio" />Cleric 
@@ -508,16 +570,26 @@
                                 <input onclick="assignclass(10,9)" value="1" name="choose_class10" type="radio" />Rogue 
                                 <input onclick="assignclass(10,10)" value="1" name="choose_class10" type="radio" />Sorcerer
                                 <input onclick="assignclass(10,11)" value="1" name="choose_class10" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(10,12)" value="1" name="choose_class10" type="radio" />Psion
                                 <input onclick="assignclass(10,13)" value="1" name="choose_class10" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(10,14)" value="1" name="choose_class10" type="radio" />Soulknife
                                 <input onclick="assignclass(10,15)" value="1" name="choose_class10" type="radio" />Wilder
-                                <input onclick="assignclass(10,16)" value="1" name="choose_class10" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(10,16)" value="1" name="choose_class10" type="radio" />Alchemist
+                                <input onclick="assignclass(10,17)" value="1" name="choose_class10" type="radio" />Cavalier
+                                <input onclick="assignclass(10,18)" value="1" name="choose_class10" type="radio" />Inquisitor
+                                <input onclick="assignclass(10,19)" value="1" name="choose_class10" type="radio" />Oracle
+                                <input onclick="assignclass(10,20)" value="1" name="choose_class10" type="radio" />Summoner
+                                <input onclick="assignclass(10,21)" value="1" name="choose_class10" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(10,22)" value="1" name="choose_class10" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 11: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(11,1)" value="1" name="choose_class11" type="radio" />Barbarian
                                 <input onclick="assignclass(11,2)" value="1" name="choose_class11" type="radio" />Bard
                                 <input onclick="assignclass(11,3)" value="1" name="choose_class11" type="radio" />Cleric
@@ -529,16 +601,26 @@
                                 <input onclick="assignclass(11,9)" value="1" name="choose_class11" type="radio" />Rogue
                                 <input onclick="assignclass(11,10)" value="1" name="choose_class11" type="radio" />Sorcerer
                                 <input onclick="assignclass(11,11)" value="1" name="choose_class11" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(11,12)" value="1" name="choose_class11" type="radio" />Psion
                                 <input onclick="assignclass(11,13)" value="1" name="choose_class11" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(11,14)" value="1" name="choose_class11" type="radio" />Soulknife
                                 <input onclick="assignclass(11,15)" value="1" name="choose_class11" type="radio" />Wilder
-                                <input onclick="assignclass(11,16)" value="1" name="choose_class11" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(11,16)" value="1" name="choose_class11" type="radio" />Alchemist
+                                <input onclick="assignclass(11,17)" value="1" name="choose_class11" type="radio" />Cavalier
+                                <input onclick="assignclass(11,18)" value="1" name="choose_class11" type="radio" />Inquisitor
+                                <input onclick="assignclass(11,19)" value="1" name="choose_class11" type="radio" />Oracle
+                                <input onclick="assignclass(11,20)" value="1" name="choose_class11" type="radio" />Summoner
+                                <input onclick="assignclass(11,21)" value="1" name="choose_class11" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(11,22)" value="1" name="choose_class11" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 12: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(12,1)" value="1" name="choose_class12" type="radio" />Barbarian
                                 <input onclick="assignclass(12,2)" value="1" name="choose_class12" type="radio" />Bard
                                 <input onclick="assignclass(12,3)" value="1" name="choose_class12" type="radio" />Cleric
@@ -550,16 +632,26 @@
                                 <input onclick="assignclass(12,9)" value="1" name="choose_class12" type="radio" />Rogue
                                 <input onclick="assignclass(12,10)" value="1" name="choose_class12" type="radio" />Sorcerer
                                 <input onclick="assignclass(12,11)" value="1" name="choose_class12" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(12,12)" value="1" name="choose_class12" type="radio" />Psion
                                 <input onclick="assignclass(12,13)" value="1" name="choose_class12" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(12,14)" value="1" name="choose_class12" type="radio" />Soulknife
                                 <input onclick="assignclass(12,15)" value="1" name="choose_class12" type="radio" />Wilder
-                                <input onclick="assignclass(12,16)" value="1" name="choose_class12" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(12,16)" value="1" name="choose_class12" type="radio" />Alchemist
+                                <input onclick="assignclass(12,17)" value="1" name="choose_class12" type="radio" />Cavalier
+                                <input onclick="assignclass(12,18)" value="1" name="choose_class12" type="radio" />Inquisitor
+                                <input onclick="assignclass(12,19)" value="1" name="choose_class12" type="radio" />Oracle
+                                <input onclick="assignclass(12,20)" value="1" name="choose_class12" type="radio" />Summoner
+                                <input onclick="assignclass(12,21)" value="1" name="choose_class12" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(12,22)" value="1" name="choose_class12" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 13: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(13,1)" value="1" name="choose_class13" type="radio" />Barbarian
                                 <input onclick="assignclass(13,2)" value="1" name="choose_class13" type="radio" />Bard
                                 <input onclick="assignclass(13,3)" value="1" name="choose_class13" type="radio" />Cleric
@@ -571,16 +663,26 @@
                                 <input onclick="assignclass(13,9)" value="1" name="choose_class13" type="radio" />Rogue
                                 <input onclick="assignclass(13,10)" value="1" name="choose_class13" type="radio" />Sorcerer
                                 <input onclick="assignclass(13,11)" value="1" name="choose_class13" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(13,12)" value="1" name="choose_class13" type="radio" />Psion
                                 <input onclick="assignclass(13,13)" value="1" name="choose_class13" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(13,14)" value="1" name="choose_class13" type="radio" />Soulknife
                                 <input onclick="assignclass(13,15)" value="1" name="choose_class13" type="radio" />Wilder
-                                <input onclick="assignclass(13,16)" value="1" name="choose_class13" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(13,16)" value="1" name="choose_class13" type="radio" />Alchemist
+                                <input onclick="assignclass(13,17)" value="1" name="choose_class13" type="radio" />Cavalier
+                                <input onclick="assignclass(13,18)" value="1" name="choose_class13" type="radio" />Inquisitor
+                                <input onclick="assignclass(13,19)" value="1" name="choose_class13" type="radio" />Oracle
+                                <input onclick="assignclass(13,20)" value="1" name="choose_class13" type="radio" />Summoner
+                                <input onclick="assignclass(13,21)" value="1" name="choose_class13" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(13,22)" value="1" name="choose_class13" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 14: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(14,1)" value="1" name="choose_class14" type="radio" />Barbarian
                                 <input onclick="assignclass(14,2)" value="1" name="choose_class14" type="radio" />Bard
                                 <input onclick="assignclass(14,3)" value="1" name="choose_class14" type="radio" />Cleric
@@ -592,17 +694,27 @@
                                 <input onclick="assignclass(14,9)" value="1" name="choose_class14" type="radio" />Rogue
                                 <input onclick="assignclass(14,10)" value="1" name="choose_class14" type="radio" />Sorcerer
                                 <input onclick="assignclass(14,11)" value="1" name="choose_class14" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(14,12)" value="1" name="choose_class14" type="radio" />Psion
                                 <input onclick="assignclass(14,13)" value="1" name="choose_class14" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(14,14)" value="1" name="choose_class14" type="radio" />Soulknife
                                 <input onclick="assignclass(14,15)" value="1" name="choose_class14" type="radio" />Wilder
-                                <input onclick="assignclass(14,16)" value="1" name="choose_class14" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(14,16)" value="1" name="choose_class14" type="radio" />Alchemist
+                                <input onclick="assignclass(14,17)" value="1" name="choose_class14" type="radio" />Cavalier
+                                <input onclick="assignclass(14,18)" value="1" name="choose_class14" type="radio" />Inquisitor
+                                <input onclick="assignclass(14,19)" value="1" name="choose_class14" type="radio" />Oracle
+                                <input onclick="assignclass(14,20)" value="1" name="choose_class14" type="radio" />Summoner
+                                <input onclick="assignclass(14,21)" value="1" name="choose_class14" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(14,22)" value="1" name="choose_class14" type="radio" />Prestige
                             </td>
                         </tr>
 
                         <tr>
                             <th>Level 15: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(15,1)" value="1" name="choose_class15" type="radio" />Barbarian
                                 <input onclick="assignclass(15,2)" value="1" name="choose_class15" type="radio" />Bard
                                 <input onclick="assignclass(15,3)" value="1" name="choose_class15" type="radio" />Cleric
@@ -614,16 +726,26 @@
                                 <input onclick="assignclass(15,9)" value="1" name="choose_class15" type="radio" />Rogue
                                 <input onclick="assignclass(15,10)" value="1" name="choose_class15" type="radio" />Sorcerer
                                 <input onclick="assignclass(15,11)" value="1" name="choose_class15" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(15,12)" value="1" name="choose_class15" type="radio" />Psion
                                 <input onclick="assignclass(15,13)" value="1" name="choose_class15" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(15,14)" value="1" name="choose_class15" type="radio" />Soulknife
                                 <input onclick="assignclass(15,15)" value="1" name="choose_class15" type="radio" />Wilder
-                                <input onclick="assignclass(15,16)" value="1" name="choose_class15" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(15,16)" value="1" name="choose_class15" type="radio" />Alchemist
+                                <input onclick="assignclass(15,17)" value="1" name="choose_class15" type="radio" />Cavalier
+                                <input onclick="assignclass(15,18)" value="1" name="choose_class15" type="radio" />Inquisitor
+                                <input onclick="assignclass(15,19)" value="1" name="choose_class15" type="radio" />Oracle
+                                <input onclick="assignclass(15,20)" value="1" name="choose_class15" type="radio" />Summoner
+                                <input onclick="assignclass(15,21)" value="1" name="choose_class15" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(15,22)" value="1" name="choose_class15" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 16: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(16,1)" value="1" name="choose_class16" type="radio" />Barbarian
                                 <input onclick="assignclass(16,2)" value="1" name="choose_class16" type="radio" />Bard
                                 <input onclick="assignclass(16,3)" value="1" name="choose_class16" type="radio" />Cleric
@@ -635,16 +757,26 @@
                                 <input onclick="assignclass(16,9)" value="1" name="choose_class16" type="radio" />Rogue
                                 <input onclick="assignclass(16,10)" value="1" name="choose_class16" type="radio" />Sorcerer
                                 <input onclick="assignclass(16,11)" value="1" name="choose_class16" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(16,12)" value="1" name="choose_class16" type="radio" />Psion
                                 <input onclick="assignclass(16,13)" value="1" name="choose_class16" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(16,14)" value="1" name="choose_class16" type="radio" />Soulknife
                                 <input onclick="assignclass(16,15)" value="1" name="choose_class16" type="radio" />Wilder
-                                <input onclick="assignclass(16,16)" value="1" name="choose_class16" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(16,16)" value="1" name="choose_class16" type="radio" />Alchemist
+                                <input onclick="assignclass(16,17)" value="1" name="choose_class16" type="radio" />Cavalier
+                                <input onclick="assignclass(16,18)" value="1" name="choose_class16" type="radio" />Inquisitor
+                                <input onclick="assignclass(16,19)" value="1" name="choose_class16" type="radio" />Oracle
+                                <input onclick="assignclass(16,20)" value="1" name="choose_class16" type="radio" />Summoner
+                                <input onclick="assignclass(16,21)" value="1" name="choose_class16" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(16,22)" value="1" name="choose_class16" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 17: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(17,1)" value="1" name="choose_class17" type="radio" />Barbarian
                                 <input onclick="assignclass(17,2)" value="1" name="choose_class17" type="radio" />Bard
                                 <input onclick="assignclass(17,3)" value="1" name="choose_class17" type="radio" />Cleric
@@ -656,16 +788,26 @@
                                 <input onclick="assignclass(17,9)" value="1" name="choose_class17" type="radio" />Rogue
                                 <input onclick="assignclass(17,10)" value="1" name="choose_class17" type="radio" />Sorcerer
                                 <input onclick="assignclass(17,11)" value="1" name="choose_class17" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(17,12)" value="1" name="choose_class17" type="radio" />Psion
                                 <input onclick="assignclass(17,13)" value="1" name="choose_class17" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(17,14)" value="1" name="choose_class17" type="radio" />Soulknife
                                 <input onclick="assignclass(17,15)" value="1" name="choose_class17" type="radio" />Wilder
-                                <input onclick="assignclass(17,16)" value="1" name="choose_class17" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(17,16)" value="1" name="choose_class17" type="radio" />Alchemist
+                                <input onclick="assignclass(17,17)" value="1" name="choose_class17" type="radio" />Cavalier
+                                <input onclick="assignclass(17,18)" value="1" name="choose_class17" type="radio" />Inquisitor
+                                <input onclick="assignclass(17,19)" value="1" name="choose_class17" type="radio" />Oracle
+                                <input onclick="assignclass(17,20)" value="1" name="choose_class17" type="radio" />Summoner
+                                <input onclick="assignclass(17,21)" value="1" name="choose_class17" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(17,22)" value="1" name="choose_class17" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 18: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(18,1)" value="1" name="choose_class18" type="radio" />Barbarian
                                 <input onclick="assignclass(18,2)" value="1" name="choose_class18" type="radio" />Bard
                                 <input onclick="assignclass(18,3)" value="1" name="choose_class18" type="radio" />Cleric
@@ -677,16 +819,26 @@
                                 <input onclick="assignclass(18,9)" value="1" name="choose_class18" type="radio" />Rogue
                                 <input onclick="assignclass(18,10)" value="1" name="choose_class18" type="radio" />Sorcerer
                                 <input onclick="assignclass(18,11)" value="1" name="choose_class18" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(18,12)" value="1" name="choose_class18" type="radio" />Psion
                                 <input onclick="assignclass(18,13)" value="1" name="choose_class18" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(18,14)" value="1" name="choose_class18" type="radio" />Soulknife
                                 <input onclick="assignclass(18,15)" value="1" name="choose_class18" type="radio" />Wilder
-                                <input onclick="assignclass(18,16)" value="1" name="choose_class18" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(18,16)" value="1" name="choose_class18" type="radio" />Alchemist
+                                <input onclick="assignclass(18,17)" value="1" name="choose_class18" type="radio" />Cavalier
+                                <input onclick="assignclass(18,18)" value="1" name="choose_class18" type="radio" />Inquisitor
+                                <input onclick="assignclass(18,19)" value="1" name="choose_class18" type="radio" />Oracle
+                                <input onclick="assignclass(18,20)" value="1" name="choose_class18" type="radio" />Summoner
+                                <input onclick="assignclass(18,21)" value="1" name="choose_class18" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(18,22)" value="1" name="choose_class18" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 19: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(19,1)" value="1" name="choose_class19" type="radio" />Barbarian
                                 <input onclick="assignclass(19,2)" value="1" name="choose_class19" type="radio" />Bard
                                 <input onclick="assignclass(19,3)" value="1" name="choose_class19" type="radio" />Cleric
@@ -698,16 +850,26 @@
                                 <input onclick="assignclass(19,9)" value="1" name="choose_class19" type="radio" />Rogue
                                 <input onclick="assignclass(19,10)" value="1" name="choose_class19" type="radio" />Sorcerer
                                 <input onclick="assignclass(19,11)" value="1" name="choose_class19" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(19,12)" value="1" name="choose_class19" type="radio" />Psion
                                 <input onclick="assignclass(19,13)" value="1" name="choose_class19" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(19,14)" value="1" name="choose_class19" type="radio" />Soulknife
                                 <input onclick="assignclass(19,15)" value="1" name="choose_class19" type="radio" />Wilder
-                                <input onclick="assignclass(19,16)" value="1" name="choose_class19" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(19,16)" value="1" name="choose_class19" type="radio" />Alchemist
+                                <input onclick="assignclass(19,17)" value="1" name="choose_class19" type="radio" />Cavalier
+                                <input onclick="assignclass(19,18)" value="1" name="choose_class19" type="radio" />Inquisitor
+                                <input onclick="assignclass(19,19)" value="1" name="choose_class19" type="radio" />Oracle
+                                <input onclick="assignclass(19,20)" value="1" name="choose_class19" type="radio" />Summoner
+                                <input onclick="assignclass(19,21)" value="1" name="choose_class19" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(19,22)" value="1" name="choose_class19" type="radio" />Prestige
                             </td>
                         </tr>
                         <tr>
                             <th>Level 20: </th>
                             <td>
+                                <strong>Core: </strong>
                                 <input onclick="assignclass(20,1)" value="1" name="choose_class20" type="radio" />Barbarian
                                 <input onclick="assignclass(20,2)" value="1" name="choose_class20" type="radio" />Bard
                                 <input onclick="assignclass(20,3)" value="1" name="choose_class20" type="radio" />Cleric
@@ -719,11 +881,20 @@
                                 <input onclick="assignclass(20,9)" value="1" name="choose_class20" type="radio" />Rogue
                                 <input onclick="assignclass(20,10)" value="1" name="choose_class20" type="radio" />Sorcerer
                                 <input onclick="assignclass(20,11)" value="1" name="choose_class20" type="radio" />Wizard
+                                <br /><strong>Psionic: </strong> 
                                 <input onclick="assignclass(20,12)" value="1" name="choose_class20" type="radio" />Psion
                                 <input onclick="assignclass(20,13)" value="1" name="choose_class20" type="radio" />Psychic Warrior
                                 <input onclick="assignclass(20,14)" value="1" name="choose_class20" type="radio" />Soulknife
                                 <input onclick="assignclass(20,15)" value="1" name="choose_class20" type="radio" />Wilder
-                                <input onclick="assignclass(20,16)" value="1" name="choose_class20" type="radio" />Prestige
+                                <br /><strong>Base: </strong>
+                                <input onclick="assignclass(20,16)" value="1" name="choose_class20" type="radio" />Alchemist
+                                <input onclick="assignclass(20,17)" value="1" name="choose_class20" type="radio" />Cavalier
+                                <input onclick="assignclass(20,18)" value="1" name="choose_class20" type="radio" />Inquisitor
+                                <input onclick="assignclass(20,19)" value="1" name="choose_class20" type="radio" />Oracle
+                                <input onclick="assignclass(20,20)" value="1" name="choose_class20" type="radio" />Summoner
+                                <input onclick="assignclass(20,21)" value="1" name="choose_class20" type="radio" />Witch
+                                <br /><strong>Prestige: </strong> 
+                                <input onclick="assignclass(20,22)" value="1" name="choose_class20" type="radio" />Prestige
                             </td>
                         </tr>
                     </tbody>
@@ -826,7 +997,11 @@
             </ul>
 
             <p>
-                <b>Clerics:</b> Choose two domains <img name="domainarrow" src="images/dragonblank.gif" />
+                <b>Domains:</b> <img name="domainarrow" src="images/dragonblank.gif" />
+                <ul>
+                    <li>Clerics choose two domains from among those belonging to her deity.</li>
+                    <li>Inquisitors can select one domain from among those belonging to her deity </li>
+                </ul>
             </p>
 
             <ul>
