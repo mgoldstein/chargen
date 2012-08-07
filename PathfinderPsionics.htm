@@ -25,11 +25,11 @@
                                 <input onclick="RollSomeDice()" value="Roll the Dice" name="rollTheDice1" type="button" />
                                 <img name="rollthedicearrow" src="images/dragonarrowleft.gif" />
                                 <select onchange="ChangeDiceMethod()" name="methods_list"> 
-                                    <option selected="selected">Standard</option> 
+                                    <option>Standard</option> 
                                     <option>5d6 best 3</option>
                                     <option>2d6 + 6</option> 
                                     <option>Elite Array</option> 
-                                    <option>Point Buy</option> 
+                                    <option selected="selected">Point Buy</option> 
                                     <option>Non-Elite Array</option> 
                                     <option>Original 3d6</option> 
                                     <option>Simple Entry</option>
@@ -1469,7 +1469,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="craft_1_ics" type="checkbox" />Craft 1</td>
+                                            <td><input name="craft_1_ics" type="checkbox" />Craft <input name="craft1name" type="text" id="craft1name" size="15" /></td>
                                             <td>Int</td>
                                             <td>
                                                 <select onchange="figure_craft_1()" name="craft_1_list"> 
@@ -1479,7 +1479,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="craft_2_ics" type="checkbox" />Craft 2</td>
+                                            <td><input name="craft_2_ics" type="checkbox" />Craft <input name="craft2name" type="text" id="craft2name" size="15" /></td>
                                             <td>Int</td>
                                             <td>
                                                 <select onchange="figure_craft_2()" name="craft_2_list"> 
@@ -1489,7 +1489,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="craft_3_ics" type="checkbox" />Craft 3</td>
+                                            <td><input name="craft_3_ics" type="checkbox" />Craft <input name="craft3name" type="text" id="craft3name" size="15" /></td>
                                             <td>Int</td>
                                             <td>
                                                 <select onchange="figure_craft_3()" name="craft_3_list"> 
@@ -1664,42 +1664,43 @@
                                                 <input type="text" size="15" name="about_perception" /> </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="perform_1_ics" type="checkbox" />Perform 1</td>
+                                            <td><input name="perform_1_ics" type="checkbox" />Perform <input type="text" name="perform1name" size="15" /></td>
                                             <td>Cha</td>
                                             <td><select onchange="figure_perform_1()" name="perform_1_list"> <option selected="selected">0</option></select> 
                                                 <input type="text" size="15" name="about_perform_1" /> </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="perform_2_ics" type="checkbox" />Perform 2</td>
+                                            <td><input name="perform_2_ics" type="checkbox" />Perform <input type="text" name="perform2name" size="15" /></td>
                                             <td>Cha</td>
                                             <td><select onchange="figure_perform_2()" name="perform_2_list"> <option selected="selected">0</option></select> 
                                                 <input type="text" size="15" name="about_perform_2" /> </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="perform_3_ics" type="checkbox" />Perform 3</td>
+                                            <td><input name="perform_3_ics" type="checkbox" />Perform <input type="text" name="perform3name" size="15" /></td>
                                             <td>Cha</td>
                                             <td><select onchange="figure_perform_3()" name="perform_3_list"> <option selected="selected">0</option></select> 
                                                 <input type="text" size="15" name="about_perform_3" /> </td>
                                         </tr>
                                         <tr>
-                                            <td><input name="perform_4_ics" type="checkbox" />Perform 4</td>
-                                            <td>Cha</td>
-                                            <td><select onchange="figure_perform_4()" name="perform_4_list"> <option selected="selected">0</option></select> 
-                                                <input type="text" size="15" name="about_perform_4" /> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input name="perform_5_ics" type="checkbox" />Perform 5</td>
-                                            <td>Cha</td>
-                                            <td><select onchange="figure_perform_5()" name="perform_5_list"> <option selected="selected">0</option></select> 
-                                                <input type="text" size="15" name="about_perform_5" /> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input name="profession_ics" type="checkbox" />Profession</td>
+                                            <td><input name="profession_1_ics" type="checkbox" />Profession <input type="text" name="profession1name" size="15" /></td>
                                             <td>Wis</td>
-                                            <td><select onchange="figure_profession()" name="profession_list"> <option selected="selected">0</option></select> 
-                                                <input type="text" size="15" name="about_profession" /> 
+                                            <td><select onchange="figure_profession_1()" name="profession_1_list"> <option selected="selected">0</option></select> 
+                                                <input type="text" size="15" name="about_profession_1" /> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name="profession_2_ics" type="checkbox" />Profession <input type="text" name="profession2name" size="15" /></td>
+                                            <td>Wis</td>
+                                            <td><select onchange="figure_profession_2()" name="profession_2_list"> <option selected="selected">0</option></select> 
+                                                <input type="text" size="15" name="about_profession_2" /> 
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><input name="profession_3_ics" type="checkbox" />Profession <input type="text" name="profession3name" size="15" /></td>
+                                            <td>Wis</td>
+                                            <td><select onchange="figure_profession_3()" name="profession_3_list"> <option selected="selected">0</option></select> 
+                                                <input type="text" size="15" name="about_profession_3" /> 
                                             </td>
                                         </tr>
                                         <tr>
@@ -2305,9 +2306,9 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input onclick="Feats()" name="skillfocuscraft_1" type="checkbox" />Craft_1<img name="skillfocuscraft_1_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocuscraft_2" type="checkbox" />Craft_2<img name="skillfocuscraft_2_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocuscraft_3" type="checkbox" />Craft_3<img name="skillfocuscraft_3_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocuscraft_1" type="checkbox" />Craft 1<img name="skillfocuscraft_1_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocuscraft_2" type="checkbox" />Craft 2<img name="skillfocuscraft_2_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocuscraft_3" type="checkbox" />Craft 3<img name="skillfocuscraft_3_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocusdecipherscript" type="checkbox" />Decipher Script<img name="skillfocusdecipherscript_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocusdiplomacy" type="checkbox" />Diplomacy<img name="skillfocusdiplomacy_star" src="images/no_asterisk.gif" /></td>
                         </tr>
@@ -2324,37 +2325,37 @@
                             <td><input onclick="Feats()" name="skillfocusheal" type="checkbox" />Heal<img name="skillfocusheal_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocusstealth" type="checkbox" />Stealth<img name="skillfocusstealth_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocusintimidate" type="checkbox" />Intimidate<img name="skillfocusintimidate_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgearcana" type="checkbox" />Knowledge<img name="skillfocusknowledgearcana_star" src="images/no_asterisk.gif" /><br />(Arcana)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgeengineering" type="checkbox" />Knowledge<img name="skillfocusknowledgeengineering_star" src="images/no_asterisk.gif" /><br />(Engineering)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgearcana" type="checkbox" />Knowledge<img name="skillfocusknowledgearcana_star" src="images/no_asterisk.gif" /> (Arcana)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgeengineering" type="checkbox" />Knowledge<img name="skillfocusknowledgeengineering_star" src="images/no_asterisk.gif" /> (Engineering)</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgedungeoneering" type="checkbox" />Knowledge<img name="skillfocusknowledgedungeoneering_star" src="images/no_asterisk.gif" /><br />(Dungeoneering)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgegeography" type="checkbox" />Knowledge<img name="skillfocusknowledgegeography_star" src="images/no_asterisk.gif" /><br />(Geography)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgehistory" type="checkbox" />Knowledge<img name="skillfocusknowledgehistory_star" src="images/no_asterisk.gif" /><br />(History)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgelocal" type="checkbox" />Knowledge<img name="skillfocusknowledgelocal_star" src="images/no_asterisk.gif" /><br />(Local)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgenature" type="checkbox" />Knowledge<img name="skillfocusknowledgenature_star" src="images/no_asterisk.gif" /><br />(Nature)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgedungeoneering" type="checkbox" />Knowledge<img name="skillfocusknowledgedungeoneering_star" src="images/no_asterisk.gif" /> (Dungeoneering)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgegeography" type="checkbox" />Knowledge<img name="skillfocusknowledgegeography_star" src="images/no_asterisk.gif" /> (Geography)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgehistory" type="checkbox" />Knowledge<img name="skillfocusknowledgehistory_star" src="images/no_asterisk.gif" /> (History)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgelocal" type="checkbox" />Knowledge<img name="skillfocusknowledgelocal_star" src="images/no_asterisk.gif" /> (Local)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgenature" type="checkbox" />Knowledge<img name="skillfocusknowledgenature_star" src="images/no_asterisk.gif" /> (Nature)</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgenobility" type="checkbox" />Knowledge<img name="skillfocusknowledgenobility_star" src="images/no_asterisk.gif" /><br />(Nobility)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgeplanes" type="checkbox" />Knowledge<img name="skillfocusknowledgeplanes_star" src="images/no_asterisk.gif" /><br />(The Planes)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgepsionics" type="checkbox" />Knowledge<img name="skillfocusknowledgepsionics_star" src="images/no_asterisk.gif" /><br />(Psionics)</td>
-                            <td><input onclick="Feats()" name="skillfocusknowledgereligion" type="checkbox" />Knowledge<img name="skillfocusknowledgereligion_star" src="images/no_asterisk.gif" /><br />(Religion)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgenobility" type="checkbox" />Knowledge<img name="skillfocusknowledgenobility_star" src="images/no_asterisk.gif" /> (Nobility)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgeplanes" type="checkbox" />Knowledge<img name="skillfocusknowledgeplanes_star" src="images/no_asterisk.gif" /> (The Planes)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgepsionics" type="checkbox" />Knowledge<img name="skillfocusknowledgepsionics_star" src="images/no_asterisk.gif" /> (Psionics)</td>
+                            <td><input onclick="Feats()" name="skillfocusknowledgereligion" type="checkbox" />Knowledge<img name="skillfocusknowledgereligion_star" src="images/no_asterisk.gif" /> (Religion)</td>
                             <td><input onclick="Feats()" name="skillfocuslinguistics" type="checkbox" />Linguistics<img name="skillfocuslinguistics_star" src="images/no_asterisk.gif" /></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td><input onclick="Feats()" name="skillfocusperception" type="checkbox" />Perception<img name="skillfocusperception_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocusperform_1" type="checkbox" />Perform_1<img name="skillfocusperform_1_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocusperform_2" type="checkbox" />Perform_2<img name="skillfocusperform_2_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocusperform_3" type="checkbox" />Perform_3<img name="skillfocusperform_3_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocusperform_4" type="checkbox" />Perform_4<img name="skillfocusperform_4_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocusperform_1" type="checkbox" />Perform 1<img name="skillfocusperform_1_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocusperform_2" type="checkbox" />Perform 2<img name="skillfocusperform_2_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocusperform_3" type="checkbox" />Perform 3<img name="skillfocusperform_3_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocusprofession_1" type="checkbox" />Profession 1<img name="skillfocusprofession_1_star" src="images/no_asterisk.gif" /></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input onclick="Feats()" name="skillfocusperform_5" type="checkbox" />Perform_5<img name="skillfocusperform_5_star" src="images/no_asterisk.gif" /></td>
-                            <td><input onclick="Feats()" name="skillfocusprofession" type="checkbox" />Profession<img name="skillfocusprofession_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocusprofession_2" type="checkbox" />Profession 2<img name="skillfocusprofession_2_star" src="images/no_asterisk.gif" /></td>
+                            <td><input onclick="Feats()" name="skillfocusprofession_3" type="checkbox" />Profession 3<img name="skillfocusprofession_3_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocusride" type="checkbox" />Ride<img name="skillfocusride_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocussensemotive" type="checkbox" />Sense Motive<img name="skillfocussensemotive_star" src="images/no_asterisk.gif" /></td>
                             <td><input onclick="Feats()" name="skillfocussleightofhand" type="checkbox" />Sleight of Hand<img name="skillfocussleightofhand_star" src="images/no_asterisk.gif" /></td>
