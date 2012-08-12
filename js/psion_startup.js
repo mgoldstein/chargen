@@ -614,6 +614,7 @@ function TurnOffArmsAndArmorStars() {
     document.form1.dart_star.src="images/no_asterisk.gif";
     document.form1.javelin_star.src="images/no_asterisk.gif";
     document.form1.sling_star.src="images/no_asterisk.gif";
+    document.form1.blowgun_star.src="images/no_asterisk.gif";
     document.form1.throwingaxe_star.src="images/no_asterisk.gif";
     document.form1.lighthammer_star.src="images/no_asterisk.gif";
     document.form1.handaxe_star.src="images/no_asterisk.gif";
@@ -667,8 +668,8 @@ function TurnOffArmsAndArmorStars() {
     document.form1.repeatinglightcrossbow_star.src="images/no_asterisk.gif";
     document.form1.net_star.src="images/no_asterisk.gif";
     document.form1.shuriken_star.src="images/no_asterisk.gif";
-    document.form1.pistol_star.src="images/no_asterisk.gif";
-    document.form1.musket_star.src="images/no_asterisk.gif";
+    // document.form1.pistol_star.src="images/no_asterisk.gif";
+    // document.form1.musket_star.src="images/no_asterisk.gif";
     document.form1.no_shield_star.src="images/no_asterisk.gif";
     document.form1.buckler_star.src="images/no_asterisk.gif";
     document.form1.lightwoodenshield_star.src="images/no_asterisk.gif";
@@ -797,6 +798,7 @@ function NegateTheBottomStuff() {
     document.form1.dart.checked=false;
     document.form1.javelin.checked=false;
     document.form1.sling.checked=false;
+    document.form1.blowgun.checked=false;
     document.form1.throwingaxe.checked=false;
     document.form1.lighthammer.checked=false;
     document.form1.handaxe.checked=false;
@@ -850,8 +852,8 @@ function NegateTheBottomStuff() {
     document.form1.repeatinglightcrossbow.checked=false;
     document.form1.net.checked=false;
     document.form1.shuriken.selectedIndex=0;
-    document.form1.pistol.checked=false;
-    document.form1.musket.checked=false;
+    // document.form1.pistol.checked=false;
+    // document.form1.musket.checked=false;
     document.form1.armor_radio[0].checked=false;
     document.form1.armor_radio[1].checked=false;
     document.form1.armor_radio[2].checked=false;
@@ -995,8 +997,9 @@ function NegateTheBottomStuff() {
     document.form1.spellbook.selectedIndex=0;
     document.form1.tool.selectedIndex=0;
     document.form1.arrows.selectedIndex=0;
-    document.form1.bullets.selectedIndex=0;
+    // document.form1.bullets.selectedIndex=0;
     document.form1.slingbullets.selectedIndex=0;
+    document.form1.blowgundarts.selectedIndex=0;
     document.form1.throwingdaggers.selectedIndex=0;
     document.form1.crossbowbolts.selectedIndex=0;
 }
@@ -1032,6 +1035,18 @@ function ResetPsionSpecialties() {
     telepath_psion=false;
 }
 
+function resetCavalierOrder() {
+    blue_rose_order=false;
+    cockatrice_order=false;
+    dragon_order=false;
+    lion_order=false;
+    seal_order=false;
+    shield_order=false;
+    star_order=false;
+    sword_order=false;
+    tome_order=false;
+}
+
 function NegatePsionSpecialization() {
     document.form1.choose_discipline[0].checked=false;
     document.form1.choose_discipline[1].checked=false;
@@ -1041,6 +1056,13 @@ function NegatePsionSpecialization() {
     document.form1.choose_discipline[5].checked=false;
     document.form1.choose_discipline[6].checked=false;
     ResetPsionSpecialties();
+}
+
+function negateCavalierOrder() {
+    for (i=0; i < document.form1.choose_order.length; i++) {
+        document.form1.choose_order[i].checked=false;
+    }
+    resetCavalierOrder();
 }
 
 function ClearAllAbilityAssignments() {
@@ -1383,6 +1405,7 @@ function clearall() {
     ClearAllAbilityAssignments();
     NegateTheBottomStuff();
     NegateWizardSpecialization();
+    negateCavalierOrder();
     rangercombattrack=0;
     missile_attack_string_1="";
     finesse_attack_string_1="";
@@ -1435,6 +1458,7 @@ function clearall() {
     FeatsAreLocked=false;
     skill_points_spent=0;
     total_fighter_feats=0;
+    total_cavalier_feats=0;
     total_halfelf_feats=0;
     total_monk_feats=0;
     total_r1_feats=0;
@@ -1966,6 +1990,7 @@ function clearall() {
     uncheck_feat_boxes();
     NegateAnimalCompanionStuff();
     fighterfeatentitlement=0;
+    cavalierfeatentitlement=0;
     wilderfeatentitlement=0;
     r1featentitlement=0;
     r2featentitlement=0;
@@ -2185,6 +2210,9 @@ function startup() {
     prestige_class_name="Prestige Class";
     wizard_specialty_name="Wizard";
     psion_specialty_name="Psion";
+    cavalier_order_name="";
+    negateCavalierOrder();
+    resetCavalierOrder();
     document.form1.moreAbout.value="";
     document.form1.additionalEquipment.value="";
     NegateRangerFoes();

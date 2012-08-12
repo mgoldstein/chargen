@@ -4,11 +4,17 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>Pathfinder Character Generator &mdash; Psionics</title>
         <link type="text/css" rel="stylesheet" href="css/form.css" />
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="js/psion_variables.js"></script>
         <script type="text/javascript" src="js/psion_chargen.js"></script>
         <script type="text/javascript" src="js/psion_startup.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                startup();
+            });
+        </script>
     </head>
-    <body onload="startup()">
+    <body>
 
         <!-- <h1>Pathfinder Character Generator &mdash; Psionics</h1> -->
 
@@ -249,7 +255,8 @@
                 </table>
             </p>
 
-            <p><img name="totallevelsarrow" src="images/dragonblank.gif" />
+            <p>
+                <img name="totallevelsarrow" src="images/dragonblank.gif" />
                 <b>Total levels:</b>
                 <select id="total_tevels" name="totallevels" onchange="assignlevel(this.options[selectedIndex].text)">
                     <option>choose level</option>
@@ -288,7 +295,7 @@
                 <img name="classesarrow" src="images/dragonblank.gif" /><br />
                 <table id="classes">
                     <tbody>
-                        <tr>
+                        <tr id="classlevel1">
                             <th>Level 1: </th>
                             <td><strong>Core: </strong> 
                                 <input onclick="assignclass(1,1)" value="1" name="choose_class01" type="radio" />Barbarian 
@@ -316,7 +323,7 @@
                                 <input onclick="assignclass(1,21)" value="1" name="choose_class01" type="radio" />Witch
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel2">
                             <th>Level 2: </th>
                             <td><strong>Core: </strong> 
                                 <input onclick="assignclass(2,1)" value="1" name="choose_class02" type="radio" />Barbarian 
@@ -344,7 +351,7 @@
                                 <input onclick="assignclass(2,21)" value="1" name="choose_class02" type="radio" />Witch
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel3">
                             <th>Level 3: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -373,7 +380,7 @@
                                 <input onclick="assignclass(3,21)" value="1" name="choose_class03" type="radio" />Witch
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel4">
                             <th>Level 4: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -402,7 +409,7 @@
                                 <input onclick="assignclass(4,21)" value="1" name="choose_class04" type="radio" />Witch
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel5">
                             <th>Level 5: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -431,7 +438,7 @@
                                 <input onclick="assignclass(5,21)" value="1" name="choose_class05" type="radio" />Witch
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel6">
                             <th>Level 6: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -462,7 +469,7 @@
                                 <input onclick="assignclass(6,22)" value="1" name="choose_class06" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel7">
                             <th>Level 7: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -493,7 +500,7 @@
                                 <input onclick="assignclass(7,22)" value="1" name="choose_class07" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel8">
                             <th>Level 8: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -524,7 +531,7 @@
                                 <input onclick="assignclass(8,22)" value="1" name="choose_class08" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel9">
                             <th>Level 9: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -555,7 +562,7 @@
                                 <input onclick="assignclass(9,22)" value="1" name="choose_class09" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel10">
                             <th>Level 10: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -586,7 +593,7 @@
                                 <input onclick="assignclass(10,22)" value="1" name="choose_class10" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel11">
                             <th>Level 11: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -617,7 +624,7 @@
                                 <input onclick="assignclass(11,22)" value="1" name="choose_class11" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel12">
                             <th>Level 12: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -648,7 +655,7 @@
                                 <input onclick="assignclass(12,22)" value="1" name="choose_class12" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel13">
                             <th>Level 13: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -679,7 +686,7 @@
                                 <input onclick="assignclass(13,22)" value="1" name="choose_class13" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel14">
                             <th>Level 14: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -711,7 +718,7 @@
                             </td>
                         </tr>
 
-                        <tr>
+                        <tr id="classlevel15">
                             <th>Level 15: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -742,7 +749,7 @@
                                 <input onclick="assignclass(15,22)" value="1" name="choose_class15" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel16">
                             <th>Level 16: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -773,7 +780,7 @@
                                 <input onclick="assignclass(16,22)" value="1" name="choose_class16" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel17">
                             <th>Level 17: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -804,7 +811,7 @@
                                 <input onclick="assignclass(17,22)" value="1" name="choose_class17" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel18">
                             <th>Level 18: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -835,7 +842,7 @@
                                 <input onclick="assignclass(18,22)" value="1" name="choose_class18" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel19">
                             <th>Level 19: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -866,7 +873,7 @@
                                 <input onclick="assignclass(19,22)" value="1" name="choose_class19" type="radio" />Prestige
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="classlevel20">
                             <th>Level 20: </th>
                             <td>
                                 <strong>Core: </strong>
@@ -954,132 +961,161 @@
                 <input onclick="up00(6)" value="1" name="upat00" type="radio" /> Charisma<img name="up00arrow" src="images/dragonblank.gif" /><br />
             </ul>
 
-            <p>
-                <b>High-Level Characters:</b> Increase your abilities<br />
-            </p>
+            <fieldset id="abilityScoreIncrease">
+                <p>
+                    <b>High-Level Characters:</b> Increase your abilities<br />
+                </p>
+                <table>
+                    <tbody>
+                        <tr id="abilityIncrease1">
+                            <td>At level 04: </td>
+                            <td>
+                                <input onclick="up04(1)" value="1" name="upat04" type="radio" /> Strength 
+                                <input onclick="up04(2)" value="1" name="upat04" type="radio" /> Dexterity 
+                                <input onclick="up04(3)" value="1" name="upat04" type="radio" /> Constitution 
+                                <input onclick="up04(4)" value="1" name="upat04" type="radio" /> Intelligence 
+                                <input onclick="up04(5)" value="1" name="upat04" type="radio" /> Wisdom 
+                                <input onclick="up04(6)" value="1" name="upat04" type="radio" /> Charisma<img name="up04arrow" src="images/dragonblank.gif" />
+                            </td>
+                        </tr>
+                        <tr id="abilityIncrease2">
+                            <td>At level 08: </td>
+                            <td>
+                                <input onclick="up08(1)" value="1" name="upat08" type="radio" /> Strength 
+                                <input onclick="up08(2)" value="1" name="upat08" type="radio" /> Dexterity 
+                                <input onclick="up08(3)" value="1" name="upat08" type="radio" /> Constitution 
+                                <input onclick="up08(4)" value="1" name="upat08" type="radio" /> Intelligence 
+                                <input onclick="up08(5)" value="1" name="upat08" type="radio" /> Wisdom 
+                                <input onclick="up08(6)" value="1" name="upat08" type="radio" /> Charisma<img name="up08arrow" src="images/dragonblank.gif" /></td>
+                        </tr>
+                        <tr id="abilityIncrease3">
+                            <td>At level 12: </td>
+                            <td>
+                                <input onclick="up12(1)" value="1" name="upat12" type="radio" /> Strength 
+                                <input onclick="up12(2)" value="1" name="upat12" type="radio" /> Dexterity 
+                                <input onclick="up12(3)" value="1" name="upat12" type="radio" /> Constitution 
+                                <input onclick="up12(4)" value="1" name="upat12" type="radio" /> Intelligence 
+                                <input onclick="up12(5)" value="1" name="upat12" type="radio" /> Wisdom 
+                                <input onclick="up12(6)" value="1" name="upat12" type="radio" /> Charisma<img name="up12arrow" src="images/dragonblank.gif" />
+                            </td>
+                        </tr>
+                        <tr id="abilityIncrease4">
+                            <td>At level 16: </td>
+                            <td>
+                                <input onclick="up16(1)" value="1" name="upat16" type="radio" /> Strength 
+                                <input onclick="up16(2)" value="1" name="upat16" type="radio" /> Dexterity 
+                                <input onclick="up16(3)" value="1" name="upat16" type="radio" /> Constitution 
+                                <input onclick="up16(4)" value="1" name="upat16" type="radio" /> Intelligence 
+                                <input onclick="up16(5)" value="1" name="upat16" type="radio" /> Wisdom 
+                                <input onclick="up16(6)" value="1" name="upat16" type="radio" /> Charisma<img name="up16arrow" src="images/dragonblank.gif" />
+                            </td>
+                        </tr>
+                        <tr id="abilityIncrease5">
+                            <td>At level 20: </td>
+                            <td>
+                                <input onclick="up20(1)" value="1" name="upat20" type="radio" /> Strength 
+                                <input onclick="up20(2)" value="1" name="upat20" type="radio" /> Dexterity 
+                                <input onclick="up20(3)" value="1" name="upat20" type="radio" /> Constitution 
+                                <input onclick="up20(4)" value="1" name="upat20" type="radio" /> Intelligence 
+                                <input onclick="up20(5)" value="1" name="upat20" type="radio" /> Wisdom 
+                                <input onclick="up20(6)" value="1" name="upat20" type="radio" /> Charisma<img name="up20arrow" src="images/dragonblank.gif" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
 
-            <ul>
-                At level 04:
-                <input onclick="up04(1)" value="1" name="upat04" type="radio" /> Strength 
-                <input onclick="up04(2)" value="1" name="upat04" type="radio" /> Dexterity 
-                <input onclick="up04(3)" value="1" name="upat04" type="radio" /> Constitution 
-                <input onclick="up04(4)" value="1" name="upat04" type="radio" /> Intelligence 
-                <input onclick="up04(5)" value="1" name="upat04" type="radio" /> Wisdom 
-                <input onclick="up04(6)" value="1" name="upat04" type="radio" /> Charisma<img name="up04arrow" src="images/dragonblank.gif" /><br />
-                At level 08: 
-                <input onclick="up08(1)" value="1" name="upat08" type="radio" /> Strength 
-                <input onclick="up08(2)" value="1" name="upat08" type="radio" /> Dexterity 
-                <input onclick="up08(3)" value="1" name="upat08" type="radio" /> Constitution 
-                <input onclick="up08(4)" value="1" name="upat08" type="radio" /> Intelligence 
-                <input onclick="up08(5)" value="1" name="upat08" type="radio" /> Wisdom 
-                <input onclick="up08(6)" value="1" name="upat08" type="radio" /> Charisma<img name="up08arrow" src="images/dragonblank.gif" /><br />
-                At level 12: 
-                <input onclick="up12(1)" value="1" name="upat12" type="radio" /> Strength 
-                <input onclick="up12(2)" value="1" name="upat12" type="radio" /> Dexterity 
-                <input onclick="up12(3)" value="1" name="upat12" type="radio" /> Constitution 
-                <input onclick="up12(4)" value="1" name="upat12" type="radio" /> Intelligence 
-                <input onclick="up12(5)" value="1" name="upat12" type="radio" /> Wisdom 
-                <input onclick="up12(6)" value="1" name="upat12" type="radio" /> Charisma<img name="up12arrow" src="images/dragonblank.gif" /><br />
-                At level 16: 
-                <input onclick="up16(1)" value="1" name="upat16" type="radio" /> Strength 
-                <input onclick="up16(2)" value="1" name="upat16" type="radio" /> Dexterity 
-                <input onclick="up16(3)" value="1" name="upat16" type="radio" /> Constitution 
-                <input onclick="up16(4)" value="1" name="upat16" type="radio" /> Intelligence 
-                <input onclick="up16(5)" value="1" name="upat16" type="radio" /> Wisdom 
-                <input onclick="up16(6)" value="1" name="upat16" type="radio" /> Charisma<img name="up16arrow" src="images/dragonblank.gif" /><br />
-                At level 20: 
-                <input onclick="up20(1)" value="1" name="upat20" type="radio" /> Strength 
-                <input onclick="up20(2)" value="1" name="upat20" type="radio" /> Dexterity 
-                <input onclick="up20(3)" value="1" name="upat20" type="radio" /> Constitution 
-                <input onclick="up20(4)" value="1" name="upat20" type="radio" /> Intelligence 
-                <input onclick="up20(5)" value="1" name="upat20" type="radio" /> Wisdom 
-                <input onclick="up20(6)" value="1" name="upat20" type="radio" /> Charisma<img name="up20arrow" src="images/dragonblank.gif" /><br />
-            </ul>
+            <fieldset id="cleric_shit">
+                <p>
+                    <b>Domains:</b> <img name="domainarrow" src="images/dragonblank.gif" />
+                    <ul>
+                        <li>Clerics choose two domains from among those belonging to her deity.</li>
+                        <li>Inquisitors can select one domain from among those belonging to her deity</li>
+                    </ul>
+                </p>
 
-            <p>
-                <b>Domains:</b> <img name="domainarrow" src="images/dragonblank.gif" />
                 <ul>
-                    <li>Clerics choose two domains from among those belonging to her deity.</li>
-                    <li>Inquisitors can select one domain from among those belonging to her deity </li>
-                </ul>
-            </p>
+                    <input onclick="DomainsA()" name="air_domain" type="checkbox" /> Air&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="animal_domain" type="checkbox" /> Animal&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="artifice_domain" type="checkbox" /> Artifice&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="chaos_domain" type="checkbox" /> Chaos&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="charm_domain" type="checkbox" /> Charm&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="community_domain" type="checkbox" /> Community&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="darkness_domain" type="checkbox" /> Darkness&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="death_domain" type="checkbox" /> Death&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="destruction_domain" type="checkbox" /> Destruction&nbsp; &nbsp;<br />
+                    <input onclick="DomainsA()" name="earth_domain" type="checkbox" /> Earth&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="evil_domain" type="checkbox" /> Evil&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="fire_domain" type="checkbox" /> Fire&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="glory_domain" type="checkbox" /> Glory&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="good_domain" type="checkbox" /> Good&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="healing_domain" type="checkbox" /> Healing&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="knowledge_domain" type="checkbox" /> Knowledge&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="law_domain" type="checkbox" /> Law&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="liberation_domain" type="checkbox" /> Liberation&nbsp; &nbsp;<br />
+                    <input onclick="DomainsA()" name="luck_domain" type="checkbox" /> Luck&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="madness_domain" type="checkbox" /> Madness&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="magic_domain" type="checkbox" /> Magic&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="plant_domain" type="checkbox" /> Plant&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="protection_domain" type="checkbox" /> Protection&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="nobility_domain" type="checkbox" /> Nobility&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="repose_domain" type="checkbox" /> Repose&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="rune_domain" type="checkbox" /> Rune&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="strength_domain" type="checkbox" /> Strength&nbsp; &nbsp;  <br />
+                    <input onclick="DomainsA()" name="sun_domain" type="checkbox" /> Sun&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="travel_domain" type="checkbox" /> Travel&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="trickery_domain" type="checkbox" /> Trickery&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="war_domain" type="checkbox" /> War&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="water_domain" type="checkbox" /> Water&nbsp; &nbsp;
+                    <input onclick="DomainsA()" name="weather_domain" type="checkbox" /> Weather&nbsp; &nbsp;
 
-            <ul>
-                <input onclick="DomainsA()" name="air_domain" type="checkbox" /> Air&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="animal_domain" type="checkbox" /> Animal&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="artifice_domain" type="checkbox" /> Artifice&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="chaos_domain" type="checkbox" /> Chaos&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="charm_domain" type="checkbox" /> Charm&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="community_domain" type="checkbox" /> Community&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="darkness_domain" type="checkbox" /> Darkness&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="death_domain" type="checkbox" /> Death&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="destruction_domain" type="checkbox" /> Destruction&nbsp; &nbsp;<br />
-                <input onclick="DomainsA()" name="earth_domain" type="checkbox" /> Earth&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="evil_domain" type="checkbox" /> Evil&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="fire_domain" type="checkbox" /> Fire&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="glory_domain" type="checkbox" /> Glory&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="good_domain" type="checkbox" /> Good&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="healing_domain" type="checkbox" /> Healing&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="knowledge_domain" type="checkbox" /> Knowledge&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="law_domain" type="checkbox" /> Law&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="liberation_domain" type="checkbox" /> Liberation&nbsp; &nbsp;<br />
-                <input onclick="DomainsA()" name="luck_domain" type="checkbox" /> Luck&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="madness_domain" type="checkbox" /> Madness&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="magic_domain" type="checkbox" /> Magic&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="plant_domain" type="checkbox" /> Plant&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="protection_domain" type="checkbox" /> Protection&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="nobility_domain" type="checkbox" /> Nobility&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="repose_domain" type="checkbox" /> Repose&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="rune_domain" type="checkbox" /> Rune&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="strength_domain" type="checkbox" /> Strength&nbsp; &nbsp;  <br />
-                <input onclick="DomainsA()" name="sun_domain" type="checkbox" /> Sun&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="travel_domain" type="checkbox" /> Travel&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="trickery_domain" type="checkbox" /> Trickery&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="war_domain" type="checkbox" /> War&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="water_domain" type="checkbox" /> Water&nbsp; &nbsp;
-                <input onclick="DomainsA()" name="weather_domain" type="checkbox" /> Weather&nbsp; &nbsp;
+                    <p>
+                        Energy type: 
+                        <input onclick="DomainsA()" value="1" name="choose_energy" type="radio" />Positive/Healing &nbsp;
+                        <input onclick="DomainsA()" value="1" name="choose_energy" type="radio" />Negative/Harmful 
+                        <img name="energyarrow" src="images/dragonblank.gif" />
+                    </p>
+
+                    <p>
+                        Sect (optional): 
+                        <input name="sect" type="text" />
+                    </p>
+                </ul>
+            </fieldset>
+
+            <fieldset id="druid_shit">
+                <p>
+                    <b>Druids</b> may choose either an animal companion or a clerical domain:
+                </p>
+                <ul>
+                    <img name="druidchoicearrow" src="images/dragonblank.gif" />
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Animal Companion&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Air&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Animal&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Earth&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Fire&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Plant&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Water&nbsp;&nbsp;
+                    <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Weather&nbsp;&nbsp;
+                </ul>
+            </fieldset>
+
+            <fieldset id="ranger_shit">
+                <p>
+                    <b>Rangers</b>: Combat track 
+                    <input onclick="ChooseRangerCombatTrack()" name="ranger_combat_track" type="radio" />Archery 
+                    <input onclick="ChooseRangerCombatTrack()" name="ranger_combat_track" type="radio" />Two-weapon
+                    fighting <img name="rangerarrow" src="images/dragonblank.gif" />
+                </p>
 
                 <p>
-                    Energy type: 
-                    <input onclick="DomainsA()" value="1" name="choose_energy" type="radio" />Positive/Healing 
-                    <input onclick="DomainsA()" value="1" name="choose_energy" type="radio" />Negative/Harmful 
-                    <img name="energyarrow" src="images/dragonblank.gif" />
+                    <b>Ranger favored enemies</b>: <img name="favoredenemiesarrow" src="images/dragonblank.gif" />
                 </p>
 
-                <p>Sect (optional): 
-                    <input name="sect" type="text" />
-                </p>
-            </ul>
-
-            <p>
-                <b>Druids</b> may choose either an animal companion or a clerical domain:</p>
-            <ul>
-                <img name="druidchoicearrow" src="images/dragonblank.gif" />
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Animal&nbsp;Companion&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Air&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Animal&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Earth&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Fire&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Plant&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Water&nbsp;&nbsp;
-                <input onclick="ChooseForDruid()" name="druid_domain" type="radio" />Weather&nbsp;&nbsp;
-            </ul>
-
-            <p><b>Rangers</b>: Combat track 
-                <input onclick="ChooseRangerCombatTrack()" name="ranger_combat_track" type="radio" />Archery 
-                <input onclick="ChooseRangerCombatTrack()" name="ranger_combat_track" type="radio" />Two-weapon
-                fighting <img name="rangerarrow" src="images/dragonblank.gif" />
-            </p>
-
-            <p>
-                <b>Ranger favored enemies</b>: <img name="favoredenemiesarrow" src="images/dragonblank.gif" />
-            </p>
-
-            <p>
                 <table>
                     <tbody>
                         <tr>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rf_aberration_list"><option selected="selected">--</option></select> Aberration<br />
                                 <select onchange="RangerFoesA()" name="rf_animal_list"><option selected="selected">--</option></select> Animal<br />
                                 <select onchange="RangerFoesA()" name="rf_construct_list"><option selected="selected">--</option></select> Construct<br />
@@ -1089,7 +1125,7 @@
                                 <select onchange="RangerFoesA()" name="rf_aquatic_list"><option selected="selected">--</option></select> Humanoid (aquatic)<br />
                                 <select onchange="RangerFoesA()" name="rf_dwarf_list"><option selected="selected">--</option></select> Humanoid (dwarf)<br />
                             </td>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rf_elf_list"><option selected="selected">--</option></select> Humanoid (elf)<br />
                                 <select onchange="RangerFoesA()" name="rf_goblinoid_list"><option selected="selected">--</option></select> Humanoid (goblinoid)<br />
                                 <select onchange="RangerFoesA()" name="rf_gnoll_list"><option selected="selected">--</option></select> Humanoid (gnoll)<br />
@@ -1099,7 +1135,7 @@
                                 <select onchange="RangerFoesA()" name="rf_orc_list"><option selected="selected">--</option></select> Humanoid (orc)<br />
                                 <select onchange="RangerFoesA()" name="rf_reptilian_list"><option selected="selected">--</option></select> Humanoid (reptilian)<br />
                             </td>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rf_humanoidothersubtype_list"><option selected="selected">--</option></select> Humanoid (other subtype)<br />
                                 <select onchange="RangerFoesA()" name="rf_magicalbeast_list"><option selected="selected">--</option></select> Magical Beast<br />
                                 <select onchange="RangerFoesA()" name="rf_monstroushumanoid_list"><option selected="selected">--</option></select> Monstrous Humanoid<br />
@@ -1109,7 +1145,7 @@
                                 <select onchange="RangerFoesA()" name="rf_earth_list"><option selected="selected">--</option></select> Outsider (earth)<br />
                                 <select onchange="RangerFoesA()" name="rf_evil_list"><option selected="selected">--</option></select> Outsider (evil)<br />
                             </td>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rf_fire_list"><option selected="selected">--</option></select> Outsider (fire)<br />
                                 <select onchange="RangerFoesA()" name="rf_good_list"><option selected="selected">--</option></select> Outsider (good)<br />
                                 <select onchange="RangerFoesA()" name="rf_lawful_list"><option selected="selected">--</option></select> Outsider (lawful)<br />
@@ -1123,13 +1159,14 @@
                     </tbody>
                 </table>
 
-                <b>Ranger favored terrains</b>:<img name="favoredterrainsarrow" src="images/dragonblank.gif" /></p>
+                <p>
+                    <strong>Ranger favored terrains</strong>:<img name="favoredterrainsarrow" src="images/dragonblank.gif" />
+                </p>
 
-            <p>
                 <table>
                     <tbody>
                         <tr>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rt_cold_list"><option selected="selected">--</option></select> Cold<br />
                                 <select onchange="RangerFoesA()" name="rt_desert_list"><option selected="selected">--</option></select> Desert<br />
                                 <select onchange="RangerFoesA()" name="rt_forest_list"><option selected="selected">--</option></select> Forest<br />
@@ -1139,7 +1176,7 @@
                                 <select onchange="RangerFoesA()" name="rt_planeabaddon_list"><option selected="selected">--</option></select> Plane -- Abaddon<br />
 
                             </td>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rt_planeabyss_list"><option selected="selected">--</option></select> Plane -- Abyss<br />
                                 <select onchange="RangerFoesA()" name="rt_planeair_list"><option selected="selected">--</option></select> Plane -- Air<br />
                                 <select onchange="RangerFoesA()" name="rt_planeastral_list"><option selected="selected">--</option></select> Plane -- Astral<br />
@@ -1149,7 +1186,7 @@
                                 <select onchange="RangerFoesA()" name="rt_planeethereal_list"><option selected="selected">--</option></select> Plane -- Ethereal<br />
 
                             </td>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rt_planefire_list"><option selected="selected">--</option></select> Plane -- Fire<br />
                                 <select onchange="RangerFoesA()" name="rt_planeheaven_list"><option selected="selected">--</option></select> Plane -- Heaven<br />
                                 <select onchange="RangerFoesA()" name="rt_planehell_list"><option selected="selected">--</option></select> Plane -- Hell<br />
@@ -1159,7 +1196,7 @@
                                 <select onchange="RangerFoesA()" name="rt_planewater_list"><option selected="selected">--</option></select> Plane -- Water<br />
 
                             </td>
-                            <td width="25%">
+                            <td>
                                 <select onchange="RangerFoesA()" name="rt_swamp_list"><option selected="selected">--</option></select> Swamp<br />
                                 <select onchange="RangerFoesA()" name="rt_underground_list"><option selected="selected">--</option></select> Underground<br />
                                 <select onchange="RangerFoesA()" name="rt_urban_list"><option selected="selected">--</option></select> Urban<br />
@@ -1176,89 +1213,124 @@
                         </tr>
                     </tbody>
                 </table>
-            </p>
+            </fieldset>
 
-            <p>
-                <b>Sorcerers:</b> Choose your bloodline <img name="bloodlinearrow" src="images/dragonblank.gif" /></p>
-            <ul>
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Aberrant&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Abyssal&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Arcane&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Celestial&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Destined&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Draconic&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Elemental&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Fey&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Infernal&nbsp; &nbsp;
-                <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Undead&nbsp; &nbsp;
-            </ul>
-
-            <p>
-                <b>Wilders:</b> Choose your surge <img name="surgearrow" src="images/dragonblank.gif" /></p>
-            <ul>
-                <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Artificer&nbsp; &nbsp;
-                <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Free&nbsp; &nbsp;
-                <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Leader&nbsp; &nbsp;
-                <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Student&nbsp; &nbsp;
-                <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Warrior&nbsp; &nbsp;
-            </ul>
-
-            <p><b>Wizards</b> (and <b>Arcane Sorcerers</b>) may have a familiar:</p>
-            <ul><img name="familiararrow" src="images/dragonblank.gif" />
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> None 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Bat 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Cat 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Hawk 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Lizard 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Monkey 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Owl 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Rat 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Raven 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Snake 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Toad 
-                <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Weasel
-            </ul>
-            <p>
-                <b>Wizards</b> may specialize
-            </p>
-            <ul>
-                <img name="wizardspecialtyarrow" src="images/dragonblank.gif" />
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" checked="checked" /> Generalist / Universal
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Abjurer 
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Conjuror 
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Diviner
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Enchanter 
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Evoker 
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Illusionist 
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Necromancer
-                <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Transmuter
+            <fieldset id="sorcerer_shit">
                 <p>
-                    <img name="wizardgiveuparrow" src="images/dragonblank.gif" />
-                    <b>Giving up</b>:&nbsp;  
-                    <input onclick="WizardSpecialtyA()" name="forbid_abjuration" type="checkbox" /> Abjuration
-                    <input onclick="WizardSpecialtyA()" name="forbid_conjuration" type="checkbox" /> Conjuration
-                    <input onclick="WizardSpecialtyA()" name="forbid_divination" type="checkbox" /> Divination
-                    <input onclick="WizardSpecialtyA()" name="forbid_enchantment" type="checkbox" /> Enchantment
-                    <input onclick="WizardSpecialtyA()" name="forbid_evocation" type="checkbox" /> Evocation
-                    <input onclick="WizardSpecialtyA()" name="forbid_illusion" type="checkbox" /> Illusion
-                    <input onclick="WizardSpecialtyA()" name="forbid_necromancy" type="checkbox" /> Necromancy
-                    <input onclick="WizardSpecialtyA()" name="forbid_transmutation" type="checkbox" /> Transmutation
+                    <b>Sorcerers:</b> Choose your bloodline <img name="bloodlinearrow" src="images/dragonblank.gif" />
                 </p>
-            </ul>
-            <p>
-                 <b>Psions</b> may specialize</p>
-            <ul>
-                <img name="psionspecialtyarrow" src="images/dragonblank.gif" />
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" checked="checked" /> Generalist 
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Clairsentience (Seer) 
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Metacreativity (Shaper) 
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Psychokinesis (Kineticist) 
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Psychometabolism (Egoist) 
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Psychoportation (Nomad) 
-                <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Telepathy (Telepath) 
-            </ul>
+                <ul>
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Aberrant&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Abyssal&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Arcane&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Celestial&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Destined&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Draconic&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Elemental&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Fey&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Infernal&nbsp; &nbsp;
+                    <input onclick="BloodlineCountA()" name="choose_bloodline" type="radio" />Undead&nbsp; &nbsp;
+                </ul>
+            </fieldset>
 
-            <p>
+            <fieldset id="wilder_shit">
+                <p>
+                    <b>Wilders:</b> Choose your surge <img name="surgearrow" src="images/dragonblank.gif" />
+                </p>
+                <ul>
+                    <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Artificer&nbsp; &nbsp;
+                    <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Free&nbsp; &nbsp;
+                    <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Leader&nbsp; &nbsp;
+                    <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Student&nbsp; &nbsp;
+                    <input onclick="SurgeCountA()" name="choose_surge" type="radio" />Warrior&nbsp; &nbsp;
+                </ul>
+            </fieldset>
+
+            <fieldset id="familiar_shit">
+                <p>
+                    <b>Familiar</b> (for wizards, witches, and arcane sorcerers):
+                </p>
+                <ul><img name="familiararrow" src="images/dragonblank.gif" />
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> None 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Bat 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Cat 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Hawk 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Lizard 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Monkey 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Owl 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Rat 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Raven 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Snake 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Toad 
+                    <input onclick="ChooseFamiliar()" value="1" name="choose_familiar" type="radio" /> Weasel
+                </ul>
+            </fieldset>
+
+            <fieldset id="wizard_shit">
+                <p>
+                    <b>Wizards</b> may specialize
+                </p>
+                <ul>
+                    <img name="wizardspecialtyarrow" src="images/dragonblank.gif" />
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" checked="checked" /> Generalist / Universal
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Abjurer 
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Conjuror 
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Diviner
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Enchanter 
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Evoker 
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Illusionist 
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Necromancer
+                    <input onclick="WizardSpecialtyA()" value="1" name="choose_specialty" type="radio" /> Transmuter
+                    <p>
+                        <img name="wizardgiveuparrow" src="images/dragonblank.gif" />
+                        <b>Giving up</b>:&nbsp;  
+                        <input onclick="WizardSpecialtyA()" name="forbid_abjuration" type="checkbox" /> Abjuration
+                        <input onclick="WizardSpecialtyA()" name="forbid_conjuration" type="checkbox" /> Conjuration
+                        <input onclick="WizardSpecialtyA()" name="forbid_divination" type="checkbox" /> Divination
+                        <input onclick="WizardSpecialtyA()" name="forbid_enchantment" type="checkbox" /> Enchantment
+                        <input onclick="WizardSpecialtyA()" name="forbid_evocation" type="checkbox" /> Evocation
+                        <input onclick="WizardSpecialtyA()" name="forbid_illusion" type="checkbox" /> Illusion
+                        <input onclick="WizardSpecialtyA()" name="forbid_necromancy" type="checkbox" /> Necromancy
+                        <input onclick="WizardSpecialtyA()" name="forbid_transmutation" type="checkbox" /> Transmutation
+                    </p>
+                </ul>
+            </fieldset>
+
+            <fieldset id="psion_shit">
+                <p>
+                    <b>Psions</b> may specialize
+                </p>
+                <ul>
+                    <img name="psionspecialtyarrow" src="images/dragonblank.gif" />
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" checked="checked" /> Generalist 
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Clairsentience (Seer) 
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Metacreativity (Shaper) 
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Psychokinesis (Kineticist) 
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Psychometabolism (Egoist) 
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Psychoportation (Nomad) 
+                    <input onclick="PsionSpecialtyA()" value="1" name="choose_discipline" type="radio" /> Telepathy (Telepath) 
+                </ul>
+            </fieldset>
+
+            <fieldset id="cavalier_shit">
+                <p>
+                    <b>Cavaliers</b> must pledge themselves to an order
+                </p>
+                <ul>
+                    <img name="cavalierorderarrow" src="images/dragonblank.gif" />
+                    <input onclick="cavalierOrderAdd()" value="1" name="choose_order" type="radio" /> <abbr title="dedicated to promoting peace">Blue Rose</abbr> 
+                    <input onclick="cavalierOrderAdd()" value="2" name="choose_order" type="radio" /> <abbr title="serves only himself">Cockatrice</abbr> 
+                    <input onclick="cavalierOrderAdd()" value="3" name="choose_order" type="radio" /> <abbr title="dedicated to comrades">Dragon</abbr> 
+                    <input onclick="cavalierOrderAdd()" value="4" name="choose_order" type="radio" /> <abbr title="has pledged himself to a sovereign">Lion</abbr> 
+                    <input onclick="cavalierOrderAdd()" value="5" name="choose_order" type="radio" /> <abbr title="a secretive order, charged with the protection of a specific object">Seal</abbr>  
+                    <input onclick="cavalierOrderAdd()" value="6" name="choose_order" type="radio" /> <abbr title="devoted to protecting the common folk">Shield</abbr>  
+                    <input onclick="cavalierOrderAdd()" value="7" name="choose_order" type="radio" /> <abbr title="dedicated to the protection and service of a faith">Star</abbr>  
+                    <input onclick="cavalierOrderAdd()" value="8" name="choose_order" type="radio" /> <abbr title="dedicated to the code of chivalry">Sword</abbr>  
+                    <input onclick="cavalierOrderAdd()" value="9" name="choose_order" type="radio" /> <abbr title="devoted to the preservation of knowledge">Tome</abbr>  
+                </ul>
+            </fieldset>
+
+            <fieldset id="prestige_shit">
                 <table>
                     <tbody>
                         <tr>
@@ -1296,110 +1368,102 @@
                         </tr>
                     </tbody>
                 </table>
-            </p>
 
-            <ul>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Fortitude save progress:</td>
-                            <td>
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_fortitude_progress" type="radio" />slow&nbsp; &nbsp; &nbsp;  
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_fortitude_progress" type="radio" />fast&nbsp; &nbsp; &nbsp; 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Reflex save progress:</td>
-                            <td>
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_reflex_progress" type="radio" />slow&nbsp; &nbsp; &nbsp;  
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_reflex_progress" type="radio" />fast&nbsp; &nbsp; &nbsp; 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Will save progress:</td>
-                            <td>
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_will_progress" type="radio" />slow&nbsp; &nbsp; &nbsp;  
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_will_progress" type="radio" />fast&nbsp; &nbsp; &nbsp; 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Skill points per level:</td>
-                            <td>
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />2&nbsp; &nbsp; &nbsp;  
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />4&nbsp; &nbsp; &nbsp;  
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />6&nbsp; &nbsp; &nbsp;  
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />8&nbsp; &nbsp; &nbsp; 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Additional arcane spell levels as:</td>
-                            <td>
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />None
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />Bard
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />Sorcerer
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />Wizard
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Additional divine spell levels as:</td>
-                            <td>
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />None
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Cleric
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Druid
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Paladin
-                                <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Ranger
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>How many spellcaster levels:</td>
-                            <td>
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" checked="checked" />0 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />1 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />2 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />3 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />4 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />5 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />6 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />7 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />8 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />9 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />10 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />11 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />12 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />13 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />14 
-                                <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />15
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Bonus feats:</td>
-                            <td>
-                                <input checked="checked" onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />0
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />1
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />2
-                                <input onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />3
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </ul>
+                <ul>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Fortitude save progress:</td>
+                                <td>
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_fortitude_progress" type="radio" />slow&nbsp; &nbsp; &nbsp;  
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_fortitude_progress" type="radio" />fast&nbsp; &nbsp; &nbsp; 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Reflex save progress:</td>
+                                <td>
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_reflex_progress" type="radio" />slow&nbsp; &nbsp; &nbsp;  
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_reflex_progress" type="radio" />fast&nbsp; &nbsp; &nbsp; 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Will save progress:</td>
+                                <td>
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_will_progress" type="radio" />slow&nbsp; &nbsp; &nbsp;  
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_will_progress" type="radio" />fast&nbsp; &nbsp; &nbsp; 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Skill points per level:</td>
+                                <td>
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />2&nbsp; &nbsp; &nbsp;  
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />4&nbsp; &nbsp; &nbsp;  
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />6&nbsp; &nbsp; &nbsp;  
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_skill_progress" type="radio" />8&nbsp; &nbsp; &nbsp; 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Additional arcane spell levels as:</td>
+                                <td>
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />None
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />Bard
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />Sorcerer
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_arcanespell_type" type="radio" />Wizard
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Additional divine spell levels as:</td>
+                                <td>
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />None
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Cleric
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Druid
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Paladin
+                                    <input onclick="PrestigeClassAq()" value="1" name="prestige_divinespell_type" type="radio" />Ranger
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>How many spellcaster levels:</td>
+                                <td>
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" checked="checked" />0 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />1 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />2 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />3 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />4 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />5 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />6 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />7 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />8 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />9 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />10 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />11 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />12 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />13 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />14 
+                                    <input onclick="PrestigeClassA()" value="1" name="count_prestige_spell_levels" type="radio" />15
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Bonus feats:</td>
+                                <td>
+                                    <input checked="checked" onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />0
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />1
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />2
+                                    <input onclick="PrestigeClassA()" value="1" name="prestige_bonus_feats" type="radio" />3
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </fieldset>
 
             <p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input onclick="FreezeFighterFeatsEtc()" value="Move On" name="acceptstuff" type="button" />
-                                <img name="moveonarrow" src="images/dragonblank.gif" />
-                                <br />
-                                <textarea name="fourth_comment_box" rows="5" cols="30"></textarea>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <input onclick="FreezeFighterFeatsEtc()" value="Move On" name="acceptstuff" type="button" />
+                <img name="moveonarrow" src="images/dragonblank.gif" />
+                <br />
+                <textarea name="fourth_comment_box" rows="5" cols="30"></textarea>
             </p>
 
             <fieldset>
@@ -1855,11 +1919,11 @@
 
             <fieldset>
                 <legend>Feats:</legend>
-                
-                    <img name="featsarrow" src="images/dragonblank.gif" />
-                    <br />
-                    <textarea name="feat" rows="8" cols="30">This will monitor your feat selection.</textarea>
-                
+
+                <img name="featsarrow" src="images/dragonblank.gif" />
+                <br />
+                <textarea name="feat" rows="8" cols="30">This will monitor your feat selection.</textarea>
+
                 <p>
                     <table>
                         <tbody>
@@ -2424,7 +2488,7 @@
                                     <input onclick="Feats()" name="autonomous" type="checkbox" />Autonomous<img name="autonomous_star" src="images/no_asterisk.gif" /><br />
                                 </td>
                                 <td valign="top" width="20%">
-                                    <input onclick="Feats()" name="bodyfuel" type="checkbox" />Body Fuuel<img name="bodyfuel_star" src="images/no_asterisk.gif" /><img name="pstar02" src="images/no_asterisk.gif" /><br />
+                                    <input onclick="Feats()" name="bodyfuel" type="checkbox" />Body Fuel<img name="bodyfuel_star" src="images/no_asterisk.gif" /><img name="pstar02" src="images/no_asterisk.gif" /><br />
                                 </td>
                                 <td valign="top" width="20%">
                                     <input onclick="Feats()" name="boostconstruct" type="checkbox" />Boost Construct<img name="boostconstruct_star" src="images/no_asterisk.gif" /><img name="pstar03" src="images/no_asterisk.gif" /><br />
@@ -2699,35 +2763,42 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td valign="top" width="30%"><b>Simple Weapons</b>
+                            <td valign="top">
+                                <b>Simple Weapons</b>
                                 <p>
+                                    <h5>Light Melee:</h5>
                                     <input onclick="Arms()" name="gauntlet" type="checkbox" />Gauntlet<img name="gauntlet_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="dagger" type="checkbox" />Dagger<img name="dagger_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="punchingdagger" type="checkbox" />Punching Dagger<img name="punchingdagger_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="spikedgauntlet" type="checkbox" />Spiked Gauntlet<img name="spikedgauntlet_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="lightmace" type="checkbox" />Light Mace<img name="lightmace_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="sickle" type="checkbox" />Sickle<img name="sickle_star" src="images/no_asterisk.gif" /><br />
+                                    <h5>One-Handed Melee</h5>
                                     <input onclick="Arms()" name="club" type="checkbox" />Club<img name="club_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="heavymace" type="checkbox" />Heavy Mace<img name="heavymace_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="morningstar" type="checkbox" />Morningstar<img name="morningstar_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="shortspear" type="checkbox" />Short Spear<img name="shortspear_star" src="images/no_asterisk.gif" /><br />
+                                    <h5>Two-Handed Melee</h5>
                                     <input onclick="Arms()" name="longspear" type="checkbox" />Long Spear<img name="longspear_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="quarterstaff" type="checkbox" />Quarterstaff<img name="quarterstaff_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="spear" type="checkbox" />Spear<img name="spear_star" src="images/no_asterisk.gif" /><br />
+                                    <h5>Ranged</h5>
                                     <input onclick="Arms()" name="heavycrossbow" type="checkbox" />Heavy Crossbow<img name="heavycrossbow_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="lightcrossbow" type="checkbox" />Light Crossbow<img name="lightcrossbow_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="dart" type="checkbox" />Dart<img name="dart_star" src="images/no_asterisk.gif" /><br />
                                     <input onclick="Arms()" name="javelin" type="checkbox" />Javelin<img name="javelin_star" src="images/no_asterisk.gif" /><br />
-                                    <input onclick="Arms()" name="sling" type="checkbox" />Sling<img name="sling_star" src="images/no_asterisk.gif" />
+                                    <input onclick="Arms()" name="sling" type="checkbox" />Sling<img name="sling_star" src="images/no_asterisk.gif" /><br />
+                                    <input onclick="Arms()" name="blowgun" type="checkbox" />Blowgun<img name="blowgun_star" src="images/no_asterisk.gif" />
                                 </p>
                             </td>
-                            <td valign="top" width="40%">
+                            <td valign="top">
                                 <b>Martial Weapons</b>
                                 <p>
                                     <table>
                                         <tbody>
                                             <tr>
                                                 <td>
+                                                    <h5>Light Melee</h5>
                                                     <input onclick="Arms()" name="throwingaxe" type="checkbox" />Throwing Axe<img name="throwingaxe_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="lighthammer" type="checkbox" />Light Hammer<img name="lighthammer_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="handaxe" type="checkbox" />Hand Axe<img name="handaxe_star" src="images/no_asterisk.gif" /><br />
@@ -2737,17 +2808,21 @@
                                                     <input onclick="Arms()" name="lightshield" type="checkbox" />Light Shield<img name="lightshield_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="spikedarmor" type="checkbox" />Spiked Armor<img name="spikedarmor_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="lightspikedshield" type="checkbox" />Light Spiked Shield<img name="lightspikedshield_star" src="images/no_asterisk.gif" /><br />
+                                                    <input onclick="Arms()" name="starknife" type="checkbox" />Starknife<img name="starknife_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="shortsword" type="checkbox" />Short Sword<img name="shortsword_star" src="images/no_asterisk.gif" /><br />
+                                                    <h5>One-Handed Melee</h5>
                                                     <input onclick="Arms()" name="battleaxe" type="checkbox" />Battle Axe<img name="battleaxe_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="flail" type="checkbox" />Flail<img name="flail_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="longsword" type="checkbox" />Longsword<img name="longsword_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="heavypick" type="checkbox" />Heavy Pick<img name="heavypick_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="rapier" type="checkbox" />Rapier<img name="rapier_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="scimitar" type="checkbox" />Scimitar<img name="scimitar_star" src="images/no_asterisk.gif" /><br />
-                                                    <input onclick="Arms()" name="heavyshield" type="checkbox" />Heavy Shield<img name="heavyshield_star" src="images/no_asterisk.gif" /><br /></td>
-                                                <td>
+                                                    <input onclick="Arms()" name="heavyshield" type="checkbox" />Heavy Shield<img name="heavyshield_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="trident" type="checkbox" />Trident<img name="trident_star" src="images/no_asterisk.gif" /><br />
-                                                    <input onclick="Arms()" name="warhammer" type="checkbox" />War Hammer<img name="warhammer_star" src="images/no_asterisk.gif" /><br />
+                                                    <input onclick="Arms()" name="warhammer" type="checkbox" />War Hammer<img name="warhammer_star" src="images/no_asterisk.gif" />
+                                                </td>
+                                                <td>
+                                                    <h5>Two-Handed Melee</h5>
                                                     <input onclick="Arms()" name="falchion" type="checkbox" />Falchion<img name="falchion_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="glaive" type="checkbox" />Glaive<img name="glaive_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="greataxe" type="checkbox" />Greataxe<img name="greataxe_star" src="images/no_asterisk.gif" /><br />
@@ -2759,6 +2834,7 @@
                                                     <input onclick="Arms()" name="lance" type="checkbox" />Lance<img name="lance_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="ranseur" type="checkbox" />Ranseur<img name="ranseur_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="scythe" type="checkbox" />Scythe<img name="scythe_star" src="images/no_asterisk.gif" /><br />
+                                                    <h5>Ranged</h5>
                                                     <input onclick="Arms()" name="longbow" type="checkbox" />Longbow<img name="longbow_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="compositelongbow" type="checkbox" />Composite Longbow<img name="compositelongbow_star" src="images/no_asterisk.gif" /><br />
                                                     <input onclick="Arms()" name="shortbow" type="checkbox" />Shortbow<img name="shortbow_star" src="images/no_asterisk.gif" /><br />
@@ -2770,24 +2846,30 @@
                                     <br /> 
                                 </p>
                             </td>
-                            <td valign="top" width="30%">
+                            <td valign="top">
                                 <p>
                                     <b>Exotic Weapons</b>
                                 </p>
+                                <h5>Light Melee</h5>
                                 <input onclick="Arms()" name="kama" type="checkbox" />Kama<img name="kama_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="nanchaku" type="checkbox" />Nanchaku<img name="nanchaku_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="sai" type="checkbox" />Sai<img name="sai_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="siangham" type="checkbox" />Siangham<img name="siangham_star" src="images/no_asterisk.gif" /><br />
+                                <h5>One-Heanded Melee</h5>
                                 <input onclick="Arms()" name="bastardsword" type="checkbox" />Bastard Sword<img name="bastardsword_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="dwarvenwaraxe" type="checkbox" />Dwarven Waraxe<img name="dwarvenwaraxe_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="whip" type="checkbox" />Whip<img name="whip_star" src="images/no_asterisk.gif" /><br />
+                                <h5>One-Heanded Melee</h5>
                                 <input onclick="Arms()" name="orcdoubleaxe" type="checkbox" />Orc Double Axe<img name="orcdoubleaxe_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="spikedchain" type="checkbox" />Spiked Chain<img name="spikedchain_star" src="images/no_asterisk.gif" /><br />
+                                <input onclick="Arms()" name="elvencurveblade" type="checkbox" />Elven Curve Blade<img name="elvencurveblade_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="direflail" type="checkbox" />Dire Flail<img name="direflail_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="gnomehookedhammer" type="checkbox" />Gnome Hooked Hammer<img name="gnomehookedhammer_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="twobladedsword" type="checkbox" />Two-bladed Sword<img name="twobladedsword_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="dwarvenurgrosh" type="checkbox" />Dwarven Urgrosh<img name="dwarvenurgrosh_star" src="images/no_asterisk.gif" /><br />
+                                <h5>Ranged</h5>
                                 <input onclick="Arms()" name="bolas" type="checkbox" />Bolas<img name="bolas_star" src="images/no_asterisk.gif" /><br />
+                                <input onclick="Arms()" name="halflingstaffsling" type="checkbox" />Halfling Staff Sling<img name="halflingstaffsling_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="handcrossbow" type="checkbox" />Hand Crossbow<img name="handcrossbow_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="repeatingheavycrossbow" type="checkbox" />Repeating Heavy Crossbow<img name="repeatingheavycrossbow_star" src="images/no_asterisk.gif" /><br />
                                 <input onclick="Arms()" name="repeatinglightcrossbow" type="checkbox" />Repeating Light Crossbow<img name="repeatinglightcrossbow_star" src="images/no_asterisk.gif" /><br />
@@ -2806,8 +2888,8 @@
                                     <option>10</option>
                                 </select>
                                 Shuriken (5)<img name="shuriken_star" src="images/no_asterisk.gif" /><br />
-                                <input onclick="Arms()" name="pistol" type="checkbox" />Pistol<img name="pistol_star" src="images/no_asterisk.gif" /><br />
-                                <input onclick="Arms()" name="musket" type="checkbox" />Musket<img name="musket_star" src="images/no_asterisk.gif" /><br />
+                                <!-- <input onclick="Arms()" name="pistol" type="checkbox" />Pistol<img name="pistol_star" src="images/no_asterisk.gif" /><br />
+                                <input onclick="Arms()" name="musket" type="checkbox" />Musket<img name="musket_star" src="images/no_asterisk.gif" /><br /> -->
                             </td>
                         </tr>
                     </tbody>
@@ -2929,134 +3011,251 @@
                                         <option>5</option> <option>6</option> <option>7</option>
                                         <option>8</option> <option>9</option> <option>10</option>
                                     </select>
-                                    Crossbow
-                                    bolts (10)<br />
+                                    Crossbow bolts (10)<br />
 
                                     <select name="slingbullets"> 
                                         <option selected="selected">0</option> <option>1</option> <option>2</option>
                                         <option>3</option> <option>4</option> <option>5</option>
                                         <option>6</option> <option>7</option> <option>8</option>
-                                        <option>9</option> <option>10</option></select>Sling bullets
-                                    (10)<br />
+                                        <option>9</option> <option>10</option></select>
+                                    Sling bullets (10)<br />
 
-                                    <select name="bullets"> 
+                                    <!-- <select name="bullets"> 
                                         <option selected="selected">0</option>
                                         <option>1</option> <option>2</option> <option>3</option>
                                         <option>4</option> <option>5</option> <option>6</option>
                                         <option>7</option> <option>8</option> <option>9</option>
-                                        <option>10</option></select>Bullets (20)<br />
+                                        <option>10</option></select>
+                                    Bullets (20)<br /> -->
 
-
-                                    <select name="slingbullets"> 
+                                    <select name="blowgundarts"> 
                                         <option selected="selected">0</option> <option>1</option> <option>2</option>
                                         <option>3</option> <option>4</option> <option>5</option>
                                         <option>6</option> <option>7</option> <option>8</option>
-                                        <option>9</option> <option>10</option></select>Sling bullets
-                                    (10)<br />
+                                        <option>9</option> <option>10</option></select>
+                                    Blowgun darts (10)<br />
 
                                     <select onchange="Arms()" name="throwingdaggers"> <option selected="selected">0</option> <option>1</option> <option>2</option>
                                         <option>3</option> <option>4</option> <option>5</option>
                                         <option>6</option> <option>7</option> <option>8</option>
-                                        <option>9</option> <option>10</option></select>Throwing daggers
-                                    <br />
+                                        <option>9</option> <option>10</option></select>
+                                    Throwing daggers
+                                </p>
+                                <p>
+                                    <u>Adventuring gear</u>
+                                </p>
 
-                                </p><p><u>Adventuring gear</u>
-                                </p><p><input onclick="" name="backpack" type="checkbox" />Backpack<br /><input onclick="" name="barrel" type="checkbox" />Barrel<br /><input onclick="" name="basket" type="checkbox" />Basket<br /><input onclick="" name="bedroll" type="checkbox" />Bedroll<br /><input onclick="" name="bell" type="checkbox" />Bell<br /><select onchange="" name="blanketwinter_list"> <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                <p>
+                                    <input name="backpack" type="checkbox" />Backpack<br />
+                                    <input name="barrel" type="checkbox" />Barrel<br />
+                                    <input name="basket" type="checkbox" />Basket<br />
+                                    <input name="bedroll" type="checkbox" />Bedroll<br />
+                                    <input name="bell" type="checkbox" />Bell<br />
+                                    <select name="blanketwinter_list"> 
+                                        <option selected="selected">0</option> <option>1</option> <option>2</option>
                                         <option>3</option> <option>4</option> <option>5</option>
                                         <option>6</option> <option>7</option> <option>8</option>
-                                        <option>9</option> <option>10</option></select>Blanket, winter<br /><input onclick="" name="blockandtackle" type="checkbox" />Block and tackle<br /><input onclick="" name="bottle" type="checkbox" />Bottle<br /><input onclick="" name="bucket" type="checkbox" />Bucket<br /><input onclick="" name="caltrops" type="checkbox" />Caltrops<br /><input onclick="" name="candle" type="checkbox" />Candle<br /></p></td>
-                            <td><input onclick="" name="canvas" type="checkbox" />Canvas (sq. yd.)<br /><input onclick="" name="casemaporscroll" type="checkbox" />Case (map or scroll)<br /><select onchange="" name="chain"> <option selected="selected">0</option> <option>1</option>
-                                    <option>2</option> <option>3</option> <option>4</option>
-                                    <option>5</option> <option>6</option> <option>7</option>
-                                    <option>8</option> <option>9</option> <option>10</option></select>Chain
-                                (ten feet)<br /><input onclick="" name="chalk" type="checkbox" />Chalk<br /><input onclick="" name="chest" type="checkbox" />Chest<br /><input onclick="" name="crowbar" type="checkbox" />Crowbar<br /><select onchange="" name="firewood">
-                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Firewood (1 day)<br /><input onclick="" name="fishhook" type="checkbox" />Fishhook<br /><input onclick="" name="fishingnet" type="checkbox" />Fishing net<br /><select onchange="" name="flask"> <option selected="selected">0</option> <option>1</option>
-                                    <option>2</option> <option>3</option> <option>4</option>
-                                    <option>5</option> <option>6</option> <option>7</option>
-                                    <option>8</option> <option>9</option>
-                                    <option>10</option></select>Flask<br /><input onclick="" name="flintandsteel" type="checkbox" />Flint and steel<br /><input onclick="" name="grapplinghook" type="checkbox" />Grappling hook<br /><input onclick="" name="hammer" type="checkbox" />Hammer<br /><input onclick="" name="inkvial" type="checkbox" />Ink
-                                vial<br /><input onclick="" name="inkpen" type="checkbox" />Ink pen<br /><input onclick="" name="jugclay" type="checkbox" />Jug, clay<br /><input onclick="" name="ladder" type="checkbox" />Ladder<br /><input onclick="" name="lampcommon" type="checkbox" />Lamp (common)<br /></td>
-                            <td><input onclick="" name="lanternbullseye" type="checkbox" />Lamp (bullseye)<br /><input onclick="" name="lanternhooded" type="checkbox" />Lantern (hooded)<br /><select onchange="" name="lock">
-                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Lock<br /><select onchange="" name="manacles"> <option selected="selected">0</option> <option>1</option>
-                                    <option>2</option> <option>3</option> <option>4</option>
-                                    <option>5</option> <option>6</option> <option>7</option>
-                                    <option>8</option> <option>9</option>
-                                    <option>10</option></select>Manacles<br /><input onclick="" name="mirror" type="checkbox" />Mirror<br /><input onclick="" name="mug" type="checkbox" />Mug<br /><select onchange="" name="oilflask"> <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Oil flask<br /><select onchange="" name="paper"> <option selected="selected">0</option> <option>1</option>
-                                    <option>2</option> <option>3</option> <option>4</option>
-                                    <option>5</option> <option>6</option> <option>7</option>
-                                    <option>8</option> <option>9</option> <option>10</option></select>Paper
-                                (sheet)<br /><select onchange="" name="parchment"> <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Parchment (sheet)<br /><input onclick="" name="pick" type="checkbox" />Pick<br /><input onclick="" name="pitcher" type="checkbox" />Pitcher<br /><select onchange="" name="piton"> <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Piton<br /><input onclick="" name="pole" type="checkbox" />Pole<br /><input onclick="" name="pot" type="checkbox" />Pot<br /><select onchange="" name="pouch"> <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Pouch<br /><input onclick="" name="ram" type="checkbox" />Ram<br /><select onchange="" name="rations"> <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Rations<br /></td>
-                            <td><select onchange="" name="ropehempen">
-                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Rope, hempen (fifty
-                                feet)<br /><select onchange="" name="ropesilk"> <option selected="selected">0</option>
-                                    <option>1</option> <option>2</option> <option>3</option>
-                                    <option>4</option> <option>5</option> <option>6</option>
-                                    <option>7</option> <option>8</option> <option>9</option>
-                                    <option>10</option></select>Rope (silk)<br /><select onchange="" name="sack">
-                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Sack<br /><input onclick="" name="sealingwax" type="checkbox" />Sealing wax<br /><input onclick="" name="sewingneedle" type="checkbox" />Sewing needle<br /><input onclick="" name="signalwhistle" type="checkbox" />Signal whistle<br /><input onclick="" name="signetring" type="checkbox" />Signet ring<br /><input onclick="" name="sledge" type="checkbox" />Sledge<br /><input onclick="" name="soap" type="checkbox" />Soap<br /><input onclick="" name="spadeorshovel" type="checkbox" />Spade
-                                / Shovel<br /><input onclick="" name="spyglass" type="checkbox" />Spyglass<br /><input onclick="" name="tent" type="checkbox" />Tent<br /><select onchange="" name="torch"> <option selected="selected">0</option> <option>1</option> <option>2</option>
-                                    <option>3</option> <option>4</option> <option>5</option>
-                                    <option>6</option> <option>7</option> <option>8</option>
-                                    <option>9</option> <option>10</option></select>Torch<br /><select onchange="" name="vialinkorpotion"> <option selected="selected">0</option>
-                                    <option>1</option> <option>2</option> <option>3</option>
-                                    <option>4</option> <option>5</option> <option>6</option>
-                                    <option>7</option> <option>8</option> <option>9</option>
-                                    <option>10</option></select>Vial (ink or potion)<br /><select onchange="" name="waterskin"> <option selected="selected">0</option> <option>1</option>
-                                    <option>2</option> <option>3</option> <option>4</option>
-                                    <option>5</option> <option>6</option> <option>7</option>
-                                    <option>8</option> <option>9</option> <option>10</option></select>Water
-                                skin<br /><input onclick="" name="whetstone" type="checkbox" />Whetstone<br />
+                                        <option>9</option> <option>10</option>
+                                    </select>
+                                    Blanket, winter<br />
+                                    <input name="blockandtackle" type="checkbox" />Block and tackle<br />
+                                    <input name="bottle" type="checkbox" />Bottle<br />
+                                    <input name="bucket" type="checkbox" />Bucket<br />
+                                    <input name="caltrops" type="checkbox" />Caltrops<br />
+                                    <input name="candle" type="checkbox" />Candle
+                                </p>
                             </td>
-                            <td><u>Tool and skill kits</u>:
+                            <td>
+                                <input name="canvas" type="checkbox" />Canvas (sq. yd.)<br />
+                                <input name="casemaporscroll" type="checkbox" />Case (map or scroll)<br />
+                                <select name="chain"> 
+                                    <option selected="selected">0</option> <option>1</option>
+                                    <option>2</option> <option>3</option> <option>4</option>
+                                    <option>5</option> <option>6</option> <option>7</option>
+                                    <option>8</option> <option>9</option> <option>10</option></select>
+                                Chain (ten feet)<br />
+                                <input name="chalk" type="checkbox" />Chalk<br />
+                                <input name="chest" type="checkbox" />Chest<br />
+                                <input name="crowbar" type="checkbox" />Crowbar<br />
+                                <select name="firewood">
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Firewood (1 day)<br />
+                                <input name="fishhook" type="checkbox" />Fishhook<br />
+                                <input name="fishingnet" type="checkbox" />Fishing net<br />
+                                <select name="flask"> 
+                                    <option selected="selected">0</option> <option>1</option>
+                                    <option>2</option> <option>3</option> <option>4</option>
+                                    <option>5</option> <option>6</option> <option>7</option>
+                                    <option>8</option> <option>9</option>
+                                    <option>10</option>
+                                </select>
+                                Flask<br />
+                                <input name="flintandsteel" type="checkbox" />Flint and steel<br />
+                                <input name="grapplinghook" type="checkbox" />Grappling hook<br />
+                                <input name="hammer" type="checkbox" />Hammer<br />
+                                <input name="inkvial" type="checkbox" />Ink vial<br />
+                                <input name="inkpen" type="checkbox" />Ink pen<br />
+                                <input name="jugclay" type="checkbox" />Jug, clay<br />
+                                <input name="ladder" type="checkbox" />Ladder<br />
+                                <input name="lampcommon" type="checkbox" />Lamp (common)
+                            </td>
+                            <td>
+                                <input name="lanternbullseye" type="checkbox" />Lamp (bullseye)<br />
+                                <input name="lanternhooded" type="checkbox" />Lantern (hooded)<br />
+                                <select name="lock">
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Lock<br />
+                                <select name="manacles"> 
+                                    <option selected="selected">0</option> <option>1</option>
+                                    <option>2</option> <option>3</option> <option>4</option>
+                                    <option>5</option> <option>6</option> <option>7</option>
+                                    <option>8</option> <option>9</option>
+                                    <option>10</option>
+                                </select>
+                                Manacles<br />
+                                <input name="mirror" type="checkbox" />Mirror<br />
+                                <input name="mug" type="checkbox" />Mug<br />
+                                <select name="oilflask"> 
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Oil flask<br />
+                                <select name="paper"> 
+                                    <option selected="selected">0</option> <option>1</option>
+                                    <option>2</option> <option>3</option> <option>4</option>
+                                    <option>5</option> <option>6</option> <option>7</option>
+                                    <option>8</option> <option>9</option> <option>10</option>
+                                </select>
+                                Paper (sheet)<br />
+                                <select name="parchment"> 
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Parchment (sheet)<br />
+                                <input name="pick" type="checkbox" />Pick<br />
+                                <input name="pitcher" type="checkbox" />Pitcher<br />
+                                <select name="piton"> 
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Piton<br />
+                                <input name="pole" type="checkbox" />Pole<br />
+                                <input name="pot" type="checkbox" />Pot<br />
+                                <select name="pouch"> 
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Pouch<br />
+                                <input name="ram" type="checkbox" />Ram<br />
+                                <select name="rations"> 
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Rations
+                            </td>
+                            <td>
+                                <select name="ropehempen">
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Rope, hempen (fifty feet)<br />
+                                <select name="ropesilk"> 
+                                    <option selected="selected">0</option>
+                                    <option>1</option> <option>2</option> <option>3</option>
+                                    <option>4</option> <option>5</option> <option>6</option>
+                                    <option>7</option> <option>8</option> <option>9</option>
+                                    <option>10</option>
+                                </select>
+                                Rope, silk (fifty feet)<br />
+                                <select name="sack">
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Sack<br />
+                                <input name="sealingwax" type="checkbox" />Sealing wax<br />
+                                <input name="sewingneedle" type="checkbox" />Sewing needle<br />
+                                <input name="signalwhistle" type="checkbox" />Signal whistle<br />
+                                <input name="signetring" type="checkbox" />Signet ring<br />
+                                <input name="sledge" type="checkbox" />Sledge<br />
+                                <input name="soap" type="checkbox" />Soap<br />
+                                <input name="spadeorshovel" type="checkbox" />Shovel<br />
+                                <input name="spyglass" type="checkbox" />Spyglass<br />
+                                <input name="tent" type="checkbox" />Tent<br />
+                                <select name="torch"> 
+                                    <option selected="selected">0</option> <option>1</option> <option>2</option>
+                                    <option>3</option> <option>4</option> <option>5</option>
+                                    <option>6</option> <option>7</option> <option>8</option>
+                                    <option>9</option> <option>10</option>
+                                </select>
+                                Torch<br />
+                                <select name="vialinkorpotion"> 
+                                    <option selected="selected">0</option>
+                                    <option>1</option> <option>2</option> <option>3</option>
+                                    <option>4</option> <option>5</option> <option>6</option>
+                                    <option>7</option> <option>8</option> <option>9</option>
+                                    <option>10</option>
+                                </select>
+                                Vial (ink or potion)<br />
+                                <select name="waterskin"> 
+                                    <option selected="selected">0</option> <option>1</option>
+                                    <option>2</option> <option>3</option> <option>4</option>
+                                    <option>5</option> <option>6</option> <option>7</option>
+                                    <option>8</option> <option>9</option> <option>10</option>
+                                </select>
+                                Water skin<br />
+                                <input name="whetstone" type="checkbox" />Whetstone
+                            </td>
+                            <td>
+                                <u>Tool and skill kits</u>:
                                 <p>
-                                    <input onclick="" name="alchemistlab" type="checkbox" />Alchemist's
-                                    lab<br /><input onclick="" name="artisantools" type="checkbox" />Artisan's
-                                    tools<br /><input onclick="" name="climberskit" type="checkbox" />Climber's
-                                    kit<br /><input onclick="" name="disguisekit" type="checkbox" />Disguise
-                                    kit<br /><input onclick="" name="healerkit" type="checkbox" />Healer's
-                                    kit<br /><input onclick="" name="hollyandmistletoe" type="checkbox" />Holly and
-                                    mistletoe<br /><input onclick="" name="holysymbolwooden" type="checkbox" />Holy
-                                    symbol, wooden<br /><input onclick="" name="holysymbolsilver" type="checkbox" />Holy symbol, silver<br />
-                                    <input onclick="" name="hourglass" type="checkbox" />Hourglass<br />
-                                    <input onclick="" name="magnifyingglass" type="checkbox" />Magnifying glass<br />
-                                    <input onclick="" name="musicalinstrument" type="checkbox" />Musical instrument<br />
-                                    <input onclick="" name="scale" type="checkbox" />Scale, merchant's<br />
-                                    <input onclick="" name="spellcomponentpouch" type="checkbox" />Spell component pouch<br />
-                                    <select onchange="" name="spellbook"> <option selected="selected">0</option>
+                                    <input name="alchemistlab" type="checkbox" />
+                                    Alchemist's lab<br />
+                                    <input name="artisantools" type="checkbox" />
+                                    Artisan's tools<br />
+                                    <input name="climberskit" type="checkbox" />
+                                    Climber's kit<br />
+                                    <input name="disguisekit" type="checkbox" />
+                                    Disguise kit<br />
+                                    <input name="healerkit" type="checkbox" />
+                                    Healer's kit<br />
+                                    <input name="hollyandmistletoe" type="checkbox" />Holly and mistletoe<br />
+                                    <input name="holysymbolwooden" type="checkbox" />Holy symbol, wooden<br />
+                                    <input name="holysymbolsilver" type="checkbox" />Holy symbol, silver<br />
+                                    <input name="hourglass" type="checkbox" />Hourglass<br />
+                                    <input name="magnifyingglass" type="checkbox" />Magnifying glass<br />
+                                    <input name="musicalinstrument" type="checkbox" />Musical instrument<br />
+                                    <input name="scale" type="checkbox" />Scale, merchant's<br />
+                                    <input name="spellcomponentpouch" type="checkbox" />Spell component pouch<br />
+                                    <select name="spellbook"> <option selected="selected">0</option>
                                         <option>1</option> <option>2</option> <option>3</option>
                                         <option>4</option> <option>5</option> <option>6</option>
                                         <option>7</option> <option>8</option> <option>9</option>
                                         <option>10</option>
                                     </select>Spellbook<br />
-                                    <input onclick="" name="thievestools" type="checkbox" />Thieves' tools<br />
-                                    <select onchange="" name="tool">
+                                    <input name="thievestools" type="checkbox" />Thieves' tools<br />
+                                    <select name="tool">
                                         <option selected="selected">0</option> <option>1</option> <option>2</option>
                                         <option>3</option> <option>4</option> <option>5</option>
                                         <option>6</option> <option>7</option> <option>8</option>
@@ -3081,49 +3280,51 @@
                                     <textarea name="additionalEquipment" rows="5" cols="40"></textarea>
                                 </p>
                             </td>
-                            <td width="5%"></td>
+                            <td width="5%">&nbsp;</td>
                             <td>
-                                <b>Psicrystal</b>
-                                <p>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <input onclick="crystals()" name="artiste_crystal" type="checkbox" />Artiste<br />
-                                                    <input onclick="crystals()" name="bully_crystal" type="checkbox" />Bully<br />
-                                                    <input onclick="crystals()" name="focused_crystal" type="checkbox" />Focused<br />
-                                                    <input onclick="crystals()" name="friendly_crystal" type="checkbox" />Friendly<br />
-                                                    <input onclick="crystals()" name="hero_crystal" type="checkbox" />Hero<br />
-                                                    <input onclick="crystals()" name="liar_crystal" type="checkbox" />Liar<br />
-                                                </td>
-                                                <td>
-                                                    <input onclick="crystals()" name="meticulous_crystal" type="checkbox" />Meticulous<br />
-                                                    <input onclick="crystals()" name="nimble_crystal" type="checkbox" />Nimble<br />
-                                                    <input onclick="crystals()" name="poised_crystal" type="checkbox" />Poised<br />
-                                                    <input onclick="crystals()" name="resolved_crystal" type="checkbox" />Resolved<br />
-                                                    <input onclick="crystals()" name="sagearcana_crystal" type="checkbox" />Sage -- arcana<br />
-                                                    <input onclick="crystals()" name="sageengineering_crystal" type="checkbox" />Sage -- engineering<br />
-                                                </td>
-                                                <td>
-                                                    <input onclick="crystals()" name="sagedungeoneering_crystal" type="checkbox" />Sage -- dungeoneering<br />
-                                                    <input onclick="crystals()" name="sagegeography_crystal" type="checkbox" />Sage -- geography<br />
-                                                    <input onclick="crystals()" name="sagehistory_crystal" type="checkbox" />Sage -- history<br />
-                                                    <input onclick="crystals()" name="sagelocal_crystal" type="checkbox" />Sage -- local<br />
-                                                    <input onclick="crystals()" name="sagenature_crystal" type="checkbox" />Sage -- nature<br />
-                                                    <input onclick="crystals()" name="sagenobility_crystal" type="checkbox" />Sage -- nobility<br />
-                                                </td>
-                                                <td>
-                                                    <input onclick="crystals()" name="sageplanes_crystal" type="checkbox" />Sage -- planes<br />
-                                                    <input onclick="crystals()" name="sagepsionics_crystal" type="checkbox" />Sage -- psionics<br />
-                                                    <input onclick="crystals()" name="sagereligion_crystal" type="checkbox" />Sage -- religion<br />
-                                                    <input onclick="crystals()" name="singleminded_crystal" type="checkbox" />Single-minded<br />
-                                                    <input onclick="crystals()" name="sneaky_crystal" type="checkbox" />Sneaky<br />
-                                                    <input onclick="crystals()" name="sympathetic_crystal" type="checkbox" />Sympathetic<br />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </p>
+                                <fieldset id="psicrystalChoice">
+                                    <b>Psicrystal</b>
+                                    <p>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input onclick="crystals()" name="artiste_crystal" type="checkbox" />Artiste<br />
+                                                        <input onclick="crystals()" name="bully_crystal" type="checkbox" />Bully<br />
+                                                        <input onclick="crystals()" name="focused_crystal" type="checkbox" />Focused<br />
+                                                        <input onclick="crystals()" name="friendly_crystal" type="checkbox" />Friendly<br />
+                                                        <input onclick="crystals()" name="hero_crystal" type="checkbox" />Hero<br />
+                                                        <input onclick="crystals()" name="liar_crystal" type="checkbox" />Liar<br />
+                                                    </td>
+                                                    <td>
+                                                        <input onclick="crystals()" name="meticulous_crystal" type="checkbox" />Meticulous<br />
+                                                        <input onclick="crystals()" name="nimble_crystal" type="checkbox" />Nimble<br />
+                                                        <input onclick="crystals()" name="poised_crystal" type="checkbox" />Poised<br />
+                                                        <input onclick="crystals()" name="resolved_crystal" type="checkbox" />Resolved<br />
+                                                        <input onclick="crystals()" name="sagearcana_crystal" type="checkbox" />Sage -- arcana<br />
+                                                        <input onclick="crystals()" name="sageengineering_crystal" type="checkbox" />Sage -- engineering<br />
+                                                    </td>
+                                                    <td>
+                                                        <input onclick="crystals()" name="sagedungeoneering_crystal" type="checkbox" />Sage -- dungeoneering<br />
+                                                        <input onclick="crystals()" name="sagegeography_crystal" type="checkbox" />Sage -- geography<br />
+                                                        <input onclick="crystals()" name="sagehistory_crystal" type="checkbox" />Sage -- history<br />
+                                                        <input onclick="crystals()" name="sagelocal_crystal" type="checkbox" />Sage -- local<br />
+                                                        <input onclick="crystals()" name="sagenature_crystal" type="checkbox" />Sage -- nature<br />
+                                                        <input onclick="crystals()" name="sagenobility_crystal" type="checkbox" />Sage -- nobility<br />
+                                                    </td>
+                                                    <td>
+                                                        <input onclick="crystals()" name="sageplanes_crystal" type="checkbox" />Sage -- planes<br />
+                                                        <input onclick="crystals()" name="sagepsionics_crystal" type="checkbox" />Sage -- psionics<br />
+                                                        <input onclick="crystals()" name="sagereligion_crystal" type="checkbox" />Sage -- religion<br />
+                                                        <input onclick="crystals()" name="singleminded_crystal" type="checkbox" />Single-minded<br />
+                                                        <input onclick="crystals()" name="sneaky_crystal" type="checkbox" />Sneaky<br />
+                                                        <input onclick="crystals()" name="sympathetic_crystal" type="checkbox" />Sympathetic<br />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </fieldset>
                             </td>
                         </tr>
                     </tbody>
@@ -3136,7 +3337,8 @@
                         <tr>
 
                             <td>
-                                <textarea name="Looks" rows="5" cols="40"></textarea>
+                                <b>Description</b>
+                                <p><textarea name="Looks" rows="5" cols="40"></textarea></p>
                                 <p>
                                     <b>Eyes:</b> 
                                     <input onclick="pigmentation()" name="eye_color" type="radio" />Red 
@@ -3304,35 +3506,31 @@
                             </td>
                             <td width="5%"></td>
                             <td valign="top" width="45%">
-                                <b>Animal companion</b><p>
-                                    <table>
-                                        <tbody>
-                                            <tr width="10%">
-                                                <td>
-                                                    <b>Species:</b></td><td width="5%"></td>
-                                                <td>
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Ape&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Badger&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Bear&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Boar&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Bird&nbsp;(raptor)&nbsp;&nbsp;<br />
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Camel&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Cat&nbsp;(big)&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Cat&nbsp;(small)&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Crocodile&nbsp;&nbsp;<br />
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Deionynychus&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Dog&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Horse&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Pony&nbsp;&nbsp;<br />
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Shark&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Snake&nbsp;(constrictor)&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Snake&nbsp;(viper)&nbsp;&nbsp;
-                                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Wolf&nbsp;&nbsp;
-                                                </td>                         
-                                            </tr>
-                                        </tbody>
-                                    </table>`
+                                <b>Animal companion</b>
+
+                                <p><textarea name="AnimalCompanionBox" rows="5" cols="40"></textarea></p>
+
+                                <p>
+                                    <b>Species:</b><br />
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Ape&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Badger&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Bear&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Boar&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Bird&nbsp;(raptor)&nbsp;&nbsp;<br />
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Camel&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Cat&nbsp;(big)&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Cat&nbsp;(small)&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Crocodile&nbsp;&nbsp;<br />
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Deionynychus&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Dog&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Horse&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Pony&nbsp;&nbsp;<br />
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Shark&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Snake&nbsp;(constrictor)&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Snake&nbsp;(viper)&nbsp;&nbsp;
+                                    <input name="ac_species" onclick="AnimalCompanion()" type="radio" />Wolf&nbsp;&nbsp;
                                 </p>
+
                                 <p>
                                     <b>Up at Level 04:</b>
                                     <input name="ac_upat04" onclick="AnimalCompanion()" type="radio" />Str&nbsp;&nbsp;
@@ -3368,17 +3566,17 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td width="33%">
+                                                <td>
                                                     <select name="ac_acrobatics_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Acrobatics *<br />
                                                     <select name="ac_climb_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Climb *<br />
                                                     <select name="ac_escapeartist_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Escape Artist<br />
                                                 </td>
-                                                <td width="33%">
+                                                <td>
                                                     <select name="ac_fly_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Fly *<br />
                                                     <select name="ac_intimidate_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Intimidate<br />
                                                     <select name="ac_perception_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Perception *<br />
                                                 </td>
-                                                <td width="33%">
+                                                <td>
                                                     <select name="ac_stealth_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Stealth *<br />
                                                     <select name="ac_survival_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Survival<br />
                                                     <select name="ac_swim_list" onchange="AnimalCompanion()"> <option selected="selected">0</option></select>Swim *<br />
@@ -3451,7 +3649,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <textarea name="AnimalCompanionBox" rows="5" cols="40"></textarea>
+                                    <!-- <textarea name="AnimalCompanionBox" rows="5" cols="40"></textarea> -->
                                 </p>
                             </td>
                         </tr>

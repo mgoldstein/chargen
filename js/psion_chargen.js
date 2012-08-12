@@ -1,3 +1,8 @@
+/*
+ * Add new familiars
+ * Fix cavalier mount
+ */
+
 function PsionicRace() {
     if (rayce == 209) {
         return true;
@@ -1745,10 +1750,13 @@ function NegateAnimalCompanionStuff() {
 }
 
 function AnimalCompanion0() {
-    if (((druid_levels == 0) || (no_druid_domain == false)) && (ranger_levels < 3)) {
+    if ( ((druid_levels == 0) || (no_druid_domain == false)) && (ranger_levels < 3) && (cavalier_levels == 0)) {
         NegateAnimalCompanionStuff();
         document.form1.AnimalCompanionBox.value="You don't have an animal companion.";
         return false;
+    }
+    else if (cavalier_levels > 0) {
+        document.form1.AnimalCompanionBox.value="Cavaliers gain a mount.  A Medium cavalier can select a camel or a horse. A Small cavalier can select a pony or wolf, but can also select a boar or a dog if he is at least 4th level.";
     }
     else {
         document.form1.AnimalCompanionBox.value="You may take an animal companion if you wish.";
@@ -1757,122 +1765,162 @@ function AnimalCompanion0() {
 
 function AnimalCompanion() {
     ac_species_name="";
-    if (((druid_levels == 0) || (no_druid_domain == false)) && (ranger_levels<3)) {
+    if ( ((druid_levels == 0) || (no_druid_domain == false) ) && (ranger_levels < 3 ) && (cavalier_levels == 0) ) {
         NegateAnimalCompanionStuff();
-        document.form1.AnimalCompanionBox.value="You don't have an animal companion.";
-        return;
+        document.form1.AnimalCompanionBox.value="Your class(es) do not qualify for an animal companion.";
+        return false;
     }
     if (document.form1.ac_species[0].checked) {
-        document.form1.AnimalCompanionBox.value="You chose an ape. ";
-        ac_species_name="Ape";
-        ac_strength=13;
-        ac_dexterity=17;
-        ac_constitution=10;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=7;
-        ac_large=false;
-        ac_small=false;
-        ac_speed="30, climb 30";
-        ac_natural_armor=1;
-        ac_attacks="bite (1d4) 2 claws (1d4)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_large=true;
-            ac_strength += 8;
-            ac_dexterity-=2;
-            ac_constitution += 4;
-            ac_natural_armor += 2;
-            ac_attacks="bite (1d6) 2 claws(1d6)";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[0].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose an ape. ";
+            ac_species_name="Ape";
+            ac_strength=13;
+            ac_dexterity=17;
+            ac_constitution=10;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=7;
+            ac_large=false;
+            ac_small=false;
+            ac_speed="30, climb 30";
+            ac_natural_armor=1;
+            ac_attacks="bite (1d4) 2 claws (1d4)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_large=true;
+                ac_strength += 8;
+                ac_dexterity-=2;
+                ac_constitution += 4;
+                ac_natural_armor += 2;
+                ac_attacks="bite (1d6) 2 claws(1d6)";
+            }
         }
     }
     else if (document.form1.ac_species[1].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a badger / wolverine. ";
-        ac_species_name="Badger / Wolverine";
-        ac_strength=10;
-        ac_dexterity=17;
-        ac_constitution=15;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=10;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="30, burrow 10";
-        ac_natural_armor=2;
-        ac_attacks="bite (1d4) 2 claws (1d3)";
-        ac_special="rage as barbarian 6 rounds per day, low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="bite (1d6) 2 claws(1d4)";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[1].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a badger / wolverine. ";
+            ac_species_name="Badger / Wolverine";
+            ac_strength=10;
+            ac_dexterity=17;
+            ac_constitution=15;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=10;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="30, burrow 10";
+            ac_natural_armor=2;
+            ac_attacks="bite (1d4) 2 claws (1d3)";
+            ac_special="rage as barbarian 6 rounds per day, low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity-=2;
+                ac_constitution += 2;
+                ac_attacks="bite (1d6) 2 claws(1d4)";
+            }
         }
     }
     else if (document.form1.ac_species[2].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a bear. ";
-        ac_species_name="Bear";
-        ac_strength=15;
-        ac_dexterity=15;
-        ac_constitution=13;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=6;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="40";
-        ac_natural_armor=2;
-        ac_attacks="bite (1d4) 2 claws (1d3)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="bite (1d6) 2 claws(1d4)";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[2].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a bear. ";
+            ac_species_name="Bear";
+            ac_strength=15;
+            ac_dexterity=15;
+            ac_constitution=13;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=6;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="40";
+            ac_natural_armor=2;
+            ac_attacks="bite (1d4) 2 claws (1d3)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity-=2;
+                ac_constitution += 2;
+                ac_attacks="bite (1d6) 2 claws(1d4)";
+            }
         }
     }
     else if (document.form1.ac_species[3].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a bird (eagle / hawk / owl). ";
-        ac_species_name="Bird (eagle / hawk / owl)";
-        ac_strength=10;
-        ac_dexterity=15;
-        ac_constitution=12;
-        ac_intelligence=2;
-        ac_wisdom=14;
-        ac_charisma=6;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="10, fly 80";
-        ac_natural_armor=1;
-        ac_attacks="bite (1d4) 2 talons (1d4)";
-        ac_special="low-light vision";
-        if (animal_companion_level>=4) {
-            ac_strength += 2;
-            ac_constitution += 2;
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[3].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a bird (eagle / hawk / owl). ";
+            ac_species_name="Bird (eagle / hawk / owl)";
+            ac_strength=10;
+            ac_dexterity=15;
+            ac_constitution=12;
+            ac_intelligence=2;
+            ac_wisdom=14;
+            ac_charisma=6;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="10, fly 80";
+            ac_natural_armor=1;
+            ac_attacks="bite (1d4) 2 talons (1d4)";
+            ac_special="low-light vision";
+            if (animal_companion_level>=4) {
+                ac_strength += 2;
+                ac_constitution += 2;
+            }
         }
     }
     else if (document.form1.ac_species[4].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a boar. ";
-        ac_species_name="Boar";
-        ac_strength=13;
-        ac_dexterity=12;
-        ac_constitution=15;
-        ac_intelligence=2;
-        ac_wisdom=13;
-        ac_charisma=4;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="40";
-        ac_natural_armor=6;
-        ac_attacks="gore (1d6) ";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="gore (1d8)";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[4].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else if (small == true && cavalier_levels < 4) {
+            document.form1.ac_species[4].checked=false;
+            document.form1.AnimalCompanionBox.value="Small cavaliers may only choose a boar mount at level four.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a boar. ";
+            ac_species_name="Boar";
+            ac_strength=13;
+            ac_dexterity=12;
+            ac_constitution=15;
+            ac_intelligence=2;
+            ac_wisdom=13;
+            ac_charisma=4;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="40";
+            ac_natural_armor=6;
+            ac_attacks="gore (1d6) ";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity-=2;
+                ac_constitution += 2;
+                ac_attacks="gore (1d8)";
+            }
         }
     }
     else if (document.form1.ac_species[5].checked) {
@@ -1896,124 +1944,164 @@ function AnimalCompanion() {
         }
     }
     else if (document.form1.ac_species[6].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a Big Cat (lion / tiger). ";
-        ac_species_name="Big Cat (lion / tiger)";
-        ac_strength=13;
-        ac_dexterity=17;
-        ac_constitution=13;
-        ac_intelligence=2;
-        ac_wisdom=15;
-        ac_charisma=10;
-        ac_large=false;
-        ac_small=false;
-        ac_speed="40";
-        ac_natural_armor=1;
-        ac_attacks="bite (1d6), 2 claws (1d4); rake (1d4)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=7) {
-            ac_large=true;
-            ac_natural_armor=2;
-            ac_strength += 8;
-            ac_dexterity-=2;
-            ac_constitution += 4;
-            ac_attacks="bite (1d8), 2 claws (1d6); grab, pounce, rake (1d6)";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[6].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a Big Cat (lion / tiger). ";
+            ac_species_name="Big Cat (lion / tiger)";
+            ac_strength=13;
+            ac_dexterity=17;
+            ac_constitution=13;
+            ac_intelligence=2;
+            ac_wisdom=15;
+            ac_charisma=10;
+            ac_large=false;
+            ac_small=false;
+            ac_speed="40";
+            ac_natural_armor=1;
+            ac_attacks="bite (1d6), 2 claws (1d4); rake (1d4)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=7) {
+                ac_large=true;
+                ac_natural_armor=2;
+                ac_strength += 8;
+                ac_dexterity-=2;
+                ac_constitution += 4;
+                ac_attacks="bite (1d8), 2 claws (1d6); grab, pounce, rake (1d6)";
+            }
         }
     }
     else if (document.form1.ac_species[7].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a Small Cat (cheetah / leopard). ";
-        ac_species_name="Small Cat (cheetah / leopard)";
-        ac_strength=12;
-        ac_dexterity=21;
-        ac_constitution=13;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=6;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="50";
-        ac_natural_armor=1;
-        ac_attacks="bite (1d4) + trip; 2 claws (1d2)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="bite (1d6) + trip, 2 claws (1d3)";
-            ac_special += ", sprint";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[7].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a Small Cat (cheetah / leopard). ";
+            ac_species_name="Small Cat (cheetah / leopard)";
+            ac_strength=12;
+            ac_dexterity=21;
+            ac_constitution=13;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=6;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="50";
+            ac_natural_armor=1;
+            ac_attacks="bite (1d4) + trip; 2 claws (1d2)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity -= 2;
+                ac_constitution += 2;
+                ac_attacks="bite (1d6) + trip, 2 claws (1d3)";
+                ac_special += ", sprint";
+            }
         }
     }
     else if (document.form1.ac_species[8].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a crocodile / alligator. ";
-        ac_species_name="Crocodile / Alligator";
-        ac_strength=15;
-        ac_dexterity=14;
-        ac_constitution=15;
-        ac_intelligence=1;
-        ac_wisdom=12;
-        ac_charisma=2;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="20 swim 30";
-        ac_natural_armor=4;
-        ac_attacks="bite (1d6)";
-        ac_special="low-light vision";
-        if (animal_companion_level>=4) {
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="bite (1d8) or tail slap (1d12)";
-            ac_special="low-light vision, grab, death roll, sprint";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[8].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a crocodile / alligator. ";
+            ac_species_name="Crocodile / Alligator";
+            ac_strength=15;
+            ac_dexterity=14;
+            ac_constitution=15;
+            ac_intelligence=1;
+            ac_wisdom=12;
+            ac_charisma=2;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="20 swim 30";
+            ac_natural_armor=4;
+            ac_attacks="bite (1d6)";
+            ac_special="low-light vision";
+            if (animal_companion_level>=4) {
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity-=2;
+                ac_constitution += 2;
+                ac_attacks="bite (1d8) or tail slap (1d12)";
+                ac_special="low-light vision, grab, death roll, sprint";
+            }
         }
     }
     else if (document.form1.ac_species[9].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a deinonychus / velociraptor. ";
-        ac_species_name="Deinonychus / Velociraptor";
-        ac_strength=11;
-        ac_dexterity=17;
-        ac_constitution=17;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=14;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="60";
-        ac_natural_armor=1;
-        ac_attacks="2 talons (1d6), bite (1d4)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=7) {
-            ac_natural_armor=2;
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="2 talons (1d8), bite (1d6), 2 claws (1d4)";
-            ac_special="low-light vision, scent, pounce";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[9].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a deinonychus / velociraptor. ";
+            ac_species_name="Deinonychus / Velociraptor";
+            ac_strength=11;
+            ac_dexterity=17;
+            ac_constitution=17;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=14;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="60";
+            ac_natural_armor=1;
+            ac_attacks="2 talons (1d6), bite (1d4)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=7) {
+                ac_natural_armor=2;
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity-=2;
+                ac_constitution += 2;
+                ac_attacks="2 talons (1d8), bite (1d6), 2 claws (1d4)";
+                ac_special="low-light vision, scent, pounce";
+            }
         }
     }
     else if (document.form1.ac_species[10].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a dog. ";
-        ac_species_name="Dog";
-        ac_strength=13;
-        ac_dexterity=17;
-        ac_constitution=15;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=6;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="40";
-        ac_natural_armor=2;
-        ac_attacks="bite (1d4)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[10].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else if (cavalier_levels < 4 && small == true) {
+            document.form1.ac_species[10].checked=false;
+            document.form1.AnimalCompanionBox.value="Small cavaliers may only choose a dog mount at level four.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a dog. ";
+            ac_species_name="Dog";
+            ac_strength=13;
+            ac_dexterity=17;
+            ac_constitution=15;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=6;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="40";
             ac_natural_armor=2;
-            ac_small=false;
-            ac_strength += 4;
-            ac_dexterity-=2;
-            ac_constitution += 2;
-            ac_attacks="bite (1d6)";
+            ac_attacks="bite (1d4)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_natural_armor=2;
+                ac_small=false;
+                ac_strength += 4;
+                ac_dexterity-=2;
+                ac_constitution += 2;
+                ac_attacks="bite (1d6)";
+            }
         }
     }
     else if (document.form1.ac_species[11].checked) {
@@ -2038,120 +2126,154 @@ function AnimalCompanion() {
         }
     }
     else if (document.form1.ac_species[12].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a pony. ";
-        ac_species_name="Pony";
-        ac_strength=13;
-        ac_dexterity=13;
-        ac_constitution=12;
-        ac_intelligence=2;
-        ac_wisdom=11;
-        ac_charisma=4;
-        ac_large=false;
-        ac_small=false;
-        ac_speed="40";
-        ac_natural_armor=2;
-        ac_attacks="2 hooves (1d3)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_strength += 2;
-            ac_constitution += 2;
-            ac_special="low-light vision, scent, combat trained";
+        if ( (cavalier_levels > 0 && small==false) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[12].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a pony. ";
+            ac_species_name="Pony";
+            ac_strength=13;
+            ac_dexterity=13;
+            ac_constitution=12;
+            ac_intelligence=2;
+            ac_wisdom=11;
+            ac_charisma=4;
+            ac_large=false;
+            ac_small=false;
+            ac_speed="40";
+            ac_natural_armor=2;
+            ac_attacks="2 hooves (1d3)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_strength += 2;
+                ac_constitution += 2;
+                ac_special="low-light vision, scent, combat trained";
+            }
         }
     }
     else if (document.form1.ac_species[13].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a shark. ";
-        ac_species_name="Shark";
-        ac_strength=13;
-        ac_dexterity=15;
-        ac_constitution=15;
-        ac_intelligence=1;
-        ac_wisdom=12;
-        ac_charisma=2;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="swim 60";
-        ac_natural_armor=4;
-        ac_attacks="bite (1d4)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_attacks="bite (1d6)";
-            ac_small=false;
-            ac_strength += 2;
-            ac_constitution += 2;
-            ac_dexterity-=2;
-            ac_special="low-light vision, scent, blindsense";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[13].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a shark. ";
+            ac_species_name="Shark";
+            ac_strength=13;
+            ac_dexterity=15;
+            ac_constitution=15;
+            ac_intelligence=1;
+            ac_wisdom=12;
+            ac_charisma=2;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="swim 60";
+            ac_natural_armor=4;
+            ac_attacks="bite (1d4)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_attacks="bite (1d6)";
+                ac_small=false;
+                ac_strength += 2;
+                ac_constitution += 2;
+                ac_dexterity-=2;
+                ac_special="low-light vision, scent, blindsense";
+            }
         }
     }
     else if (document.form1.ac_species[14].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a constrictor snake. ";
-        ac_species_name="Constrictor Snake";
-        ac_strength=15;
-        ac_dexterity=17;
-        ac_constitution=13;
-        ac_intelligence=1;
-        ac_wisdom=12;
-        ac_charisma=2;
-        ac_large=false;
-        ac_small=false;
-        ac_speed="20, climb 20, swim 20";
-        ac_natural_armor=2;
-        ac_attacks="bite (1d3) plus grab";
-        ac_special="grab attack low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_attacks="bite (1d4) plus grab, constrict 1d4";
-            ac_large=true;
-            ac_strength += 8;
-            ac_constitution += 4;
-            ac_dexterity-=2;
-            ac_natural_armor += 1
-            ac_special="low-light vision, scent";
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[14].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a constrictor snake. ";
+            ac_species_name="Constrictor Snake";
+            ac_strength=15;
+            ac_dexterity=17;
+            ac_constitution=13;
+            ac_intelligence=1;
+            ac_wisdom=12;
+            ac_charisma=2;
+            ac_large=false;
+            ac_small=false;
+            ac_speed="20, climb 20, swim 20";
+            ac_natural_armor=2;
+            ac_attacks="bite (1d3) plus grab";
+            ac_special="grab attack low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_attacks="bite (1d4) plus grab, constrict 1d4";
+                ac_large=true;
+                ac_strength += 8;
+                ac_constitution += 4;
+                ac_dexterity-=2;
+                ac_natural_armor += 1
+                ac_special="low-light vision, scent";
+            }
         }
     }
     else if (document.form1.ac_species[15].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a viper. ";
-        ac_species_name="Viper";
-        ac_strength=8;
-        ac_dexterity=17;
-        ac_constitution=11;
-        ac_intelligence=1;
-        ac_wisdom=12;
-        ac_charisma=2;
-        ac_large=false;
-        ac_small=true;
-        ac_speed="20, climb 20, swim 20";
-        ac_natural_armor=2;
-        ac_attacks="bite (1d3) plus poison 1 round (6)";
-        ac_special="low-light vision, scent";
-        if (animal_companion_level>=4) {
-            ac_attacks="bite (1d4) plus poison 1 round (6)";
-            ac_small=false;
-            ac_strength += 4;
-            ac_constitution += 2;
-            ac_dexterity-=2;
+        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[15].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a viper. ";
+            ac_species_name="Viper";
+            ac_strength=8;
+            ac_dexterity=17;
+            ac_constitution=11;
+            ac_intelligence=1;
+            ac_wisdom=12;
+            ac_charisma=2;
+            ac_large=false;
+            ac_small=true;
+            ac_speed="20, climb 20, swim 20";
+            ac_natural_armor=2;
+            ac_attacks="bite (1d3) plus poison 1 round (6)";
+            ac_special="low-light vision, scent";
+            if (animal_companion_level>=4) {
+                ac_attacks="bite (1d4) plus poison 1 round (6)";
+                ac_small=false;
+                ac_strength += 4;
+                ac_constitution += 2;
+                ac_dexterity-=2;
+            }
         }
     }
     else if (document.form1.ac_species[16].checked) {
-        document.form1.AnimalCompanionBox.value="You chose a wolf. ";
-        ac_species_name="Wolf";
-        ac_strength=13;
-        ac_dexterity=15;
-        ac_constitution=15;
-        ac_intelligence=2;
-        ac_wisdom=12;
-        ac_charisma=6;
-        ac_large=false;
-        ac_small=false;
-        ac_speed="50";
-        ac_natural_armor=2;
-        ac_attacks="bite (1d6) plus trip";
-        ac_special="scent";
-        if (animal_companion_level>=4) {
-            ac_attacks="bite (1d8) plus trip";
-            ac_large=true;
-            ac_strength += 8;
-            ac_constitution += 4;
-            ac_dexterity-=2;
-            ac_natural_armor += 2;
+        if ( (cavalier_levels > 0 && small == false) && (druid_levels == 0) && (ranger_levels < 3) ) {
+            document.form1.ac_species[16].checked=false;
+            document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
+            return false;
+        }
+        else {
+            document.form1.AnimalCompanionBox.value="You chose a wolf. ";
+            ac_species_name="Wolf";
+            ac_strength=13;
+            ac_dexterity=15;
+            ac_constitution=15;
+            ac_intelligence=2;
+            ac_wisdom=12;
+            ac_charisma=6;
+            ac_large=false;
+            ac_small=false;
+            ac_speed="50";
+            ac_natural_armor=2;
+            ac_attacks="bite (1d6) plus trip";
+            ac_special="scent";
+            if (animal_companion_level>=4) {
+                ac_attacks="bite (1d8) plus trip";
+                ac_large=true;
+                ac_strength += 8;
+                ac_constitution += 4;
+                ac_dexterity-=2;
+                ac_natural_armor += 2;
+            }
         }
     }
     else {
@@ -2929,6 +3051,7 @@ function LightArmsAndArmorStars() {
     }
     if ((already_knows_simple_weapons) || (has_simpleweaponproficiency)) {
         document.form1.dart_star.src="images/asterisk.gif";
+        document.form1.blowgun_star.src="images/asterisk.gif";
     }
     if ((monk_levels > 0) || (already_knows_simple_weapons) || (has_simpleweaponproficiency)) {
         document.form1.javelin_star.src="images/asterisk.gif";
@@ -2966,6 +3089,9 @@ function LightArmsAndArmorStars() {
     if ((rogue_levels > 0) || (bard_levels > 0) || (rayce == 12) || (already_knows_martial_weapons)
         || (has_martialweaponproficiency)) {
         document.form1.shortsword_star.src="images/asterisk.gif";
+    }
+    if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
+        document.form1.starknife_star.src="images/asterisk.gif";
     }
     if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.battleaxe_star.src="images/asterisk.gif";
@@ -3065,6 +3191,12 @@ function LightArmsAndArmorStars() {
     if ((has_exoticweaponproficiency) || (rayce == 7)) {
         document.form1.orcdoubleaxe_star.src="images/asterisk.gif";
     }
+    if ((has_exoticweaponproficiency) || (rayce == 6)) {
+        document.form1.halflingstaffsling_star.src="images/asterisk.gif";
+    }
+    if ((has_exoticweaponproficiency) || (rayce == 3)) {
+        document.form1.elvencurveblade_star.src="images/asterisk.gif";
+    }
     if (has_exoticweaponproficiency) {
         document.form1.spikedchain_star.src="images/asterisk.gif";
     }
@@ -3098,12 +3230,14 @@ function LightArmsAndArmorStars() {
     if ((monk_levels > 0) || (has_exoticweaponproficiency)) {
         document.form1.shuriken_star.src="images/asterisk.gif";
     }
+    /* No guns
     if (has_exoticweaponproficiency) {
         document.form1.pistol_star.src="images/asterisk.gif";
     }
     if (has_exoticweaponproficiency) {
         document.form1.musket_star.src="images/asterisk.gif";
     }
+    */
     document.form1.no_armor_star.src="images/asterisk.gif";
 
     if ((already_knows_light_armor) || (has_armorproficiencylight)) {
@@ -5877,6 +6011,17 @@ function DoYourFeatEntitlements() {
         fighterfeatentitlement++;
     }
 
+    cavalierfeatentitlement=0;
+    if (cavalier_levels > 5) {
+        cavalierfeatentitlement++;
+    }
+    if (cavalier_levels > 11) {
+        cavalierfeatentitlement++;
+    }
+    if (cavalier_levels > 17) {
+        cavalierfeatentitlement++;
+    }
+    
     wilderfeatentitlement=0;
     if (wilder_levels > 0) {
         wilderfeatentitlement++;
@@ -6396,7 +6541,6 @@ function ArrowShow() {
     else {
         document.form1.domainarrow.src="images/dragonblank.gif";
     }
-
     if ((cleric_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)
         && (alignment>3) && (alignment<6)) {
         if ((document.form1.choose_energy[0].checked == false) && (document.form1.choose_energy[1].checked == false)) {
@@ -6416,14 +6560,23 @@ function ArrowShow() {
     else {
         document.form1.wizardspecialtyarrow.src="images/dragonblank.gif";
     }
-
+    if ((cavalier_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
+        if (!orderCount()) {
+            document.form1.cavalierorderarrow.src="images/dragonarrowright.gif";
+        }
+        else {
+            document.form1.cavalierorderarrow.src="images/dragongrayright.gif";
+        }
+    }
+    else {
+        document.form1.cavalierorderarrow.src="images/dragonblank.gif";
+    }
     if ((psion_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         document.form1.psionspecialtyarrow.src="images/dragongrayright.gif";
     }
     else {
         document.form1.psionspecialtyarrow.src="images/dragonblank.gif";
     }
-
     if ((wizard_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if (WizardSpecialty() == false) {
             document.form1.wizardgiveuparrow.src="images/dragonarrowright.gif";
@@ -6438,7 +6591,6 @@ function ArrowShow() {
     else {
         document.form1.wizardgiveuparrow.src="images/dragonblank.gif";
     }
-
     if ((ranger_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if ((document.form1.ranger_combat_track[0].checked == false)
             && (document.form1.ranger_combat_track[1].checked == false)) {
@@ -6451,7 +6603,6 @@ function ArrowShow() {
     else {
         document.form1.rangerarrow.src="images/dragonblank.gif";
     }
-
     if ((ranger_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if (RangerFoes() == false) {
             document.form1.favoredenemiesarrow.src="images/dragonarrowleft.gif";
@@ -8458,25 +8609,25 @@ function AdjustSkillMenus() {
         document.form1.perform_3_list.options[x]=new Option(x);
     }
     document.form1.perform_3_list.options[0].selected=true;
-    
+
     document.form1.profession_1_list.length=0;
     for (x=0; x<=total_levels; x++ ) {
         document.form1.profession_1_list.options[x]=new Option(x);
     }
     document.form1.profession_1_list.options[0].selected=true;
-    
+
     document.form1.profession_2_list.length=0;
     for (x=0; x<=total_levels; x++ ) {
         document.form1.profession_2_list.options[x]=new Option(x);
     }
     document.form1.profession_2_list.options[0].selected=true;
-    
+
     document.form1.profession_3_list.length=0;
     for (x=0; x<=total_levels; x++ ) {
         document.form1.profession_3_list.options[x]=new Option(x);
     }
     document.form1.profession_3_list.options[0].selected=true;
-    
+
     document.form1.ride_list.length=0;
     for (x=0; x<=total_levels; x++ ) {
         document.form1.ride_list.options[x]=new Option(x);
@@ -8532,7 +8683,7 @@ function AdjustSkillMenus() {
         document.form1.otherskill3_list.options[x]=new Option(x);
     }
     document.form1.otherskill3_list.options[0].selected=true;
-    animal_companion_level=druid_levels;
+    animal_companion_level=druid_levels + cavalier_levels;
     if (ranger_levels>=4) {
         animal_companion_level += ranger_levels;
     }
@@ -9382,41 +9533,32 @@ function Arms() {
         if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.punchingdagger.checked=false;
         }
-
         if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.spikedgauntlet.checked=false;
         }
-
         if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.lightmace.checked=false;
         }
-
         if ((druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.sickle.checked=false;
         }
-
         if ((monk_levels == 0) && (druid_levels == 0) && (psion_levels == 0) && (wizard_levels == 0)
             && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.club.checked=false;
         }
-
         if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.heavymace.checked=false;
         }
-
         if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.morningstar.checked=false;
         }
-
         if ((druid_levels == 0) && (psion_levels == 0) && (already_knows_simple_weapons == false)
             && (has_simpleweaponproficiency == false)) {
             document.form1.shortspear.checked=false;
         }
-
         if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.longspear.checked=false;
         }
-
         if ((wizard_levels == 0) && (monk_levels == 0) && (psion_levels == 0) && (druid_levels == 0)
             && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.quarterstaff.checked=false;
@@ -9441,6 +9583,9 @@ function Arms() {
         if ((monk_levels == 0) && (druid_levels == 0) && (already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
             document.form1.sling.checked=false;
         }
+        if ((already_knows_simple_weapons == false) && (has_simpleweaponproficiency == false)) {
+            document.form1.blowgun.checked=false;
+        }
         if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.throwingaxe.checked=false;
         }
@@ -9459,247 +9604,168 @@ function Arms() {
         if ((bard_levels == 0) && (rogue_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.sap.checked=false;
         }
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.lightshield.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.spikedarmor.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.lightspikedshield.checked=false;
         }
-
-        if ((rogue_levels == 0) && (rayce!=12) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rogue_levels == 0) && (rayce!=12) && (bard_levels == 0) && (already_knows_martial_weapons == false)
+            && (has_martialweaponproficiency == false)) {
             document.form1.shortsword.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
+            document.form1.starknife.checked=false;
+        }
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.battleaxe.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (rayce!=103) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (rayce!=103) && (has_martialweaponproficiency == false)) {
             document.form1.flail.checked=false;
         }
-
-        if ((rayce!=3) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rayce!=3) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.longsword.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.heavypick.checked=false;
         }
-
-        if ((rayce!=3) && (rogue_levels == 0) && (rayce!=12) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rayce!=3) && (rogue_levels == 0) && (rayce!=12) && (bard_levels == 0)
+            && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.rapier.checked=false;
         }
-
-        if ((druid_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((druid_levels == 0) && (already_knows_martial_weapons == false)
+            && (has_martialweaponproficiency == false)) {
             document.form1.scimitar.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.heavyshield.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.trident.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.warhammer.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false) && (rayce!=7) && (rayce!=22))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)
+            && (rayce!=7) && (rayce!=22)) {
             document.form1.falchion.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.glaive.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false) && (rayce!=7) && (rayce!=22))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)
+            && (rayce!=7) && (rayce!=22)) {
             document.form1.greataxe.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.greatclub.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (rayce!=103) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (rayce!=103)
+            && (has_martialweaponproficiency == false)) {
             document.form1.heavyflail.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.greatsword.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.guisarme.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.halberd.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.lance.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.ranseur.checked=false;
         }
-
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.scythe.checked=false;
         }
-
-        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.longbow.checked=false;
         }
-
-        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.compositelongbow.checked=false;
         }
-
-        if ((rayce!=3) && (rogue_levels == 0) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rayce!=3) && (rogue_levels == 0) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.shortbow.checked=false;
         }
-
-        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))
-        {
+        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.compositeshortbow.checked=false;
         }
-
-        if ((monk_levels == 0) && (has_exoticweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.kama.checked=false;
         }
-
-        if ((monk_levels == 0) && (has_exoticweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.nanchaku.checked=false;
         }
-
-        if ((monk_levels == 0) && (has_exoticweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.sai.checked=false;
         }
-
-        if ((monk_levels == 0) && (has_exoticweaponproficiency == false))
-        {
+        if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.siangham.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.bastardsword.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false) && (rayce!=4))
-        {
+        if ((has_exoticweaponproficiency == false) && (rayce!=4)) {
             document.form1.dwarvenwaraxe.checked=false;
         }
-
-        if ((bard_levels == 0) && (has_exoticweaponproficiency == false))
-        {
+        if ((bard_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.whip.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false) && (rayce!=7))
-        {
+        if ((has_exoticweaponproficiency == false) && (rayce!=7)) {
             document.form1.orcdoubleaxe.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false) && (rayce!=6)) {
+            document.form1.halflingstaffsling.checked=false;
+        }
+        if ((has_exoticweaponproficiency == false) && (rayce!=3)) {
+            document.form1.elvencurveblade.checked=false;
+        }
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.spikedchain.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false) && (rayce!=103))
-        {
+        if ((has_exoticweaponproficiency == false) && (rayce!=103)) {
             document.form1.direflail.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false) && (rayce!=5))
-        {
+        if ((has_exoticweaponproficiency == false) && (rayce!=5)) {
             document.form1.gnomehookedhammer.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.twobladedsword.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false) && (rayce!=4))
-        {
+        if ((has_exoticweaponproficiency == false) && (rayce!=4)) {
             document.form1.dwarvenurgrosh.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.bolas.checked=false;
         }
-
-        if ((rogue_levels == 0) && (rayce!=12) && (has_exoticweaponproficiency == false))
-        {
+        if ((rogue_levels == 0) && (rayce!=12) && (has_exoticweaponproficiency == false)) {
             document.form1.handcrossbow.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.repeatingheavycrossbow.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.repeatinglightcrossbow.checked=false;
         }
-
-        if ((has_exoticweaponproficiency == false))
-        {
+        if ((has_exoticweaponproficiency == false)) {
             document.form1.net.checked=false;
         }
-
         if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.shuriken.selectedIndex=0;
         }
-
-        if ((has_exoticweaponproficiency == false)) {
+    /* if ((has_exoticweaponproficiency == false)) {
             document.form1.pistol.checked=false;
         }
-
         if ((has_exoticweaponproficiency == false)) {
             document.form1.musket.checked=false;
-        }
+        } */
     }
     if (druid_levels > 0) {
         document.form1.armor_radio[3].checked=false;
@@ -9737,36 +9803,33 @@ function Arms() {
     if (druid_levels > 0) {
         document.form1.shield_radio[5].checked=false;
     }
-
     if ((document.form1.arrows.selectedIndex == 0) && (
         (document.form1.longbow.checked == true) ||
         (document.form1.compositelongbow.checked == true) ||
         (document.form1.shortbow.checked == true) ||
-        (document.form1.compositeshortbow.checked == true)
-        )) {
+        (document.form1.compositeshortbow.checked == true) )) {
         document.form1.arrows.selectedIndex= 1;
     }
-
-    if ((document.form1.bullets.selectedIndex == 0) && (
+    /* if ((document.form1.bullets.selectedIndex == 0) && (
         (document.form1.pistol.checked == true) ||
-        (document.form1.musket.checked == true)
-        )) {
+        (document.form1.musket.checked == true) )) {
         document.form1.bullets.selectedIndex= 1;
-    }
-
+    } 
+    */
     if ((document.form1.slingbullets.selectedIndex == 0) &&
         (document.form1.sling.checked == true) ) {
-        document.form1.slingbullets.selectedIndex= 1;
+        document.form1.slingbullets.selectedIndex=1;
     }
-
-
+    if ((document.form1.blowgundarts.selectedIndex == 0) &&
+        (document.form1.blowgun.checked == true) ) {
+        document.form1.blowgundarts.selectedIndex=1;
+    }
     if ((document.form1.crossbowbolts.selectedIndex == 0) && (
         (document.form1.heavycrossbow.checked == true) ||
         (document.form1.lightcrossbow.checked == true) ||
         (document.form1.repeatingheavycrossbow.checked == true) ||
-        (document.form1.repeatinglightcrossbow.checked == true)
-        )) {
-        document.form1.crossbowbolts.selectedIndex= 1;
+        (document.form1.repeatinglightcrossbow.checked == true) )) {
+        document.form1.crossbowbolts.selectedIndex=1;
     }
 }
 
@@ -10537,6 +10600,18 @@ function RememberPsionSpecialty() {
     document.form1.choose_discipline[6].checked=telepath_psion;
 }
 
+function rememberCavalierOrder() {
+    document.form1.choose_discipline[0].checked=blue_rose_order;
+    document.form1.choose_discipline[1].checked=cockatrice_order;
+    document.form1.choose_discipline[2].checked=dragon_order;
+    document.form1.choose_discipline[3].checked=lion_order;
+    document.form1.choose_discipline[4].checked=seal_order;
+    document.form1.choose_discipline[5].checked=shield_order;
+    document.form1.choose_discipline[6].checked=star_order;
+    document.form1.choose_discipline[7].checked=sword_order;
+    document.form1.choose_discipline[8].checked=tome_order;
+}
+
 function WizardSpecialty() {
     if ((wizard_levels == 0) || (ClassesHaveBeenEstablished == false)) {
         NegateWizardSpecialization();
@@ -10622,8 +10697,7 @@ function WizardSpecialty() {
         if (document.form1.forbid_transmutation.checked == true) {
             gave_up_transmutation=true;
         }
-        if (no_specialist == true)
-        {
+        if (no_specialist == true) {
             if (forbidden_school_count()!=0) {
                 return false;
             }
@@ -10631,7 +10705,6 @@ function WizardSpecialty() {
                 return true;
             }
         }
-
         if (abjuration_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
@@ -10643,8 +10716,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (conjuration_specialist == true)
-        {
+        if (conjuration_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10655,8 +10727,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (divination_specialist == true)
-        {
+        if (divination_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10667,8 +10738,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (enchantment_specialist == true)
-        {
+        if (enchantment_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10679,8 +10749,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (evocation_specialist == true)
-        {
+        if (evocation_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10691,8 +10760,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (illusion_specialist == true)
-        {
+        if (illusion_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10703,8 +10771,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (necromancy_specialist == true)
-        {
+        if (necromancy_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10715,8 +10782,7 @@ function WizardSpecialty() {
                 return true;
             }
         }
-        if (transmutation_specialist == true)
-        {
+        if (transmutation_specialist == true) {
             if (forbidden_school_count()!=2) {
                 return false;
             }
@@ -10728,6 +10794,56 @@ function WizardSpecialty() {
             }
         }
         return true;
+    }
+    return true;
+}
+
+function cavalierOrder() {
+    if ((cavalier_levels == 0) || (ClassesHaveBeenEstablished == false)) {
+        negateCavalierOrder();
+    }
+    else if (FighterFeatsEtcFrozen == true) {
+        rememberCavalierOrder();
+    }
+    else {
+        resetCavalierOrder();
+        if (document.form1.choose_order[0].checked == true) {
+            blue_rose_order=true;
+            cavalier_order_name="Blue Rose";
+        }
+        if (document.form1.choose_order[1].checked == true) {
+            cockatrice_order=true;
+            cavalier_order_name="Cockatrice";
+        }
+        if (document.form1.choose_order[2].checked == true) {
+            dragon_order=true;
+            cavalier_order_name="Dragon";
+        }
+        if (document.form1.choose_order[3].checked == true) {
+            lion_order=true;
+            cavalier_order_name="Lion";
+        }
+        if (document.form1.choose_order[4].checked == true) {
+            seal_order=true;
+            cavalier_order_name="Seal";
+        }
+        if (document.form1.choose_order[5].checked == true) {
+            shield_order=true;
+            cavalier_order_name="Shield";
+        }
+        if (document.form1.choose_order[6].checked == true) {
+            star_order=true;
+            cavalier_order_name="Star";
+        }
+        if (document.form1.choose_order[7].checked == true) {
+            sword_order=true;
+            cavalier_order_name="Sword";
+        }
+        if (document.form1.choose_order[8].checked == true) {
+            tome_order=true;
+            cavalier_order_name="Tome";
+        }
+        GenerateClassString();
     }
     return true;
 }
@@ -11175,8 +11291,7 @@ function FreezeFighterFeatsEtc() {
         document.form1.fourth_comment_box.value="Choose your ranger favored terrains.";
     }
     else if ((ranger_levels>1) && (document.form1.ranger_combat_track[0].checked == false)
-        && (document.form1.ranger_combat_track[1].checked == false))
-        {
+        && (document.form1.ranger_combat_track[1].checked == false)) {
         document.form1.fourth_comment_box.value="Ranger combat track";
     }
     else if ((cleric_levels > 0) && (Domains() == false)) {
@@ -11187,6 +11302,9 @@ function FreezeFighterFeatsEtc() {
     }
     else if ((wilder_levels > 0) && (SurgeCount() == false)) {
         document.form1.fourth_comment_box.value="You need a wilder surge type.";
+    }
+    else if ((cavalier_levels > 0) && !orderCount()) {
+        document.form1.fourth_comment_box.value="Cavaliers must pledge themselves to an order.";
     }
     else if ((cleric_levels > 0)
         && (document.form1.choose_energy[0].checked == false)
@@ -11311,6 +11429,24 @@ function BloodlineCountA() {
 function WipeSurges() {
     document.form1.choose_surge[0].checked=true;
     document.form1.choose_surge[0].checked=false;
+}
+
+function orderCount() {
+    if (cavalier_levels == 0) {
+        negateCavalierOrder();
+        ArrowShow();
+        return true;
+    }
+    if (FighterFeatsEtcFrozen == true) {
+        RememberFighterFeatsEtc();
+        return true;
+    }
+    for (i=0; i < document.form1.choose_order.length; i++) {
+        if (document.form1.choose_order[i].checked==true) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function SurgeCount() {
@@ -11537,7 +11673,7 @@ function Domains() {
         }
         if ( (cleric_levels > 0) && (x == 2) ) {
             return true;
-        } 
+        }
         else if ((cleric_levels > 0) && (x == 1)) {
             return true;
         }
@@ -12260,7 +12396,7 @@ function PointBuyIsSevensOrBetter() {
 
 function assign_stat(numbur) {
     if (rayce!=0) {
-        clearall()
+        clearall();
     }
     AbilitiesHaveBeenEstablished=false;
     if (numbur == 1) {
@@ -12696,6 +12832,7 @@ function Feats() {
     else {
         x=0;
         total_fighter_feats=0;
+        total_cavalier_feats=0;
         total_wizard_feats=0;
         total_psionic_feats=0;
         total_monk_feats=0;
@@ -12713,6 +12850,7 @@ function Feats() {
         if (document.form1.agilemaneuvers.checked == true) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (document.form1.alertness.checked == true) {
             x++;
@@ -12801,7 +12939,7 @@ function Feats() {
             }
         }
         if (document.form1.eschewmaterials.checked == true) {
-            if (bard_levels + cleric_levels + druid_levels + paladin_levels + ranger_levels + wizard_levels + witch_levels 
+            if (bard_levels + cleric_levels + druid_levels + paladin_levels + ranger_levels + wizard_levels + witch_levels
                 + summoner_levels + inquisitor_levels + oracle_levels == 0) {
                 document.form1.eschewmaterials.checked=false;
             }
@@ -13500,6 +13638,7 @@ function Feats() {
         if (document.form1.arcanearmortraining.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (((!already_knows_medium_armor) && (!document.form1.armorproficiencymedium.checked))
             || ((bard_levels<7) && (wizard_levels<7) && (sorcerer_levels<7) && (witch_levels<7))) {
@@ -13508,10 +13647,12 @@ function Feats() {
         if (document.form1.arcanearmormastery.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (document.form1.catchoffguard.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_monk_feats++;
         }
         if ((cleric_levels == 0) && (paladin_levels<4)) {
@@ -13520,6 +13661,7 @@ function Feats() {
         if (document.form1.channelsmite.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (!document.form1.combatreflexes.checked) {
             document.form1.standstill.checked=false;
@@ -13527,6 +13669,7 @@ function Feats() {
         if (document.form1.standstill.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (channels_energy!=2) {
             document.form1.commandundead.checked=false;
@@ -13540,6 +13683,7 @@ function Feats() {
         if (document.form1.criticalfocus.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<11)) {
             document.form1.bleedingcritical.checked=false;
@@ -13547,6 +13691,7 @@ function Feats() {
         if (document.form1.bleedingcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<15)) {
             document.form1.blindingcritical.checked=false;
@@ -13554,6 +13699,7 @@ function Feats() {
         if (document.form1.blindingcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (fighter_levels<14)) {
             document.form1.criticalmastery.checked=false;
@@ -13561,6 +13707,7 @@ function Feats() {
         if (document.form1.criticalmastery.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<13)) {
             document.form1.deafeningcritical.checked=false;
@@ -13568,6 +13715,7 @@ function Feats() {
         if (document.form1.deafeningcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<11)) {
             document.form1.sickeningcritical.checked=false;
@@ -13575,6 +13723,7 @@ function Feats() {
         if (document.form1.sickeningcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<13)) {
             document.form1.staggeringcritical.checked=false;
@@ -13582,6 +13731,7 @@ function Feats() {
         if (document.form1.staggeringcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<17)) {
             document.form1.stunningcritical.checked=false;
@@ -13589,6 +13739,7 @@ function Feats() {
         if (document.form1.stunningcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.criticalfocus.checked) || (base_attack_bonus<13)) {
             document.form1.tiringcritical.checked=false;
@@ -13596,6 +13747,7 @@ function Feats() {
         if (document.form1.tiringcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.tiringcritical.checked) || (base_attack_bonus<15)) {
             document.form1.exhaustingcritical.checked=false;
@@ -13603,6 +13755,7 @@ function Feats() {
         if (document.form1.exhaustingcritical.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((dexterity<13) || (base_attack_bonus<1)) {
             document.form1.deadlyaim.checked=false;
@@ -13610,6 +13763,7 @@ function Feats() {
         if (document.form1.deadlyaim.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (base_attack_bonus>=total_levels) {
             document.form1.defensivecombattraining.checked=false;
@@ -13617,6 +13771,7 @@ function Feats() {
         if (document.form1.defensivecombattraining.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (fighter_levels<6) {
             document.form1.disruptive.checked=false;
@@ -13624,6 +13779,7 @@ function Feats() {
         if (document.form1.disruptive.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((fighter_levels<10) || (!document.form1.disruptive.checked)) {
             document.form1.spellbreaker.checked=false;
@@ -13631,6 +13787,7 @@ function Feats() {
         if (document.form1.spellbreaker.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.dodge.checked) || (dexterity<15) || (base_attack_bonus<6)) {
             document.form1.windstance.checked=false;
@@ -13638,6 +13795,7 @@ function Feats() {
         if (document.form1.windstance.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.windstance.checked) || (dexterity<17) || (base_attack_bonus<11)) {
             document.form1.lightningstance.checked=false;
@@ -13645,6 +13803,7 @@ function Feats() {
         if (document.form1.lightningstance.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((cleric_levels == 0) && (paladin_levels<4)) {
             document.form1.elementalchannel.checked=false;
@@ -13676,6 +13835,7 @@ function Feats() {
         if (document.form1.improvisedweaponmastery.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (strength<12) {
             document.form1.intimidatingprowess.checked=false;
@@ -13698,6 +13858,7 @@ function Feats() {
         if (document.form1.lunge.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ( (craft_1<5) && (craft_2<5) && (craft_3<5) && (profession_1<5) && (profession_2<5) && (profession_3<5) ) {
             document.form1.mastercraftsman.checked=false;
@@ -13711,6 +13872,7 @@ function Feats() {
         if (document.form1.unseat.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (dexterity<13) {
             document.form1.nimblemoves.checked=false;
@@ -13728,6 +13890,7 @@ function Feats() {
             x++;
             total_r1_feats++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (((cleric_levels == 0) && (paladin_levels<4) && (wizard_specialty_name!="Necromancer")) || (charisma<13)) {
             document.form1.selectivechanneling.checked=false;
@@ -13741,6 +13904,7 @@ function Feats() {
         if (document.form1.shieldslam.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.shieldslam.checked) || (base_attack_bonus<11)) {
             document.form1.shieldmaster.checked=false;
@@ -13748,6 +13912,7 @@ function Feats() {
         if (document.form1.shieldmaster.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!already_knows_shields) && (!document.form1.shieldfocus.checked)) {
             document.form1.shieldfocus.checked=false;
@@ -13755,6 +13920,7 @@ function Feats() {
         if (document.form1.shieldfocus.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.shieldfocus.checked) || (fighter_levels<8)) {
             document.form1.greatershieldfocus.checked=false;
@@ -13762,6 +13928,7 @@ function Feats() {
         if (document.form1.greatershieldfocus.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((cleric_levels == 0) && (paladin_levels<4)) {
             document.form1.turnundead.checked=false;
@@ -13775,6 +13942,7 @@ function Feats() {
         if (document.form1.vitalstrike.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.vitalstrike.checked) || (base_attack_bonus<11)) {
             document.form1.improvedvitalstrike.checked=false;
@@ -13782,6 +13950,7 @@ function Feats() {
         if (document.form1.improvedvitalstrike.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.improvedvitalstrike.checked) || (base_attack_bonus<16)) {
             document.form1.greatervitalstrike.checked=false;
@@ -13789,6 +13958,7 @@ function Feats() {
         if (document.form1.greatervitalstrike.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (document.form1.weaponfocus_list.selectedIndex == 0) {
             document.form1.dazzlingdisplay.checked=false;
@@ -13796,6 +13966,7 @@ function Feats() {
         if (document.form1.dazzlingdisplay.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.dazzlingdisplay.checked) || (base_attack_bonus<6)) {
             document.form1.shatterdefenses.checked=false;
@@ -13803,6 +13974,7 @@ function Feats() {
         if (document.form1.shatterdefenses.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((document.form1.greaterweaponfocus_list.selectedIndex == 0) || (!document.form1.shatterdefenses.checked) || (base_attack_bonus<11)) {
             document.form1.deadlystroke.checked=false;
@@ -13810,6 +13982,7 @@ function Feats() {
         if (document.form1.deadlystroke.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((document.form1.weaponfocus_list.selectedIndex == 0) || (fighter_levels<12)) {
             document.form1.penetratingstrike.checked=false;
@@ -13817,6 +13990,7 @@ function Feats() {
         if (document.form1.penetratingstrike.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.penetratingstrike.checked) || (fighter_levels<16)) {
             document.form1.greaterpenetratingstrike.checked=false;
@@ -13824,12 +13998,14 @@ function Feats() {
         if (document.form1.greaterpenetratingstrike.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (has_darkness_domain) {
             document.form1.blindfight.checked=false;
         }
         if (document.form1.blindfight.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             x++;
         }
         if (document.form1.combatexpertise.checked == true) {
@@ -13838,6 +14014,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -13847,6 +14024,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -13857,6 +14035,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -13867,6 +14046,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -13877,6 +14057,7 @@ function Feats() {
         if (document.form1.greaterdisarm.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((base_attack_bonus<6) || (!document.form1.improvedfeint.checked)) {
             document.form1.greaterfeint.checked=false;
@@ -13884,6 +14065,7 @@ function Feats() {
         if (document.form1.greaterfeint.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((base_attack_bonus<6) || (!document.form1.improvedtrip.checked)) {
             document.form1.greatertrip.checked=false;
@@ -13891,6 +14073,7 @@ function Feats() {
         if (document.form1.greatertrip.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (document.form1.whirlwindattack.checked == true) {
             if ((document.form1.combatexpertise.checked == false)
@@ -13900,11 +14083,13 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
         if (document.form1.combatreflexes.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_monk_feats++;
             x++;
         }
@@ -13914,6 +14099,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -13924,6 +14110,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -13934,12 +14121,14 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
         }
         if (document.form1.exoticweaponproficiency.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             x++;
         }
         if (document.form1.improvedcritical_list.selectedIndex > 0) {
@@ -13949,12 +14138,14 @@ function Feats() {
             }
             else {
                 total_fighter_feats += document.form1.improvedcritical_list.selectedIndex;
+                total_cavalier_feats += document.form1.improvedcritical_list.selectedIndex;
                 total_monk_feats += document.form1.improvedcritical_list.selectedIndex;
                 x += document.form1.improvedcritical_list.selectedIndex;
             }
         }
         if (document.form1.improvedinitiative.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             x++;
         }
         if (document.form1.improvedunarmedstrike.checked == true) {
@@ -13963,6 +14154,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -13972,6 +14164,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -14030,6 +14223,7 @@ function Feats() {
         if (document.form1.greatergrapple.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.improvedunarmedstrike.checked) && (monk_levels == 0)) {
             document.form1.scorpionstyle.checked=false;
@@ -14038,6 +14232,7 @@ function Feats() {
             x++;
             total_monk_feats++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (((!document.form1.scorpionstyle.checked) || (base_attack_bonus<6)) && (monk_levels<6)) {
             document.form1.gorgonsfist.checked=false;
@@ -14045,6 +14240,7 @@ function Feats() {
         if (document.form1.gorgonsfist.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_monk_feats++;
         }
         if (((!document.form1.gorgonsfist.checked) || (base_attack_bonus<11)) && (monk_levels<10)) {
@@ -14053,6 +14249,7 @@ function Feats() {
         if (document.form1.medusaswrath.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_monk_feats++;
         }
         if (document.form1.deflectarrows.checked == true) {
@@ -14061,6 +14258,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -14071,6 +14269,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -14082,14 +14281,17 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
         if (ride == 0) {
             document.form1.mountedcombat.checked=false;
+            alert("You need at least one rank of Ride skill");
         }
         if (document.form1.mountedcombat.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             x++;
         }
         if (document.form1.mountedarchery.checked == true) {
@@ -14098,6 +14300,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14107,6 +14310,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14116,6 +14320,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14125,11 +14330,13 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
         if (document.form1.pointblankshot.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14138,6 +14345,7 @@ function Feats() {
         }
         if (document.form1.farshot.checked) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14147,6 +14355,7 @@ function Feats() {
         }
         if (document.form1.preciseshot.checked) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14155,6 +14364,7 @@ function Feats() {
         }
         if (document.form1.rapidshot.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14164,6 +14374,7 @@ function Feats() {
         }
         if (document.form1.manyshot.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14173,6 +14384,7 @@ function Feats() {
         }
         if (document.form1.shotontherun.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14182,6 +14394,7 @@ function Feats() {
         }
         if (document.form1.improvedpreciseshot.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r1_feats++;
             x++;
         }
@@ -14195,6 +14408,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14204,6 +14418,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14213,6 +14428,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14222,6 +14438,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_monk_feats++;
                 x++;
             }
@@ -14232,6 +14449,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14241,6 +14459,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 x++;
             }
         }
@@ -14250,6 +14469,7 @@ function Feats() {
         if (document.form1.greaterbullrush.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.improvedoverrun.checked) || (base_attack_bonus<6)) {
             document.form1.greateroverrun.checked=false;
@@ -14257,6 +14477,7 @@ function Feats() {
         if (document.form1.greateroverrun.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if ((!document.form1.improvedsunder.checked) || (base_attack_bonus<6)) {
             document.form1.greatersunder.checked=false;
@@ -14264,6 +14485,7 @@ function Feats() {
         if (document.form1.greatersunder.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
         }
         if (document.form1.quickdraw.checked == true) {
             if (base_attack_bonus<1) {
@@ -14271,12 +14493,14 @@ function Feats() {
             }
             else {
                 total_fighter_feats++;
+                total_cavalier_feats++;
                 total_r2_feats++;
                 x++;
             }
         }
         if (document.form1.rapidreload.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             x++;
         }
         if ((document.form1.shieldproficiency.checked) && (!already_knows_shields)) {
@@ -14284,6 +14508,7 @@ function Feats() {
         }
         if (document.form1.improvedshieldbash.checked == true) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
             x++;
         }
@@ -14292,6 +14517,7 @@ function Feats() {
         }
         if (document.form1.twoweaponfighting.checked) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
             x++;
         }
@@ -14300,6 +14526,7 @@ function Feats() {
         }
         if (document.form1.twoweapondefense.checked) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
             x++;
         }
@@ -14308,6 +14535,7 @@ function Feats() {
         }
         if (document.form1.improvedtwoweaponfighting.checked) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
             x++;
         }
@@ -14316,6 +14544,7 @@ function Feats() {
         }
         if (document.form1.greatertwoweaponfighting.checked) {
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
             x++;
         }
@@ -14325,6 +14554,7 @@ function Feats() {
         if (document.form1.doubleslice.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
         }
         if (((rangercombattrack!=2) || (ranger_levels<10)) && ((!document.form1.doubleslice.checked) || (!document.form1.improvedtwoweaponfighting) || (base_attack_bonus<11))) {
@@ -14333,6 +14563,7 @@ function Feats() {
         if (document.form1.twoweaponrend.checked) {
             x++;
             total_fighter_feats++;
+            total_cavalier_feats++;
             total_r2_feats++;
         }
         if (document.form1.weaponfinesse.checked == true) {
@@ -14341,6 +14572,7 @@ function Feats() {
             }
             else {
                 total_fighter_feats ++;
+                total_cavalier_feats++;
                 x ++;
             }
         }
@@ -14376,6 +14608,7 @@ function Feats() {
         }
         if (document.form1.weaponfocus_list.selectedIndex > 0) {
             total_fighter_feats += document.form1.weaponfocus_list.selectedIndex;
+            total_cavalier_feats += document.form1.weaponfocus_list.selectedIndex;
             x += document.form1.weaponfocus_list.selectedIndex;
         }
         if (document.form1.weaponspecialization_list.selectedIndex > document.form1.weaponfocus_list.selectedIndex) {
@@ -14384,29 +14617,34 @@ function Feats() {
         if (fighter_levels<4) {
             document.form1.weaponspecialization_list.selectedIndex=0;
         }
-        total_fighter_feats += document.form1.weaponspecialization_list.selectedIndex;
-        x += document.form1.weaponspecialization_list.selectedIndex;
+        else {
+            total_fighter_feats += document.form1.weaponspecialization_list.selectedIndex;
+            x += document.form1.weaponspecialization_list.selectedIndex;
+        }
+        
         if (document.form1.greaterweaponfocus_list.selectedIndex > document.form1.weaponfocus_list.selectedIndex) {
             document.form1.greaterweaponfocus_list.selectedIndex= document.form1.weaponfocus_list.selectedIndex;
         }
         if (fighter_levels<8) {
             document.form1.greaterweaponfocus_list.selectedIndex=0;
         }
-        total_fighter_feats += document.form1.greaterweaponfocus_list.selectedIndex;
-        x += document.form1.greaterweaponfocus_list.selectedIndex;
-
-        if (document.form1.greaterweaponspecialization_list.selectedIndex >document.form1.greaterweaponfocus_list.selectedIndex) {
+        else {
+            total_fighter_feats += document.form1.greaterweaponfocus_list.selectedIndex;
+            x += document.form1.greaterweaponfocus_list.selectedIndex;
+        }
+        if (document.form1.greaterweaponspecialization_list.selectedIndex > document.form1.greaterweaponfocus_list.selectedIndex) {
             document.form1.greaterweaponspecialization_list.selectedIndex=document.form1.greaterweaponfocus_list.selectedIndex;
         }
-        if (document.form1.greaterweaponspecialization_list.selectedIndex >document.form1.weaponspecialization_list.selectedIndex) {
+        if (document.form1.greaterweaponspecialization_list.selectedIndex > document.form1.weaponspecialization_list.selectedIndex) {
             document.form1.greaterweaponspecialization_list.selectedIndex=document.form1.weaponspecialization_list.selectedIndex;
         }
         if (fighter_levels<12) {
             document.form1.greaterweaponspecialization_list.selectedIndex=0;
         }
-        total_fighter_feats += document.form1.greaterweaponspecialization_list.selectedIndex;
-        x += document.form1.greaterweaponspecialization_list.selectedIndex;
-
+        else {
+            total_fighter_feats += document.form1.greaterweaponspecialization_list.selectedIndex;
+            x += document.form1.greaterweaponspecialization_list.selectedIndex;
+        }
         if (document.form1.alignedattack.checked == true) {
             if ((base_attack_bonus<6) || (!CanFocus())) {
                 document.form1.alignedattack.checked=false;
@@ -15035,7 +15273,7 @@ function Feats() {
         }
         LightVariableFeatStars();
         RecordFeats();
-        z=fighterfeatentitlement + wilderfeatentitlement + wizardfeatentitlement + psionfeatentitlement +
+        z=cavalierfeatentitlement + fighterfeatentitlement + wilderfeatentitlement + wizardfeatentitlement + psionfeatentitlement +
         psychicwarriorfeatentitlement + genericfeatentitlement +r1featentitlement + r2featentitlement +
         sorcererfeatentitlement + monkfeatentitlement + halfelffeatentitlement + generalistfeatentitlement;
 
@@ -15058,6 +15296,9 @@ function Feats() {
             }
             if (fighterfeatentitlement > 0) {
                 document.form1.feat.value += "There must be " + fighterfeatentitlement + " fighter feats [F]. You have " + total_fighter_feats + ".\r";
+            }
+            if (cavalierfeatentitlement > 0) {
+                document.form1.feat.value += "There must be " + cavalierfeatentitlement + " cavalier feats [F]. You have " + total_cavalier_feats + ".\r";
             }
             if (halfelffeatentitlement > 0) {
                 document.form1.feat.value += "A half-elf must take one Skill Focus. You have " + total_halfelf_feats + ".\r";
@@ -15097,6 +15338,7 @@ function Feats() {
             SorcererFeatRecommendations();
             if ((x == z) && (total_fighter_feats>=fighterfeatentitlement)
                 && (total_halfelf_feats>=halfelffeatentitlement)
+                && (total_cavalier_feats>=cavalierfeatentitlement)
                 && (total_r1_feats>=r1featentitlement)
                 && (total_r2_feats>=r2featentitlement)
                 && (total_wizard_feats>=wizardfeatentitlement)
@@ -15705,14 +15947,54 @@ function FigureClassSkillsAndTotalSkillPoints() {
         document.form1.diplomacy_ics.checked=true;
         document.form1.handleanimal_ics.checked=true;
         document.form1.intimidate_ics.checked=true;
-        document.form1.knowledgenobility_ics.checked=true;
         document.form1.profession_1_ics.checked=true;
         document.form1.profession_2_ics.checked=true;
         document.form1.profession_3_ics.checked=true;
         document.form1.ride_ics.checked=true;
         document.form1.sensemotive_ics.checked=true;
         document.form1.swim_ics.checked=true;
+
+        if (blue_rose_order) {
+            document.form1.knowledgehistory_ics.checked=true;
+            document.form1.knowledgenobility_ics.checked=true;
+        }
+        if (cockatrice_order) {
+            document.form1.appraise_ics.checked=true;
+            document.form1.perform_1_ics.checked=true;
+            document.form1.perform_2_ics.checked=true;
+            document.form1.perform_3_ics.checked=true;
+        }
+        if (dragon_order) {
+            document.form1.perception_ics.checked=true;
+            document.form1.survival_ics.checked=true;
+        }
+        if (lion_order) {
+            document.form1.knowledgelocal_ics.checked=true;
+            document.form1.knowledgenobility_ics.checked=true;
+        }
+        if (seal_order) {
+            document.form1.disabledevice_ics.checked=true;
+            document.form1.linguistics_ics.checked=true;
+        }
+        if (shield_order) {
+            document.form1.knowledgelocal_ics.checked=true;
+            document.form1.heal_ics.checked=true;
+        }
+        if (star_order) {
+            document.form1.heal_ics.checked=true;
+            document.form1.knowledgereligion_ics.checked=true;
+        }
+        if (sword_order) {
+            document.form1.knowledgenobility_ics.checked=true;
+            document.form1.knowledgereligion_ics.checked=true;
+        }
+        if (tome_order) {
+            document.form1.knowledgearcana_ics.checked=true;
+            document.form1.knowledgereligion_ics.checked=true;
+            document.form1.linguistics_ics.checked=true;
+        }
     }
+
     if (oracle_levels > 0) {
         document.form1.craft_1_ics.checked=true;
         document.form1.craft_2_ics.checked=true;
@@ -17218,6 +17500,101 @@ function DoHPAndOtherClassStuff() {
     }
 }
 
+function displayClassOptions() {
+    if (total_levels < 4) {
+        $('#abilityScoreIncrease').hide();
+    }
+    else {
+        $('#abilityScoreIncrease').show();
+        var abilityUptag = "";
+        for (j=1; j<21; j++) {
+            abilityUptag = "#abilityIncrease"+j;		
+            if (j <= total_levels) {
+                $(abilityUptag).show();
+            }
+            else if (j > total_levels) {
+                $(abilityUptag).hide();
+            }
+        }
+    }
+    if (cleric_levels > 0) {
+        $('#cleric_shit').show();
+        if (alignment<4) {
+            document.form1.choose_energy[0].checked=true;
+        }
+        if (alignment>6) {
+            document.form1.choose_energy[1].checked=true;
+        }
+    }
+    else {
+        $('#cleric_shit').hide();
+    }
+    
+    if (druid_levels > 0) {
+        $('#druid_shit').show();
+        document.form1.druid_domain[0].checked=true;
+    }
+    else {
+        $('#druid_shit').hide();
+    }
+    
+    if (ranger_levels > 0) {
+        $('#ranger_shit').show();
+    }
+    else {
+        $('#ranger_shit').hide();
+    }
+    
+    if (sorcerer_levels > 0) {
+        $('#sorcerer_shit').show();
+    }
+    else {
+        $('#sorcerer_shit').hide();
+    }
+    
+    if (wilder_levels > 0) {
+        $('#wilder_shit').show();
+    }
+    else {
+        $('#wilder_shit').hide();
+    }
+    
+    if (wizard_levels > 0) {
+        $('#wizard_shit').show();
+    }
+    else {
+        $('#wizard_shit').hide();
+    }
+    
+    if (psion_levels > 0) {
+        $('#psion_shit').show();
+    }
+    else {
+        $('#psion_shit').hide();
+    }
+    
+    if (cavalier_levels > 0) {
+        $('#cavalier_shit').show();
+    }
+    else {
+        $('#cavalier_shit').hide();
+    }
+    
+    if (prestige_levels > 0) {
+        $('#prestige_shit').show();
+    }
+    else {
+        $('#prestige_shit').hide();
+    }
+    
+    if ( (wizard_levels > 0) || (witch_levels > 0) || ((sorcerer_levels > 0) && has_arcane_bloodline) ) {
+        $('#familiar_shit').show();
+    }
+    else {
+        $('#familiar_shit').hide();
+    }
+}
+
 function lock_classes() {
     if (class01 == 0) {
         document.form1.third_comment_box.value="Not yet";
@@ -17231,6 +17608,9 @@ function lock_classes() {
             document.form1.third_comment_box.value += stringy+"\r";
         }
         document.form1.third_comment_box.value += "Now complete the following as applicable.";
+        /* 
+         * Specific to races from Advanced Race Guide, which I don't like
+         * 
         if (sorcerer_levels > 0) {
             if (rayce == 28) {
                 document.form1.third_comment_box.value += " You probably want the celestial bloodline for sorcerers.";
@@ -17266,11 +17646,13 @@ function lock_classes() {
                 document.form1.third_comment_box.value += " You probably want the water domain.";
             }
         }
+        */
         DoHPAndOtherClassStuff();
         DoFavoredClassPoints();
         DoYourFeatEntitlements();
         AdjustRangerFoes();
         AdjustRangerTerrains();
+        displayClassOptions();
         if (psion_levels > 0) {
             document.form1.choose_discipline[0].checked=true;
         }
@@ -17280,9 +17662,7 @@ function lock_classes() {
         if ((wizard_levels > 0) || (witch_levels > 0)) {
             document.form1.choose_familiar[0].checked=true;
         }
-        if (druid_levels > 0) {
-            document.form1.druid_domain[0].checked=true;
-        }
+        
         if ((alchemist_levels > 0) || (cavalier_levels > 0) || (inquisitor_levels > 0) || (oracle_levels > 0) || (summoner_levels > 0)
             || (witch_levels > 0) || (barbarian_levels > 0) || (bard_levels > 0) || (cleric_levels > 0) || (fighter_levels > 0)
             || (paladin_levels > 0) || (ranger_levels > 0) || (rogue_levels > 0) || (sorcerer_levels > 0)
@@ -17298,7 +17678,6 @@ function lock_classes() {
             || (psychicwarrior_levels > 0) || (soulknife_levels > 0) || (wilder_levels > 0)) {
             already_knows_light_armor=true;
         }
-
         if ((oracle_levels > 0) || (inquisitor_levels > 0) || (cavalier_levels > 0) || (barbarian_levels > 0) || (cleric_levels > 0) || (druid_levels > 0) || (fighter_levels > 0) || (paladin_levels > 0)
             || (psychicwarrior_levels > 0) || (soulknife_levels > 0)) {
             already_knows_medium_armor=true;
@@ -17310,14 +17689,6 @@ function lock_classes() {
             || (paladin_levels > 0) || (ranger_levels > 0) || (psychicwarrior_levels > 0) || (soulknife_levels > 0)
             || (wilder_levels > 0)) {
             already_knows_shields=true;
-        }
-        if (cleric_levels > 0) {
-            if (alignment<4) {
-                document.form1.choose_energy[0].checked=true;
-            }
-            if (alignment>6) {
-                document.form1.choose_energy[1].checked=true;
-            }
         }
         if (fighter_levels > 0) {
             already_knows_tower_shield=true;
@@ -17338,140 +17709,140 @@ function lock_classes() {
 function NegateAllClassChoicesHereAndBelow(thislevel) {
     if (thislevel < 2) {
         z=0;
-        while (z<15) {
+        while (z<document.form1.choose_class01.length) {
             document.form1.choose_class01[z].checked=false;
             z++;
         }
     }
     if (thislevel < 3) {
         z=0;
-        while (z<15) {
+        while (z<document.form1.choose_class02.length) {
             document.form1.choose_class02[z].checked=false;
             z++;
         }
     }
     if (thislevel < 4) {
         z=0;
-        while (z<15) {
+        while (z<document.form1.choose_class03.length) {
             document.form1.choose_class03[z].checked=false;
             z++;
         }
     }
     if (thislevel < 5) {
         z=0;
-        while (z<15) {
+        while (z<document.form1.choose_class04.length) {
             document.form1.choose_class04[z].checked=false;
             z++;
         }
     }
     if (thislevel < 6) {
         z=0;
-        while (z<15) {
+        while (z<document.form1.choose_class05.length) {
             document.form1.choose_class05[z].checked=false;
             z++;
         }
     }
     if (thislevel < 7) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class06.length) {
             document.form1.choose_class06[z].checked=false;
             z++;
         }
     }
     if (thislevel < 8) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class07.length) {
             document.form1.choose_class07[z].checked=false;
             z++;
         }
     }
     if (thislevel < 9) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class08.length) {
             document.form1.choose_class08[z].checked=false;
             z++;
         }
     }
     if (thislevel <10) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class09.length) {
             document.form1.choose_class09[z].checked=false;
             z++;
         }
     }
     if (thislevel <11) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class10.length) {
             document.form1.choose_class10[z].checked=false;
             z++;
         }
     }
     if (thislevel <12) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class11.length) {
             document.form1.choose_class11[z].checked=false;
             z++;
         }
     }
     if (thislevel <13) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class12.length) {
             document.form1.choose_class12[z].checked=false;
             z++;
         }
     }
     if (thislevel <14) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class13.length) {
             document.form1.choose_class13[z].checked=false;
             z++;
         }
     }
     if (thislevel <15) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class14.length) {
             document.form1.choose_class14[z].checked=false;
             z++;
         }
     }
     if (thislevel <16) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class15.length) {
             document.form1.choose_class15[z].checked=false;
             z++;
         }
     }
     if (thislevel <17) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class16.length) {
             document.form1.choose_class16[z].checked=false;
             z++;
         }
     }
     if (thislevel <18) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class17.length) {
             document.form1.choose_class17[z].checked=false;
             z++;
         }
     }
     if (thislevel <19) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class18.length) {
             document.form1.choose_class18[z].checked=false;
             z++;
         }
     }
     if (thislevel <20) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class19.length) {
             document.form1.choose_class19[z].checked=false;
             z++;
         }
     }
     if (thislevel <21) {
         z=0;
-        while (z<16) {
+        while (z<document.form1.choose_class20.length) {
             document.form1.choose_class20[z].checked=false;
             z++;
         }
@@ -18009,6 +18380,16 @@ function assignlevel(i) {
     else {
         total_levels=i;
         ThisTakesAMoment();
+    }
+    var leveltag = "";
+    for (j=1; j<21; j++) {
+        leveltag = "#classlevel"+j;		
+        if (j <= i) {
+            $(leveltag).show();
+        }
+        else if (j > i) {	
+            $(leveltag).hide();
+        }
     }
     ArrowShow();
 }
@@ -18595,9 +18976,10 @@ function WriteTextForCharacterSheet() {
     if (stringy == "") {
         stringy="Unnamed Character";
     }
-    var SWD = "<html><head><style type='text/css'>";
-    SWD += "body {font-family:Arial, sans-serif; font-size:12pt;} caption { text-align:left; }";
-    SWD += "</style><title>"+stringy+"</title></head>\r<body>";
+    var SWD = "<html>\r<head>\r";
+    SWD += "<title>"+stringy+"</title>\r";
+    SWD += '<link type="text/css" rel="stylesheet" href="css/form.css" />';
+    SWD += "\r</head>\r<body>";
     if (FeatsAreLocked == false) {
         SWD += "<b>Your character is not yet completed.</b>";
     }
@@ -19955,7 +20337,7 @@ function WriteTextForCharacterSheet() {
         SWD += " = 10 " + armor_class_string;
     }
 
-    SWD += "Touch AC: " + touch_armor_class;
+    SWD += "<br />Touch AC: " + touch_armor_class;
     SWD += "<br />Flat-footed: " + flatfooted_armor_class;
     if (has_uncanny_dodge == true) {
         SWD += " [uncanny dodge] ";
@@ -20605,6 +20987,16 @@ function WriteTextForCharacterSheet() {
             wt += 0;
         }
     }
+    if (document.form1.blowgun.checked == true) {
+        if (small == true) {
+            SWD += "Blowgun ["+missile_attack_string_1+", 1"+bow_st_penalty+", crit x2, range inc. 20 ft., 1/2 lb, piercing]<br />\r";
+            wt += 0.5;
+        }
+        if (small == false) {
+            SWD += "Blowgun ["+missile_attack_string_1+", 1d2"+bow_st_penalty+", crit x2, range inc. 20 ft., 1 lb, piercing]<br />\r";
+            wt += 1;
+        }
+    }
     if (document.form1.throwingaxe.checked == true) {
         if (small == true) {
             SWD += "Throwing Axe ["+handheld_attack_string_1+"/"+missile_attack_string_1+", 1d4"+damage_bonus+", crit x2, range inc 10 ft., 1 lb, light, slashing]<br />\r";
@@ -20687,6 +21079,16 @@ function WriteTextForCharacterSheet() {
         }
         if (small == false) {
             SWD += "Light Spiked Shield ["+handheld_attack_string_1+", 1d4"+offh_damage_bonus+", crit x2, light, piercing]<br />\r";
+        }
+    }
+    if (document.form1.starknife.checked == true) {
+        if (small == true) {
+            SWD += "Starknife ["+handheld_attack_string_1+"/"+missile_attack_string_1+", 1d3"+damage_bonus+", crit x3, range inc 20 ft., 1.5 lb, light, piercing]<br />\r";
+            wt += 1.5;
+        }
+        if (small == false) {
+            SWD += "Starknife ["+handheld_attack_string_1+"/"+missile_attack_string_1+", 1d4"+damage_bonus+", crit x3, range inc 20 ft., 3 lb, light, piercing]<br />\r";
+            wt += 3;
         }
     }
     if (document.form1.shortsword.checked == true) {
@@ -21027,6 +21429,16 @@ function WriteTextForCharacterSheet() {
             wt += 10;
         }
     }
+    if (document.form1.elvencurveblade.checked == true) {
+        if (small == true) {
+            SWD += "Elven Curve Blade ["+handheld_attack_string_1+", 1d8"+twoh_damage_bonus+", crit 18-20/x2, 3.5 lbs., two-handed,  slashing]<br />\r";
+            wt += 3.5;
+        }
+        if (small == false) {
+            SWD += "Elven Curve Blade ["+handheld_attack_string_1+", 1d10"+twoh_damage_bonus+", crit 18-20/x2, 7 lbs., two-handed,  slashing]<br />\r";
+            wt += 7;
+        }
+    }
     if (document.form1.direflail.checked == true) {
         if (small == true) {
             SWD += "Dire Flail ["+handheld_attack_string_1+", 1d6"+twoh_damage_bonus+"/1d6"+offh_damage_bonus+", crit x2, 5 lbs., two-handed,  bludgeoning]<br />\r";
@@ -21075,6 +21487,16 @@ function WriteTextForCharacterSheet() {
         if (small == false) {
             SWD += "Bolas ["+missile_attack_string_1+", 1d4"+damage_bonus+" nonlethal, crit x2, range inc 10 ft., 2 lbs., bludgeoning]<br />\r";
             wt += 2;
+        }
+    }
+    if (document.form1.halflingstaffsling.checked == true) {
+        if (small == true) {
+            SWD += "Halfling Staff Sling ["+missile_attack_string_1+", 1d6"+damage_bonus+", crit x3, range inc 80 ft., 1.5 lbs., bludgeoning]<br />\r";
+            wt += 1.5;
+        }
+        if (small == false) {
+            SWD += "Halfling Staff Sling ["+missile_attack_string_1+", 1d8"+damage_bonus+", crit x3, range inc 80 ft., 3 lbs., bludgeoning]<br />\r";
+            wt += 3;
         }
     }
     if (document.form1.handcrossbow.checked == true) {
@@ -21128,6 +21550,7 @@ function WriteTextForCharacterSheet() {
             wt += 0.5 * shurikenSets;
         }
     }
+    /* 
     if (document.form1.pistol.checked == true) {
         SWD += "Pistol ["+missile_attack_string_1+", 1d10, crit x3, range inc 50 ft, 3 lbs., piercing]<br />\r";
         wt += 3;
@@ -21136,7 +21559,7 @@ function WriteTextForCharacterSheet() {
         SWD += "Musket ["+missile_attack_string_1+", 1d12, crit x3, range inc 150 ft, 10 lbs., piercing]<br />\r";
         wt += 10;
     }
-
+    */
     if (armor_string!="") {
         SWD += armor_string + "<br />\r";
     }
@@ -22364,7 +22787,7 @@ function WriteTextForCharacterSheet() {
         SWD += shield_check_penalty+" [shield] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Craft 1
     x=modifier_number(intelligence) + craft_1;
     if ((document.form1.craft_1_ics.checked) && (craft_1 > 0)) {
@@ -22381,11 +22804,11 @@ function WriteTextForCharacterSheet() {
         x += 3;
     }
     var craft1name = "";
-    if (document.form1.craft1name.value!="" && craft_1 > 0) { 
-        craft1name = "("+document.form1.craft1name.value+")"; 
+    if (document.form1.craft1name.value!="" && craft_1 > 0) {
+        craft1name = "("+document.form1.craft1name.value+")";
     }
-    if ((craft1name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) { 
-        x=x+2; 
+    if ((craft1name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) {
+        x=x+2;
     }
     SWD += "<tr><td>Craft "+craft1name+"</td><td>Int</td> <td align=\"right\">" + x
     + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
@@ -22402,8 +22825,8 @@ function WriteTextForCharacterSheet() {
     if (document.form1.artiste_crystal.checked) {
         SWD += " +3 [artiste psicrystal] ";
     }
-    if ((craft1name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) { 
-        SWD += " +2 [Alchemist's lab] "; 
+    if ((craft1name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) {
+        SWD += " +2 [Alchemist's lab] ";
     }
     SWD += "</td></tr>\r";
 
@@ -22423,11 +22846,11 @@ function WriteTextForCharacterSheet() {
             }
         }
         var craft2name = "";
-        if (document.form1.craft2name.value!="" && craft_2 > 0) { 
-            craft2name = "("+document.form1.craft2name.value+")"; 
+        if (document.form1.craft2name.value!="" && craft_2 > 0) {
+            craft2name = "("+document.form1.craft2name.value+")";
         }
-        if ((craft2name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) { 
-            x=x+2; 
+        if ((craft2name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) {
+            x=x+2;
         }
         SWD += "<tr><td>Craft "+craft2name+"</td><td>Int</td> <td align=\"right\">" + x
         + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
@@ -22444,8 +22867,8 @@ function WriteTextForCharacterSheet() {
         if (document.form1.artiste_crystal.checked) {
             SWD += " +3 [artiste psicrystal] ";
         }
-        if ((craft2name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) { 
-            SWD += " +2 [Alchemist's lab] "; 
+        if ((craft2name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) {
+            SWD += " +2 [Alchemist's lab] ";
         }
         SWD += "</td></tr>\r";
     }
@@ -22466,11 +22889,11 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
         var craft3name = "";
-        if (document.form1.craft3name.value!="" && craft_3 > 0) { 
-            craft3name = "("+document.form1.craft3name.value+")"; 
+        if (document.form1.craft3name.value!="" && craft_3 > 0) {
+            craft3name = "("+document.form1.craft3name.value+")";
         }
-        if ((craft2name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) { 
-            x=x+2; 
+        if ((craft2name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) {
+            x=x+2;
         }
         SWD += "<tr><td>Craft "+craft3name+"</td><td>Int</td> <td align=\"right\">" + x
         + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
@@ -22487,8 +22910,8 @@ function WriteTextForCharacterSheet() {
         if (document.form1.artiste_crystal.checked) {
             SWD += " +3 [artiste psicrystal] ";
         }
-        if ((craft3name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) { 
-            SWD += " +2 [Alchemist's lab] "; 
+        if ((craft3name.stringtolowercase=="alchemy") && (document.form1.alchemistlab.checked=true)) {
+            SWD += " +2 [Alchemist's lab] ";
         }
         SWD += "</td></tr>\r";
     }
@@ -22738,7 +23161,7 @@ function WriteTextForCharacterSheet() {
         SWD += "+"+SixOrThree(heal)+" [skill focus] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Stealth
     x=modifier_number(dexterity) + stealth + armor_check_penalty + shield_check_penalty;
     if (document.form1.sneaky_crystal.checked) {
@@ -22798,7 +23221,7 @@ function WriteTextForCharacterSheet() {
         SWD += " +2 [tiefling] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Intimidate
     x=modifier_number(charisma) + intimidate + halfLevelBonus(inquisitor_levels);
     if (has_intimidatingprowess) {
@@ -22855,7 +23278,7 @@ function WriteTextForCharacterSheet() {
         SWD += " +"+halfLevelBonus(inquisitor_levels)+" [inquisitor] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Knowledge (Arcana)
     if ((knowledgearcana > 0) || (bard_levels > 0)) {
         x=modifier_number(intelligence) + knowledgearcana + BardKnow();
@@ -23404,8 +23827,8 @@ function WriteTextForCharacterSheet() {
         }
     }
     var perform1name = "";
-    if (document.form1.perform1name.value!="") { 
-        perform1name = "("+document.form1.perform1name.value+")"; 
+    if (document.form1.perform1name.value!="") {
+        perform1name = "("+document.form1.perform1name.value+")";
     }
     SWD += "<tr><td>Perform "+perform1name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
     if (perform_1 > 0) {
@@ -23432,8 +23855,8 @@ function WriteTextForCharacterSheet() {
             }
         }
         var perform2name = "";
-        if (document.form1.perform2name.value!="") { 
-            perform2name = "("+document.form1.perform2name.value+")"; 
+        if (document.form1.perform2name.value!="") {
+            perform2name = "("+document.form1.perform2name.value+")";
         }
         SWD += "<tr><td>Perform "+perform2name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
         if (perform_2 > 0) {
@@ -23461,8 +23884,8 @@ function WriteTextForCharacterSheet() {
             }
         }
         var perform3name = "";
-        if (document.form1.perform3name.value!="") { 
-            perform3name = "("+document.form1.perform3name.value+")"; 
+        if (document.form1.perform3name.value!="") {
+            perform3name = "("+document.form1.perform3name.value+")";
         }
         SWD += "<tr><td>Perform "+perform3name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
         if (perform_3 > 0) {
@@ -23491,8 +23914,8 @@ function WriteTextForCharacterSheet() {
             }
         }
         var profession1name = "";
-        if (document.form1.profession1name.value!="") { 
-            profession1name = "("+document.form1.profession1name.value+")"; 
+        if (document.form1.profession1name.value!="") {
+            profession1name = "("+document.form1.profession1name.value+")";
         }
         SWD += "<tr><td>Profession "+profession1name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
         if (profession_1 > 0) {
@@ -23510,7 +23933,7 @@ function WriteTextForCharacterSheet() {
         }
         SWD += "</td></tr>\r";
     }
-    
+
     if ((profession_2 > 0) || (bard_levels>=10)) {
         x=modifier_number(wisdom) + profession_2;
         if ((document.form1.profession_1_ics.checked) && (profession_2 > 0)) {
@@ -23523,8 +23946,8 @@ function WriteTextForCharacterSheet() {
             }
         }
         var profession2name = "";
-        if (document.form1.profession2name.value!="") { 
-            profession2name = "("+document.form1.profession2name.value+")"; 
+        if (document.form1.profession2name.value!="") {
+            profession2name = "("+document.form1.profession2name.value+")";
         }
         SWD += "<tr><td>Profession "+profession2name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
         if (profession_2 > 0) {
@@ -23542,7 +23965,7 @@ function WriteTextForCharacterSheet() {
         }
         SWD += "</td></tr>\r";
     }
-    
+
     if ((profession_3 > 0) || (bard_levels>=10)) {
         x=modifier_number(wisdom) + profession_3;
         if ((document.form1.profession_3_ics.checked) && (profession_3 > 0)) {
@@ -23555,8 +23978,8 @@ function WriteTextForCharacterSheet() {
             }
         }
         var profession3name = "";
-        if (document.form1.profession3name.value!="") { 
-            profession3name = "("+document.form1.profession3name.value+")"; 
+        if (document.form1.profession3name.value!="") {
+            profession3name = "("+document.form1.profession3name.value+")";
         }
         SWD += "<tr><td>Profession "+profession3name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
         if (profession_3 > 0) {
@@ -23574,7 +23997,7 @@ function WriteTextForCharacterSheet() {
         }
         SWD += "</td></tr>\r";
     }
-    
+
     // Ride
     x=modifier_number(dexterity) + ride + armor_check_penalty + shield_check_penalty;
     if ((document.form1.ride_ics.checked) && (ride > 0)) {
@@ -23616,7 +24039,7 @@ function WriteTextForCharacterSheet() {
         SWD += shield_check_penalty+" [shield] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Sense Motive
     x=modifier_number(wisdom) + sensemotive + halfLevelBonus(inquisitor_levels);
     if ((document.form1.sensemotive_ics.checked) && (sensemotive > 0)) {
@@ -23655,7 +24078,7 @@ function WriteTextForCharacterSheet() {
         SWD += " +"+halfLevelBonus(inquisitor_levels)+" [inquisitor] ";
     }
     SWD += "</td></tr>\r";
-    
+
     // Sleight of Hand
     if ((sleightofhand > 0) || (bard_levels>=10)) {
         x=modifier_number(dexterity) + sleightofhand;
@@ -23776,7 +24199,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Swim</td><td>Str<sup>**</sup></td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(strength) + "</td><td>";
+    SWD += "<tr><td>Swim</td><td>Str<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(strength) + "</td><td>";
     if (swim > 0) {
         SWD += "+" + swim;
     }
@@ -23945,7 +24368,7 @@ function WriteTextForCharacterSheet() {
         SWD += "+" + otherskill3;
         SWD += "</td><td></td></tr>\r";
     }
-    SWD += "</tbody></table>\r<br />\r* = check penalty for armor/shield<br />\r** = some groups double armor/shield penalties for swimmers<br /><br />\r";
+    SWD += "</tbody></table>\r<p>\r* = check penalty for armor/shield</p>\r";
 
     if (linguistics > 0) {
         SWD += "This character also has " + linguistics + " ranks in Linguistics.<br />";
@@ -24144,8 +24567,7 @@ function WriteTextForCharacterSheet() {
         stringy=whichabilityup();
         SWD += "<li>This human chose +2 to "+stringy+" (already included)</li>";
         SWD += "<li>Extra feat at first level (already included)</li>";
-        SWD += "<li>Four extra skill points at first level (already included)</li>";
-        SWD += "<li>One extra skill point at each additional level (already included)</li>";
+        SWD += "<li>One extra skill point at each level (already included)</li>";
         SWD += "</ul>";
     }
     if (rayce == 103) {
@@ -25095,10 +25517,10 @@ function WriteTextForCharacterSheet() {
     if (alchemist_levels > 0)  {
         SWD += "<h5>Alchemist</h5><ul>";
         SWD += "<li>Extracts</li>";
-        SWD += "<li>Bombs:</li><ul>";
-        SWD += "<li>Bombs per day: " + (alchemist_levels + modifier_number(intelligence)) + "</li>";
+        SWD += "<li>Bombs:</li>";
+        SWD += "<ul><li>Bombs per day: " + (alchemist_levels + modifier_number(intelligence)) + "</li>";
         SWD += "<li>Bomb damage: " + Math.ceil(alchemist_levels/2) + "d+" + modifier_number(intelligence) + "</li>";
-        SWD += "<li>Bomb Reflex save DC: " + (halfLevelBonus(alchemist_levels)+modifier_number(intelligence)+10 ) + "</li>";
+        SWD += "<li>Bomb Reflex save DC: " + (halfLevelBonus(alchemist_levels)+modifier_number(intelligence)+10 ) + "</li></ul>";
         SWD += "<li>Mutagens</li>";
         SWD += "<li>When using Craft (alchemy) to create an alchemical item, this alchemist gains a +"+alchemist_levels+" competence bonus</li>";
         SWD += "<li>Bonus Feat: Brew Potion (already included)</li>";
@@ -25113,17 +25535,17 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Grand Discovery (level 20)</li>";
         SWD += "</ul>";
     }
-    
+
     if (cavalier_levels > 0)  {
         SWD += "<h5>Cavalier</h5><ul>";
         SWD += "<li>Challenge</li>";
         SWD += "<li>Mount</li>";
-        SWD += "<li>Order</li>";
+        SWD += "<li>Pledged to the order of the "+cavalier_order_name+"</li>";
         SWD += "<li>Tactician</li>";
         SWD += "<li>Cavalier's Charge (level 3)</li>";
         SWD += "<li>Expert Trainer (level 4)</li>";
         SWD += "<li>Banner (level 5)</li>";
-        SWD += "<li>Bonus Feat - Cavaliers earn a bonus combat feat at level 6, and at every six levels thereafter.</li>";
+        SWD += "<li>Bonus Feat (level 6, and at every six levels thereafter -- already included)</li>";
         SWD += "<li>Greater Tactician (level 9)</li>";
         SWD += "<li>Mighty Charge (level 11)</li>";
         SWD += "<li>Demanding Challenge (level 12)</li>";
@@ -25132,7 +25554,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Supreme Charge (level 20)</li>";
         SWD += "</ul>";
     }
-    
+
     if (inquisitor_levels > 0)  {
         SWD += "<h5>Inquisitor</h5><ul>";
         SWD += "<li>Divine spells: The DC for saves against an inquisitor's spell is 10 + the spell level + the inquisitor's Wisdom modifier.</li>";
@@ -25169,7 +25591,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Revelation - At 1st level, 3rd level, and every four levels thereafter (7th, 11th, and so on), an oracle uncovers a new secret about her mystery.</li>";
         SWD += "</ul>";
     }
-    
+
     if (summoner_levels > 0)  {
         SWD += "<h5>Summoner</h5><ul>";
         SWD += "<li>Divine spells: The DC for saves against an summoner's spell is 10 + the spell level + the summoner's Charisma modifier.</li>";
@@ -25200,7 +25622,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Revelation - At 1st level, 3rd level, and every four levels thereafter (7th, 11th, and so on), an oracle uncovers a new secret about her mystery.</li>";
         SWD += "</ul>";
     }
-    
+
     if (psion_levels > 0) {
         SWD += "<h5>Psion</h5><ul>";
         SWD += "<li>At level 1, all psions can detect psionics.</li>";
@@ -25656,8 +26078,7 @@ function WriteTextForCharacterSheet() {
     SWD += "<table><tr><td align=\"right\">";
     x=Math.ceil(wt);
     SWD += x + " lbs.<br />";
-    if (document.form1.crossbowbolts.selectedIndex > 0)
-    {
+    if (document.form1.crossbowbolts.selectedIndex > 0) {
         x=Math.ceil(1*document.form1.crossbowbolts.selectedIndex)
         SWD += x + " lbs.<br />";
         wt += x;
@@ -25667,13 +26088,18 @@ function WriteTextForCharacterSheet() {
         SWD += x + " lbs.<br />";
         wt += x;
     }
-    if (document.form1.bullets.selectedIndex > 0) {
+    /* if (document.form1.bullets.selectedIndex > 0) {
         x=Math.ceil(2*document.form1.bullets.selectedIndex);
         SWD += x + " lbs.<br />";
         wt += x;
-    }
+    } */
     if (document.form1.slingbullets.selectedIndex > 0) {
         x=Math.ceil(5*document.form1.slingbullets.selectedIndex)
+        SWD += x + " lbs.<br />";
+        wt += x;
+    }
+    if (document.form1.blowgundarts.selectedIndex > 0) {
+        x=Math.ceil(1*document.form1.blowgundarts.selectedIndex)
         SWD += x + " lbs.<br />";
         wt += x;
     }
@@ -26086,11 +26512,14 @@ function WriteTextForCharacterSheet() {
     if (document.form1.arrows.selectedIndex > 0) {
         SWD += "Arrows (quiver of 20) &times;" + document.form1.arrows.selectedIndex + "<br />";
     }
-    if (document.form1.bullets.selectedIndex > 0) {
+    /* if (document.form1.bullets.selectedIndex > 0) {
         SWD += "Bullets (10) &times;" + document.form1.bullets.selectedIndex + "<br />";
-    }
+    } */
     if (document.form1.slingbullets.selectedIndex > 0) {
-        SWD += "Sling bullets (group of 10) &times;" + document.form1.slingbullets.selectedIndex + "<br />";
+        SWD += "Sling bullets (pouch of 10) &times;" + document.form1.slingbullets.selectedIndex + "<br />";
+    }
+    if (document.form1.blowgundarts.selectedIndex > 0) {
+        SWD += "Blowgun darts (quiver of 10) &times;" + document.form1.blowgundarts.selectedIndex + "<br />";
     }
     if (document.form1.throwingdaggers.selectedIndex > 0) {
         SWD += "Throwing daggers &times;" + document.form1.throwingdaggers.selectedIndex + "<br />";
@@ -26337,17 +26766,18 @@ function WriteTextForCharacterSheet() {
     SWD += "<br />";
 
     if (ac_species_name != "") {
-        SWD += "Animal companion: "+ac_species_name+"";
+        SWD += "<b>Animal companion</b>:<br />";
+        SWD += "Species: "+ac_species_name+"<br />";
         stringy=modifier_number(ac_strength);
         if (modifier_number(ac_strength)>=0) {
             stringy="+"+stringy;
         }
-        SWD += "Strength "+ac_strength+"<br />";
-        SWD += "Constitution "+ac_constitution+"<br />";
-        SWD += "Dexterity "+ac_dexterity+"<br />";
-        SWD += "Intelligence "+ac_intelligence+"<br />";
-        SWD += "Wisdom "+ac_wisdom+"<br />";
-        SWD += "Charisma "+ac_charisma+"<br />";
+        SWD += "Str: "+ac_strength+"<br />";
+        SWD += "Con: "+ac_constitution+"<br />";
+        SWD += "Dex: "+ac_dexterity+"<br />";
+        SWD += "Int: "+ac_intelligence+"<br />";
+        SWD += "Wis: "+ac_wisdom+"<br />";
+        SWD += "Cha: "+ac_charisma+"<br />";
         SWD += "Total Hit Points: "+ac_hp+"<br />";
         if (ac_small) {
             SWD += "Size: Small<br />";
@@ -26714,7 +27144,9 @@ function WriteTextForCharacterSheet() {
         if (document.form1.ac_weaponfocus_box.checked) {
             SWD += "Feat: Weapon Focus<br />\r";
         }
-        SWD += "Link, share spells (level 1)<br />";
+        if ( (cavalier_levels == 0) && (druid_levels > 0) && (ranger_levels > 3) ) {
+            SWD += "Link, share spells (level 1)<br />";
+        }
         SWD += "Evasion (level 3)<br />";
         SWD += "Devotion (level 6)<br />";
         SWD += "Multiattack (level 9)<br />";
@@ -26722,7 +27154,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<br />";
     }
 
-    if (crystals() == true) {
+    if (Manifester()) {
         SWD += "Psicrystal: ";
         if (document.form1.artiste_crystal.checked) {
             SWD += "Artiste; ";
@@ -28230,11 +28662,11 @@ function CalculateArmorClass() {
         armor_string="Padded armor [light; +1 AC; max dex + " + y+" check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 10 lbs.";
+            armor_string += "; 10 lbs.";
             wt += 10;
         }
         if (small == true) {
-            armor_string += " 5 lbs.";
+            armor_string += "; 5 lbs.";
             wt += 5;
         }
         if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28256,14 +28688,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Leather armor [light; +2 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Leather armor [light; +2 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 15 lbs.";
+            armor_string += "; 15 lbs.";
             wt += 15;
         }
         if (small == true) {
-            armor_string += " 7.5 lbs.";
+            armor_string += "; 7.5 lbs.";
             wt += 7.5;
         }
         if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
@@ -28287,13 +28719,13 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Studded armor [light; +3 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Studded armor [light; +3 AC; max dex +"+y+"; check penalty "+z;
         if (small == false) {
-            armor_string += " 20 lbs.";
+            armor_string += "; 20 lbs.";
             wt += 20;
         }
         if (small == true) {
-            armor_string += " 10 lbs.";
+            armor_string += "; 10 lbs.";
             wt += 10;
         }
         if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
@@ -28317,14 +28749,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Chain shirt [light; +4 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Chain shirt [light; +4 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 25 lbs.";
+            armor_string += "; 25 lbs.";
             wt += 25;
         }
         if (small == true) {
-            armor_string += " 12.5 lbs.";
+            armor_string += "; 12.5 lbs.";
             wt += 12.5;
         }
         if ((sorcerer_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28349,14 +28781,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Hide armor [medium; +3 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Hide armor [medium; +3 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 25 lbs.";
+            armor_string += "; 25 lbs.";
             wt += 25;
         }
         if (small == true) {
-            armor_string += " 12.5 lbs.";
+            armor_string += "; 12.5 lbs.";
             wt += 12.5;
         }
         if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28381,14 +28813,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Scale mail [medium; +5 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Scale mail [medium; +5 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 30 lbs.";
+            armor_string += "; 30 lbs.";
             wt += 30;
         }
         if (small == true) {
-            armor_string += " 15 lbs.";
+            armor_string += "; 15 lbs.";
             wt += 15;
         }
         if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28413,14 +28845,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Chain mail [medium; +5 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Chain mail [medium; +5 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 40 lbs.";
+            armor_string += "; 40 lbs.";
             wt += 40;
         }
         if (small == true) {
-            armor_string += " 20 lbs.";
+            armor_string += "; 20 lbs.";
             wt += 20;
         }
         if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28445,14 +28877,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Breast plate [medium; +5 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Breast plate [medium; +5 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 30 lbs.";
+            armor_string += "; 30 lbs.";
             wt += 30;
         }
         if (small == true) {
-            armor_string += " 15 lbs.";
+            armor_string += "; 15 lbs.";
             wt += 15;
         }
         if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28477,14 +28909,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Splint mail [heavy; +6 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Splint mail [heavy; +6 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 45 lbs.";
+            armor_string += "; 45 lbs.";
             wt += 45;
         }
         if (small == true) {
-            armor_string += " 22.5 lbs.";
+            armor_string += "; 22.5 lbs.";
             wt += 22.5;
         }
         if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28509,14 +28941,14 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Banded mail [heavy; +6 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Banded mail [heavy; +6 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 35 lbs.";
+            armor_string += "; 35 lbs.";
             wt += 35;
         }
         if (small == true) {
-            armor_string += " 17.5 lbs.";
+            armor_string += "; 17.5 lbs.";
             wt += 17.5;
         }
         if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
@@ -28541,18 +28973,17 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Half-plate armor [heavy; +7 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Half-plate armor [heavy; +7 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 50 lbs.";
+            armor_string += "; 50 lbs.";
             wt += 50;
         }
         if (small == true) {
-            armor_string += " 25 lbs.";
+            armor_string += "; 25 lbs.";
             wt += 25;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
-        {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 40%";
         }
         armor_string += "] ";
@@ -28573,18 +29004,17 @@ function CalculateArmorClass() {
         if (dexterity_bonus_in_this_armor>y) {
             dexterity_bonus_in_this_armor=y;
         }
-        armor_string="Full plate armor [heavy; +8 AC; max dex + "+y+" check penalty "+z;
+        armor_string="Full plate armor [heavy; +8 AC; max dex +"+y+"; check penalty "+z;
         armor_check_penalty=z;
         if (small == false) {
-            armor_string += " 50 lbs.";
+            armor_string += "; 50 lbs.";
             wt += 50;
         }
         if (small == true) {
-            armor_string += " 25 lbs.";
+            armor_string += "; 25 lbs.";
             wt += 25;
         }
-        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0))
-        {
+        if ((sorcerer_levels > 0) || (bard_levels > 0) || (wizard_levels > 0) || (witch_levels > 0)) {
             armor_string += "; arcane spell failure 35%";
         }
         armor_string += "] ";
@@ -33154,6 +33584,12 @@ function lock_feats() {
         SuggestLooks();
         AdjustHeight();
         AdjustWeight();
+        if (Manifester()) {
+            $('#psicrystalChoice').show();
+        }
+        else {
+            $('#psicrystalChoice').hide();
+        }
     }
     else {
         document.form1.sixth_comment_box.value="Work on your feats";
@@ -33233,6 +33669,10 @@ function WizardSpecialtyA() {
 }
 function PsionSpecialtyA() {
     PsionSpecialty();
+    ArrowShow();
+}
+function cavalierOrderAdd() {
+    cavalierOrder();
     ArrowShow();
 }
 function DomainsA() {
