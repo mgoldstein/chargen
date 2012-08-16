@@ -1,6 +1,6 @@
 /*
  * Add new familiars
- * Fix cavalier mount
+ * 
  */
 
 function PsionicRace() {
@@ -3154,14 +3154,14 @@ function LightArmsAndArmorStars() {
     if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.scythe_star.src="images/asterisk.gif";
     }
-    if ((rayce == 3) || (already_knows_martial_weapons) || (has_martialweaponproficiency)) {
+    if ((inquisitor_levels > 0) || (rayce == 3) || (already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.longbow_star.src="images/asterisk.gif";
     }
     if ((rayce == 3) || (already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.compositelongbow_star.src="images/asterisk.gif";
     }
     if ((rayce == 3) || (rogue_levels > 0) || (bard_levels > 0) || (already_knows_martial_weapons)
-        || (has_martialweaponproficiency)) {
+        || (inquisitor_levels > 0) || (has_martialweaponproficiency)) {
         document.form1.shortbow_star.src="images/asterisk.gif";
     }
     if ((rayce == 3) || (already_knows_martial_weapons) || (has_martialweaponproficiency)) {
@@ -3171,7 +3171,7 @@ function LightArmsAndArmorStars() {
         document.form1.kama_star.src="images/asterisk.gif";
     }
     if ((monk_levels > 0) || (has_exoticweaponproficiency)) {
-        document.form1.nanchaku_star.src="images/asterisk.gif";
+        document.form1.nunchaku_star.src="images/asterisk.gif";
     }
     if ((monk_levels > 0) || (has_exoticweaponproficiency)) {
         document.form1.sai_star.src="images/asterisk.gif";
@@ -3215,13 +3215,13 @@ function LightArmsAndArmorStars() {
     if (has_exoticweaponproficiency) {
         document.form1.bolas_star.src="images/asterisk.gif";
     }
-    if ((rogue_levels > 0) || (rayce == 12) || (has_exoticweaponproficiency)) {
+    if ((inquisitor_levels > 0) || (rogue_levels > 0) || (rayce == 12) || (has_exoticweaponproficiency)) {
         document.form1.handcrossbow_star.src="images/asterisk.gif";
     }
-    if (has_exoticweaponproficiency) {
+    if (has_exoticweaponproficiency || (inquisitor_levels > 0)) {
         document.form1.repeatingheavycrossbow_star.src="images/asterisk.gif";
     }
-    if (has_exoticweaponproficiency) {
+    if (has_exoticweaponproficiency || (inquisitor_levels > 0)) {
         document.form1.repeatinglightcrossbow_star.src="images/asterisk.gif";
     }
     if (has_exoticweaponproficiency) {
@@ -9685,13 +9685,13 @@ function Arms() {
         if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.scythe.checked=false;
         }
-        if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
+        if ((rayce!=3) && (inquisitor_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.longbow.checked=false;
         }
         if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.compositelongbow.checked=false;
         }
-        if ((rayce!=3) && (rogue_levels == 0) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
+        if ((rayce!=3) && (rogue_levels == 0) && (inquisitor_levels == 0) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.shortbow.checked=false;
         }
         if ((rayce!=3) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
@@ -9701,7 +9701,7 @@ function Arms() {
             document.form1.kama.checked=false;
         }
         if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
-            document.form1.nanchaku.checked=false;
+            document.form1.nunchaku.checked=false;
         }
         if ((monk_levels == 0) && (has_exoticweaponproficiency == false)) {
             document.form1.sai.checked=false;
@@ -9745,13 +9745,13 @@ function Arms() {
         if ((has_exoticweaponproficiency == false)) {
             document.form1.bolas.checked=false;
         }
-        if ((rogue_levels == 0) && (rayce!=12) && (has_exoticweaponproficiency == false)) {
+        if ((rogue_levels == 0) && (inquisitor_levels == 0) && (rayce!=12) && (has_exoticweaponproficiency == false)) {
             document.form1.handcrossbow.checked=false;
         }
-        if ((has_exoticweaponproficiency == false)) {
+        if ((has_exoticweaponproficiency == false) && (inquisitor_levels == 0)) {
             document.form1.repeatingheavycrossbow.checked=false;
         }
-        if ((has_exoticweaponproficiency == false)) {
+        if ((has_exoticweaponproficiency == false) && (inquisitor_levels == 0)) {
             document.form1.repeatinglightcrossbow.checked=false;
         }
         if ((has_exoticweaponproficiency == false)) {
@@ -14287,7 +14287,6 @@ function Feats() {
         }
         if (ride == 0) {
             document.form1.mountedcombat.checked=false;
-            alert("You need at least one rank of Ride skill");
         }
         if (document.form1.mountedcombat.checked == true) {
             total_fighter_feats++;
@@ -15994,7 +15993,32 @@ function FigureClassSkillsAndTotalSkillPoints() {
             document.form1.linguistics_ics.checked=true;
         }
     }
-
+    if (inquisitor_levels > 0) {
+        document.form1.bluff_ics.checked=true;
+        document.form1.climb_ics.checked=true;
+        document.form1.craft_1_ics.checked=true;
+        document.form1.craft_2_ics.checked=true;
+        document.form1.craft_3_ics.checked=true;
+        document.form1.diplomacy_ics.checked=true;
+        document.form1.disguise_ics.checked=true;
+        document.form1.heal_ics.checked=true;
+        document.form1.intimidate_ics.checked=true;
+        document.form1.knowledgearcana_ics.checked=true;
+        document.form1.knowledgedungeoneering_ics.checked=true;
+        document.form1.knowledgenature_ics.checked=true;
+        document.form1.knowledgereligion_ics.checked=true;
+        document.form1.knowledgeplanes_ics.checked=true;
+        document.form1.perception_ics.checked=true;
+        document.form1.profession_1_ics.checked=true;
+        document.form1.profession_2_ics.checked=true;
+        document.form1.profession_3_ics.checked=true;
+        document.form1.ride_ics.checked=true;
+        document.form1.sensemotive_ics.checked=true;
+        document.form1.spellcraft_ics.checked=true;
+        document.form1.stealth_ics.checked=true;
+        document.form1.survival_ics.checked=true;
+        document.form1.swim_ics.checked=true;
+    }
     if (oracle_levels > 0) {
         document.form1.craft_1_ics.checked=true;
         document.form1.craft_2_ics.checked=true;
@@ -17517,7 +17541,7 @@ function displayClassOptions() {
             }
         }
     }
-    if (cleric_levels > 0) {
+    if ( (cleric_levels > 0) || (inquisitor_levels > 0) ) {
         $('#cleric_shit').show();
         if (alignment<4) {
             document.form1.choose_energy[0].checked=true;
@@ -20365,7 +20389,7 @@ function WriteTextForCharacterSheet() {
     SWD += "<tr><td>Attack (missile):</td><td>" + missile_attack_string_1 + "</td><td>" + missile_attack_string_2 + "</td></tr>\r";
     SWD += "<tr><td>Combat Maneuver Bonus:</td><td>" + CMB_string_1 + "</td><td>" + CMB_string_2 + "</td></tr>\r";
     SWD += "<tr><td>Combat Maneuver Defense:</td><td>" + CMD_string_1 + "</td><td>" + CMD_string_2 + "</td></tr>\r";
-    SWD += "</table></p>\r";
+    SWD += "</table></p><br />\r";
     SWD += "<p><table><tr><td>Light load:<br />Medium load:<br />Heavy load:<br />Lift over head:<br />Lift off ground:<br />Push or drag:<br /></td><td>";
     x=0;
     z=0;
@@ -20589,7 +20613,7 @@ function WriteTextForCharacterSheet() {
 
     SWD += "</td></tr></table></p>";
 
-    SWD += "<br /><table><tr><td valign=\"top\">Languages:</td><td>";
+    SWD += "<br /><p>Languages: ";
     if ((document.form1.speak_aarakocra.checked == true) || (aarakocra_nativespeaker == true)) {
         SWD += "Aarakocra ";
     }
@@ -20627,7 +20651,7 @@ function WriteTextForCharacterSheet() {
         SWD += "Elven ";
     }
     if ((document.form1.speak_darkelfsilent.checked == true)) {
-        SWD += "Dark_Elf_Silent ";
+        SWD += "Dark Elf Silent ";
     }
     if ((document.form1.speak_giant.checked == true) || (giant_nativespeaker == true)) {
         SWD += "Giant ";
@@ -20703,7 +20727,7 @@ function WriteTextForCharacterSheet() {
     if (total_bonus_languages<total_bonus_language_entitlement) {
         SWD += " (? " + (total_bonus_language_entitlement-total_bonus_languages) + " more)";
     }
-    SWD += "</td></tr></table><br />";
+    SWD += "</p><br />";
 
     // Figure damage modifier
     if (modifier_string(strength)!="+0") {
@@ -20939,21 +20963,21 @@ function WriteTextForCharacterSheet() {
     }
     if (document.form1.heavycrossbow.checked == true) {
         if (small == true) {
-            SWD += "Heavy Crossbow ["+missile_attack_string_1+", 1d8"+bow_st_penalty+", crit 19-20/x2, range inc 120 ft., 4 lbs., piercing]<br />\r";
+            SWD += "Heavy Crossbow ["+missile_attack_string_1+", 1d8, crit 19-20/x2, range inc 120 ft., 4 lbs., piercing]<br />\r";
             wt += 4;
         }
         if (small == false) {
-            SWD += "Heavy Crossbow ["+missile_attack_string_1+", 1d10"+bow_st_penalty+", crit 19-20/x2, range inc 120 ft., 8 lbs., piercing]<br />\r";
+            SWD += "Heavy Crossbow ["+missile_attack_string_1+", 1d10, crit 19-20/x2, range inc 120 ft., 8 lbs., piercing]<br />\r";
             wt += 8;
         }
     }
     if (document.form1.lightcrossbow.checked == true) {
         if (small == true) {
-            SWD += "Light Crossbow ["+missile_attack_string_1+", 1d6"+bow_st_penalty+", crit 19-20/x2, range inc 80 ft., 2 lb, piercing]]<br />\r";
+            SWD += "Light Crossbow ["+missile_attack_string_1+", 1d6, crit 19-20/x2, range inc 80 ft., 2 lb, piercing]]<br />\r";
             wt += 2;
         }
         if (small == false) {
-            SWD += "Light Crossbow ["+missile_attack_string_1+", 1d8"+bow_st_penalty+", crit 19-20/x2, range inc 80 ft., 4 lb, piercing]]<br />\r";
+            SWD += "Light Crossbow ["+missile_attack_string_1+", 1d8, crit 19-20/x2, range inc 80 ft., 4 lb, piercing]]<br />\r";
             wt += 4;
         }
     }
@@ -20989,11 +21013,11 @@ function WriteTextForCharacterSheet() {
     }
     if (document.form1.blowgun.checked == true) {
         if (small == true) {
-            SWD += "Blowgun ["+missile_attack_string_1+", 1"+bow_st_penalty+", crit x2, range inc. 20 ft., 1/2 lb, piercing]<br />\r";
+            SWD += "Blowgun ["+missile_attack_string_1+", 1, crit x2, range inc. 20 ft., 1/2 lb, piercing]<br />\r";
             wt += 0.5;
         }
         if (small == false) {
-            SWD += "Blowgun ["+missile_attack_string_1+", 1d2"+bow_st_penalty+", crit x2, range inc. 20 ft., 1 lb, piercing]<br />\r";
+            SWD += "Blowgun ["+missile_attack_string_1+", 1d2, crit x2, range inc. 20 ft., 1 lb, piercing]<br />\r";
             wt += 1;
         }
     }
@@ -21321,21 +21345,21 @@ function WriteTextForCharacterSheet() {
     }
     if (document.form1.shortbow.checked == true) {
         if (small == true) {
-            SWD += "Shortbow ["+missile_attack_string_1+", 1d4, crit x3"+damage_bonus+", range inc. 60 ft., 1 lbs., piercing]<br />\r";
+            SWD += "Shortbow ["+missile_attack_string_1+", 1d4, crit x3"+bow_st_penalty+", range inc. 60 ft., 1 lbs., piercing]<br />\r";
             wt += 1;
         }
         if (small == false) {
-            SWD += "Shortbow ["+missile_attack_string_1+", 1d6, crit x3"+damage_bonus+", range inc. 60 ft., 2 lbs., piercing]<br />\r";
+            SWD += "Shortbow ["+missile_attack_string_1+", 1d6, crit x3"+bow_st_penalty+", range inc. 60 ft., 2 lbs., piercing]<br />\r";
             wt += 2;
         }
     }
     if (document.form1.compositeshortbow.checked == true) {
         if (small == true) {
-            SWD += "Composite Shortbow ["+missile_attack_string_1+", 1d4"+bow_st_penalty+", crit x3, range inc 70 ft., 1 lbs., piercing]<br />\r";
+            SWD += "Composite Shortbow ["+missile_attack_string_1+", 1d4"+damage_bonus+", crit x3, range inc 70 ft., 1 lbs., piercing]<br />\r";
             wt += 1;
         }
         if (small == false) {
-            SWD += "Composite Shortbow ["+missile_attack_string_1+", 1d6"+bow_st_penalty+", crit x3, range inc 70 ft., 2 lbs., piercing]<br />\r";
+            SWD += "Composite Shortbow ["+missile_attack_string_1+", 1d6"+damage_bonus+", crit x3, range inc 70 ft., 2 lbs., piercing]<br />\r";
             wt += 2;
         }
     }
@@ -21349,7 +21373,7 @@ function WriteTextForCharacterSheet() {
             wt += 2;
         }
     }
-    if (document.form1.nanchaku.checked == true) {
+    if (document.form1.nunchaku.checked == true) {
         if (small == true) {
             SWD += "Nunchaku ["+handheld_attack_string_1+", 1d4"+damage_bonus+", crit x2, 1 lbs.,  light, bludgeoning]<br />\r";
             wt += 1;
@@ -21501,31 +21525,31 @@ function WriteTextForCharacterSheet() {
     }
     if (document.form1.handcrossbow.checked == true) {
         if (small == true) {
-            SWD += "Hand Crossbow ["+missile_attack_string_1+", 1d3"+bow_st_penalty+", 19-20/x2, range inc 30 ft., 1 lbs., piercing]<br />\r";
+            SWD += "Hand Crossbow ["+missile_attack_string_1+", 1d3, 19-20/x2, range inc 30 ft., 1 lbs., piercing]<br />\r";
             wt += 1;
         }
         if (small == false) {
-            SWD += "Hand Crossbow ["+missile_attack_string_1+", 1d4"+bow_st_penalty+", 19-20/x2, range inc 30 ft., 2 lbs., piercing]<br />\r";
+            SWD += "Hand Crossbow ["+missile_attack_string_1+", 1d4, 19-20/x2, range inc 30 ft., 2 lbs., piercing]<br />\r";
             wt += 2;
         }
     }
     if (document.form1.repeatingheavycrossbow.checked == true) {
         if (small == true) {
-            SWD += "Repeating Heavy Crossbow ["+missile_attack_string_1+", 1d8"+bow_st_penalty+", 19-20/x2, range inc 120 ft., 6 lbs., piercing]<br />\r";
+            SWD += "Repeating Heavy Crossbow ["+missile_attack_string_1+", 1d8, 19-20/x2, range inc 120 ft., 6 lbs., piercing]<br />\r";
             wt += 6;
         }
         if (small == false) {
-            SWD += "Repeating Heavy Crossbow ["+missile_attack_string_1+", 1d10"+bow_st_penalty+", 19-20/x2, range inc 120 ft., 12 lbs., piercing]<br />\r";
+            SWD += "Repeating Heavy Crossbow ["+missile_attack_string_1+", 1d10, 19-20/x2, range inc 120 ft., 12 lbs., piercing]<br />\r";
             wt += 12;
         }
     }
     if (document.form1.repeatinglightcrossbow.checked == true) {
         if (small == true) {
-            SWD += "Repeating Light Crossbow ["+missile_attack_string_1+", 1d6"+bow_st_penalty+", 19-20/x2, range inc 80 ft., 3 lbs., piercing]<br />\r";
+            SWD += "Repeating Light Crossbow ["+missile_attack_string_1+", 1d6, 19-20/x2, range inc 80 ft., 3 lbs., piercing]<br />\r";
             wt += 3;
         }
         if (small == false) {
-            SWD += "Repeating Light Crossbow ["+missile_attack_string_1+", 1d8"+bow_st_penalty+", 19-20/x2, range inc 80 ft., 6 lbs., piercing]<br />\r";
+            SWD += "Repeating Light Crossbow ["+missile_attack_string_1+", 1d8, 19-20/x2, range inc 80 ft., 6 lbs., piercing]<br />\r";
             wt += 6;
         }
     }
@@ -21606,7 +21630,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<br />\r";
     }
 
-    SWD += "<p><table><caption>Feats:</caption>";
+    SWD += "<p>Feats:</p><p><table>";
     if (has_acrobatic == true) {
         SWD += "<tr><td valign=\"top\">Acrobatic</td><td>+2 on acrobatics and fly checks</td></tr>\r";
     }
@@ -22921,9 +22945,6 @@ function WriteTextForCharacterSheet() {
     if ((document.form1.diplomacy_ics.checked) && (diplomacy > 0)) {
         x += 3;
     }
-    if (rayce == 2) {
-        x=x + 2;
-    }
     if (rayce == 28) {
         x=x + 2;
     }
@@ -22948,9 +22969,6 @@ function WriteTextForCharacterSheet() {
     if ((document.form1.diplomacy_ics.checked) && (diplomacy > 0)) {
         SWD += " +3 [class skill] ";
     }
-    if (rayce == 2) {
-        SWD += " +2 [half-elf] ";
-    }
     if (rayce == 28) {
         SWD += " +2 [aasimar] ";
     }
@@ -22967,10 +22985,10 @@ function WriteTextForCharacterSheet() {
 
     // Disable Device
     if ((disabledevice > 0) || (bard_levels>=10)) {
+        x=modifier_number(intelligence) + disabledevice;
         if ((document.form1.disabledevice_ics.checked) && (disabledevice > 0)) {
             x += 3;
         }
-        x=modifier_number(intelligence) + disabledevice;
         if (has_skillfocusdisabledevice == true) {
             x += 3;
             if (disabledevice>=10) {
@@ -23762,7 +23780,7 @@ function WriteTextForCharacterSheet() {
         x=x + 2;
     }
     if (rayce == 2) {
-        x=x + 1;
+        x=x + 2;
     }
     if (has_skillfocusperception == true) {
         x=x + 3;
@@ -23770,7 +23788,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Perception</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+    SWD += "<tr><td>Perception</td><td>Wis</td><td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
     if (perception > 0) {
         SWD += "+" + perception;
     }
@@ -23791,7 +23809,7 @@ function WriteTextForCharacterSheet() {
         SWD += " +2 [gnome] ";
     }
     if (rayce == 2) {
-        SWD += " +1 [half-elf] ";
+        SWD += " +2 [half-elf] ";
     }
     if (rayce == 6) {
         SWD += " +2 [halfling] ";
@@ -24680,7 +24698,6 @@ function WriteTextForCharacterSheet() {
         }
         SWD += "</ul>";
     }
-
     if (rayce == 209)  {
         SWD += "<h5>Blue</h5><ul>";
         SWD += "<li>Psionic goblins with bluish skin</li>";
@@ -24692,7 +24709,6 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>+2 bonus on perception, stealth, and ride checks (already included); stealth is always a class skill</li>";
         SWD += "</ul>";
     }
-
     if (rayce == 99)  {
         SWD += "<h5>Dromite</h5><ul>";
         SWD += "<li>Genderless insectoids</li>";
@@ -24713,12 +24729,11 @@ function WriteTextForCharacterSheet() {
         stringy=whichabilityup();
         SWD += "<li>This half-elf chose +2 to "+stringy+" (already included)</li>";
         SWD += "<li>Immune to magical sleep</li>";
-        SWD += "<li>Allowed two favored classes. Here I am assuming it is the first two favored classes.</li>";
-        SWD += "<li>Take a skill focus as a bonus feat at level 1</li>";
+        SWD += "<li>Allowed two favored classes. Here I am assuming it is the first two chosen classes.</li>";
+        SWD += "<li>Take a skill focus as a bonus feat at level one</li>";
         SWD += "<li>+2 racial bonus on saves vs. enchantments</li>";
         SWD += "<li>Low-light vision</li>";
-        SWD += "<li>+1 racial bonus on perception checks</li>";
-        SWD += "<li>+2 racial bonus on diplomacy and gather information checks</li>";
+        SWD += "<li>+2 racial bonus on perception checks</li>";
         SWD += "</ul>";
     }
     if (rayce == 7)  {
@@ -24728,7 +24743,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Darkvision (see 60 feet in pitch-dark)</li>";
         SWD += "<li>+2 on intimidate (already included)</li>";
         SWD += "<li>Orc Ferocity -- if brought below 0 hp, fight for 1 round anyway</li>";
-        SWD += "<li>All orcs know greataxes and falchions</li>";
+        SWD += "<li>All orcs are proficient with greataxes and falchions</li>";
         SWD += "</ul>";
     }
     if (rayce == 6)  {
