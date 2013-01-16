@@ -1765,7 +1765,7 @@ function AnimalCompanion0() {
 
 function AnimalCompanion() {
     ac_species_name="";
-    if ( ((druid_levels == 0) || (no_druid_domain == false) ) && (ranger_levels < 3 ) && (cavalier_levels == 0) ) {
+    if (((druid_levels == 0) || (no_druid_domain == false)) && (ranger_levels < 3) && (cavalier_levels == 0)) {
         NegateAnimalCompanionStuff();
         document.form1.AnimalCompanionBox.value="Your class(es) do not qualify for an animal companion.";
         return false;
@@ -1866,8 +1866,7 @@ function AnimalCompanion() {
             document.form1.ac_species[3].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a bird (eagle / hawk / owl). ";
             ac_species_name="Bird (eagle / hawk / owl)";
             ac_strength=10;
@@ -1887,19 +1886,16 @@ function AnimalCompanion() {
                 ac_constitution += 2;
             }
         }
-    }
-    else if (document.form1.ac_species[4].checked) {
-        if ( (cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3) ) {
+    } else if (document.form1.ac_species[4].checked) {
+        if ((cavalier_levels > 0) && (druid_levels == 0) && (ranger_levels < 3)) {
             document.form1.ac_species[4].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else if (small == true && cavalier_levels < 4) {
+        } else if (small == true && cavalier_levels < 4) {
             document.form1.ac_species[4].checked=false;
             document.form1.AnimalCompanionBox.value="Small cavaliers may only choose a boar mount at level four.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a boar. ";
             ac_species_name="Boar";
             ac_strength=13;
@@ -1948,8 +1944,7 @@ function AnimalCompanion() {
             document.form1.ac_species[6].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a Big Cat (lion / tiger). ";
             ac_species_name="Big Cat (lion / tiger)";
             ac_strength=13;
@@ -1979,8 +1974,7 @@ function AnimalCompanion() {
             document.form1.ac_species[7].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a Small Cat (cheetah / leopard). ";
             ac_species_name="Small Cat (cheetah / leopard)";
             ac_strength=12;
@@ -2010,8 +2004,7 @@ function AnimalCompanion() {
             document.form1.ac_species[8].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a crocodile / alligator. ";
             ac_species_name="Crocodile / Alligator";
             ac_strength=15;
@@ -2041,8 +2034,7 @@ function AnimalCompanion() {
             document.form1.ac_species[9].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a deinonychus / velociraptor. ";
             ac_species_name="Deinonychus / Velociraptor";
             ac_strength=11;
@@ -2073,13 +2065,11 @@ function AnimalCompanion() {
             document.form1.ac_species[10].checked=false;
             document.form1.AnimalCompanionBox.value="Cavaliers must choose a mount.";
             return false;
-        }
-        else if (cavalier_levels < 4 && small == true) {
+        } else if (cavalier_levels < 4 && small == true) {
             document.form1.ac_species[10].checked=false;
             document.form1.AnimalCompanionBox.value="Small cavaliers may only choose a dog mount at level four.";
             return false;
-        }
-        else {
+        } else {
             document.form1.AnimalCompanionBox.value="You chose a dog. ";
             ac_species_name="Dog";
             ac_strength=13;
@@ -2526,7 +2516,6 @@ function AnimalCompanion() {
         ac_dexterity += 6;
         ac_tricks += 7;
     }
-
     ac_hp=8+modifier_number(ac_constitution);
     x=1+Math.floor (8*Math.random())+modifier_number(ac_constitution);
     if (x<1) {
@@ -2965,35 +2954,101 @@ function AnimalCompanion() {
 }
 
 function SorcererFeatRecommendations() {
-    if (has_aberrant_bloodline) {
+    if (bloodline=='Aberrant') {
         document.form1.feat.value += "\rWith your aberrant bloodline, try to choose combat casting, improved disarm, improved grapple, improved initiative, improved unarmed strike, iron will, silent spell, skill focus knowledge dungeoneering, as you qualify.\r\r";
     }
-    if (has_abyssal_bloodline) {
+    if (bloodline=='Abyssal') {
         document.form1.feat.value += "\rWith your abyssal bloodline, try to choose augment summoning, cleave, empower spell, great fortitude, improved bull rush, improved sunder, power attack, skill focus knowledge planes as you qualify.\r\r";
     }
-    if (has_arcane_bloodline) {
+    if (bloodline=='Accursed') {
+        document.form1.feat.value += "\rWith your accursed bloodline, try to choose Alertness, Blind-Fight, Combat Casting, Deceitful, Defensive Combat Training, Endurance, Great Fortitude, Mounted Combat as you qualify.\r\r";
+    }
+    if (bloodline=='Aquatic') {
+        document.form1.feat.value += "\rWith your aquatic bloodline, try to choose Athletic, Brew Potion, Defensive Combat Training, Dodge, Mobility, Silent Spell, Skill Focus (Swim), Toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Arcane') {
         document.form1.feat.value += "\rWith your arcane bloodline, try to choose combat casting, improved counterspell, improved initiative, iron will, scribe scroll, skill focus knowledge arcana, spell focus, still spell as you qualify.\r\r";
     }
-    if (has_celestial_bloodline) {
+    if (bloodline=='Boreal') {
+        document.form1.feat.value += "\rWith your boreal bloodline, try to choose Arcane Strike, Diehard, Empower Spell, Endurance, Exotic Weapon Proficiency, Power Attack, Skill Focus (Intimidate), Toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Celestial') {
         document.form1.feat.value += "\rWith your celestial bloodline, try to choose dodge, extend spell, iron will, mobility, mounted combat, ride-by attack, skill focus knowledge religion, weapon finesse as you qualify.\r\r";
     }
-    if (has_destined_bloodline) {
+    if (bloodline=='Daemon') {
+        document.form1.feat.value += "\rWith your daemon bloodline, try to choose Diehard, Endurance, Fast Healer, Great Fortitude, Heroic Defiance, Heroic Recovery, Sickening Spell, Toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Deep Earth') {
+        document.form1.feat.value += "\rWith your deep earth bloodline, try to choose Acrobatic Steps, Alertness, Blind-Fight, Forge Ring, Nimble Moves, Skill Focus (Perception), Stealthy, Still Spell as you qualify.\r\r";
+    }
+    if (bloodline=='Destined') {
         document.form1.feat.value += "\rWith your destined bloodline, try to choose arcane strike, diehard, endurance, leadership, lighting reflexes, maximize spel, skill focus knowledge history, weapon focus as you qualify.\r\r";
     }
-    if (has_draconic_bloodline) {
+    if (bloodline=='Djinni') {
+        document.form1.feat.value += "\rWith your djinni bloodline, try to choose Dodge, Empower Spell, Great Fortitude, Improved Initiative, Lightning Reflexes, Power Attack, Skill Focus (Knowledge [planes]), Weapon Finesse as you qualify.\r\r";
+    }
+    if (bloodline=='Draconic') {
         document.form1.feat.value += "\rWith your draconic bloodline, try to choose blindfight, great fortitude, improved initiative, power attack, quicken spell, skill focus fly, skill focus knowledge arcana, toughness as you qualify.\r\r";
     }
-    if (has_elemental_bloodline) {
+    if (bloodline=='Dreamspun') {
+        document.form1.feat.value += "\rWith your dreamspun bloodline, try to choose Alertness, Blind-Fight, Combat Expertise, Deceitful, Heighten Spell, Improved Feint, Persuasive, Skill Focus (Sense Motive) as you qualify.\r\r";
+    }
+    if (bloodline=='Efreeti') {
+        document.form1.feat.value += "\rWith your efreeti bloodline, try to choose Dodge, Empower Spell, Great Fortitude, Improved Initiative, Lightning Reflexes, Power Attack, Skill Focus (Knowledge [planes]), Weapon Finesse as you qualify.\r\r";
+    }
+    if (bloodline=='Elemental') {
         document.form1.feat.value += "\rWith your elemental bloodline, try to choose dodge, empower speoo, great fortitude, improved initiative, lightning reflexes, power attack, skill focus knowledge planes, weapon finesse as you qualify.\r\r";
     }
-    if (has_fey_bloodline) {
+    if (bloodline=='Fey') {
         document.form1.feat.value += "\rWith your fey bloodling, try to choose dodge, improved initiative, lightning reflexes, mobility, point blank shot, precise shot, quicken spell, skil focus knowledge nature as you qualify.\r\r";
     }
-    if (has_infernal_bloodline) {
+    if (bloodline=='Infernal') {
         document.form1.feat.value += "\rWith your infernal bloodline, try to choose blindfight, combat expertise, deceitful, extend spell, improved disarm, iron will, skill focus knowledge planes, spell penetration as you qualify.\r\r";
     }
-    if (has_undead_bloodline) {
+    if (bloodline=='Maestro') {
+        document.form1.feat.value += "\rWith your maestro bloodline, try to choose Deceitful, Greater Spell Focus (enchantment), Lingering Performance, Persuasive, Skill Focus (Perform), Spell Focus (enchantment), Spellsong, Still Spell as you qualify.\r\r";
+    }
+    if (bloodline=='Marid') {
+        document.form1.feat.value += "\rWith your marid bloodline, try to choose Dodge, Empower Spell, Great Fortitude, Improved Initiative, Lightning Reflexes, Power Attack, Skill Focus (Knowledge [planes]), Weapon Finesse as you qualify.\r\r";
+    }
+    if (bloodline=='Martyred') {
+        document.form1.feat.value += "\rWith your martyred bloodline, try to choose Diehard, Endurance, Heroic Defiance, Heroic Recovery, Leadership, Persuasive, Skill Focus (Perform), Toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Oni') {
+        document.form1.feat.value += "\rWith your oni bloodline, try to choose Combat Expertise, Combat Reflexes, Enforcer, Fast Healer, Improved Initiative, Iron Will, Power Attack, Skill Focus (Intimidate), Weapon Proficiency (katana) as you qualify.\r\r";
+    }
+    if (bloodline=='Orc') {
+        document.form1.feat.value += "\rWith your orc bloodline, try to choose Diehard, Endurance, Great Fortitude, Intimidating Prowess, Improved Overrun, Power Attack, Toughness, Widen Spell as you qualify.\r\r";
+    }
+    if (bloodline=='Pestilence') {
+        document.form1.feat.value += "\rWith your pestilence bloodline, try to choose Brew Potion, Diehard, Endurance, Great Fortitude, Self-Sufficient, Skill Focus (Knowledge [nature]), Silent Spell, Toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Protean') {
+        document.form1.feat.value += "\rWith your protean bloodline, try to choose Agile Maneuvers, Defensive Combat Training, Enlarge Spell, Great Fortitude, Improved Great Fortitude, Skill Focus (Craft [any]), Spell Focus, Toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Rakshasa') {
+        document.form1.feat.value += "\rWith your rakshasa bloodline, try to choose Arcane Armor Mastery, Arcane Armor Training, Deceitful, Detect Expertise, Empower Spell, Light Armor Proficiency, Martial Weapon Proficiency, Stealthy as you qualify.\r\r";
+    }
+    if (bloodline=='Serpentine') {
+        document.form1.feat.value += "\rWith your serpentine bloodline, try to choose Combat Casting, Combat Reflexes, Deceitful, Deft Hands, Persuasive, Silent Spell, Skill Focus (Bluff), Stealthy as you qualify.\r\r";
+    }
+    if (bloodline=='Shadow') {
+        document.form1.feat.value += "\rWith your shadow bloodline, try to choose Acrobatic, Blind-Fight, Dodge, Quick Draw, Silent Spell, Skill Focus (Stealth), Stealthy, Weapon Finesse as you qualify.\r\r";
+    }
+    if (bloodline=='Shaitan') {
+        document.form1.feat.value += "\rWith your shaitan bloodline, try to choose Acrobatic, Blind-Fight, Dodge, Quick Draw, Silent Spell, Skill Focus (Stealth), Stealthy, Weapon Finesse as you qualify.\r\r";
+    }
+    if (bloodline=='Starsoul') {
+        document.form1.feat.value += "\rWith your starsoul bloodline, try to choose Dodge, Empower Spell, Great Fortitude, Improved Initiative, Lightning Reflexes, Power Attack, Skill Focus (Knowledge [planes]), Weapon Finesse as you qualify.\r\r";
+    }
+    if (bloodline=='Stormborn') {
+        document.form1.feat.value += "\rWith your stormborn bloodline, try to choose Deadly Aim, Dodge, Enlarge Spell, Far Shot, Great Fortitude, Point Blank Shot, Skill Focus (Fly), and Wind Stance as you qualify.\r\r";
+    }
+    if (bloodline=='Undead') {
         document.form1.feat.value += "\rWith your undead bloodline, try to choose combat casting, diehard, endurance, iron will, skill focus knowledge religion, spell focus, still spell, toughness as you qualify.\r\r";
+    }
+    if (bloodline=='Verdant') {
+        document.form1.feat.value += "\rWith your verdant bloodline, try to choose Acrobatic Steps, Craft Staff, Endurance, Extend Spell, Fleet, Nimble Moves, Skill Focus (Knowledge [nature]), Toughness as you qualify.\r\r";
     }
 }
 
@@ -3093,7 +3148,7 @@ function LightArmsAndArmorStars() {
     if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.starknife_star.src="images/asterisk.gif";
     }
-    if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
+    if ((already_knows_martial_weapons) || (has_martialweaponproficiency) || (rayce == 4)) {
         document.form1.battleaxe_star.src="images/asterisk.gif";
     }
     if ((already_knows_martial_weapons) || (rayce == 103) || (has_martialweaponproficiency)) {
@@ -3102,7 +3157,7 @@ function LightArmsAndArmorStars() {
     if ((rayce == 3) || (bard_levels > 0) || (already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.longsword_star.src="images/asterisk.gif";
     }
-    if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
+    if ((already_knows_martial_weapons) || (has_martialweaponproficiency) || (rayce == 4)) {
         document.form1.heavypick_star.src="images/asterisk.gif";
     }
     if ((rayce == 3) || (rayce == 12) || (rogue_levels > 0) || (bard_levels > 0)
@@ -3118,7 +3173,7 @@ function LightArmsAndArmorStars() {
     if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
         document.form1.trident_star.src="images/asterisk.gif";
     }
-    if ((already_knows_martial_weapons) || (has_martialweaponproficiency)) {
+    if ((already_knows_martial_weapons) || (has_martialweaponproficiency) || (rayce == 4)) {
         document.form1.warhammer_star.src="images/asterisk.gif";
     }
     if ((already_knows_martial_weapons) || (has_martialweaponproficiency) || (rayce == 7) || (rayce == 22)) {
@@ -3182,7 +3237,8 @@ function LightArmsAndArmorStars() {
     if (has_exoticweaponproficiency) {
         document.form1.bastardsword_star.src="images/asterisk.gif";
     }
-    if ((has_exoticweaponproficiency) || (rayce == 4) || (rayce == 211)) {
+    if ((has_exoticweaponproficiency) || (((rayce == 4) || (rayce == 211)) 
+        && ((already_knows_martial_weapons) || (has_martialweaponproficiency)))) {
         document.form1.dwarvenwaraxe_star.src="images/asterisk.gif";
     }
     if ((bard_levels > 0) || (has_exoticweaponproficiency)) {
@@ -3209,7 +3265,8 @@ function LightArmsAndArmorStars() {
     if (has_exoticweaponproficiency) {
         document.form1.twobladedsword_star.src="images/asterisk.gif";
     }
-    if ((has_exoticweaponproficiency) || (rayce == 4) || (rayce == 211)) {
+    if ((has_exoticweaponproficiency) || (((rayce == 4) || (rayce == 211)) 
+        && ((already_knows_martial_weapons) || (has_martialweaponproficiency)))) {
         document.form1.dwarvenurgrosh_star.src="images/asterisk.gif";
     }
     if (has_exoticweaponproficiency) {
@@ -6433,100 +6490,82 @@ function ArrowShow() {
         || (rayce == 103)) && (ClassesHaveBeenEstablished == true) && (AbilityIncreasesAreLocked == false)) {
         if (upitat00 == 0) {
             document.form1.up00arrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.up00arrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.up00arrow.src="images/dragonblank.gif";
     }
     if ((total_levels>=4) && (ClassesHaveBeenEstablished == true) && (AbilityIncreasesAreLocked == false)) {
         if (upitat04 == 0) {
             document.form1.up04arrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.up04arrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.up04arrow.src="images/dragonblank.gif";
     }
     if ((total_levels>=8) && (ClassesHaveBeenEstablished == true) && (AbilityIncreasesAreLocked == false)) {
         if (upitat08 == 0) {
             document.form1.up08arrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.up08arrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.up08arrow.src="images/dragonblank.gif";
     }
     if ((total_levels>=12) && (ClassesHaveBeenEstablished == true) && (AbilityIncreasesAreLocked == false)) {
         if (upitat12 == 0) {
             document.form1.up12arrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.up12arrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.up12arrow.src="images/dragonblank.gif";
     }
     if ((total_levels>=16) && (ClassesHaveBeenEstablished == true) && (AbilityIncreasesAreLocked == false)) {
         if (upitat16 == 0) {
             document.form1.up16arrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.up16arrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.up16arrow.src="images/dragonblank.gif";
     }
     if ((total_levels>=20) && (ClassesHaveBeenEstablished == true) && (AbilityIncreasesAreLocked == false)) {
         if (upitat20 == 0) {
             document.form1.up20arrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.up20arrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.up20arrow.src="images/dragonblank.gif";
     }
     if ((ClassesHaveBeenEstablished == true) && (FighterFeatsEtcFrozen == false)) {
         if (favored_class_points()) {
             document.form1.favored_arrow.src="images/dragongrayleft.gif"
-        }
-        else {
+        } else {
             document.form1.favored_arrow.src="images/dragonarrowleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.favored_arrow.src="images/dragonblank.gif";
     }
     if ((sorcerer_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if (BloodlineCount() == false) {
             document.form1.bloodlinearrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.bloodlinearrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.bloodlinearrow.src="images/dragonblank.gif";
     }
     if ((wilder_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if (SurgeCount() == false) {
             document.form1.surgearrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.surgearrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.surgearrow.src="images/dragonblank.gif";
     }
     if ( (cleric_levels > 0) && (FighterFeatsEtcFrozen == false)
@@ -6610,11 +6649,9 @@ function ArrowShow() {
         else {
             document.form1.favoredenemiesarrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.favoredenemiesarrow.src="images/dragonblank.gif";
     }
-
     if ((ranger_levels>=3) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if (RangerTerrains() == false) {
             document.form1.favoredterrainsarrow.src="images/dragonarrowleft.gif";
@@ -6622,33 +6659,27 @@ function ArrowShow() {
         else {
             document.form1.favoredterrainsarrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.favoredterrainsarrow.src="images/dragonblank.gif";
     }
-
-    if (((wizard_levels) || (document.form1.choose_bloodline[2].checked == true)) && (FighterFeatsEtcFrozen == false)
+    if (((wizard_levels) || (bloodline=="Arcane")) && (FighterFeatsEtcFrozen == false)
         && (ClassesHaveBeenEstablished == true)) {
         document.form1.familiararrow.src="images/dragongrayright.gif";
-    }
-    else {
+    } else {
         document.form1.familiararrow.src="images/dragonblank.gif";
     }
     if ((druid_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         document.form1.druidchoicearrow.src="images/dragongrayright.gif";
-    }
-    else {
+    } else {
         document.form1.druidchoicearrow.src="images/dragonblank.gif";
     }
     if ((prestige_levels > 0) && (FighterFeatsEtcFrozen == false) && (ClassesHaveBeenEstablished == true)) {
         if (PrestigeClass() == false) {
             document.form1.prestigearrow.src="images/dragonarrowleft.gif";
-        }
-        else {
+        } else {
             document.form1.prestigearrow.src="images/dragongrayleft.gif";
         }
-    }
-    else {
+    } else {
         document.form1.prestigearrow.src="images/dragonblank.gif";
     }
     if ( (FighterFeatsEtcFrozen == false) && (AbilitiesWellIncreased() == true) && (ClassesHaveBeenEstablished == true)
@@ -9620,7 +9651,7 @@ function Arms() {
         if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.starknife.checked=false;
         }
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false) && (rayce != 4)) {
             document.form1.battleaxe.checked=false;
         }
         if ((already_knows_martial_weapons == false) && (rayce!=103) && (has_martialweaponproficiency == false)) {
@@ -9629,7 +9660,7 @@ function Arms() {
         if ((rayce!=3) && (bard_levels == 0) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.longsword.checked=false;
         }
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false) && (rayce != 4)) {
             document.form1.heavypick.checked=false;
         }
         if ((rayce!=3) && (rogue_levels == 0) && (rayce!=12) && (bard_levels == 0)
@@ -9646,7 +9677,7 @@ function Arms() {
         if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
             document.form1.trident.checked=false;
         }
-        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)) {
+        if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false) && (rayce != 4)) {
             document.form1.warhammer.checked=false;
         }
         if ((already_knows_martial_weapons == false) && (has_martialweaponproficiency == false)
@@ -9712,7 +9743,7 @@ function Arms() {
         if ((has_exoticweaponproficiency == false)) {
             document.form1.bastardsword.checked=false;
         }
-        if ((has_exoticweaponproficiency == false) && (rayce!=4)) {
+        if ((has_exoticweaponproficiency == false) && ( (rayce!=4) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))) {
             document.form1.dwarvenwaraxe.checked=false;
         }
         if ((bard_levels == 0) && (has_exoticweaponproficiency == false)) {
@@ -9739,7 +9770,7 @@ function Arms() {
         if ((has_exoticweaponproficiency == false)) {
             document.form1.twobladedsword.checked=false;
         }
-        if ((has_exoticweaponproficiency == false) && (rayce!=4)) {
+        if ((has_exoticweaponproficiency == false) && ( (rayce!=4) && (already_knows_martial_weapons == false) && (has_martialweaponproficiency == false))) { 
             document.form1.dwarvenurgrosh.checked=false;
         }
         if ((has_exoticweaponproficiency == false)) {
@@ -10294,6 +10325,115 @@ function AddUpTheClasses() {
     }
 }
 
+function setBloodelineForm(bloodlineName) {
+    switch (bloodlineName) {
+        case 'Aberrant':
+            bloodlineButton=0;
+            break;
+        case 'Abyssal':
+            bloodlineButton=1;
+            break;
+        case 'Accursed':
+            bloodlineButton=2;
+            break;
+        case 'Aquatic':
+            bloodlineButton=3;
+            break;
+        case 'Arcane':
+            bloodlineButton=4;
+            break;
+        case 'Boreal':
+            bloodlineButton=5;
+            break;
+        case 'Celestial':
+            bloodlineButton=6;
+            break;
+        case 'Daemon':
+            bloodlineButton=7;
+            break;
+        case 'Deep Earth':
+            bloodlineButton=8;
+            break;
+        case 'Destined':
+            bloodlineButton=9;
+            break;
+        case 'Djinni':
+            bloodlineButton=10;
+            break;
+        case 'Draconic':
+            bloodlineButton=11;
+            break;
+        case 'Dreamspun':
+            bloodlineButton=12;
+            break;
+        case 'Efreeti':
+            bloodlineButton=13;
+            break;
+        case 'Elemental':
+            bloodlineButton=14;
+            break;
+        case 'Fey':
+            bloodlineButton=15;
+            break;
+        case 'Infernal':
+            bloodlineButton=16;
+            break;
+        case 'Maestro':
+            bloodlineButton=17;
+            break;
+        case 'Marid':
+            bloodlineButton=18;
+            break;
+        case 'Martyred':
+            bloodlineButton=19;
+            break;
+        case 'Oni':
+            bloodlineButton=20;
+            break;
+        case 'Orc':
+            bloodlineButton=21;
+            break;
+        case 'Pestilence':
+            bloodlineButton=22;
+            break;
+        case 'Protean':
+            bloodlineButton=23;
+            break;
+        case 'Rakshasa':
+            bloodlineButton=24;
+            break;
+        case 'Serpentine':
+            bloodlineButton=25;
+            break;
+        case 'Shadow':
+            bloodlineButton=26;
+            break;
+        case 'Shaitan':
+            bloodlineButton=27;
+            break;
+        case 'Starsoul':
+            bloodlineButton=28;
+            break;
+        case 'Stormborn':
+            bloodlineButton=29;
+            break;
+        case 'Undead':
+            bloodlineButton=30;
+            break;
+        case 'Verdant':
+            bloodlineButton=31;
+            break;
+        default:
+            bloodlineButton="";
+    }
+    if (bloodlineButton!="") {
+        document.form1.choose_bloodline[bloodlineButton].checked=true;
+    }
+    else {
+        resetBloodlinesForm();
+    }
+}
+
 function RememberFighterFeatsEtc() {
     if (ranger_levels == 0) {
         document.form1.ranger_combat_track[0].checked=false;
@@ -10341,16 +10481,7 @@ function RememberFighterFeatsEtc() {
     document.form1.repose_domain.checked=has_repose_domain;
     document.form1.rune_domain.checked=has_rune_domain;
     document.form1.weather_domain.checked=has_weather_domain;
-    document.form1.choose_bloodline[0].checked=has_aberrant_bloodline;
-    document.form1.choose_bloodline[1].checked=has_abyssal_bloodline;
-    document.form1.choose_bloodline[2].checked=has_arcane_bloodline;
-    document.form1.choose_bloodline[3].checked=has_celestial_bloodline;
-    document.form1.choose_bloodline[4].checked=has_destined_bloodline;
-    document.form1.choose_bloodline[5].checked=has_draconic_bloodline;
-    document.form1.choose_bloodline[6].checked=has_elemental_bloodline;
-    document.form1.choose_bloodline[7].checked=has_fey_bloodline;
-    document.form1.choose_bloodline[8].checked=has_infernal_bloodline;
-    document.form1.choose_bloodline[9].checked=has_undead_bloodline;
+    setBloodelineForm(bloodline);
     document.form1.choose_surge[0].checked=has_artificer_surge;
     document.form1.choose_surge[1].checked=has_free_surge;
     document.form1.choose_surge[2].checked=has_leader_surge;
@@ -10920,7 +11051,7 @@ function forbidden_school_count() {
 }
 
 function ChooseFamiliar() {
-    if ((wizard_levels == 0) && (witch_levels == 0) && ((sorcerer_levels == 0) || (document.form1.choose_bloodline[2].checked == false))
+    if ((wizard_levels == 0) && (witch_levels == 0) && ((sorcerer_levels == 0) || (bloodline != 'Arcane'))
         || (ClassesHaveBeenEstablished == false)) {
         NegateFamiliarChoices();
     }
@@ -11327,10 +11458,10 @@ function FreezeFighterFeatsEtc() {
         if (psychicwarrior_levels) {
             document.form1.fourth_comment_box.value += " A psychic warrior should add one class skill for the chosen path.";
         }
-        if (has_arcane_bloodline) {
-            document.form1.fourth_comment_box.value += " Your arcane bloodline lets you check a knowledge skill as a class skill. ";
+        if (bloodline=='Arcane') {
+            document.form1.fourth_comment_box.value += " Your arcane bloodline lets you check any one knowledge skill as a class skill. ";
         }
-        if (has_abyssal_bloodline) {
+        if (bloodline=='Abyssal') {
             if (sorcerer_levels>=9) {
                 strength += 2;
             }
@@ -11360,14 +11491,16 @@ function FreezeFighterFeatsEtc() {
     }
 }
 
-function WipeBloodlines() {
-    document.form1.choose_bloodline[0].checked=true;
-    document.form1.choose_bloodline[0].checked=false;
+function resetBloodlinesForm() {
+    // document.form1.choose_bloodline[0].checked=true;
+    for (i=0; i < document.form1.choose_bloodline.length; i++) {
+        document.form1.choose_bloodline[i].checked=false;
+    }
 }
 
 function BloodlineCount() {
     if (sorcerer_levels == 0) {
-        WipeBloodlines();
+        resetBloodlinesForm();
         ArrowShow();
         return true;
     }
@@ -11375,55 +11508,39 @@ function BloodlineCount() {
         RememberFighterFeatsEtc();
         return true;
     }
-    if (document.form1.choose_bloodline[0].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[1].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[2].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[3].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[4].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[5].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[6].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[7].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[8].checked) {
-        return true;
-    }
-    if (document.form1.choose_bloodline[9].checked) {
-        return true;
+    for (i=0; i < document.form1.choose_bloodline.length; i++) {
+        if (document.form1.choose_bloodline[i].checked) {
+            return true;
+        }
     }
     return false;
 }
 
-function BloodlineCountA() {
-    if ((wizard_levels == 0) && (document.form1.choose_bloodline[2].checked == false)) {
+function BloodlineCountA(bloodlineName) {
+    if ((wizard_levels == 0) && (bloodline!='Arcane')) {
         NegateFamiliarChoices();
     }
     BloodlineCount();
-    has_aberrant_bloodline=document.form1.choose_bloodline[0].checked;
-    has_abyssal_bloodline=document.form1.choose_bloodline[1].checked;
-    has_arcane_bloodline=document.form1.choose_bloodline[2].checked;
-    has_celestial_bloodline=document.form1.choose_bloodline[3].checked;
-    has_destined_bloodline=document.form1.choose_bloodline[4].checked;
-    has_draconic_bloodline=document.form1.choose_bloodline[5].checked;
-    has_elemental_bloodline=document.form1.choose_bloodline[6].checked;
-    has_fey_bloodline=document.form1.choose_bloodline[7].checked;
-    has_infernal_bloodline=document.form1.choose_bloodline[8].checked;
-    has_undead_bloodline=document.form1.choose_bloodline[9].checked;
+    bloodline=bloodlineName;
     ArrowShow();
+}
+
+function getBloodline() {
+    if (bloodline == "") {
+        for (i=0; i < document.form1.choose_bloodline.length; i++) {
+            if (document.form1.choose_bloodline[i].checked==true) {
+                bloodline=document.form1.choose_bloodline[i].value;
+                alert('Chose '+bloodline+' bloodline.');
+            }
+        }
+    }
+    if (bloodline == "") {
+        alert('getBloodline failed');
+        return false;
+    }
+    else {
+        return bloodline;
+    }
 }
 
 function WipeSurges() {
@@ -15332,7 +15449,7 @@ function Feats() {
                 document.form1.feat.value += "A soulknife must take power attack, two-weapon fighting, and/or weapon focus (mind blade). \r";
             }
             if (sorcererfeatentitlement > 0) {
-                document.form1.feat.value += "There must be " + sorcererfeatentitlement + " bloodline feats. See the rulebook. You are on your honor.\r";
+                document.form1.feat.value += "There must be " + sorcererfeatentitlement + " bloodline feats.\r";
             }
             SorcererFeatRecommendations();
             if ((x == z) && (total_fighter_feats>=fighterfeatentitlement)
@@ -15659,32 +15776,104 @@ function FigureClassSkillsAndTotalSkillPoints() {
         document.form1.knowledgeplanes_ics.checked=true;
         document.form1.knowledgepsionics_ics.checked=true;
     }
-    if (has_aberrant_bloodline) {
-        document.form1.knowledgedungeoneering_ics.checked=true;
-    }
-    if (has_abyssal_bloodline) {
-        document.form1.knowledgeplanes_ics.checked=true;
-    }
-    if (has_celestial_bloodline) {
-        document.form1.heal_ics.checked=true;
-    }
-    if (has_destined_bloodline) {
-        document.form1.knowledgehistory_ics.checked=true;
-    }
-    if (has_draconic_bloodline) {
-        document.form1.perception_ics.checked=true;
-    }
-    if (has_elemental_bloodline) {
-        document.form1.knowledgeplanes_ics.checked=true;
-    }
-    if (has_fey_bloodline) {
-        document.form1.knowledgenature_ics.checked=true;
-    }
-    if (has_infernal_bloodline) {
-        document.form1.knowledgeplanes_ics.checked=true;
-    }
-    if (has_undead_bloodline) {
-        document.form1.knowledgereligion_ics.checked=true;
+    switch (bloodline) {
+        case 'Aberrant':
+            document.form1.knowledgedungeoneering_ics.checked=true;
+            break;
+        case 'Abyssal':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Accursed':
+            document.form1.perception_ics.checked=true;
+            break;
+        case 'Aquatic':
+            document.form1.swim_ics.checked=true;
+            break;
+        case 'Arcane':
+            document.form1.perception_ics.checked=true;
+            break;
+        case 'Boreal':
+            document.form1.survival_ics.checked=true;
+            break;
+        case 'Celestial':
+            document.form1.heal_ics.checked=true;
+            break;
+        case 'Daemon':
+            document.form1.heal_ics.checked=true;
+            break;
+        case 'Deep Earth':
+            document.form1.knowledgedungeoneering_ics.checked=true;
+            break;
+        case 'Destined':
+            document.form1.knowledgehistory_ics.checked=true;
+            break;
+        case 'Djinni':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Draconic':
+            document.form1.perception_ics.checked=true;
+            break;
+        case 'Dreamspun':
+            document.form1.sensemotive_ics.checked=true;
+            break;
+        case 'Efreeti':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Elemental':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Fey':
+            document.form1.knowledgenature_ics.checked=true;
+            break;
+        case 'Infernal':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Maestro':
+            document.form1.perform_ics.checked=true;
+            break;
+        case 'Marid':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Martyred':
+            document.form1.perform_ics.checked=true;
+            break;
+        case 'Oni':
+            document.form1.intimidate_ics.checked=true;
+            break;
+        case 'Orc':
+            document.form1.survival_ics.checked=true;
+            break;
+        case 'Pestilence':
+            document.form1.heal_ics.checked=true;
+            break;
+        case 'Protean':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Rakshasa':
+            document.form1.disguise_ics.checked=true;
+            break;
+        case 'Serpentine':
+            document.form1.diplomacy_ics.checked=true;
+            break;
+        case 'Shadow':
+            document.form1.stealth_ics.checked=true;
+            break;
+        case 'Shaitan':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Starsoul':
+            document.form1.knowledgeplanes_ics.checked=true;
+            break;
+        case 'Stormborn':
+            document.form1.knowledgenature_ics.checked=true;
+            break;
+        case 'Undead':
+            document.form1.knowledgereligion_ics.checked=true;
+            break;
+        case 'Verdant':
+            document.form1.knowledgenature_ics.checked=true;
+            break;
+        default:
     }
     if (has_trickery_domain) {
         document.form1.bluff_ics.checked=true;
@@ -16233,16 +16422,6 @@ function NumberToAbility(numb) {
 }
 
 function RecordFighterFeatsEtc() {
-    has_aberrant_bloodline=document.form1.choose_bloodline[0].checked;
-    has_abyssal_bloodline=document.form1.choose_bloodline[1].checked;
-    has_arcane_bloodline=document.form1.choose_bloodline[2].checked;
-    has_celestial_bloodline=document.form1.choose_bloodline[3].checked;
-    has_destined_bloodline=document.form1.choose_bloodline[4].checked;
-    has_draconic_bloodline=document.form1.choose_bloodline[5].checked;
-    has_elemental_bloodline=document.form1.choose_bloodline[6].checked;
-    has_fey_bloodline=document.form1.choose_bloodline[7].checked;
-    has_infernal_bloodline=document.form1.choose_bloodline[8].checked;
-    has_undead_bloodline=document.form1.choose_bloodline[9].checked;
     has_artificer_surge=document.form1.choose_surge[0].checked;
     has_free_surge=document.form1.choose_surge[1].checked;
     has_leader_surge=document.form1.choose_surge[2].checked;
@@ -17611,7 +17790,7 @@ function displayClassOptions() {
         $('#prestige_shit').hide();
     }
     
-    if ( (wizard_levels > 0) || (witch_levels > 0) || ((sorcerer_levels > 0) && has_arcane_bloodline) ) {
+    if ( (wizard_levels > 0) || (witch_levels > 0) || ((sorcerer_levels > 0) && bloodline=="Arcane") ) {
         $('#familiar_shit').show();
     }
     else {
@@ -17632,45 +17811,6 @@ function lock_classes() {
             document.form1.third_comment_box.value += stringy+"\r";
         }
         document.form1.third_comment_box.value += "Now complete the following as applicable.";
-        /* 
-         * Specific to races from Advanced Race Guide, which I don't like
-         * 
-        if (sorcerer_levels > 0) {
-            if (rayce == 28) {
-                document.form1.third_comment_box.value += " You probably want the celestial bloodline for sorcerers.";
-            }
-            if (rayce == 29) {
-                document.form1.third_comment_box.value += " You probably want the elemental (air) bloodline for sorcerers.";
-            }
-            if (rayce == 30) {
-                document.form1.third_comment_box.value += " You probably want the elemental (earth) bloodline for sorcerers.";
-            }
-            if (rayce == 31) {
-                document.form1.third_comment_box.value += " You probably want the elemental (fire) bloodline for sorcerers.";
-            }
-            if (rayce == 32) {
-                document.form1.third_comment_box.value += " You probably want the elemental (water) bloodline for sorcerers.";
-            }
-            if (rayce == 33) {
-                document.form1.third_comment_box.value += " You probably want the infernal or abyssal bloodline for sorcerers.";
-            }
-        }
-
-        if ((cleric_levels > 0) || (druid_levels > 0)) {
-            if (rayce == 29) {
-                document.form1.third_comment_box.value += " You probably want the air domain.";
-            }
-            if (rayce == 30) {
-                document.form1.third_comment_box.value += " You probably want the earth domain.";
-            }
-            if (rayce == 31) {
-                document.form1.third_comment_box.value += " You probably want the fire domain.";
-            }
-            if (rayce == 32) {
-                document.form1.third_comment_box.value += " You probably want the water domain.";
-            }
-        }
-        */
         DoHPAndOtherClassStuff();
         DoFavoredClassPoints();
         DoYourFeatEntitlements();
@@ -18459,6 +18599,7 @@ function assignrace(i) {
         if (rayce == 1) {
             document.form1.racechoice[0].checked=true;
         }
+        // Half-Elf
         if (rayce == 2) {
             document.form1.racechoice[4].checked=true;
         }
@@ -18740,7 +18881,7 @@ function FriendlyLanguages() {
         common_friendly=false;
         common_nativespeaker=true;
     }
-    if (rayce == 3 || rayce == 12) {
+    if (rayce == 2 || rayce == 3 || rayce == 12) {
         elven_nativespeaker=true;
         elven_friendly=false;
     }
@@ -22604,7 +22745,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Acrobatics</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(dexterity) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
     if (acrobatics > 0) {
         SWD += "+" + acrobatics;
     }
@@ -22650,7 +22791,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Appraise</td><td>Int</td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
     if (appraise > 0) {
         SWD += "+" + appraise;
     }
@@ -22684,7 +22825,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Autohypnosis</td><td>Wis</td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
     if (autohypnosis > 0) {
         SWD += "+" + autohypnosis;
     }
@@ -22733,7 +22874,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Bluff</td><td>Cha</td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
     if (bluff > 0) {
         SWD += "+" + bluff;
     }
@@ -22784,7 +22925,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Climb</td><td>Str<sup>*</sup></td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(strength) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(strength) + "</td><td>";
     if (climb > 0) {
         SWD += "+" + climb;
     }
@@ -22819,7 +22960,6 @@ function WriteTextForCharacterSheet() {
     }
     if (has_skillfocuscraft_1 == true) {
         x += 3;
-        ;
         if (craft_1>=10) {
             x += 3;
         }
@@ -22835,7 +22975,7 @@ function WriteTextForCharacterSheet() {
         x=x+2;
     }
     SWD += "<tr><td>Craft "+craft1name+"</td><td>Int</td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
     if (craft_1 > 0) {
         SWD += "+" + craft_1;
     }
@@ -22877,7 +23017,7 @@ function WriteTextForCharacterSheet() {
             x=x+2;
         }
         SWD += "<tr><td>Craft "+craft2name+"</td><td>Int</td> <td align=\"right\">" + x
-        + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (craft_2 > 0) {
             SWD += "+" + craft_2;
         }
@@ -22920,7 +23060,7 @@ function WriteTextForCharacterSheet() {
             x=x+2;
         }
         SWD += "<tr><td>Craft "+craft3name+"</td><td>Int</td> <td align=\"right\">" + x
-        + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (craft_3 > 0) {
             SWD += "+" + craft_3;
         }
@@ -22961,7 +23101,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Diplomacy</td><td>Cha</td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
     if (diplomacy > 0) {
         SWD += "+" + diplomacy;
     }
@@ -22985,7 +23125,7 @@ function WriteTextForCharacterSheet() {
 
     // Disable Device
     if ((disabledevice > 0) || (bard_levels>=10)) {
-        x=modifier_number(intelligence) + disabledevice;
+        x=modifier_number(dexterity) + disabledevice;
         if ((document.form1.disabledevice_ics.checked) && (disabledevice > 0)) {
             x += 3;
         }
@@ -22995,8 +23135,8 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Disable Device</td><td>Int</td> <td align=\"right\">" + x
-        + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Disable Device</td><td>Dex</td> <td align=\"right\">" + x
+        + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
         if (disabledevice > 0) {
             SWD += "+" + disabledevice;
         }
@@ -23028,7 +23168,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Disguise</td><td>Cha</td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
     if (disguise > 0) {
         SWD += "+" + disguise;
     }
@@ -23055,7 +23195,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Escape Artist</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(dexterity) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
     if (escapeartist > 0) {
         SWD += "+" + escapeartist;
     }
@@ -23092,7 +23232,7 @@ function WriteTextForCharacterSheet() {
         }
     }
     SWD += "<tr><td>Fly</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x
-    + " = </td><td>" + modifier_string(dexterity) + "</td><td>";
+    + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
     if (fly > 0) {
         SWD += "+" + fly;
     }
@@ -23131,7 +23271,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Handle Animal</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+        SWD += "<tr><td>Handle Animal</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
         if (handleanimal > 0) {
             SWD += "+" + handleanimal;
         }
@@ -23164,7 +23304,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Heal</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+    SWD += "<tr><td>Heal</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
     if (heal > 0) {
         SWD += "+" + heal;
     }
@@ -23206,7 +23346,7 @@ function WriteTextForCharacterSheet() {
     if (rayce == 33) {
         x=x + 2;
     }
-    SWD += "<tr><td>Stealth</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(dexterity) + "</td><td>";
+    SWD += "<tr><td>Stealth</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
     if (stealth > 0) {
         SWD += "+" + stealth;
     }
@@ -23266,7 +23406,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Intimidate</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+    SWD += "<tr><td>Intimidate</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
     if (intimidate > 0) {
         SWD += "+" + intimidate;
     }
@@ -23312,7 +23452,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (Arcana)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Arcana)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgearcana > 0) {
             SWD += "+" + knowledgearcana;
         }
@@ -23320,7 +23460,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgearcana_ics.checked) && (knowledgearcana > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgearcana == 0) {
+        if (knowledgearcana == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagearcana_crystal.checked) {
@@ -23349,7 +23489,7 @@ function WriteTextForCharacterSheet() {
         if (has_skillfocusknowledgedungeoneering == true) {
             x=x + 3;
         }
-        SWD += "<tr><td>Knowledge (Dungeoneering)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Dungeoneering)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgedungeoneering > 0) {
             SWD += "+" + knowledgedungeoneering;
         }
@@ -23357,7 +23497,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgedungeoneering_ics.checked) && (knowledgedungeoneering > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgedungeoneering == 0) {
+        if (knowledgedungeoneering == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagedungeoneering_crystal.checked) {
@@ -23386,7 +23526,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (Engineering)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Engineering)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgeengineering > 0) {
             SWD += "+" + knowledgeengineering;
         }
@@ -23394,7 +23534,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgeengineering_ics.checked) && (knowledgeengineering > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgeengineering == 0) {
+        if (knowledgeengineering == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sageengineering_crystal.checked) {
@@ -23423,7 +23563,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (Geography)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Geography)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgegeography > 0) {
             SWD += "+" + knowledgegeography;
         }
@@ -23431,7 +23571,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgegeography_ics.checked) && (knowledgegeography > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgegeography == 0) {
+        if (knowledgegeography == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagegeography_crystal.checked) {
@@ -23460,7 +23600,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (History)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (History)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgehistory > 0) {
             SWD += "+" + knowledgehistory;
         }
@@ -23468,7 +23608,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgehistory_ics.checked) && (knowledgehistory > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgehistory == 0) {
+        if (knowledgehistory == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagehistory_crystal.checked) {
@@ -23497,7 +23637,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (Local)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Local)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgelocal > 0) {
             SWD += "+" + knowledgelocal;
         }
@@ -23505,7 +23645,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgelocal_ics.checked) && (knowledgelocal > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgelocal == 0) {
+        if (knowledgelocal == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagelocal_crystal.checked) {
@@ -23513,9 +23653,6 @@ function WriteTextForCharacterSheet() {
         }
         if (has_skillfocusknowledgelocal == true) {
             SWD += "+"+SixOrThree(knowledgelocal)+" [skill focus] ";
-        }
-        if (bard_levels > 0) {
-            SWD += "+"+BardKnow()+" [bardic knowledge] ";
         }
         if (bard_levels > 0) {
             SWD += "+"+BardKnow()+" [bardic knowledge] ";
@@ -23531,13 +23668,16 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgenature_ics.checked) && (knowledgenature > 0)) {
             x += 3;
         }
+        if (druid_levels > 0) {
+            x += 2;
+        }
         if (has_skillfocusknowledgenature == true) {
             x=x + 3;
             if (knowledgenature>=10) {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (Nature)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Nature)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgenature > 0) {
             SWD += "+" + knowledgenature;
         }
@@ -23545,8 +23685,11 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgenature_ics.checked) && (knowledgenature > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgenature == 0) {
+        if (knowledgenature == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
+        }
+        if (druid_levels > 0) {
+            SWD += " +2 [nature sense] ";
         }
         if (document.form1.sagenature_crystal.checked) {
             SWD += " +3 [nature psicrystal]";
@@ -23574,7 +23717,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Knowledge (Nobility)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>"
+        SWD += "<tr><td>Knowledge (Nobility)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>"
         if (knowledgenobility > 0) {
             SWD += "+" + knowledgenobility;
         }
@@ -23582,7 +23725,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgenobility_ics.checked) && (knowledgenobility > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgenobility == 0) {
+        if (knowledgenobility == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagenobility_crystal.checked) {
@@ -23611,7 +23754,7 @@ function WriteTextForCharacterSheet() {
         if (has_skillfocusknowledgeplanes == true) {
             x=x + 3;
         }
-        SWD += "<tr><td>Knowledge (Planes)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Planes)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgeplanes > 0) {
             SWD += "+" + knowledgeplanes;
         }
@@ -23619,7 +23762,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgeplanes_ics.checked) && (knowledgeplanes > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgeplanes == 0) {
+        if (knowledgeplanes == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sageplanes_crystal.checked) {
@@ -23651,7 +23794,7 @@ function WriteTextForCharacterSheet() {
         if (has_skillfocusknowledgepsionics == true) {
             x=x + 3;
         }
-        SWD += "<tr><td>Knowledge (Psionics)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Psionics)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgepsionics > 0) {
             SWD += "+" + knowledgepsionics;
         }
@@ -23660,7 +23803,7 @@ function WriteTextForCharacterSheet() {
             SWD += " +3 [class skill] ";
         }
 
-        if (knowledgepsionics == 0) {
+        if (knowledgepsionics == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagepsionics_crystal.checked) {
@@ -23693,7 +23836,7 @@ function WriteTextForCharacterSheet() {
         if (has_skillfocusknowledgereligion == true) {
             x=x + 3;
         }
-        SWD += "<tr><td>Knowledge (Religion)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Knowledge (Religion)</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (knowledgereligion > 0) {
             SWD += "+" + knowledgereligion;
         }
@@ -23701,7 +23844,7 @@ function WriteTextForCharacterSheet() {
         if ((document.form1.knowledgereligion_ics.checked) && (knowledgereligion > 0)) {
             SWD += " +3 [class skill] ";
         }
-        if (knowledgereligion == 0) {
+        if (knowledgereligion == 0 && bard_levels == 0) {
             SWD += "[cannot use untrained] ";
         }
         if (document.form1.sagereligion_crystal.checked) {
@@ -23728,7 +23871,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Linguistics</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Linguistics</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (linguistics > 0) {
             SWD += "+" + linguistics;
         }
@@ -23788,7 +23931,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Perception</td><td>Wis</td><td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+    SWD += "<tr><td>Perception</td><td>Wis</td><td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
     if (perception > 0) {
         SWD += "+" + perception;
     }
@@ -23848,7 +23991,7 @@ function WriteTextForCharacterSheet() {
     if (document.form1.perform1name.value!="") {
         perform1name = "("+document.form1.perform1name.value+")";
     }
-    SWD += "<tr><td>Perform "+perform1name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+    SWD += "<tr><td>Perform "+perform1name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
     if (perform_1 > 0) {
         SWD += "+" + perform_1;
     }
@@ -23876,7 +24019,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.perform2name.value!="") {
             perform2name = "("+document.form1.perform2name.value+")";
         }
-        SWD += "<tr><td>Perform "+perform2name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+        SWD += "<tr><td>Perform "+perform2name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
         if (perform_2 > 0) {
             SWD += "+" + perform_2;
         }
@@ -23905,7 +24048,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.perform3name.value!="") {
             perform3name = "("+document.form1.perform3name.value+")";
         }
-        SWD += "<tr><td>Perform "+perform3name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+        SWD += "<tr><td>Perform "+perform3name+"</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
         if (perform_3 > 0) {
             SWD += "+" + perform_3;
         }
@@ -23935,7 +24078,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.profession1name.value!="") {
             profession1name = "("+document.form1.profession1name.value+")";
         }
-        SWD += "<tr><td>Profession "+profession1name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+        SWD += "<tr><td>Profession "+profession1name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
         if (profession_1 > 0) {
             SWD += "+" + profession_1;
         }
@@ -23967,7 +24110,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.profession2name.value!="") {
             profession2name = "("+document.form1.profession2name.value+")";
         }
-        SWD += "<tr><td>Profession "+profession2name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+        SWD += "<tr><td>Profession "+profession2name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
         if (profession_2 > 0) {
             SWD += "+" + profession_2;
         }
@@ -23999,7 +24142,7 @@ function WriteTextForCharacterSheet() {
         if (document.form1.profession3name.value!="") {
             profession3name = "("+document.form1.profession3name.value+")";
         }
-        SWD += "<tr><td>Profession "+profession3name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+        SWD += "<tr><td>Profession "+profession3name+"</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
         if (profession_3 > 0) {
             SWD += "+" + profession_3;
         }
@@ -24033,7 +24176,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Ride</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(dexterity) + "</td><td>";
+    SWD += "<tr><td>Ride</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
     if (ride > 0) {
         SWD += "+" + ride;
     }
@@ -24075,7 +24218,7 @@ function WriteTextForCharacterSheet() {
     if (has_alertness) {
         x += 2
     }
-    SWD += "<tr><td>Sense Motive</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+    SWD += "<tr><td>Sense Motive</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
     if (sensemotive > 0) {
         SWD += "+" + sensemotive;
     }
@@ -24112,7 +24255,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Sleight of Hand</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(dexterity) + "</td><td>";
+        SWD += "<tr><td>Sleight of Hand</td><td>Dex<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(dexterity) + "</td><td>";
         if (sleightofhand > 0) {
             SWD += "+" + sleightofhand;
         }
@@ -24146,7 +24289,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Spellcraft</td><td>Int</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(intelligence) + "</td><td>";
+        SWD += "<tr><td>Spellcraft</td><td>Int</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(intelligence) + "</td><td>";
         if (spellcraft > 0) {
             SWD += "+" + spellcraft;
         }
@@ -24170,19 +24313,22 @@ function WriteTextForCharacterSheet() {
     if ((document.form1.survival_ics.checked) && (survival > 0)) {
         x += 3;
     }
+    if (druid_levels > 0) {
+        x += 2;
+    }
     if (has_selfsufficient == true) {
-        x=x + 2;
+        x += 2;
     }
     if (rayce == 102) {
         x += 4;
     }
     if (has_skillfocussurvival == true) {
-        x=x + 3;
+        x += 3;
         if (survival>=10) {
             x += 3;
         }
     }
-    SWD += "<tr><td>Survival</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(wisdom) + "</td><td>";
+    SWD += "<tr><td>Survival</td><td>Wis</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(wisdom) + "</td><td>";
     if (survival > 0) {
         SWD += "+" + survival;
     }
@@ -24192,6 +24338,9 @@ function WriteTextForCharacterSheet() {
     }
     if (has_selfsufficient) {
         SWD += " +2 [self-sufficient] ";
+    }
+    if (druid_levels > 0) {
+        SWD += " +2 [nature sense] ";
     }
     if (rayce == 102) {
         SWD += " +4 [half-giant] ";
@@ -24217,7 +24366,7 @@ function WriteTextForCharacterSheet() {
             x += 3;
         }
     }
-    SWD += "<tr><td>Swim</td><td>Str<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(strength) + "</td><td>";
+    SWD += "<tr><td>Swim</td><td>Str<sup>*</sup></td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(strength) + "</td><td>";
     if (swim > 0) {
         SWD += "+" + swim;
     }
@@ -24257,7 +24406,7 @@ function WriteTextForCharacterSheet() {
                 x += 3;
             }
         }
-        SWD += "<tr><td>Use Magic Device</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td>" + modifier_string(charisma) + "</td><td>";
+        SWD += "<tr><td>Use Magic Device</td><td>Cha</td> <td align=\"right\">" + x + " = </td><td align=\"center\">" + modifier_string(charisma) + "</td><td>";
         if (usemagicdevice > 0) {
             SWD += "+" + usemagicdevice;
         }
@@ -24574,7 +24723,7 @@ function WriteTextForCharacterSheet() {
     if (WizardSpells9!="") {
         SWD += WizardSpells9 + "<br /><br />\r";
     }
-    SWD += "<br />Favored class points: Hit points +"+favored_for_hp+" Skill points +"+favored_for_skill+" Psionic points +"+favored_for_psi+"<br />";
+    SWD += "<br />Favored class points: Hit points +"+favored_for_hp+"; Skill points +"+favored_for_skill+"; Psionic points +"+favored_for_psi+".<br />";
     SWD += "<p>Adjust weapon attack rolls and armor penalties as required for masterwork / magic equipment.</p>";
     if (soulknife_levels > 0) {
         SWD += "<p>If you are using masterwork rules, all mind blades are considered masterwork.</p>";
@@ -24591,6 +24740,7 @@ function WriteTextForCharacterSheet() {
     if (rayce == 103) {
         SWD += "<h5>Maenad</h5><ul>";
         stringy=whichabilityup();
+        SWD += "<li>This maenad chose +2 to "+stringy+" (already included)</li>";
         SWD += "<li>Natural psionic ability</li>";
         SWD += "<li>Psionic use of Energy Ray; +1 on all spells and powers with the sonic description</li>";
         SWD += "<li>Outburst -- one psi point or rage per round; during this time +2 strength, - 2 intelligence, -2 wisdom</li>";
@@ -24604,25 +24754,25 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>The elan are a race of artificial people, and count as aberrant humanoids.</li>";
         stringy=whichabilityup();
         SWD += "<li>This elan chose +2 to "+stringy+" (already included)</li>";
-        SWD += "<li>Racial psionic points.</li>";
+        SWD += "<li>Naturally Psionic: Elans gain the Wild Talent feat as a bonus feat at 1st level. If an elan takes levels in a psionic class, she instead gains the Psionic Talent feat.</li>";
         SWD += "<li>Elans can spend a power point to avoid needing to eat or drink for 24 hours.</li>";
-        SWD += "<li>Elans can spend a power point to get 2 on saving throws until the start of the elan's next action.</li>";
-        SWD += "<li>Elans can reduce damage taken by two hit points per power point spent doing this.</li>";
+        SWD += "<li>As an immediate action, an elan can spend 1 power point to gain a +4 racial bonus on saving throws until the beginning of her next action.</li>";
+        SWD += "<li>As an immediate action, an elan can reduce the damage he is about to take by 2 hit points for every 1 power point he spends.</li>";
+        SWD += "<li>Psionic Aptitude: When an elan takes a level in a favored class, he can choose to gain an additional power point instead of a hit point or skill point.</li>";
         SWD += "</ul>";
     }
     if (rayce == 4) {
         SWD += "<h5>Dwarf</h5><ul>";
         SWD += "<li>+2 constitution, +2 wisdom, -2 charisma (already included)</li>";
-        SWD += "<li>Can move 20 feet even if in heavy armor</li>";
-        SWD += "<li>Darkvision (see 60 feet in pitch-dark)</li>";
-        SWD += "<li>Stonecunning ( +2 on perception checks regarding stonework; automatic check if passing in ten feet)</li>";
-        SWD += "<li>All dwarves are proficient with battleaxes, heavy picks, and warhammers.</li>";
-        SWD += "<li>+4 to avoid being bullrushed / tripped while standing on ground</li>";
-        SWD += "<li>+2 racial bonus on saves vs. poison</li>";
-        SWD += "<li>+2 racial bonus on saves vs. spells / spell-like abilities</li>";
-        SWD += "<li>+1 racial bonus to hit orcs and goblinoids</li>";
-        SWD += "<li>+4 dodge bonus on AC against giants</li>";
-        SWD += "<li>+2 racial bonus on appraise checks if stone/metal</li>";
+        SWD += "<li>Dwarves have a base speed of 20 feet, but their speed is never modified by armor or encumbrance.</li>";
+        SWD += "<li>Darkvision (see 60 feet in total darkness)</li>";
+        SWD += "<li>Dwarves gain a +2 bonus on Perception checks to notice unusual stonework, such as traps and hidden doors located in stone walls or floors. They receive a check to notice such features whenever they pass within 10 feet of them, whether or not they are actively looking.</li>";
+        SWD += "<li>Dwarves are proficient with battleaxes, heavy picks, and warhammers, and treat any weapon with the word &quot;dwarven&quot; in its name as a martial weapon.</li>";
+        SWD += "<li>Dwarves gain a +4 racial bonus to their CMD when resisting a bull rush or trip attempt while standing on the ground.</li>";
+        SWD += "<li>+2 racial bonus on saves vs. poison, spells and spell-like abilities.</li>";
+        SWD += "<li>+1 racial bonus to hit orcs and goblinoids.</li>";
+        SWD += "<li>+4 dodge bonus on AC against giants.</li>";
+        SWD += "<li>+2 racial bonus on Appraise checks made to determine the price of non-magical goods that contain precious metals or gemstones.</li>";
         SWD += "</ul>";
     }
     if (rayce == 211) {
@@ -24680,19 +24830,21 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Fun-loving folks with natural psionic ability</li>";
         SWD += "<li>+2 dexterity, +2 charisma, -2 strength (already included)</li>";
         SWD += "<li>+1 on saves vs spells, powers, and spell-like effects</li>";
-        SWD += "<li>3x/day a a swift action, can ncrease speed by ten feet, or 20 feet at level 5, or 30 feet at level 9.</li>";
+        SWD += "<li>3/day as a swift action, can increase speed by ten feet (20 feet at level 5, 30 feet at level 9).</li>";
         SWD += "</ul>";
     }
     if (rayce == 5)  {
         SWD += "<h5>Gnome</h5><ul>";
         SWD += "<li>+2 constitution, +2 charisma, -2 strength (already included)</li>";
         SWD += "<li>Small (combat bonuses, +4 to stealth already included)</li>";
+        SWD += "<li>Base speed is 20 feet</li>";
         SWD += "<li>Low-light vision</li>";
         SWD += "<li>+2 racial bonus on saves vs. illusions</li>";
-        SWD += "<li>+1 on DC of opponent's save vs. gnomish illusions</li>";
+        SWD += "<li>+1 to save DC of illusion spells</li>";
         SWD += "<li>+1 racial bonus to hit reptilians and goblinoids</li>";
         SWD += "<li>+4 dodge bonus on AC against giants</li>";
         SWD += "<li>+2 bonus on perception checks (already included)</li>";
+        SWD += "<li>+2 racial bonus on a Craft or Profession skill of their choice</li>";
         if (charisma>=11) {
             SWD += "<li>1/day <i>dancing lights, ghost sound, prestidigitation, speak with animals</i></li>";
         }
@@ -24728,9 +24880,9 @@ function WriteTextForCharacterSheet() {
         SWD += "<h5>Half-Elf</h5><ul>";
         stringy=whichabilityup();
         SWD += "<li>This half-elf chose +2 to "+stringy+" (already included)</li>";
-        SWD += "<li>Immune to magical sleep</li>";
         SWD += "<li>Allowed two favored classes. Here I am assuming it is the first two chosen classes.</li>";
         SWD += "<li>Take a skill focus as a bonus feat at level one</li>";
+        SWD += "<li>Immune to magical sleep</li>";
         SWD += "<li>+2 racial bonus on saves vs. enchantments</li>";
         SWD += "<li>Low-light vision</li>";
         SWD += "<li>+2 racial bonus on perception checks</li>";
@@ -24740,9 +24892,9 @@ function WriteTextForCharacterSheet() {
         SWD += "<h5>Half-Orc</h5><ul>";
         stringy=whichabilityup();
         SWD += "<li>This half-orc chose +2 to "+stringy+" (already included)</li>";
-        SWD += "<li>Darkvision (see 60 feet in pitch-dark)</li>";
+        SWD += "<li>Darkvision (see 60 feet in total darkness)</li>";
         SWD += "<li>+2 on intimidate (already included)</li>";
-        SWD += "<li>Orc Ferocity -- if brought below 0 hp, fight for 1 round anyway</li>";
+        SWD += "<li>Orc Ferocity -- if brought below 0 hp, fight for 1 more round before collapsing</li>";
         SWD += "<li>All orcs are proficient with greataxes and falchions</li>";
         SWD += "</ul>";
     }
@@ -24750,10 +24902,11 @@ function WriteTextForCharacterSheet() {
         SWD += "<h5>Halfling</h5><ul>";
         SWD += "<li>+2 dexterity, +2 charisma, -2 strength (already included)</li>";
         SWD += "<li>Small (combat bonuses, +4 to stealth already included)</li>";
+        SWD += "<li>Base speed is 20 feet</li>";
         SWD += "<li>+2 racial bonus on acrobatics, climb, and perception (already included)</li>";
         SWD += "<li>+1 racial bonus on all saving throws (already included)</li>";
         SWD += "<li>+2 morale bonus on saves vs. fear (stacks with racial bonus to all saves)</li>";
-        SWD += "<li>+1 to hit with thrown weapons and slings</li>";
+        SWD += "<li>Halflings are proficient with slings and treat any weapon with the word &quot;halfling&quot; in its name as a martial weapon</li>";
         SWD += "</ul>";
     }
     if (rayce == 9)  {
@@ -24769,7 +24922,6 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Reputedly, negative energy heals these characters and positive energy harms them. Whether this is workable in your campaign is up to your referee.</li>";
         SWD += "</ul>";
     }
-
     if (rayce == 22)  {
         SWD += "<h5>Orc</h5><ul>";
         SWD += "<li>+4 strength, -2 intelligence, -2 wisdom, -2 charisma (already included).</li>";
@@ -24786,7 +24938,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>+2 racial bonus to diplomacy and perception (already included)</li>";
         SWD += "<li>+5 resistance to acid, cold, electricity</li>";
         SWD += "<li>Daylight spell once daily</li>";
-        if ((sorcerer_levels > 0) && (has_celestial_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Celestial')) {
             SWD += "<li>Aasimar sorcerers with the celestial bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
         SWD += "</ul>";
@@ -24799,7 +24951,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Sylphs do not breathe and therefore cannot drown or be suffocated or harmed by inhalant poison</li>";
         SWD += "<li>+5 resistance to electricity</li>";
         SWD += "<li>Feather fall spell once daily. Some say gust of wind instead.</li>";
-        if ((sorcerer_levels > 0) && (has_elemental_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Elemental')) {
             SWD += "<li>Sylph sorcerers with the elemental (air) bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
         if ((cleric_levels > 0) && (has_air_domain)) {
@@ -24818,7 +24970,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Oreads get +2 on perception to notice odd stonework, even if not looking.</li>";
         SWD += "<li>+5 resistance to acid</li>";
         SWD += "<li>Magic stone once daily</li>";
-        if ((sorcerer_levels > 0) && (has_elemental_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Elemental')) {
             SWD += "<li>Oread sorcerers with the elemental (earth) bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
         if ((cleric_levels > 0) && (has_earth_domain)) {
@@ -24837,7 +24989,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Ifrits can use a swift action to make an unarmed attack do 1d6 points of extra fire damage for one round. Usable once daily.</li>";
         SWD += "<li>+5 resistance to fire</li>";
         SWD += "<li>Burning hands spell once daily</li>";
-        if ((sorcerer_levels > 0) && (has_elemental_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Elemental')) {
             SWD += "<li>Ifrit sorcerers with the elemental (fire) bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
         if ((cleric_levels > 0) && (has_fire_domain)) {
@@ -24856,7 +25008,7 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>Undines breathe water as well as air and have swim speed 30.</li>";
         SWD += "<li>+5 resistance to cold</li>";
         SWD += "<li>Slipstream / hydraulic push spell once daily</li>";
-        if ((sorcerer_levels > 0) && (has_elemental_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Elemental')) {
             SWD += "<li>Undine sorcerers with the elemental (water) bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
         if ((cleric_levels > 0) && (has_water_domain)) {
@@ -24876,10 +25028,10 @@ function WriteTextForCharacterSheet() {
         SWD += "<li>+2 racial bonus to bluff and stealth (already included)</li>";
         SWD += "<li>+5 resistance to cold, electricity, and fire</li>";
         SWD += "<li>Darkness spell once daily</li>";
-        if ((sorcerer_levels > 0) && (has_infernal_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Infernal')) {
             SWD += "<li>Tiefling sorcerers with the infernal bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
-        if ((sorcerer_levels > 0) && (has_abyssal_bloodline)) {
+        if ((sorcerer_levels > 0) && (bloodline=='Abyssal')) {
             SWD += "<li>Tiefling sorcerers with the abyssal bloodline have an effective bonus of +2 charisma with regards to sorcery.</li>";
         }
         SWD += "</ul>";
@@ -25447,42 +25599,116 @@ function WriteTextForCharacterSheet() {
     if (sorcerer_levels > 0) {
         SWD += "<h5>Sorcerer</h5><ul>";
         SWD += "<li>Can know only limited numbers of spells</li>";
-        SWD += "<li>Sorcerer spells no longer require cheap material components.</li>";
+        SWD += "<li>A sorcerer gains Eschew Materials as a bonus feat at 1st level.</li>";
         if (charisma>=12) {
             SWD += "<li>High charisma gains bonus spells daily</li>";
         }
         SWD += "<li>Concentration check: d20 + sorcerer level + charisma modifier vs. DC</li>";
-        SWD += "<li>Pathfinder sorcerers each choose a bloodline, which provides a class skill, extra spells, powers, and feats. Please write these in. Thanks for understanding.</li>";
-        if (has_aberrant_bloodline) {
-            SWD += "Aberrant bloodline sorcerers can increase the durations of polymorph spells, shoot acid, and as they gain levels increase reach on melee touch, gain chances to ignore critical hits and sneak attacks, gain spell resistance, gain blindsight, nad damage reduction 5/-.</li>";
-        }
-        if (has_abyssal_bloodline) {
-            SWD += "Abyssal bloodline sorcerers can grow claws,give damage resistance to summoned creatures, and as they gain levels get resistance to electricity, better saves against poison, physical strength [added as applicable], getan extra creature on sumon monster spells, and eventually rest acid cold and fire and gain telepathy.</li>";
-        }
-        if (has_arcane_bloodline) {
-            SWD += "Arcane bloodline sorcerers can have a familiar or bonded object like a wizards, increase DC on saves when metamagic spells are used, and as they gain level add spells known, increase DC for spells of one schol, and use spell slots to power magic items.</li>";
-        }
-        if (has_celestial_bloodline) {
-            SWD += "Celestial bloodline sorcerers can impart damage resistance to summoned creatures, shoot heavenly fire that harms evil creatures and heals good creatures, resist acid and cold, grow rings, reroll d20's, and eventually become immune to petrification and resist electricity and fire.</li>";
-        }
-        if (has_destined_bloodline) {
-            SWD += "Destined bloodline sorcerers can have a luck bonus on all saves after casting a personal spell, grant d20 bonuses to others, reroll soem dice, make a will save to avoid death, avoid criticals, and automatically succeed checks to overcome spell resistance</li>";
-        }
-        if (has_draconic_bloodline) {
-            SWD += "Draconic bloodline sorcerers choose a dragon type, get +1 per point of damage rolled on its energy type, grow claws, beta bonus on armor, get a breath weapon, get wings, and become immune to paralysis, sleep, damage of your energy type, and get blindsense to 60 feet.</li>";
-        }
-        if (has_elemental_bloodline) {
-            SWD += "Elemental bloodline sorcerers can choose an element, change a spell that deals energy to match the type of your bloodline, shoot rays, and as level increases resist damage from your energy type, unleash blasts, gain special movement type / bonus, and become immune to sneak attacks, critical hits, and damage of your type.</li>";
-        }
-        if (has_fey_bloodline) {
-            SWD += "Fey bloodline sorcerers can gain +2 on DC saves versusconpulsions, cause a creature to burst outlaughing by touch, and as levels are gained move at normal speed and without damage through undergrowth, turn invisible, reroll levelchecks to overcome spell resistance,, and finally become imune to poison, gain D 10/cold iron, animals will not attack you, and you can cast shadow walk</li>";
-        }
-        if (has_infernal_bloodline) {
-            SWD += "Infernal bloodline sorcerers get +1 on DC for saves when they cast a charm spell, make a creature shaken by touch, and as levels are gained resist fire, get save bonuses vs.poison, call down columns of fire, grow bat wings, and finally be immune to fire and poison, resist acid and cold, and see perfectly in all sorts of darkness</li>";
-        }
-        if (has_undead_bloodline) {
-            SWD += "Undead bloodline sorcerers can affect the minds of corporeal undead, cause creatures to become shaken on a touch, and as levels are gained get resistance to cold and damage reduction against nonlethal damage, make skeletal arms come out of the ground, become incorporeal, look undead, and eventually become immune to cold, nonlethal damage, paralysis, and sleep, get DR 5/-, and +2 on saves vs. spells by the undead </li>";
-        }
+        SWD += "<li>Sorcerers must choose a bloodline, which provides a class skill, extra spells, powers, and feats.</li>";
+        switch (bloodline) {
+            case 'Aberrant':
+                SWD += "Aberrant bloodline sorcerers can increase the durations of polymorph spells, shoot acid, and as they gain levels increase reach on melee touch, gain chances to ignore critical hits and sneak attacks, gain spell resistance, gain blindsight, and damage reduction 5/-.</li>";
+                break;
+            case 'Abyssal':
+                SWD += "Abyssal bloodline sorcerers can grow claws,give damage resistance to summoned creatures, and as they gain levels get resistance to electricity, better saves against poison, physical strength [added as applicable], getan extra creature on sumon monster spells, and eventually rest acid cold and fire and gain telepathy.</li>";
+                break;
+            case 'Accursed':
+                SWD += "Accursed bloodline sorcerer: Somewhere in your family history, a hag's foul influence entered your bloodline. You may actually be related to the hag, or you may still be suffering the effects of a curse that a hag laid upon your kin in generations past. Now the hag's powers are part of your heritage.</li>";
+                break;
+            case 'Aquatic':
+                SWD += "Aquatic Bloodline sorcerer: Your family traces its heritage back to the ocean depths, whether scions of undersea empires left in the wake of nomadic sea-tribes, or the spawn of creeping ichthyic infiltrators into remote seaside villages.</li>";
+                break;
+            case 'Arcane':
+                SWD += "Arcane bloodline sorcerers can have a familiar or bonded object like a wizards, increase DC on saves when metamagic spells are used, and as they gain level add spells known, increase DC for spells of one schol, and use spell slots to power magic items.</li>";
+                break;
+            case 'Boreal':
+                SWD += "Celestial bloodline sorcerers can impart damage resistance to summoned creatures, shoot heavenly fire that harms evil creatures and heals good creatures, resist acid and cold, grow rings, reroll d20's, and eventually become immune to petrification and resist electricity and fire.</li>";
+                break;
+            case 'Celestial':
+                SWD += "Celestial bloodline sorcerers can impart damage resistance to summoned creatures, shoot heavenly fire that harms evil creatures and heals good creatures, resist acid and cold, grow rings, reroll d20's, and eventually become immune to petrification and resist electricity and fire.</li>";
+                break;
+            case 'Daemon':
+                SWD += "Your lineage gives you great insight into how to exploit the weaknesses of living beings and how to use leeched soul energy to enhance your wicked abilities.";
+                break;
+            case 'Deep Earth':
+                SWD += "The echoing cave-songs and the rumble and creak of primal spirits deep below the ground thrum in your soul and in all your family line.";
+                break;
+            case 'Destined':
+                SWD += "Destined bloodline sorcerers can have a luck bonus on all saves after casting a personal spell, grant d20 bonuses to others, reroll soem dice, make a will save to avoid death, avoid criticals, and automatically succeed checks to overcome spell resistance</li>";
+                break;
+            case 'Djinni':
+                SWD += "You were born with the power of air genies, and the magic of the djinn is strong in you.";
+                break;
+            case 'Draconic':
+                SWD += "Draconic bloodline sorcerers choose a dragon type, get +1 per point of damage rolled on its energy type, grow claws, beta bonus on armor, get a breath weapon, get wings, and become immune to paralysis, sleep, damage of your energy type, and get blindsense to 60 feet.</li>";
+                break;
+            case 'Dreamspun':
+                SWD += "Your family is a long line of dreamers, who reach through and touch the supernatural realm of dreams.";
+                break;
+            case 'Efreeti':
+                SWD += "You were born with the power of fire genies, and the magic of the efreet is strong in you.";
+                break;
+            case 'Elemental':
+                SWD += "Elemental bloodline sorcerers can choose an element, change a spell that deals energy to match the type of your bloodline, shoot rays, and as level increases resist damage from your energy type, unleash blasts, gain special movement type / bonus, and become immune to sneak attacks, critical hits, and damage of your type.</li>";
+                break;
+            case 'Fey':
+                SWD += "Fey bloodline sorcerers can gain +2 on DC saves versusconpulsions, cause a creature to burst outlaughing by touch, and as levels are gained move at normal speed and without damage through undergrowth, turn invisible, reroll levelchecks to overcome spell resistance,, and finally become imune to poison, gain DR 10/cold iron, animals will not attack you, and you can cast shadow walk</li>";
+                break;
+            case 'Infernal':
+                SWD += "Infernal bloodline sorcerers get +1 on DC for saves when they cast a charm spell, make a creature shaken by touch, and as levels are gained resist fire, get save bonuses vs.poison, call down columns of fire, grow bat wings, and finally be immune to fire and poison, resist acid and cold, and see perfectly in all sorts of darkness</li>";
+                break;
+            case 'Maestro':
+                SWD += "The spiritual power of art and song runs strongly through your family line";
+                break;
+            case 'Marid':
+                SWD += "You were born with the power of water genies, and the magic of the marids is strong in you.";
+                break;
+            case 'Martyred':
+                SWD += "Your bloodline confers abilities that allow you to endure pain, resist torture, and inspire others.";
+                break;
+            case 'Oni':
+                SWD += "As slaves of capricious oni lords, your ancestors were forced to yield to their masters' hedonistic desires, inevitably tainting their descendents with oni blood";
+                break;
+            case 'Orc':
+                SWD += "The rage of your ancestors burns within you, and the taint of savage orc blood flows through your veins.";
+                break;
+            case 'Pestilence':
+                SWD += "You were born during the height of a great magical plague, to a mother suffering from an eldritch disease, or you suffered a pox as a child, such that your very soul now carries a blight of pestilence within it.";
+                break;
+            case 'Protean':
+                SWD += "You have in your veins the ever-changing wildness of primal chaos, the raw essence of unbound creation.";
+                break;
+            case 'Rakshasa':
+                SWD += "At some point in your family's history, one of your ancestors was tainted by the influence of a rakshasa.";
+                break;
+            case 'Serpentine':
+                SWD += "Your bloodline carries the lingering stain of ancient serpent races that ruled when the world was young";
+                break;
+            case 'Shadow':
+                SWD += "Spirits from the shadow plane dally at times in the world of light, and such as these lay with your ancestors once upon a time, imparting the mystery of shadow-stuff into your lineage.";
+                break;
+            case 'Shaitan':
+                SWD += "You were born with the power of earth genies, and the magic of the shaitans is strong in you.";
+                break;
+            case 'Starsoul':
+                SWD += "You come from a line of stargazers and explorers who delved deeply into the darkness beyond the stars.";
+                break;
+            case 'Stormborn':
+                SWD += "Stormborn bloodline sorcerers get +1 on DC for saves when they cast a spell with the [electricity] or [sonic] descriptor.</li>";
+                SWD += "Thunderstaff (Sp): At 1st level, you can give a touched weapon the shock property for a number of rounds equal to 1/2 your sorcerer level (minimum 1). At 9th level, you can confer the shocking burst property instead, but the duration of the power is halved. You can use this ability a number of times per day equal to 3 + your Charisma modifier.";
+                SWD += "Stormchild (Ex): At 3rd level, you gain resist electricity 5 and resist sonic 5, and treat wind effects as being one step less severe. At 9th level, you treat wind effects as being two steps less severe and gain blindsense 60 feet against concealment from natural or magical fog, mist, or weather effects.";
+                SWD += "Thunderbolt (Sp):  At 9th level";
+                SWD += "Ride the Lightning (Sp): At 15th level";
+                SWD += "Storm Lord (Ex): At 20th level";
+                break;
+            case 'Undead':
+                SWD += "Undead bloodline sorcerers can affect the minds of corporeal undead, cause creatures to become shaken on a touch, and as levels are gained get resistance to cold and damage reduction against nonlethal damage, make skeletal arms come out of the ground, become incorporeal, look undead, and eventually become immune to cold, nonlethal damage, paralysis, and sleep, get DR 5/-, and +2 on saves vs. spells by the undead </li>";
+                break;
+            case 'Verdant':
+                SWD += "Your progenitors infused themselves with raw plant life, binding it into their own tissue and passing it down to their literal seed, giving you innate communion with nature.";
+                break;
+            default:    
+        }      
         SWD += "</ul>";
     }
 
@@ -29270,7 +29496,7 @@ function CalculateArmorClass() {
         flatfooted_armor_class += 1;
         armor_class_string += " +1 [ophiduan] ";
     }
-    if (has_draconic_bloodline) {
+    if (bloodline=='Draconic') {
         if (sorcerer_levels>=15) {
             total_armor_class += 4;
             touch_armor_class += 4;
@@ -30324,9 +30550,8 @@ function bspd(spell_level) {
 function cspd(spell_level,character_level) {
     if (character_level == 0) {
         return -10;
-    } else
-    if (character_level == 1)
-    {
+    } 
+    else if (character_level == 1) {
         if (spell_level == 0) {
             return 3;
         }
@@ -30357,9 +30582,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 2)
-    {
+    } 
+    else if (character_level == 2) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30390,9 +30614,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 3)
-    {
+    } 
+    else if (character_level == 3) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30423,9 +30646,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 4)
-    {
+    } 
+    else if (character_level == 4) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30456,9 +30678,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 5)
-    {
+    } 
+    else if (character_level == 5) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30489,9 +30710,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 6)
-    {
+    } 
+    else if (character_level == 6) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30522,9 +30742,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 7)
-    {
+    } 
+    else if (character_level == 7) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30555,9 +30774,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 8)
-    {
+    } 
+    else if (character_level == 8) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30588,9 +30806,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 9)
-    {
+    } 
+    else if (character_level == 9) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30621,9 +30838,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 10)
-    {
+    } 
+    else if (character_level == 10) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30654,9 +30870,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 11)
-    {
+    } 
+    else if (character_level == 11) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30687,9 +30902,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 12)
-    {
+    } 
+    else if (character_level == 12) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30720,9 +30934,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 13)
-    {
+    } 
+    else if (character_level == 13) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30753,9 +30966,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 14)
-    {
+    } 
+    else if (character_level == 14) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30786,9 +30998,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 15)
-    {
+    } 
+    else if (character_level == 15) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30820,9 +31031,7 @@ function cspd(spell_level,character_level) {
             return -10;
         }
     }
-    else
-    if (character_level == 16)
-    {
+    else if (character_level == 16) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30853,9 +31062,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (character_level == 17)
-    {
+    } 
+    else if (character_level == 17) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30886,9 +31094,8 @@ function cspd(spell_level,character_level) {
         if (spell_level == 9) {
             return 1;
         }
-    } else
-    if (character_level == 18)
-    {
+    } 
+    else if (character_level == 18) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30920,9 +31127,7 @@ function cspd(spell_level,character_level) {
             return 2;
         }
     }
-    else
-    if (character_level == 19)
-    {
+    else if (character_level == 19) {
         if (spell_level == 0) {
             return 4;
         }
@@ -30994,8 +31199,7 @@ function pspd(spell_level,character_level) {
     if (character_level<4) {
         return -10;
     } else
-    if (character_level == 4)
-    {
+    if (character_level == 4) {
         if (spell_level == 1) {
             return 0;
         }
@@ -31008,9 +31212,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 5)
-    {
+    } 
+    else if (character_level == 5) {
         if (spell_level == 1) {
             return 1;
         }
@@ -31023,8 +31226,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 6) {
+    } 
+    else if (character_level == 6) {
         if (spell_level == 1) {
             return 1;
         }
@@ -31037,8 +31240,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 7) {
+    } 
+    else if (character_level == 7) {
         if (spell_level == 1) {
             return 1;
         }
@@ -31051,8 +31254,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 8) {
+    } 
+    else if (character_level == 8) {
         if (spell_level == 1) {
             return 1;
         }
@@ -31065,8 +31268,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 9) {
+    } 
+    else if (character_level == 9) {
         if (spell_level == 1) {
             return 2;
         }
@@ -31079,8 +31282,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 10) {
+    } 
+    else if (character_level == 10) {
         if (spell_level == 1) {
             return 2;
         }
@@ -31093,9 +31296,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 11)
-    {
+    } 
+    else if (character_level == 11) {
         if (spell_level == 1) {
             return 2;
         }
@@ -31108,9 +31310,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 12)
-    {
+    } 
+    else if (character_level == 12) {
         if (spell_level == 1) {
             return 2;
         }
@@ -31123,9 +31324,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return -10;
         }
-    } else
-    if (character_level == 13)
-    {
+    } 
+    else if (character_level == 13) {
         if (spell_level == 1) {
             return 3;
         }
@@ -31138,9 +31338,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 0;
         }
-    } else
-    if (character_level == 14)
-    {
+    } 
+    else if (character_level == 14) {
         if (spell_level == 1) {
             return 3;
         }
@@ -31153,9 +31352,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 0;
         }
-    } else
-    if (character_level == 15)
-    {
+    }
+    else if (character_level == 15) {
         if (spell_level == 1) {
             return 3;
         }
@@ -31168,9 +31366,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 1;
         }
-    } else
-    if (character_level == 16)
-    {
+    } 
+    else if (character_level == 16) {
         if (spell_level == 1) {
             return 3;
         }
@@ -31183,9 +31380,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 1;
         }
-    } else
-    if (character_level == 17)
-    {
+    }
+    else if (character_level == 17) {
         if (spell_level == 1) {
             return 4;
         }
@@ -31198,9 +31394,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 1;
         }
-    } else
-    if (character_level == 18)
-    {
+    } 
+    else if (character_level == 18) {
         if (spell_level == 1) {
             return 4;
         }
@@ -31213,9 +31408,8 @@ function pspd(spell_level,character_level) {
         if (spell_level == 4) {
             return 2;
         }
-    } else
-    if (character_level == 19)
-    {
+    } 
+    else if (character_level == 19) {
         if (spell_level == 1) {
             return 4;
         }
@@ -31346,9 +31540,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 4)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 4) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31380,9 +31573,7 @@ function sspd(spell_level) {
             return -10;
         }
     }
-    else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 5)
-    {
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 5) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31413,9 +31604,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 6)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 6) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31446,9 +31636,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 7)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 7) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31480,9 +31669,7 @@ function sspd(spell_level) {
             return -10;
         }
     }
-    else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 8)
-    {
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 8) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31513,9 +31700,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 9)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 9) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31546,9 +31732,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 10)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 10) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31579,9 +31764,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 11)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 11) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31612,9 +31796,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 12)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 12) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31645,9 +31828,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 13)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 13) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31678,9 +31860,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 14)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 14) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31711,9 +31892,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 15)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 15) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31744,9 +31924,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 16)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 16) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31777,9 +31956,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 17)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 17) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31810,9 +31988,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return -10;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 18)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 18) {
         if (spell_level == 0) {
             return 6;
         }
@@ -31843,9 +32020,8 @@ function sspd(spell_level) {
         if (spell_level == 9) {
             return 3;
         }
-    } else
-    if (sorcerer_levels + prestige_sorcerer_spell_levels == 19)
-    {
+    } 
+    else if (sorcerer_levels + prestige_sorcerer_spell_levels == 19) {
         if (spell_level == 0) {
             return 6;
         }
@@ -33080,25 +33256,25 @@ function PrepareRangerSpellArrays() {
 }
 
 function SorcerousCharisma() {
-    if ((rayce == 28) && (has_celestial_bloodline)) {
+    if ((rayce == 28) && (bloodline=="Celestial")) {
         return (charisma+2);
     }
-    if ((rayce == 33) && (has_abyssal_bloodline)) {
+    if ((rayce == 33) && (bloodline=="Abyssal")) {
         return (charisma+2);
     }
-    if ((rayce == 33) && (has_infernal_bloodline)) {
+    if ((rayce == 33) && (bloodline=="Infernal")) {
         return (charisma+2);
     }
-    if ((rayce == 29) && (has_elemental_bloodline)) {
+    if ((rayce == 29) && (bloodline=="Elemental")) {
         return (charisma+2);
     }
-    if ((rayce == 30) && (has_elemental_bloodline)) {
+    if ((rayce == 30) && (bloodline=="Elemental")) {
         return (charisma+2);
     }
-    if ((rayce == 31) && (has_elemental_bloodline)) {
+    if ((rayce == 31) && (bloodline=="Elemental")) {
         return (charisma+2);
     }
-    if ((rayce == 32) && (has_elemental_bloodline)) {
+    if ((rayce == 32) && (bloodline=="Elemental")) {
         return (charisma+2);
     }
     return charisma;
