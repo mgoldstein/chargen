@@ -10671,32 +10671,77 @@ function RememberFamiliar() {
         if (cat_familiar == true) {
             document.form1.choose_familiar[2].checked=true;
         }
-        if (hawk_familiar == true) {
+        if (centipede_familiar == true) {
             document.form1.choose_familiar[3].checked=true;
         }
-        if (lizard_familiar == true) {
+        if (compsognathus_familiar == true) {
             document.form1.choose_familiar[4].checked=true;
         }
-        if (monkey_familiar == true) {
+        if (donkeyrat_familiar == true) {
             document.form1.choose_familiar[5].checked=true;
         }
-        if (owl_familiar == true) {
+        if (fox_familiar == true) {
             document.form1.choose_familiar[6].checked=true;
         }
-        if (rat_familiar == true) {
+        if (goat_familiar == true) {
             document.form1.choose_familiar[7].checked=true;
         }
-        if (raven_familiar == true) {
+        if (hawk_familiar == true) {
             document.form1.choose_familiar[8].checked=true;
         }
-        if (snake_familiar == true) {
+        if (hedgehog_familiar == true) {
             document.form1.choose_familiar[9].checked=true;
         }
-        if (toad_familiar == true) {
+        if (kingcrab_familiar == true) {
             document.form1.choose_familiar[10].checked=true;
         }
-        if (weasel_familiar == true) {
+        if (lizard_familiar == true) {
             document.form1.choose_familiar[11].checked=true;
+        }
+        if (monkey_familiar == true) {
+            document.form1.choose_familiar[12].checked=true;
+        }
+        if (octopus_familiar == true) {
+            document.form1.choose_familiar[13].checked=true;
+        }
+        if (owl_familiar == true) {
+            document.form1.choose_familiar[14].checked=true;
+        }
+        if (pig_familiar == true) {
+            document.form1.choose_familiar[15].checked=true;
+        }
+        if (rat_familiar == true) {
+            document.form1.choose_familiar[16].checked=true;
+        }
+        if (raven_familiar == true) {
+            document.form1.choose_familiar[17].checked=true;
+        }
+        if (scorpion_familiar == true) {
+            document.form1.choose_familiar[18].checked=true;
+        }
+        if (skunk_familiar == true) {
+            document.form1.choose_familiar[19].checked=true;
+        }
+        if (snake_familiar == true) {
+            document.form1.choose_familiar[20].checked=true;
+        }
+        if (spider_familiar == true) {
+            document.form1.choose_familiar[21].checked=true;
+        }
+        if (thrush_familiar == true) {
+            document.form1.choose_familiar[22].checked=true;
+        }
+        if (toad_familiar == true) {
+            document.form1.choose_familiar[23].checked=true;
+        }
+        if (turtle_familiar == true) {
+            document.form1.choose_familiar[24].checked=true;
+        }
+        if (snappingturtle_familiar == true) {
+            document.form1.choose_familiar[25].checked=true;
+        }
+        if (weasel_familiar == true) {
+            document.form1.choose_familiar[26].checked=true;
         }
     }
 }
@@ -11073,30 +11118,75 @@ function ChooseFamiliar() {
             cat_familiar=true;
         }
         if (document.form1.choose_familiar[3].checked == true) {
-            hawk_familiar=true;
+            centipede_familiar=true;
         }
         if (document.form1.choose_familiar[4].checked == true) {
-            lizard_familiar=true;
+            compsognathus_familiar=true;
         }
         if (document.form1.choose_familiar[5].checked == true) {
-            monkey_familiar=true;
+            donkeyrat_familiar=true;
         }
         if (document.form1.choose_familiar[6].checked == true) {
-            owl_familiar=true;
+            fox_familiar=true;
         }
         if (document.form1.choose_familiar[7].checked == true) {
-            rat_familiar=true;
+            goat_familiar=true;
         }
         if (document.form1.choose_familiar[8].checked == true) {
-            raven_familiar=true;
+            hawk_familiar=true;
         }
         if (document.form1.choose_familiar[9].checked == true) {
-            snake_familiar=true;
+            hedgehog_familiar=true;
         }
         if (document.form1.choose_familiar[10].checked == true) {
-            toad_familiar=true;
+            kingcrab_familiar=true;
         }
         if (document.form1.choose_familiar[11].checked == true) {
+            lizard_familiar=true;
+        }
+        if (document.form1.choose_familiar[12].checked == true) {
+            monkey_familiar=true;
+        }
+        if (document.form1.choose_familiar[13].checked == true) {
+            octopus_familiar=true;
+        }
+        if (document.form1.choose_familiar[14].checked == true) {
+            owl_familiar=true;
+        }
+        if (document.form1.choose_familiar[15].checked == true) {
+            pig_familiar=true;
+        }
+        if (document.form1.choose_familiar[16].checked == true) {
+            rat_familiar=true;
+        }
+        if (document.form1.choose_familiar[17].checked == true) {
+            raven_familiar=true;
+        }
+        if (document.form1.choose_familiar[18].checked == true) {
+            scorpion_familiar=true;
+        }
+        if (document.form1.choose_familiar[19].checked == true) {
+            skunk_familiar=true;
+        }
+        if (document.form1.choose_familiar[20].checked == true) {
+            snake_familiar=true;
+        }
+        if (document.form1.choose_familiar[21].checked == true) {
+            spider_familiar=true;
+        }
+        if (document.form1.choose_familiar[22].checked == true) {
+            thrush_familiar=true;
+        }
+        if (document.form1.choose_familiar[23].checked == true) {
+            toad_familiar=true;
+        }
+        if (document.form1.choose_familiar[24].checked == true) {
+            turtle_familiar=true;
+        }
+        if (document.form1.choose_familiar[25].checked == true) {
+            snappingturtle_familiar=true;
+        }
+        if (document.form1.choose_familiar[26].checked == true) {
             weasel_familiar=true;
         }
     }
@@ -11173,6 +11263,21 @@ function NegateFamiliars() {
     snake_familiar=false;
     toad_familiar=false;
     weasel_familiar=false;
+    centipede_familiar=false;
+    compsognathus_familiar=false;
+    donkeyrat_familiar=false;
+    fox_familiar=false;
+    goat_familiar=false;
+    hedgehog_familiar=false;
+    kingcrab_familiar=false;
+    octopus_familiar=false;
+    pig_familiar=false;
+    scorpion_familiar=false;
+    skunk_familiar=false;
+    spider_familiar=false;
+    thrush_familiar=false;
+    turtle_familiar=false;
+    snappingturtle_familiar=false;
 }
 
 function ChooseRangerCombatTrack() {
@@ -17823,7 +17928,7 @@ function lock_classes() {
         if (wizard_levels > 0) {
             document.form1.choose_specialty[0].checked=true;
         }
-        if ((wizard_levels > 0) || (witch_levels > 0)) {
+        if ((wizard_levels > 0) || (witch_levels > 0) || (sorcerer_levels > 0 && bloodline=="Arcane") ) {
             document.form1.choose_familiar[0].checked=true;
         }
         
@@ -21768,6 +21873,51 @@ function WriteTextForCharacterSheet() {
         if (weasel_familiar == true) {
             SWD += "Weasel familiar: See rules in Core Handbook and stats in Bestiary";
         }
+        if (centipede_familiar == true) {
+            SWD += "Centipede familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (compsognathus_familiar == true) {
+            SWD += "Compsognathus familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (donkeyrat_familiar == true) {
+            SWD += "Donkey Rat familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (fox_familiar == true) {
+            SWD += "Fox familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (goat_familiar == true) {
+            SWD += "Goat familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (hedgehog_familiar == true) {
+            SWD += "Hedgehog familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (kingcrab_familiar == true) {
+            SWD += "King Crab familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (octopus_familiar == true) {
+            SWD += "Octopus familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (pig_familiar == true) {
+            SWD += "Pig familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (scorpion_familiar == true) {
+            SWD += "Scorpion familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (skunk_familiar == true) {
+            SWD += "Skunk familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (spider_familiar == true) {
+            SWD += "Spider familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (thrush_familiar == true) {
+            SWD += "Thrush familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (turtle_familiar == true) {
+            SWD += "Turtle familiar: See rules in Core Handbook and stats in Bestiary";
+        }
+        if (snappingturtle_familiar == true) {
+            SWD += "Snapping Turtle familiar: See rules in Core Handbook and stats in Bestiary";
+        }
         SWD += "<br />\r";
     }
 
@@ -25374,10 +25524,10 @@ function WriteTextForCharacterSheet() {
     if (ranger_levels > 0) {
         SWD += "<h5>Ranger</h5><ul>";
         SWD += "<li>Favored enemies. Bonus applies to attack (unlike 3.5), damage, bluff, knowledge (can always make checks), perception, sense motive, survival.  </li>";
-        SWD += "<li>Favored terrains.  Bonus applies to initiative, geography, perception, stealth, surival; need not leave tracks. </li>";
+        SWD += "<li>Favored terrains.  Bonus applies to initiative, geography, perception, stealth, survival; need not leave tracks. </li>";
         SWD += "<li>Bonus to tracking</li>";
         SWD += "<li>Combat Style</li>";
-        SWD += "<li>Endurance</li>";
+        SWD += "<li>Bonus feat: Endurance</li>";
         SWD += "<li>Wild empathy (roll level + charisma bonus)</li>";
         SWD += "<li>Endurance (level 3)</li>";
         SWD += "<li>Hunter's bond -- either an animal companion or bond with companions and grant some favored enemy bonuses to them(level 4)</li>";
@@ -25500,10 +25650,10 @@ function WriteTextForCharacterSheet() {
                 SWD += "<li>Cold + " + (2*rt_cold) + "</li>";
             }
             if (rt_desert > 0) {
-                SWD += "<li>Fesert + "+(2*rt_desert)+"</li>";
+                SWD += "<li>Desert + "+(2*rt_desert)+"</li>";
             }
             if (rt_forest > 0) {
-                SWD += "<li>Gorest + "+(2*rt_forest)+"</li>";
+                SWD += "<li>Forest + "+(2*rt_forest)+"</li>";
             }
             if (rt_jungle > 0) {
                 SWD += "<li>Jungle + "+(2*rt_jungle)+"</li>";
@@ -25560,16 +25710,16 @@ function WriteTextForCharacterSheet() {
                 SWD += "<li>Plane -- Water + "+(2*rt_planewater)+"</li>";
             }
             if (rt_swamp > 0) {
-                SWD += "<li>swamp + "+(2*rt_swamp)+"</li>";
+                SWD += "<li>Swamp + "+(2*rt_swamp)+"</li>";
             }
             if (rt_underground > 0) {
-                SWD += "<li>underground + "+(2*rt_underground)+"</li>";
+                SWD += "<li>Underground + "+(2*rt_underground)+"</li>";
             }
             if (rt_urban > 0) {
-                SWD += "<li>urban + "+(2*rt_urban)+"</li>";
+                SWD += "<li>Urban + "+(2*rt_urban)+"</li>";
             }
             if (rt_water > 0) {
-                SWD += "<li>water + "+(2*rt_water)+"</li>";
+                SWD += "<li>Water + "+(2*rt_water)+"</li>";
             }
             if (rt_other1 > 0) {
                 SWD += "<li>"+document.form1.other_ranger_terrain_1.value+"+"+(2*rt_other1)+"</li>";
@@ -27493,16 +27643,12 @@ function RewriteLockedAbilityAssignments() {
 
 function setCase (caseSelection) {
     if (caseSelection == "upper") {
-        document.form1.moniker.value=
-        document.form1.moniker.value.toUpperCase()
-        document.form1.playerName.value=
-        document.form1.playerName.value.toUpperCase()
+        document.form1.moniker.value=document.form1.moniker.value.toUpperCase();
+        document.form1.playerName.value=document.form1.playerName.value.toUpperCase();
     }
     else {
-        document.form1.firstName.value=
-        document.form1.firstName.value.toLowerCase()
-        document.form1.lastName.value=
-        document.form1.lastName.value.toLowerCase()
+        document.form1.firstName.value=document.form1.firstName.value.toLowerCase();
+        document.form1.lastName.value=document.form1.lastName.value.toLowerCase();
     }
 }
 
@@ -28851,8 +28997,7 @@ function CalculateHitPoints() {
         }
         total_hit_points += x;
     }
-    if (has_toughness)
-    {
+    if (has_toughness) {
         if (total_levels>3) {
             total_hit_points += total_levels
         }
@@ -28860,8 +29005,7 @@ function CalculateHitPoints() {
             total_hit_points += 3;
         }
     }
-    if (has_psionicbody)
-    {
+    if (has_psionicbody) {
         total_hit_points += 2*total_psionic_feats;
     }
     if (toad_familiar == true) {
@@ -28917,6 +29061,7 @@ function CalculateArmorClass() {
         armor_string += "] ";
         unarmored=false;
     }
+    // Leather
     if (document.form1.armor_radio[2].checked == true) {
         total_armor_class += 2;
         flatfooted_armor_class += 2;
@@ -28945,6 +29090,7 @@ function CalculateArmorClass() {
         armor_string += "] ";
         unarmored=false;
     }
+    // Studded
     if (document.form1.armor_radio[3].checked == true) {
         total_armor_class += 3;
         flatfooted_armor_class += 3;
@@ -29672,9 +29818,17 @@ function CalculateArmorClass() {
         fortitude_save += 2;
         fortitude_string_2 += " +2 [great fortitude] ";
     }
-    if (rat_familiar == true) {
+    if (rat_familiar == true || donkeyrat_familiar == true) {
         fortitude_save += 2;
-        fortitude_string_2 += " +2 [rat] ";
+        fortitude_string_2 += " +2 [rat familiar] ";
+    }
+    if (skunk_familiar == true) {
+        fortitude_save += 2;
+        fortitude_string_2 += " +2 [skunk familiar] ";
+    }
+    if (snappingturtle_familiar == true) {
+        fortitude_save += 2;
+        fortitude_string_2 += " +2 [snapping turtle familiar] ";
     }
     if (document.form1.hero_crystal.checked) {
         fortitude_save += 2;
@@ -29727,7 +29881,11 @@ function CalculateArmorClass() {
     }
     if (weasel_familiar == true) {
         reflex_save += 2;
-        reflex_string_2 += " +2 [weasel] ";
+        reflex_string_2 += " +2 [weasel familiar] ";
+    }
+    if (fox_familiar == true) {
+        reflex_save += 2;
+        reflex_string_2 += " +2 [fox familiar] ";
     }
     if (has_protection_domain) {
         x=1;
